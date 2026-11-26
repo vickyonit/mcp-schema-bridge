@@ -27,7 +27,7 @@ TOOLS = [
 
 def write(tmp_path: Path, data: Any) -> str:
     p = tmp_path / "in.json"
-    p.write_text(json.dumps(data))
+    p.write_text(json.dumps(data), encoding="utf-8")
     return str(p)
 
 
@@ -102,7 +102,7 @@ def test_usage_errors_exit_2(capsys: pytest.CaptureFixture[str]) -> None:
 
 def test_input_errors_exit_3(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
     bad = tmp_path / "bad.json"
-    bad.write_text("{ not json")
+    bad.write_text("{ not json", encoding="utf-8")
     assert main(["normalize", str(bad), "--target", "openai"]) == 3
     assert main(["normalize", str(tmp_path / "missing.json"), "--target", "openai"]) == 3
     assert "invalid JSON" in capsys.readouterr().err

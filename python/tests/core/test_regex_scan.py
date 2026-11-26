@@ -6,7 +6,9 @@ import pytest
 from mcp_schema_bridge.core.regex_scan import scan
 
 VECTORS = json.loads(
-    (Path(__file__).resolve().parents[3] / "spec" / "regex-vectors.json").read_text()
+    (Path(__file__).resolve().parents[3] / "spec" / "regex-vectors.json").read_text(
+        encoding="utf-8"
+    )
 )
 
 

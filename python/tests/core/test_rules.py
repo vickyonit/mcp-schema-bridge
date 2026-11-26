@@ -16,8 +16,8 @@ REPO = Path(__file__).resolve().parents[3]
 
 @pytest.mark.parametrize("target", TARGETS)
 def test_every_rules_file_validates_against_spec(target: str) -> None:
-    schema = json.loads((REPO / "spec" / "rules.schema.json").read_text())
-    data = json.loads((REPO / "rules" / f"{target}.json").read_text())
+    schema = json.loads((REPO / "spec" / "rules.schema.json").read_text(encoding="utf-8"))
+    data = json.loads((REPO / "rules" / f"{target}.json").read_text(encoding="utf-8"))
     jsonschema.validate(data, schema)
 
 
@@ -49,7 +49,10 @@ def test_unknown_target_rejected() -> None:
 
 
 def test_rules_version_is_date_based() -> None:
-    assert RULES_VERSION == json.loads((REPO / "rules" / "index.json").read_text())["rules_version"]
+    assert (
+        RULES_VERSION
+        == json.loads((REPO / "rules" / "index.json").read_text(encoding="utf-8"))["rules_version"]
+    )
 
 
 def test_keyword_classes() -> None:

@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[2]
-README = (REPO / "README.md").read_text()
+README = (REPO / "README.md").read_text(encoding="utf-8")
 
 
 def _python_blocks(text: str) -> list[str]:
@@ -33,22 +33,22 @@ def test_readme_matrix_is_current() -> None:
 
 
 def test_package_readme_matches_repo_readme() -> None:
-    assert (REPO / "python" / "README.md").read_text() == README
+    assert (REPO / "python" / "README.md").read_text(encoding="utf-8") == README
 
 
 def test_relative_links_resolve() -> None:
     for doc in [REPO / "README.md", *REPO.glob("docs/*.md"), REPO / "CONTRIBUTING.md"]:
-        for link in re.findall(r"\]\(([^)#]+)(?:#[^)]*)?\)", doc.read_text()):
+        for link in re.findall(r"\]\(([^)#]+)(?:#[^)]*)?\)", doc.read_text(encoding="utf-8")):
             if link.startswith(("http://", "https://", "mailto:")):
                 continue
             assert (doc.parent / link).exists(), f"{doc.relative_to(REPO)} links to missing {link}"
 
 
 def test_every_emitted_rule_id_is_documented() -> None:
-    catalog = (REPO / "docs" / "rules.md").read_text()
+    catalog = (REPO / "docs" / "rules.md").read_text(encoding="utf-8")
     emitted: set[str] = set()
     for p in (REPO / "corpus" / "expected").rglob("*.json"):
-        for e in json.loads(p.read_text())["report"]["entries"]:
+        for e in json.loads(p.read_text(encoding="utf-8"))["report"]["entries"]:
             emitted.add(
                 re.sub(
                     r"^(gemini-json|openai-strict|openai|anthropic-strict|anthropic)/",
@@ -62,4 +62,4 @@ def test_every_emitted_rule_id_is_documented() -> None:
 
 @pytest.mark.parametrize("path", sorted((REPO / "examples").glob("*.py")), ids=lambda p: p.name)
 def test_examples_compile(path: Path) -> None:
-    compile(path.read_text(), str(path), "exec")
+    compile(path.read_text(encoding="utf-8"), str(path), "exec")

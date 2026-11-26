@@ -197,7 +197,7 @@ def main() -> int:
     result = run(args.target, args.model, args.samples)
     out = ROOT / "evidence" / "probes" / args.target / f"{args.model}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")
+    out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"wrote {out.relative_to(ROOT)}")
     return 0
 

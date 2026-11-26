@@ -14,7 +14,7 @@ SPEC = Path(__file__).resolve().parents[2] / "spec"
 
 
 def schema(name: str) -> dict:
-    return json.loads((SPEC / name).read_text())
+    return json.loads((SPEC / name).read_text(encoding="utf-8"))
 
 
 REGISTRY = Registry().with_resources(

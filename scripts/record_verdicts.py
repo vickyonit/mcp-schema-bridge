@@ -40,10 +40,10 @@ PROVIDER = {"gemini-json": ("gemini", False), "openai": ("openai", False), "open
 def corpus_tools() -> list[tuple[str, dict[str, Any]]]:
     out: list[tuple[str, dict[str, Any]]] = []
     for d in sorted((ROOT / "corpus" / "captured").iterdir()):
-        for t in json.loads((d / "tools.json").read_text()):
+        for t in json.loads((d / "tools.json").read_text(encoding="utf-8")):
             out.append((f"{d.name}/{t['name']}", t))
     for f in sorted((ROOT / "corpus" / "synthetic").glob("*.json")):
-        case = json.loads(f.read_text())
+        case = json.loads(f.read_text(encoding="utf-8"))
         out.append((f"synthetic/{case['id']}", case["tool"]))
     return out
 
@@ -63,7 +63,7 @@ def main() -> int:
         print(f"skipping: no API key for {provider}", file=sys.stderr)
         return 0
     path = ROOT / "corpus" / "verdicts" / f"{a.target}.json"
-    old = json.loads(path.read_text()) if path.exists() else {"verdicts": {}}
+    old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"verdicts": {}}
     verdicts: dict[str, Any] = {}
     prompt = "Call the tool once with plausible example arguments."
     for case, tool in corpus_tools():
@@ -91,7 +91,7 @@ def main() -> int:
             print(f"NOT ACCEPTED {c}: {verdicts[c]['normalized']}", file=sys.stderr)
         return 1 if (drift or bad) else 0
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
+    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     for c in bad:
         print(f"NOT ACCEPTED {c}: {verdicts[c]['normalized']}", file=sys.stderr)
     return 1 if bad else 0

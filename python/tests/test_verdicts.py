@@ -21,7 +21,7 @@ RELEASE = os.environ.get("MSB_RELEASE") == "1"
 
 def _load(target: str) -> dict[str, Any] | None:
     p = VERDICTS / f"{target}.json"
-    return json.loads(p.read_text()) if p.exists() else None
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
 def _tools() -> dict[str, dict[str, Any]]:

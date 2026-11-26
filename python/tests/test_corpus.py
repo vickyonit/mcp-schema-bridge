@@ -14,16 +14,16 @@ from tests.support.invariants import check_all, hints_complete
 
 REPO = Path(__file__).resolve().parents[2]
 CORPUS = REPO / "corpus"
-MANIFEST = json.loads((CORPUS / "manifest.json").read_text())
+MANIFEST = json.loads((CORPUS / "manifest.json").read_text(encoding="utf-8"))
 STRIP = {"fingerprint", "library_version", "rules_version"}
 
 
 def _cases() -> list[tuple[str, list[dict[str, Any]]]]:
     out: list[tuple[str, list[dict[str, Any]]]] = []
     for d in sorted((CORPUS / "captured").iterdir()):
-        out.append((d.name, json.loads((d / "tools.json").read_text())))
+        out.append((d.name, json.loads((d / "tools.json").read_text(encoding="utf-8"))))
     for f in sorted((CORPUS / "synthetic").glob("*.json")):
-        case = json.loads(f.read_text())
+        case = json.loads(f.read_text(encoding="utf-8"))
         out.append((f"synthetic/{case['id']}", [case["tool"]]))
     return out
 
@@ -59,10 +59,10 @@ def test_golden(
     text = render(target, tools)
     if request.config.getoption("--update-golden"):
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text)
+        path.write_text(text, encoding="utf-8")
         return
     assert path.exists(), f"missing golden {path.relative_to(REPO)}; run pytest --update-golden"
-    assert text == path.read_text(), f"golden mismatch for {path.relative_to(REPO)}"
+    assert text == path.read_text(encoding="utf-8"), f"golden mismatch for {path.relative_to(REPO)}"
 
 
 @pytest.mark.parametrize("target", TARGETS)
@@ -80,7 +80,7 @@ def test_coverage_gate() -> None:
             path = golden_path(target, case)
             if not path.exists():
                 continue
-            data = json.loads(path.read_text())
+            data = json.loads(path.read_text(encoding="utf-8"))
             for e in data["report"]["entries"]:
                 seen.setdefault(e["tid"], set()).add(target)
     missing = {
@@ -93,7 +93,7 @@ def test_coverage_gate() -> None:
 
 def test_every_captured_source_has_license_metadata() -> None:
     for d in sorted((CORPUS / "captured").iterdir()):
-        meta = json.loads((d / "meta.json").read_text())
+        meta = json.loads((d / "meta.json").read_text(encoding="utf-8"))
         assert meta.get("license"), d.name
         assert meta.get("source"), d.name
         assert meta.get("version"), d.name

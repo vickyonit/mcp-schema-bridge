@@ -61,7 +61,7 @@ def main() -> int:
     tools = asyncio.run(asyncio.wait_for(capture(argv), timeout=180))
     out = ROOT / "corpus" / "captured" / a.id
     out.mkdir(parents=True, exist_ok=True)
-    (out / "tools.json").write_text(json.dumps(tools, indent=2, ensure_ascii=False) + "\n")
+    (out / "tools.json").write_text(json.dumps(tools, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     # Never record local paths (privacy): absolute path arguments are replaced by a placeholder.
     recorded = ["<path>" if arg.startswith("/") or arg[1:3] == ":\\" else arg for arg in argv]
     meta = {
@@ -73,7 +73,7 @@ def main() -> int:
         "captured_on": dt.date.today().isoformat(),
         "tool_count": len(tools),
     }
-    (out / "meta.json").write_text(json.dumps(meta, indent=2) + "\n")
+    (out / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     print(f"captured {len(tools)} tools -> {out.relative_to(ROOT)}", file=sys.stderr)
     return 0
 

@@ -23,8 +23,8 @@ START, END = "<!-- matrix:start -->", "<!-- matrix:end -->"
 
 
 def render() -> str:
-    rules = {t: json.loads((ROOT / "rules" / f"{t}.json").read_text()) for t in TARGETS}
-    version = json.loads((ROOT / "rules" / "index.json").read_text())["rules_version"]
+    rules = {t: json.loads((ROOT / "rules" / f"{t}.json").read_text(encoding="utf-8")) for t in TARGETS}
+    version = json.loads((ROOT / "rules" / "index.json").read_text(encoding="utf-8"))["rules_version"]
     lines = [START, "", f"_Generated from `rules/*.json` (rules_version `{version}`) by `scripts/gen_matrix.py`._", ""]
     lines.append("| Target | API field | Strict | Evidence | Verified on |")
     lines.append("|---|---|---|---|---|")
@@ -64,7 +64,7 @@ def render() -> str:
 
 def main(argv: list[str]) -> int:
     readme = ROOT / "README.md"
-    text = readme.read_text()
+    text = readme.read_text(encoding="utf-8")
     start, end = text.index(START), text.index(END) + len(END)
     new = text[:start] + render() + text[end:]
     if "--check" in argv:
@@ -72,7 +72,7 @@ def main(argv: list[str]) -> int:
             print("README matrix is out of date: run uv run --script scripts/gen_matrix.py", file=sys.stderr)
             return 1
         return 0
-    readme.write_text(new)
+    readme.write_text(new, encoding="utf-8")
     return 0
 
 
