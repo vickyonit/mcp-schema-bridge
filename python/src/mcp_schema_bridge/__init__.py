@@ -1,6 +1,7 @@
 """Normalize MCP tool schemas for Gemini, OpenAI and Anthropic."""
 
 from mcp_schema_bridge._version import __version__
+from mcp_schema_bridge.adapters import Api, to_sdk_payload
 from mcp_schema_bridge.core.errors import (
     InvalidInputError,
     LimitExceededError,
@@ -19,6 +20,7 @@ from mcp_schema_bridge.core.toolset import NormalizedTool, Rejection, ToolsetRes
 __all__ = [
     "RULES_VERSION",
     "TARGETS",
+    "Api",
     "Budget",
     "DenormalizeResult",
     "InvalidInputError",
@@ -40,4 +42,5 @@ __all__ = [
     "denormalize_args",
     "normalize_schema",
     "normalize_tools",
+    "to_sdk_payload",
 ]
