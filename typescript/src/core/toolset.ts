@@ -61,7 +61,9 @@ export class ToolsetResult {
     const counts = new Map<string, number>(SEVERITIES.map((s) => [s, 0]));
     for (const e of this.report.entries) counts.set(e.severity, counts.get(e.severity)! + 1);
     const changes = [...counts].filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ") || "no changes";
-    const lines = [`${this.target}: ${this.tools.length} tool(s) ok, ${this.rejected.length} rejected; ${changes}`];
+    const demoted = this.tools.filter((t) => t.target !== this.target).length;
+    const ok = `${this.tools.length} tool(s) ok` + (demoted ? ` (${demoted} demoted to non-strict)` : "");
+    const lines = [`${this.target}: ${ok}, ${this.rejected.length} rejected; ${changes}`];
     for (const e of this.report.sorted()) {
       if (e.severity === "info") continue;
       const where = e.tool ? `${e.tool}  ${e.sourcePath || "/"}` : e.sourcePath || "/";
