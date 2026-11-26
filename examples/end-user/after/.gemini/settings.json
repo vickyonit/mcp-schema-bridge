@@ -1,0 +1,12 @@
+{
+  "security": { "auth": { "selectedType": "gemini-api-key" } },
+  "mcpServers": {
+    "geo": {
+      "command": "uv",
+      "args": ["run", "-q", "--project", "../../../python", "--extra", "cli",
+               "mcp-schema-bridge", "proxy", "--target", "gemini-json", "--report", "bridge-report.json",
+               "--", "uv", "run", "-q", "--script", "../geo_server.py"],
+      "trust": true
+    }
+  }
+}

@@ -42,3 +42,23 @@ reproduce the problem) against a third-party Pydantic server. Run live with `gpt
 | 2.2 | The summary said `4 tool(s) ok, 0 rejected … 1 fatal`, which looks contradictory. | The summary now says `(1 demoted to non-strict)`. The fatal entry explains why. |
 | 2.3 | Recording live verdicts for OpenAI found two real bugs. A dropped tuple left `items: false`, meaning "no elements". Regex lookaround and backreferences make OpenAI strict fail with a 500. | Tuples are flattened to an items union. The OpenAI regex subset is now part of the rules, with evidence in `evidence/probes/openai-strict/`. |
 | 2.4 | In TypeScript, `toSdkPayload` returned `Record<string, unknown>[]`, so passing it to `openai.responses.create` needed `as unknown as …`. | `toSdkPayload` has per-API overloads returning types structurally compatible with the official SDKs (`OpenAIResponsesTool`, `OpenAIChatTool`, `AnthropicTool`, `GenaiTool`). `examples/client-builder-ts/agent.ts` type-checks against the real `openai` types with no cast, and was run live. |
+
+## Persona 3: MCP end user (gemini-cli, a third-party server)
+
+Goal: "A server I installed breaks gemini-cli. I can change neither gemini-cli nor the server."
+
+Steps: `examples/end-user/geo_server.py` emits a draft-07 tuple and a mixed-type enum. I ran the real
+`gemini-cli` (headless) before and after putting the proxy in front of it.
+
+- Before: the session failed for **every** prompt with `400 INVALID_ARGUMENT: schema at properties.from.items
+  must be a boolean or an object`. One bad tool took down the whole conversation.
+- After: `mcp-schema-bridge proxy --target gemini-json -- <original command>`. The model called the tool and
+  answered "343.5 km".
+
+| # | What I felt | Change |
+|---|---|---|
+| 3.1 | As an end user, the library API is useless to me. I can only edit my client's config. | New `mcp-schema-bridge proxy` command. You prefix the server command, and nothing else changes. |
+| 3.2 | First attempt: "I do not have a distance tool". That was not a schema problem: headless gemini-cli hides tools that need confirmation. Very confusing to debug. | The how-to and the example call out `"trust": true` for headless runs, and that the interactive UI needs no change. |
+| 3.3 | The proxy prints its summary to stderr, which gemini-cli doesn't show me. | Documented `--report FILE`. The example writes `bridge-report.json`. |
+| 3.4 | Which `--target` do I pick for my app? | The how-to has a table mapping clients to targets. |
+| 3.5 | Resources and prompts from the wrapped server disappear behind the proxy. | Documented limitation (tools only). Candidate for the next version. |

@@ -1,0 +1,6 @@
+{
+  "security": { "auth": { "selectedType": "gemini-api-key" } },
+  "mcpServers": {
+    "geo": { "command": "uv", "args": ["run", "-q", "--script", "../geo_server.py"], "trust": true }
+  }
+}
