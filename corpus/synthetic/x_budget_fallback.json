@@ -1,0 +1,102 @@
+{
+  "id": "x_budget_fallback",
+  "description": "Budget overflow with strict_fallback and a reserved budget",
+  "options": {
+    "strict_fallback": true,
+    "reserved_budget": {
+      "optional_params": 10
+    }
+  },
+  "tools": [
+    {
+      "name": "t0",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": "string"
+          },
+          "o1": {
+            "type": "string"
+          },
+          "o2": {
+            "type": "string"
+          },
+          "o3": {
+            "type": "string"
+          },
+          "o4": {
+            "type": "string"
+          },
+          "o5": {
+            "type": "string"
+          },
+          "o6": {
+            "type": "string"
+          },
+          "o7": {
+            "type": "string"
+          },
+          "o8": {
+            "type": "string"
+          },
+          "o9": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "t1",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": "string"
+          },
+          "o1": {
+            "type": "string"
+          },
+          "o2": {
+            "type": "string"
+          },
+          "o3": {
+            "type": "string"
+          },
+          "o4": {
+            "type": "string"
+          },
+          "o5": {
+            "type": "string"
+          },
+          "o6": {
+            "type": "string"
+          },
+          "o7": {
+            "type": "string"
+          },
+          "o8": {
+            "type": "string"
+          },
+          "o9": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "meta",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "m": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "m"
+        ]
+      }
+    }
+  ]
+}

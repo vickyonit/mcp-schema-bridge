@@ -1,0 +1,270 @@
+{
+  "id": "m_distribution_limit",
+  "description": "Union distribution exceeding max_nodes",
+  "options": {
+    "max_nodes": 500
+  },
+  "tool": {
+    "name": "m_distribution_limit_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "allOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 0
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "minLength": 2
+                },
+                {
+                  "type": "string",
+                  "minLength": 3
+                },
+                {
+                  "type": "string",
+                  "minLength": 4
+                },
+                {
+                  "type": "string",
+                  "minLength": 5
+                },
+                {
+                  "type": "string",
+                  "minLength": 6
+                },
+                {
+                  "type": "string",
+                  "minLength": 7
+                },
+                {
+                  "type": "string",
+                  "minLength": 8
+                },
+                {
+                  "type": "string",
+                  "minLength": 9
+                },
+                {
+                  "type": "string",
+                  "minLength": 10
+                },
+                {
+                  "type": "string",
+                  "minLength": 11
+                },
+                {
+                  "type": "string",
+                  "minLength": 12
+                },
+                {
+                  "type": "string",
+                  "minLength": 13
+                },
+                {
+                  "type": "string",
+                  "minLength": 14
+                },
+                {
+                  "type": "string",
+                  "minLength": 15
+                },
+                {
+                  "type": "string",
+                  "minLength": 16
+                },
+                {
+                  "type": "string",
+                  "minLength": 17
+                },
+                {
+                  "type": "string",
+                  "minLength": 18
+                },
+                {
+                  "type": "string",
+                  "minLength": 19
+                },
+                {
+                  "type": "string",
+                  "minLength": 20
+                },
+                {
+                  "type": "string",
+                  "minLength": 21
+                },
+                {
+                  "type": "string",
+                  "minLength": 22
+                },
+                {
+                  "type": "string",
+                  "minLength": 23
+                },
+                {
+                  "type": "string",
+                  "minLength": 24
+                },
+                {
+                  "type": "string",
+                  "minLength": 25
+                },
+                {
+                  "type": "string",
+                  "minLength": 26
+                },
+                {
+                  "type": "string",
+                  "minLength": 27
+                },
+                {
+                  "type": "string",
+                  "minLength": 28
+                },
+                {
+                  "type": "string",
+                  "minLength": 29
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 0
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "minLength": 2
+                },
+                {
+                  "type": "string",
+                  "minLength": 3
+                },
+                {
+                  "type": "string",
+                  "minLength": 4
+                },
+                {
+                  "type": "string",
+                  "minLength": 5
+                },
+                {
+                  "type": "string",
+                  "minLength": 6
+                },
+                {
+                  "type": "string",
+                  "minLength": 7
+                },
+                {
+                  "type": "string",
+                  "minLength": 8
+                },
+                {
+                  "type": "string",
+                  "minLength": 9
+                },
+                {
+                  "type": "string",
+                  "minLength": 10
+                },
+                {
+                  "type": "string",
+                  "minLength": 11
+                },
+                {
+                  "type": "string",
+                  "minLength": 12
+                },
+                {
+                  "type": "string",
+                  "minLength": 13
+                },
+                {
+                  "type": "string",
+                  "minLength": 14
+                },
+                {
+                  "type": "string",
+                  "minLength": 15
+                },
+                {
+                  "type": "string",
+                  "minLength": 16
+                },
+                {
+                  "type": "string",
+                  "minLength": 17
+                },
+                {
+                  "type": "string",
+                  "minLength": 18
+                },
+                {
+                  "type": "string",
+                  "minLength": 19
+                },
+                {
+                  "type": "string",
+                  "minLength": 20
+                },
+                {
+                  "type": "string",
+                  "minLength": 21
+                },
+                {
+                  "type": "string",
+                  "minLength": 22
+                },
+                {
+                  "type": "string",
+                  "minLength": 23
+                },
+                {
+                  "type": "string",
+                  "minLength": 24
+                },
+                {
+                  "type": "string",
+                  "minLength": 25
+                },
+                {
+                  "type": "string",
+                  "minLength": 26
+                },
+                {
+                  "type": "string",
+                  "minLength": 27
+                },
+                {
+                  "type": "string",
+                  "minLength": 28
+                },
+                {
+                  "type": "string",
+                  "minLength": 29
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "p"
+      ]
+    }
+  }
+}

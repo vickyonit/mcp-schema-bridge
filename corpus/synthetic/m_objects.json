@@ -1,0 +1,104 @@
+{
+  "id": "m_objects",
+  "description": "additionalProperties schemas, dependentRequired and patternProperties merge",
+  "tools": [
+    {
+      "name": "m_objects_0",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "k": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "dependentRequired": {
+                  "k": [
+                    "k"
+                  ]
+                },
+                "patternProperties": {
+                  "^x": {
+                    "type": "string"
+                  }
+                },
+                "dependentSchemas": {
+                  "k": {
+                    "required": [
+                      "k"
+                    ]
+                  }
+                }
+              },
+              {
+                "additionalProperties": {
+                  "maxLength": 5
+                },
+                "dependentRequired": {
+                  "k": [
+                    "j"
+                  ],
+                  "z": [
+                    "k"
+                  ]
+                },
+                "patternProperties": {
+                  "^x": {
+                    "maxLength": 3
+                  },
+                  "^y": {
+                    "type": "integer"
+                  }
+                },
+                "dependentSchemas": {
+                  "k": {
+                    "minProperties": 1
+                  },
+                  "j": {
+                    "required": [
+                      "k"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    },
+    {
+      "name": "m_objects_1",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "additionalProperties": true
+              },
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    }
+  ]
+}

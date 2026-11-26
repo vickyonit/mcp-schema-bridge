@@ -13,7 +13,7 @@ import pytest
 
 from mcp_schema_bridge import normalize_tools
 from mcp_schema_bridge.core.jcs import canonicalize
-from tests.test_corpus import CASES
+from tests.test_corpus import CASES, options_for
 
 VERDICTS = Path(__file__).resolve().parents[2] / "corpus" / "verdicts"
 RELEASE = os.environ.get("MSB_RELEASE") == "1"
@@ -28,8 +28,15 @@ def _tools() -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for case, tools in CASES:
         for t in tools:
-            out[case if case.startswith("synthetic/") else f"{case}/{t['name']}"] = t
+            single = case.startswith("synthetic/") and len(tools) == 1
+            out[case if single else f"{case}/{t['name']}"] = {**t, "__case": case}
     return out
+
+
+def _norm(tool: dict[str, Any], target: str) -> Any:
+    case = tool["__case"]
+    clean = {k: v for k, v in tool.items() if k != "__case"}
+    return normalize_tools([clean], target, options_for(case))  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize("target", ["gemini-json"])
@@ -46,7 +53,7 @@ def test_normalized_outputs_were_verified_live(target: str) -> None:
     unverified: list[str] = []
     for case, tool in _tools().items():
         v = doc["verdicts"][case]["normalized"]
-        res = normalize_tools([tool], target)  # type: ignore[arg-type]
+        res = _norm(tool, target)
         if not res.tools:
             assert v["status"] == "rejected-by-design", case
             continue
@@ -67,7 +74,7 @@ def test_raw_rejections_are_explained_by_the_report(target: str) -> None:
     assert doc is not None
     for case, tool in _tools().items():
         if doc["verdicts"][case]["raw"]["status"] == "rejected":
-            res = normalize_tools([tool], target)  # type: ignore[arg-type]
+            res = _norm(tool, target)
             assert res.report.entries, (
                 f"{case} was rejected live but the normalizer changed nothing"
             )

@@ -4,7 +4,7 @@
 # dependencies = ["mcp-schema-bridge"]
 #
 # [tool.uv.sources]
-# mcp-schema-bridge = { path = "../python" }
+# mcp-schema-bridge = { path = "../python", editable = true }
 # ///
 """Record live accept/reject verdicts for every corpus tool, raw and normalized (plan §7.2).
 
@@ -29,7 +29,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from providers import available, call_tool  # noqa: E402
 
-from mcp_schema_bridge import normalize_tools  # noqa: E402
+from mcp_schema_bridge import Budget, NormalizeOptions, normalize_tools  # noqa: E402
 from mcp_schema_bridge.core.jcs import canonicalize  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,14 +37,21 @@ PROVIDER = {"gemini-json": ("gemini", False), "openai": ("openai", False), "open
             "anthropic": ("anthropic", False), "anthropic-strict": ("anthropic", True)}
 
 
-def corpus_tools() -> list[tuple[str, dict[str, Any]]]:
-    out: list[tuple[str, dict[str, Any]]] = []
+def corpus_tools() -> list[tuple[str, dict[str, Any], NormalizeOptions]]:
+    out: list[tuple[str, dict[str, Any], NormalizeOptions]] = []
     for d in sorted((ROOT / "corpus" / "captured").iterdir()):
         for t in json.loads((d / "tools.json").read_text(encoding="utf-8")):
-            out.append((f"{d.name}/{t['name']}", t))
+            out.append((f"{d.name}/{t['name']}", t, NormalizeOptions()))
     for f in sorted((ROOT / "corpus" / "synthetic").glob("*.json")):
         case = json.loads(f.read_text(encoding="utf-8"))
-        out.append((f"synthetic/{case['id']}", case["tool"]))
+        raw = dict(case.get("options", {}))
+        if "reserved_budget" in raw:
+            raw["reserved_budget"] = Budget(**raw["reserved_budget"])
+        opts = NormalizeOptions(**raw)
+        if "tools" in case:
+            out += [(f"synthetic/{case['id']}/{t['name']}", t, opts) for t in case["tools"]]
+        else:
+            out.append((f"synthetic/{case['id']}", case["tool"], opts))
     return out
 
 
@@ -57,6 +64,7 @@ def main() -> int:
     ap.add_argument("--target", required=True, choices=sorted(PROVIDER))
     ap.add_argument("--model", required=True)
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--changed", action="store_true", help="only re-record tools whose normalized output changed")
     a = ap.parse_args()
     provider, strict = PROVIDER[a.target]
     if not available(provider):
@@ -66,8 +74,14 @@ def main() -> int:
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"verdicts": {}}
     verdicts: dict[str, Any] = {}
     prompt = "Call the tool once with plausible example arguments."
-    for case, tool in corpus_tools():
-        res = normalize_tools([tool], a.target)  # type: ignore[arg-type]
+    for case, tool, opts in corpus_tools():
+        res = normalize_tools([tool], a.target, opts)  # type: ignore[arg-type]
+        prev = old["verdicts"].get(case)
+        if a.changed and prev is not None:
+            current = sha(res.tools[0].schema) if res.tools else None
+            if current == prev["normalized"].get("sha256"):
+                verdicts[case] = prev
+                continue
         raw = call_tool(provider, model=a.model, schema=tool["inputSchema"], prompt=prompt, strict=strict, tool_name="t")
         entry: dict[str, Any] = {"raw": {"status": raw.status, "error": raw.error}}
         if res.tools:

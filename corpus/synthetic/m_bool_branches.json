@@ -1,0 +1,44 @@
+{
+  "id": "m_bool_branches",
+  "description": "allOf with true and false branches",
+  "tools": [
+    {
+      "name": "m_bool_branches_0",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              true,
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    },
+    {
+      "name": "m_bool_branches_1",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              false,
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "m_arrays",
+  "description": "items, prefixItems, contains and uniqueItems merge",
+  "tool": {
+    "name": "m_arrays_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "allOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "prefixItems": [
+                {
+                  "type": "integer"
+                }
+              ],
+              "title": "A"
+            },
+            {
+              "items": {
+                "maximum": 9
+              },
+              "prefixItems": [
+                {
+                  "minimum": 1
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "uniqueItems": true,
+              "title": "B",
+              "contains": {
+                "type": "integer"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "p"
+      ]
+    }
+  }
+}

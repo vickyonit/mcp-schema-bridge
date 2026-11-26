@@ -1,0 +1,91 @@
+{
+  "id": "u_enums_types",
+  "description": "Union edge cases: mixed enums with null, typed const splits, multi-type with existing anyOf, integer/number collapse",
+  "tool": {
+    "name": "u_enums_types_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "enum": [
+            "x",
+            1,
+            null
+          ]
+        },
+        "b": {
+          "enum": [
+            1,
+            2.5
+          ]
+        },
+        "c": {
+          "const": null
+        },
+        "d": {
+          "type": [
+            "integer",
+            "number",
+            "null"
+          ]
+        },
+        "e": {
+          "type": [
+            "string",
+            "integer"
+          ],
+          "const": "k"
+        },
+        "f": {
+          "type": [
+            "string",
+            "integer"
+          ],
+          "enum": [
+            "a",
+            1
+          ],
+          "anyOf": [
+            {
+              "minLength": 1
+            },
+            {
+              "minimum": 0
+            }
+          ]
+        },
+        "g": {
+          "enum": [
+            {
+              "k": 1
+            },
+            2
+          ]
+        },
+        "h": {
+          "enum": [
+            "a",
+            {
+              "k": 1
+            }
+          ],
+          "anyOf": [
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h"
+      ]
+    }
+  }
+}

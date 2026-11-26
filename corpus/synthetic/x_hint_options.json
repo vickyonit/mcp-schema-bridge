@@ -1,0 +1,30 @@
+{
+  "id": "x_hint_options",
+  "description": "Hints disabled and description truncation",
+  "options": {
+    "hints": false,
+    "max_description_chars": 10
+  },
+  "tool": {
+    "name": "x_hint_options",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "type": "string",
+          "pattern": "^a",
+          "description": "a long description text"
+        },
+        "h": {
+          "type": "integer",
+          "multipleOf": 2,
+          "description": "x\n\n[constraints: minimum=1]"
+        }
+      },
+      "required": [
+        "p",
+        "h"
+      ]
+    }
+  }
+}

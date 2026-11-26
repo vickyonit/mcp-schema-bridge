@@ -1,0 +1,30 @@
+{
+  "id": "m_ref_cycle",
+  "description": "Self-referencing allOf",
+  "tool": {
+    "name": "m_ref_cycle_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "$ref": "#/$defs/A"
+        }
+      },
+      "required": [
+        "p"
+      ],
+      "$defs": {
+        "A": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/A"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

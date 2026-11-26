@@ -5,13 +5,14 @@ import { type OMap, parseOrdered, stringifyOrdered } from "../src/core/ojson.js"
 import { type Target } from "../src/core/rules.js";
 import { normalizeToolsOrdered } from "../src/core/toolset.js";
 
-const file = process.env.MSB_FUZZ_FILE;
+// Committed seeded cases (corpus/fuzz/cases.jsonl) plus, optionally, a fresh file from scripts/parity_fuzz.py.
+const files = [new URL("../../corpus/fuzz/cases.jsonl", import.meta.url).pathname, ...(process.env.MSB_FUZZ_FILE ? [process.env.MSB_FUZZ_FILE] : [])];
 const STRIP = new Set(["fingerprint", "library_version", "rules_version"]);
 const strip = (v: unknown): unknown =>
   v instanceof Map ? new Map([...v].filter(([k]) => !STRIP.has(k as string)).map(([k, x]) => [k, strip(x)])) : Array.isArray(v) ? v.map(strip) : v;
 
-describe.skipIf(!file)("differential fuzz vs Python", () => {
-  const lines = file ? readFileSync(file, "utf8").split("\n").filter(Boolean) : [];
+describe("differential fuzz vs Python", () => {
+  const lines = files.flatMap((f) => readFileSync(f, "utf8").split("\n").filter(Boolean));
   it.each(lines.map((l, i) => [i, l] as const))("case %i", (_i, line) => {
     const c = parseOrdered(line) as OMap;
     const expected = c.get("expected") as OMap;

@@ -1,0 +1,50 @@
+{
+  "id": "x_roundtrip_recursive",
+  "description": "Argument round-trip through a recursive definition",
+  "tool": {
+    "name": "x_roundtrip_recursive",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "head": {
+          "$ref": "#/$defs/Node"
+        }
+      },
+      "required": [
+        "head"
+      ],
+      "$defs": {
+        "Node": {
+          "type": "object",
+          "properties": {
+            "v": {
+              "type": "string"
+            },
+            "next": {
+              "$ref": "#/$defs/Node"
+            }
+          },
+          "required": [
+            "v"
+          ]
+        }
+      }
+    }
+  },
+  "args": [
+    {
+      "head": {
+        "v": "1",
+        "next": {
+          "v": "2",
+          "next": null
+        }
+      }
+    },
+    {
+      "head": {
+        "v": "1"
+      }
+    }
+  ]
+}

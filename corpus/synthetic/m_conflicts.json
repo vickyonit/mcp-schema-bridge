@@ -1,0 +1,75 @@
+{
+  "id": "m_conflicts",
+  "description": "Conflicting pattern, format, multipleOf, not, defaults and descriptions",
+  "tools": [
+    {
+      "name": "m_conflicts_0",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "string",
+                "pattern": "^a",
+                "format": "email",
+                "description": "A",
+                "default": "x",
+                "not": {
+                  "const": "q"
+                },
+                "examples": [
+                  "e"
+                ],
+                "x-custom": 1
+              },
+              {
+                "pattern": "b$",
+                "format": "uri",
+                "description": "B",
+                "default": "y",
+                "not": {
+                  "const": "r"
+                },
+                "examples": [
+                  "f"
+                ],
+                "x-custom": 2,
+                "unknownKw": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    },
+    {
+      "name": "m_conflicts_1",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "number",
+                "multipleOf": 2
+              },
+              {
+                "multipleOf": 3,
+                "exclusiveMinimum": 0
+              },
+              {
+                "exclusiveMinimum": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    }
+  ]
+}

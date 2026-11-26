@@ -1,0 +1,39 @@
+{
+  "id": "m_refs",
+  "description": "allOf of two references with siblings",
+  "tool": {
+    "name": "m_refs_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/A",
+              "description": "first"
+            },
+            {
+              "$ref": "#/$defs/B"
+            }
+          ]
+        }
+      },
+      "required": [
+        "p"
+      ],
+      "$defs": {
+        "A": {
+          "type": "string",
+          "minLength": 1
+        },
+        "B": {
+          "$ref": "#/$defs/C"
+        },
+        "C": {
+          "type": "string",
+          "maxLength": 9
+        }
+      }
+    }
+  }
+}

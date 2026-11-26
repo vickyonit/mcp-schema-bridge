@@ -1,0 +1,37 @@
+{
+  "id": "x_ids",
+  "description": "$id base URIs, anchors and relative references",
+  "tool": {
+    "name": "x_ids",
+    "inputSchema": {
+      "$id": "https://example.com/root.json",
+      "type": "object",
+      "properties": {
+        "a": {
+          "$ref": "#name"
+        },
+        "b": {
+          "$ref": "item.json"
+        },
+        "c": {
+          "$ref": "https://example.com/root.json#/$defs/N"
+        }
+      },
+      "required": [
+        "a",
+        "b",
+        "c"
+      ],
+      "$defs": {
+        "N": {
+          "$anchor": "name",
+          "type": "string"
+        },
+        "I": {
+          "$id": "item.json",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

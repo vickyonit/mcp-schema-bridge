@@ -1,0 +1,100 @@
+{
+  "id": "r_refs",
+  "description": "Reference edge cases: pointers into arrays, invalid pointers, draft-07 $id anchors, dynamic refs",
+  "tools": [
+    {
+      "name": "r_refs_0",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "b": {
+            "$ref": "#/properties/a/anyOf/1"
+          },
+          "c": {
+            "$ref": "#/properties/a/anyOf/x"
+          },
+          "d": {
+            "$ref": "#/properties/a/type"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_refs_1",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#item"
+          },
+          "b": {
+            "$ref": "#/definitions/Item"
+          }
+        },
+        "definitions": {
+          "Item": {
+            "$id": "#item",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_refs_2",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$dynamicRef": "#node"
+          },
+          "b": {
+            "$recursiveRef": "#"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_refs_3",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "$ref": "#/$defs/a~1b%25c"
+          },
+          "y": {
+            "$ref": "#/$defs/n/properties/q"
+          }
+        },
+        "$defs": {
+          "a/b%c": {
+            "type": "integer"
+          },
+          "n": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string"
+              }
+            },
+            "$defs": {
+              "nested": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

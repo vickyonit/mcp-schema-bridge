@@ -1,0 +1,57 @@
+{
+  "id": "o_optional_shapes",
+  "description": "Optional properties of every shape: const, enum, $ref with annotations, anyOf, untyped, boolean true",
+  "tool": {
+    "name": "o_optional_shapes_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "c": {
+          "type": "string",
+          "const": "x"
+        },
+        "e": {
+          "type": "string",
+          "enum": [
+            "a",
+            null
+          ]
+        },
+        "r": {
+          "$ref": "#/$defs/A",
+          "description": "addr",
+          "title": "Addr"
+        },
+        "u": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "n": {
+          "not": {
+            "type": "string"
+          }
+        },
+        "any": true
+      },
+      "$defs": {
+        "A": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      }
+    }
+  }
+}

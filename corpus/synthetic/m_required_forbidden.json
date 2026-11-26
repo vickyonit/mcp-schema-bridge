@@ -1,0 +1,86 @@
+{
+  "id": "m_required_forbidden",
+  "description": "Property required by one branch but forbidden by another",
+  "tools": [
+    {
+      "name": "m_required_forbidden_0",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "b": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "b"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    },
+    {
+      "name": "m_required_forbidden_1",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "enum": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "const": "b"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    },
+    {
+      "name": "m_required_forbidden_2",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "const": "a"
+              },
+              {
+                "const": "b"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      }
+    }
+  ]
+}

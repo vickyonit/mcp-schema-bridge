@@ -1,0 +1,111 @@
+{
+  "id": "x_roundtrip_unions",
+  "description": "Argument round-trip choosing among typed union branches",
+  "tool": {
+    "name": "x_roundtrip_unions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "v": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "z": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "a"
+                },
+                "o": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "b"
+                  ]
+                },
+                "p": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "v"
+      ]
+    }
+  },
+  "args": [
+    {
+      "v": null
+    },
+    {
+      "v": 3
+    },
+    {
+      "v": 2.5
+    },
+    {
+      "v": true
+    },
+    {
+      "v": [
+        {
+          "z": null
+        }
+      ]
+    },
+    {
+      "v": {
+        "kind": "a",
+        "o": null
+      }
+    },
+    {
+      "v": {
+        "kind": "b",
+        "p": null
+      }
+    },
+    {
+      "v": "s"
+    }
+  ]
+}

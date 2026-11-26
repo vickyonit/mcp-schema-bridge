@@ -1,0 +1,95 @@
+{
+  "id": "r_root_variants",
+  "description": "Root edge cases: nullable object root, untyped properties root, self-referenced union root, open roots",
+  "tools": [
+    {
+      "name": "r_root_variants_0",
+      "inputSchema": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "a": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_root_variants_1",
+      "inputSchema": {
+        "properties": {
+          "a": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_root_variants_2",
+      "inputSchema": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "leaf": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "leaf"
+            ]
+          }
+        ],
+        "$defs": {
+          "__root": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_root_variants_3",
+      "inputSchema": {
+        "type": "object",
+        "patternProperties": {
+          "^x": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "r_root_variants_4",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "r_root_variants_5",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  ]
+}

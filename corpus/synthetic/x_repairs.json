@@ -1,0 +1,45 @@
+{
+  "id": "x_repairs",
+  "description": "Opt-in enum case repair",
+  "options": {},
+  "repairs": [
+    "enum_case_insensitive"
+  ],
+  "tool": {
+    "name": "x_repairs",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "Fast",
+            "Slow",
+            "slow"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B"
+          ]
+        }
+      },
+      "required": [
+        "mode",
+        "kind"
+      ]
+    }
+  },
+  "args": [
+    {
+      "mode": "SLOW",
+      "kind": "a"
+    },
+    {
+      "mode": "slow",
+      "kind": "B"
+    }
+  ]
+}

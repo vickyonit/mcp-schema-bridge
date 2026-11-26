@@ -1,0 +1,52 @@
+{
+  "id": "x_roundtrip_root",
+  "description": "Argument round-trip through a wrapped root and union branches",
+  "tool": {
+    "name": "x_roundtrip_root",
+    "inputSchema": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "opt": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        }
+      ]
+    }
+  },
+  "args": [
+    {
+      "value": {
+        "id": "1",
+        "opt": null
+      }
+    },
+    {
+      "value": {
+        "slug": "s"
+      }
+    },
+    {
+      "not_value": 1
+    }
+  ]
+}

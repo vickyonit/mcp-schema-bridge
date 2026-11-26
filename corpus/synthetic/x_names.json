@@ -1,0 +1,24 @@
+{
+  "id": "x_names",
+  "description": "Duplicate and invalid tool names",
+  "tools": [
+    {
+      "name": "files.read",
+      "inputSchema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "ok",
+      "inputSchema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "ok",
+      "inputSchema": {
+        "type": "object"
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 # dependencies = ["mcp-schema-bridge"]
 #
 # [tool.uv.sources]
-# mcp-schema-bridge = { path = "../python" }
+# mcp-schema-bridge = { path = "../python", editable = true }
 # ///
 """Normalize a 100-tool toolset built from the captured corpus; report p50/p99 per target."""
 

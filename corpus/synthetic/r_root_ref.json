@@ -1,0 +1,33 @@
+{
+  "id": "r_root_ref",
+  "description": "Root-level $ref (Pydantic-style) with a sibling description",
+  "tool": {
+    "name": "r_root_ref",
+    "inputSchema": {
+      "$ref": "#/$defs/Args",
+      "description": "args",
+      "$defs": {
+        "Args": {
+          "type": "object",
+          "properties": {
+            "q": {
+              "type": "string"
+            },
+            "o": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "q"
+          ]
+        }
+      }
+    }
+  },
+  "args": [
+    {
+      "q": "x",
+      "o": null
+    }
+  ]
+}

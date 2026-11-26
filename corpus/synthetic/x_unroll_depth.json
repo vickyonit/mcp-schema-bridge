@@ -1,0 +1,36 @@
+{
+  "id": "x_unroll_depth",
+  "description": "Recursion unrolling with max_ref_depth=1",
+  "options": {
+    "max_ref_depth": 1
+  },
+  "tool": {
+    "name": "x_unroll_depth",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "expr": {
+          "$ref": "#/$defs/E"
+        }
+      },
+      "required": [
+        "expr"
+      ],
+      "$defs": {
+        "E": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/E"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "x_hint_merge",
+  "description": "Existing hint block is merged; long values truncated",
+  "tool": {
+    "name": "x_hint_merge",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "h": {
+          "type": "string",
+          "minLength": 1,
+          "description": "x\n\n[constraints: pattern=\"a\"]"
+        },
+        "long": {
+          "type": "string",
+          "pattern": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "required": [
+        "h",
+        "long"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "i_ref_siblings_recursive",
+  "description": "Recursive $ref with sibling keywords on a target that forbids siblings",
+  "tool": {
+    "name": "i_ref_siblings_recursive_0",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "v": {
+          "type": "string"
+        },
+        "next": {
+          "$ref": "#",
+          "description": "next node",
+          "minProperties": 1
+        }
+      },
+      "required": [
+        "v"
+      ]
+    }
+  }
+}
