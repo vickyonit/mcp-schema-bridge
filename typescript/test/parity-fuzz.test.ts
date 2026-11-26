@@ -1,12 +1,13 @@
 /** Differential fuzzing against the Python reference (input produced by scripts/parity_fuzz.py). */
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { type OMap, parseOrdered, stringifyOrdered } from "../src/core/ojson.js";
 import { type Target } from "../src/core/rules.js";
 import { normalizeToolsOrdered } from "../src/core/toolset.js";
 
 // Committed seeded cases (corpus/fuzz/cases.jsonl) plus, optionally, a fresh file from scripts/parity_fuzz.py.
-const files = [new URL("../../corpus/fuzz/cases.jsonl", import.meta.url).pathname, ...(process.env.MSB_FUZZ_FILE ? [process.env.MSB_FUZZ_FILE] : [])];
+const files = [fileURLToPath(new URL("../../corpus/fuzz/cases.jsonl", import.meta.url)), ...(process.env.MSB_FUZZ_FILE ? [process.env.MSB_FUZZ_FILE] : [])];
 const STRIP = new Set(["fingerprint", "library_version", "rules_version"]);
 const strip = (v: unknown): unknown =>
   v instanceof Map ? new Map([...v].filter(([k]) => !STRIP.has(k as string)).map(([k, x]) => [k, strip(x)])) : Array.isArray(v) ? v.map(strip) : v;
