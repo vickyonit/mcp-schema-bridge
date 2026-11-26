@@ -1,0 +1,61 @@
+name: Nightly live verdicts
+
+# Re-records provider verdicts and opens/updates ONE drift issue per target when they change.
+# Runs only on main, in the protected `live-verification` environment (keys with hard spend caps).
+# Kill switch: set the repository variable LIVE_ENABLED to "false".
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nightly-verdicts
+  cancel-in-progress: false
+
+jobs:
+  verdicts:
+    if: github.ref == 'refs/heads/main' && vars.LIVE_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    environment: live-verification
+    permissions:
+      contents: read
+      issues: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: gemini-json
+            model: gemini-3.5-flash-lite
+            key: GEMINI_API_KEY
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+      - name: Check verdicts
+        id: check
+        env:
+          GEMINI_API_KEY: ${{ matrix.key == 'GEMINI_API_KEY' && secrets.GEMINI_API_KEY || '' }}
+          TARGET: ${{ matrix.target }}
+          MODEL: ${{ matrix.model }}
+        run: |
+          set +e
+          uv run --script scripts/record_verdicts.py --target "$TARGET" --model "$MODEL" --check 2> drift.txt
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+      - name: Open or update the drift issue
+        if: steps.check.outputs.rc != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET: ${{ matrix.target }}
+        run: |
+          title="Provider drift: $TARGET"
+          body="$(printf 'Nightly verdict check failed on %s.\n\n```\n%s\n```\n' "$(date -u +%F)" "$(head -c 60000 drift.txt)")"
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --label provider-drift --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --label provider-drift --body "$body"
+          fi

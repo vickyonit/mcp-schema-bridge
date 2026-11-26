@@ -30,6 +30,18 @@ jobs:
       - name: Rules copies match rules/
         working-directory: .
         run: uv run --script scripts/sync_rules.py --check
+      - name: README matrix is current
+        working-directory: .
+        run: uv run --script scripts/gen_matrix.py --check
+      - name: Package contents
+        working-directory: .
+        run: uv run --script scripts/check_package_contents.py
+      - name: Installed-package smoke test
+        working-directory: .
+        run: uv run --script scripts/smoke_installed.py
+      - name: Workflow security lint (zizmor)
+        working-directory: .
+        run: uvx zizmor==1.33.1 --min-severity medium .github/workflows
 
   python-test:
     strategy:
