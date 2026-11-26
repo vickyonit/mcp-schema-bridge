@@ -27,20 +27,6 @@
     "target": "openai-strict",
     "entries": [
       {
-        "rule": "core/allof-merged",
-        "tid": "T7",
-        "tool": "t7_allof_unsatisfiable",
-        "source_path": "",
-        "target_path": null,
-        "instance_path": null,
-        "keyword": "allOf",
-        "action": "merged",
-        "severity": "info",
-        "original": null,
-        "hinted": false,
-        "message": "allOf merged into a single schema"
-      },
-      {
         "rule": "core/object-closed",
         "tid": "T10",
         "tool": "t7_allof_unsatisfiable",
@@ -53,6 +39,20 @@
         "original": null,
         "hinted": false,
         "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "t7_allof_unsatisfiable",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
       },
       {
         "rule": "core/allof-unsatisfiable",
