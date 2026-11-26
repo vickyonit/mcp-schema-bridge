@@ -14,7 +14,16 @@
               "array",
               "null"
             ],
-            "items": false,
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
             "description": "[constraints: prefixItems=[{\"type\":\"number\"},{\"type\":\"number\"}]]"
           },
           "a": {
@@ -208,7 +217,7 @@
           }
         ],
         "hinted": true,
-        "message": "prefixItems is not supported by the target; kept as a description hint"
+        "message": "prefixItems (tuple) is not supported by the target; elements are typed as a union"
       },
       {
         "rule": "openai-strict/optional-to-nullable",
@@ -223,6 +232,20 @@
         "original": "array",
         "hinted": false,
         "message": "optional property 'point' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/tuple-flattened",
+        "tid": "T12",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "items",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": false,
+        "hinted": false,
+        "message": "items replaced by the union of the tuple element schemas"
       }
     ]
   }

@@ -189,7 +189,7 @@ _Generated from `rules/*.json` (rules_version `2026.11.26`) by `scripts/gen_matr
 |---|---|---|---|---|
 | `gemini-json` | `parametersJsonSchema` | no | 1 assumed, 3 doc, 7 probe, 3 recorded | 2026-11-26 |
 | `openai` | `parameters` | no | 2 doc, 3 reported | 2026-11-26 |
-| `openai-strict` | `parameters` | yes | 2 assumed, 7 doc, 2 reported | 2026-11-26 |
+| `openai-strict` | `parameters` | yes | 2 assumed, 5 doc, 1 probe, 3 recorded, 2 reported | 2026-11-26 |
 | `anthropic` | `input_schema` | no | 2 doc, 2 reported | 2026-11-26 |
 | `anthropic-strict` | `input_schema` | yes | 9 doc, 1 reported | 2026-11-26 |
 

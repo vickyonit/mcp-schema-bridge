@@ -106,6 +106,9 @@ def _filter_keyword(node: SNode, kw: str, ctx: Ctx) -> None:
                     message="target only allows primitive enum/const values",
                 )
         return
+    if kw == "prefixItems":
+        _flatten_tuple(node, ctx)
+        return
     if kw == "default":
         _drop(
             node,
@@ -252,3 +255,42 @@ def _integer_exclusive_bounds(node: SNode, ctx: Ctx) -> None:
                 original=v,
                 message=f"{ex} {v} rewritten as the equivalent {inc} {bound} for integers",
             )
+
+
+def _flatten_tuple(node: SNode, ctx: Ctx) -> None:
+    """Target lacks prefixItems: approximate the tuple with `items` = union of the element schemas.
+
+    Dropping prefixItems alone would leave `items` (which only constrains elements after the prefix)
+    applying to every element, e.g. `items: false` would forbid all elements.
+    """
+    prefix = [s for s in cast(list[Any], node["prefixItems"]) if isinstance(s, SNode)]
+    tail = node.get("items")
+    members: list[Any] = [*prefix, *([tail] if isinstance(tail, SNode) else [])]
+    _drop(
+        node,
+        "prefixItems",
+        ctx,
+        tid="T12",
+        rule=ctx.rule_id(_slug(ctx, "prefixItems")),
+        severity="lossy",
+        hint=True,
+        message="prefixItems (tuple) is not supported by the target; elements are typed as a union",
+    )
+    if not members:
+        node.pop("items", None)
+        return
+    new_items: Any = members[0] if len(members) == 1 else SNode({"anyOf": members}, src=())
+    if "items" in node:
+        for origin in node.origins("items"):
+            ctx.add(
+                ctx.rule_id("tuple-flattened"),
+                "T12",
+                node=node,
+                keyword="items",
+                action="rewritten",
+                severity="lossy",
+                source_path=origin,
+                original=to_plain(tail),
+                message="items replaced by the union of the tuple element schemas",
+            )
+    node["items"] = new_items

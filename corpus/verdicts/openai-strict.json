@@ -1,0 +1,1837 @@
+{
+  "target": "openai-strict",
+  "model": "gpt-4.1-mini",
+  "recorded_at": "2026-11-26T08:36:15Z",
+  "verdicts": {
+    "playwright-mcp/browser_close": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "playwright-mcp/browser_resize": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "926a18e506841436d3f3467eb1bfc45cf8a99989c8b3c7bbbcdf3ef1e2910467"
+      }
+    },
+    "playwright-mcp/browser_console_messages": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'all'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d37d3e77fb78bf260bfa4f055b42806cdb59b8cda09b6d7166538370cf85d78a"
+      }
+    },
+    "playwright-mcp/browser_handle_dialog": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'promptText'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c1cf10d6b631885e6d4df4d3cc554aa1cdcce5dc0bc531db19d67c1af13eb5e4"
+      }
+    },
+    "playwright-mcp/browser_emulate_media": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'colorScheme'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "67269600455ce0a55c409d188a673243ef445c47e3cb6d1566ad9505e2936d22"
+      }
+    },
+    "playwright-mcp/browser_evaluate": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d10fed347c37c35555715f35c19db58d18f551554db60d8ae249897e3fd9932e"
+      }
+    },
+    "playwright-mcp/browser_file_upload": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'paths'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c251ce0af3fecc1ade7dbfb974a0e1ad951b22323be7fd4d23727b18ef67fa82"
+      }
+    },
+    "playwright-mcp/browser_drop": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=('properties', 'data'), 'propertyNames' is not permitted."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "playwright-mcp/browser_find": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'text'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "568561e24012107f9bd42149926b5fe6e76ba6d67754a03cee79b0346015886f"
+      }
+    },
+    "playwright-mcp/browser_fill_form": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=('properties', 'fields', 'items'), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5a231889a2721402bbfead54810432c7a4483baa8b1624fc3349c668cb4b4659"
+      }
+    },
+    "playwright-mcp/browser_press_key": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d14dd62a69fb7f79b7c099bf136ec762daa966ee2754c2f571a7f40e77eccabd"
+      }
+    },
+    "playwright-mcp/browser_type": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a1510736729fee8287a7750c13d5b991557cc055c5768b244c985df4b1ab7da2"
+      }
+    },
+    "playwright-mcp/browser_navigate": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "64b201822b7d8e8f5f5f28903d1d733e43b800099affcbe582290665b04d8492"
+      }
+    },
+    "playwright-mcp/browser_navigate_back": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "playwright-mcp/browser_network_requests": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'filter'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "555d2a6025c18697ef6f9c1217ef0b691486d0b944bbf9facbf38baa95943959"
+      }
+    },
+    "playwright-mcp/browser_network_request": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'part'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12ad30858fccbdc990bcbac6f00f07d7a11587e8cf66d9774942e31442c6c211"
+      }
+    },
+    "playwright-mcp/browser_run_code_unsafe": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'code'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7bd5fc8b84ff8beffe40e90a522f11ce9d0bf2b2b2411d48ec394d182b07dc17"
+      }
+    },
+    "playwright-mcp/browser_take_screenshot": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d6ce0e4b0c01083822f8d28f2df82b9d066c3e6fecf0137fcc5bf868a0faf5a4"
+      }
+    },
+    "playwright-mcp/browser_snapshot": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'target'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "bbbbbf15a0b1f54157ffc6f0481e4c4776a03960e070882ff87508214591584d"
+      }
+    },
+    "playwright-mcp/browser_click": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6e403fb6f79f80ef2ab2926346112dc458df16674360692ba51b7d8128054d9f"
+      }
+    },
+    "playwright-mcp/browser_drag": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'startElement'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "0077794d6e20f68bb20eb25abc285c9fbe8a9a51ada58dbe6e2a751182e400e6"
+      }
+    },
+    "playwright-mcp/browser_hover": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "0d3ef7f0c8a152788916d7ad44e316f247a581d55b553587d79e6bdbe108b236"
+      }
+    },
+    "playwright-mcp/browser_select_option": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'element'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "10568db878d865b55846888540d636c0b2c3dec0930b9f30df519b156fae85f0"
+      }
+    },
+    "playwright-mcp/browser_tabs": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'index'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "73acef4e22a46b9c2b0f1287fed7c4a526c9a04c7dd6eff49c6918b4e8decd03"
+      }
+    },
+    "playwright-mcp/browser_wait_for": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'time'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9a1923b0376b541de2cf0235cd4d040adc3f00dfb54e0bedda5feec31152d665"
+      }
+    },
+    "pydantic-example/create_contact": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2e8dc2f40666a517b62bbc2676c325d188f9b1611b9f626ad3e47b94b9b37e1f"
+      }
+    },
+    "pydantic-example/search": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "pydantic-example/save_tree": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "15476ea844f3229c72895111068cd0fdc2dfcf32a256e3c4f2f5aa9f808272d0"
+      }
+    },
+    "pydantic-example/schedule": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9becb5eb75f5cfab8d3d75de39da074a4bed26cadfdca7385b8ce5d566b4277a"
+      }
+    },
+    "server-everything/echo": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "11c7383c2b6b70462134bd33ee37bfeae27e4b40ebc1173584b4b32312c8ae6a"
+      }
+    },
+    "server-everything/get-annotated-message": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "875f012b71233cd8fad12b0fa56203f78b14fe13ed154d3e3b1dced52299c28c"
+      }
+    },
+    "server-everything/get-env": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "server-everything/get-header-params": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'repeat'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6e3c774f3d5a5cfce8f6d37c71276e0b4b0a73bb25a3bf3f7e6b27ccfd9d9455"
+      }
+    },
+    "server-everything/get-resource-links": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b6a4ec72c08ec6778e6b32c99d19b464888b33aa36d9e7241b6fec1f1ca632de"
+      }
+    },
+    "server-everything/get-resource-reference": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "725e6ce7e2ac26348c47fe5e3d4d1b041688a37225c51b401b28f72a917f14c4"
+      }
+    },
+    "server-everything/get-structured-content": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "95d8f33523dfb9ff70ccead068a8e01cd93b8823ab7ad231d3b54b5822869345"
+      }
+    },
+    "server-everything/get-sum": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5e42ac173c9e196074b7980c011054ef6b06d500189a42c7b23dfc5ade69101d"
+      }
+    },
+    "server-everything/get-tiny-image": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "server-everything/gzip-file-as-resource": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6d6ba60f210da0c9bf58837ececf55dba80708c67be86380aa4ea9f3ca35fa69"
+      }
+    },
+    "server-everything/trigger-list-changed": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "268a23ae0c04969343001ae68c37b2db9a26d14ab0b7fb77d5c8204fa9af7947"
+      }
+    },
+    "server-everything/trigger-log-messages": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "server-everything/trigger-long-running-operation": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e7e4a20d284bb4dd90550e51aceda3a2e9296efee7b264745a6bb34d5982a151"
+      }
+    },
+    "server-everything/trigger-resource-update": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "547298caefe39b2dfe5c411b8536d334319360255a11c650e0322abadb9e72b7"
+      }
+    },
+    "server-everything/toggle-simulated-logging": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "server-everything/toggle-subscriber-updates": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "server-fetch/fetch": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d96288cea1611884af752533a5d4ba6e3941898d53571c42fa162bd2a61bdc79"
+      }
+    },
+    "server-filesystem/read_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "270b334c4cf45486e34f3aff558ac82e92650408abdbecedd45446a327f83662"
+      }
+    },
+    "server-filesystem/read_text_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "270b334c4cf45486e34f3aff558ac82e92650408abdbecedd45446a327f83662"
+      }
+    },
+    "server-filesystem/read_media_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "28e1836ba71bf0ebf724dcfedcb711f8529998f830585ee67520e321affe75ce"
+      }
+    },
+    "server-filesystem/read_multiple_files": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "0a1beff03e42ba5c9d08bb65da7d0921ecbf6ce2e4c7cb83a4922a556bac62b9"
+      }
+    },
+    "server-filesystem/write_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "430067a985066a3af1080c894c348ea23fb32060d8b77abbfcf2418d10363b84"
+      }
+    },
+    "server-filesystem/append_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ea87e47828ecc6a66a5ad617b296ccbe29ebd72e47e295479fddebe62eb000e6"
+      }
+    },
+    "server-filesystem/edit_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9767c33f492201f2ad6bd999d601a444ae3518fc5e3dd731ba5749a37ee34620"
+      }
+    },
+    "server-filesystem/create_directory": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ccedaeeb2efa64504c7d5ae3edb069f8670abb548b7e077083a9ad4a2dab8c39"
+      }
+    },
+    "server-filesystem/list_directory": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3ea7bca3637610bbf98fbea1483d5f5692b5b0ae967a60648b9b614c06e82703"
+      }
+    },
+    "server-filesystem/list_directory_with_sizes": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "befbd47e212be318dad2b8e8ff3f3ef3725c61e51b2b184bececd75629cfb53d"
+      }
+    },
+    "server-filesystem/directory_tree": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d960560a5657bb5a5f3c77cd3723ec6397eba7e51a7404c9f365ab02462da33b"
+      }
+    },
+    "server-filesystem/move_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "80f48f3a0c48c1544cc50f07ca8ae349744d7ce9f1f57bdc3f3234b21bea3aa1"
+      }
+    },
+    "server-filesystem/copy_file": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2036b6eabb86dd53566486c4301752a8f8286e12a572eaf641724eebd14b3d1a"
+      }
+    },
+    "server-filesystem/search_files": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "0c6d29b5ffc8bae04f23eae8b27e688684f8924897362eef776160e2807ffb71"
+      }
+    },
+    "server-filesystem/get_file_info": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "317b1d7bfd3493d341b6422ddbc1c8eeeaf9cabfb94a25d6faab21546ee4d1c7"
+      }
+    },
+    "server-filesystem/list_allowed_directories": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "server-git/git_status": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ddafba82a85fc468b5bd2d053d1f7da9dfd4bce4d4fac1c1ba799bd85dfdc884"
+      }
+    },
+    "server-git/git_diff_unstaged": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "80dad00ff76332ee246fbbceea125bb77c89aeb765498f32e6fefbbd92d3a8d0"
+      }
+    },
+    "server-git/git_diff_staged": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "46aadda0ba1f05a3f91078eecbdf1edf0009b702fd0cfd5e29d72e135e82bbb7"
+      }
+    },
+    "server-git/git_diff": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8666457deb8e2177e2aa6955e241f30a90b0b38bfee574435b984421de955d44"
+      }
+    },
+    "server-git/git_commit": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1c69a1d67b526ba232aeb6f018f3a73aef4ceca7e999ab67c2997741e3b1e867"
+      }
+    },
+    "server-git/git_add": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b9012b6d5867ea316c134b63b849002733e4da3ac434ee8f5e9887c88a80bb99"
+      }
+    },
+    "server-git/git_reset": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e35d4661e27e4cc385377463e3d5d38f1a6aacdaa605a8e67b0575f65bb496c7"
+      }
+    },
+    "server-git/git_log": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5e48ac673bd295cc04a56991936e0c49197eb9efb59cb05ddb0158329bbb0aec"
+      }
+    },
+    "server-git/git_create_branch": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9f466845eb7ba2cce6534d17b91b124584c659af9395e96894713813088fa79f"
+      }
+    },
+    "server-git/git_checkout": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e2dee3cb873b56426a68a8d9ab10ae592ae4cbe4c1b9abde6ffa744314dfc22b"
+      }
+    },
+    "server-git/git_merge": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "66b1c7c10caf473ee49d9ef4ddd15799fbe1db9dbdfe5ae07ee7b4f3b147449d"
+      }
+    },
+    "server-git/git_show": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6a0969d8c1ce5cd4d3d5c65f242699dbcac4cfd1bdab6c7bb2ed627c28269aa9"
+      }
+    },
+    "server-git/git_branch": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "fb5385003e686f7e9a23d117b87818bd563237722d60ea1a0f8e6dbe916fb35c"
+      }
+    },
+    "server-git/git_remote": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a481586990971e36d3c5e57edf8f1f5887d022e72ef88837d95a2d08c25b0d87"
+      }
+    },
+    "server-memory/create_entities": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "69a243a3a1b3ceec10148b155b274c083e085f5f3ac024bcf2027b1c1327d00d"
+      }
+    },
+    "server-memory/create_relations": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7c84b5da0c6da496be7806cdcb8bd58b0bc2e3c1ade75a4cf718b988d23f8d00"
+      }
+    },
+    "server-memory/add_observations": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "329cac0264b47f2ad715efc495996c3499c525f75594af519e612d80dc08395f"
+      }
+    },
+    "server-memory/delete_entities": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2683497382693357d61701bab1ab58640513602932771e7e3432710a66ad4b2f"
+      }
+    },
+    "server-memory/delete_observations": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "65fe96dbd4cbda2cd097a8993460751d27a85713f0abf79f3c56a075e620acaa"
+      }
+    },
+    "server-memory/delete_relations": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d0d0fc3dc27408e47217b0274fec6408a2bcb70e1153ce9b9e4ede5ed52049d8"
+      }
+    },
+    "server-memory/read_graph": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8177ea377d7dbb2864b1e277c0868743280060d1cb9f20634d9515c44d3bc34a"
+      }
+    },
+    "server-memory/search_nodes": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "791d240006a5c3f37d673fa672c77be9542c4242e0764a32289d3edc13e9b85b"
+      }
+    },
+    "server-memory/open_nodes": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2025b61f7a8eec6cd82a0a2b01cf77d13d422c20daf05334174026d068b0be7d"
+      }
+    },
+    "server-sequential-thinking/sequentialthinking": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7ef3b1a95d2a0659fc49ccdf1fa452831b7756ea5b40b51d3cb03e748ff2599b"
+      }
+    },
+    "server-time/get_current_time": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "29d68770216fd4ffa47fed74c0b25c1708d0d23518cf9e6574fc1fceec35a578"
+      }
+    },
+    "server-time/convert_time": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4b573bec4c09e009866e038462729c98b0f8897f65102779ab66bdf62020e40c"
+      }
+    },
+    "server-time/get_time_ago": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5ef9b35d94472f0c49351c69b5445cf182ef1f4bd544de6175f7a4131dbc12b4"
+      }
+    },
+    "zod-example/create_issue": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c6166e3d4f5f04b2450bc7c9c655f488dd2d1129aa15a41cd81d3b84d83698ca"
+      }
+    },
+    "zod-example/query": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "zod-example/set_flags": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "dce5f0575e6d70bb64cf53eaa6ebb69bf81c1de0b4843f40eb82ab29e0ca6b6b"
+      }
+    },
+    "synthetic/hostile_property_names": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7ed93823006ee7818aca4a84f48947893738779d5bea817b2211cc0c7661caa0"
+      }
+    },
+    "synthetic/i_ref_siblings_recursive": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3c798086f4ef178eccca05573d4862323cc28c7be75a9950921b4cdc4ea12de1"
+      }
+    },
+    "synthetic/m_arrays": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b991f514afc6036f88fc549a2c9d7edd46dede5f12ad3ce021d5c262162981ac"
+      }
+    },
+    "synthetic/m_bool_branches/m_bool_branches_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8ab4a2c9dad2e043aaf74ac9610b60521c0541095b982d72e0137e17c994b10e"
+      }
+    },
+    "synthetic/m_bool_branches/m_bool_branches_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3de72a0722ab09991c36032bb25cc72ccde70fa683ebae58a3239b989f2ddae1"
+      }
+    },
+    "synthetic/m_conflicts/m_conflicts_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "bd4f15769066dd28feff42ff1481c0b8323f1078e8a84a265f5e99b8b49e53b8"
+      }
+    },
+    "synthetic/m_conflicts/m_conflicts_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3b68231a2d7cde34a726d2c10f54165541e547eea62f5aa4a7e910ac06a439bd"
+      }
+    },
+    "synthetic/m_distribution_limit": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-distribution-too-large"
+        ]
+      }
+    },
+    "synthetic/m_objects/m_objects_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported",
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "synthetic/m_objects/m_objects_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "synthetic/m_ref_cycle": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'allOf' is not permitted."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-ref-cycle"
+        ]
+      }
+    },
+    "synthetic/m_refs": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "22445f2114d9f6b759eaa783f2e752a62958fda7a3ca8137f5d7110fa16aac11"
+      }
+    },
+    "synthetic/m_required_forbidden/m_required_forbidden_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/m_required_forbidden/m_required_forbidden_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "48ad5fa3b0aa7e102b657e61a13de68db9e1f179d5fbc1e718c6ea27930edd6d"
+      }
+    },
+    "synthetic/m_required_forbidden/m_required_forbidden_2": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/m_unions/m_unions_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "de330f11605f6a30f73e479bbd4ca08b6e6ed51f34d2b8dec3d2f2b65ce4bd77"
+      }
+    },
+    "synthetic/m_unions/m_unions_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unsatisfiable-union"
+        ]
+      }
+    },
+    "synthetic/o_optional_shapes": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/any-value-unsupported"
+        ]
+      }
+    },
+    "synthetic/r_refs/r_refs_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unresolvable-ref",
+          "core/unresolvable-ref"
+        ]
+      }
+    },
+    "synthetic/r_refs/r_refs_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': '#item' does not match '^[^#]*#?$'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3c01ab4dcc4b02440d7fbb3818f16f2175d78d53650ecc7e87354b20c6a839d8"
+      }
+    },
+    "synthetic/r_refs/r_refs_2": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/dynamic-ref-unsupported",
+          "core/dynamic-ref-unsupported"
+        ]
+      }
+    },
+    "synthetic/r_refs/r_refs_3": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ba4524241f59a29d9f007f34fd6467b6aa0f7f645c696ede6460a7684fd2910b"
+      }
+    },
+    "synthetic/r_root_ref": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1c3a97f52b67fca886b83adaddbe0c42c0bc4670866a28d2848e01a47af04b72"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=('type', '0'), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "94be7293ea0120466be3ef1ba0c2506c86d9d842db8ba450c67318c8d8191909"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), schema must have a 'type' key."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "94be7293ea0120466be3ef1ba0c2506c86d9d842db8ba450c67318c8d8191909"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_2": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=('anyOf', '0'), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6d3373e501dafb9ff52b2bc157ca02722198deb06c871d1ff8cb5f649bb11a1b"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_3": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_4": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), object schema missing properties."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_5": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "synthetic/t10_no_params": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "synthetic/t10_open_map": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/open-object-unsupported"
+        ]
+      }
+    },
+    "synthetic/t11_optionals": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a1cd6338550a9d0015d7d493279238a08840f7186ea2e5e56855c316c3bc6deb"
+      }
+    },
+    "synthetic/t12_validation": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "07d27faa008f5c23659ca4117e46687a1996ecd896d3ea24e94f9021c10fff2b"
+      }
+    },
+    "synthetic/t13_default": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3306fc6bc1fc37f00cf3031c3a90d19207145416baf8435b8d1ad22d0c7e5b06"
+      }
+    },
+    "synthetic/t14_root_non_object": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': schema must be a JSON Schema of 'type: \"object\"', got 'type: \"string\"'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2a39976c33228d2bf2befd514cf4a58aea5be482077050f63ee1aedf5953260f"
+      }
+    },
+    "synthetic/t14_root_union": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=('anyOf', '0'), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6f39d3f519c35f54e409469f82119677dee442873b1fab2864e53952257af860"
+      }
+    },
+    "synthetic/t15_format": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a89382a8b30bb0890b0d31f243596fde1531afcf28115955a1fcfd78d6fb4341"
+      }
+    },
+    "synthetic/t16_pattern_features": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b7687069fa0dd53fd04436a5f34812f4b5b20b39678c84b1ae75ecdfa829f92b"
+      }
+    },
+    "synthetic/t18_keys_and_arrays": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "openai-strict/array-items-missing"
+        ]
+      }
+    },
+    "synthetic/t1_annotations": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d90ec2f895920b2f26f124f6d07f6115e64e395e36ca80ecc9530c6202f5be29"
+      }
+    },
+    "synthetic/t2a_recursion_optional": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9f5a89aba56710897dbca753e64c236e9a026a79d854286e88e2a26b62eb7475"
+      }
+    },
+    "synthetic/t2a_recursion_required": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unsatisfiable-recursion"
+        ]
+      }
+    },
+    "synthetic/t2b_ref_with_siblings": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2f4cf828a344889c08cc301e2aae307a13c957985dda9f8638d8876f2ebfd204"
+      }
+    },
+    "synthetic/t2c_external_ref": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unresolvable-ref"
+        ]
+      }
+    },
+    "synthetic/t3_draft07": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': [{'type': 'number'}, {'type': 'number'}] is not of type 'object', 'boolean'."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a7005e8d5d6dd8f85222d8ba8229d22e15d21498e98eea063dd9586e9f8247f8"
+      }
+    },
+    "synthetic/t3_openapi_nullable": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "40cbf26a39567cefae0b83c902536f50b758da65d87dbea054e0e84062ae8613"
+      }
+    },
+    "synthetic/t4_multi_type": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b602ede7ce97d7c93982e8e623d2ddea388df317f4aca67977c93a053ebc7a6a"
+      }
+    },
+    "synthetic/t5_enum_const": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "bf3ee98f8ffd5c9c8880caf3c582ff2faf2d2e6d9485d8daab760e5f5ca6c89a"
+      }
+    },
+    "synthetic/t7_allof": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5fecbd32948d2ca54b1806f834fcc8a9f001cc5c5bd35dfb98e7cd76326270a7"
+      }
+    },
+    "synthetic/t7_allof_unsatisfiable": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/t8_oneof": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e950c687fbc5e8a1ac44216f832b282ed59fce58ef735b683c76b741414e7440"
+      }
+    },
+    "synthetic/t9_anyof_siblings": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "fb1f2bece2d8ea20d7aacfa78a6021288d49a658ec533781fb956744113ed4cd"
+      }
+    },
+    "synthetic/u_enums_types": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/any-value-unsupported"
+        ]
+      }
+    },
+    "synthetic/v_limits": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "openai-strict/limit-max-enum-values"
+        ]
+      }
+    },
+    "synthetic/x_budget/t0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8aa3366f0b24827987a0c425dbd840990361862f779a13d9a4427920359ffead"
+      }
+    },
+    "synthetic/x_budget/t1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8aa3366f0b24827987a0c425dbd840990361862f779a13d9a4427920359ffead"
+      }
+    },
+    "synthetic/x_budget/t2": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8aa3366f0b24827987a0c425dbd840990361862f779a13d9a4427920359ffead"
+      }
+    },
+    "synthetic/x_budget/t3": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8aa3366f0b24827987a0c425dbd840990361862f779a13d9a4427920359ffead"
+      }
+    },
+    "synthetic/x_budget_fallback/t0": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8aa3366f0b24827987a0c425dbd840990361862f779a13d9a4427920359ffead"
+      }
+    },
+    "synthetic/x_budget_fallback/t1": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8aa3366f0b24827987a0c425dbd840990361862f779a13d9a4427920359ffead"
+      }
+    },
+    "synthetic/x_budget_fallback/meta": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4d8b10ec2e8416802d178ec078ca189fd77390a61130bcb19e156bfdec456f97"
+      }
+    },
+    "synthetic/x_hint_merge": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b76a485167680322d9096251b6b660dc471d64f7a4e50a6e41f769c3bdd46ef2"
+      }
+    },
+    "synthetic/x_hint_options": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "65ac589781a93c548a6766f636faa811808d37acd64c91dfd2783ca5eabb6d9f"
+      }
+    },
+    "synthetic/x_ids": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ea35f238493d95f2fe9e1411f92319d07ad7a23e0ef7ab54367b8349c77868de"
+      }
+    },
+    "synthetic/x_names/files.read": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "openai-strict/tool-name-invalid"
+        ]
+      }
+    },
+    "synthetic/x_names/ok": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "synthetic/x_repairs": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7e27236cb99faa8d6bfe823673c46c88d436448618be6313e8241c34869f3bb7"
+      }
+    },
+    "synthetic/x_roundtrip_optional": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ff6d92eeb74cfcdf9fdaca4b91718e111643d91fca25308a647e89fe46ad55ff"
+      }
+    },
+    "synthetic/x_roundtrip_recursive": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b0ca9a37b0de14f32cbe50815ace8de0bd31faccd4f5ea3b8a75fb2795642f49"
+      }
+    },
+    "synthetic/x_roundtrip_root": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=('anyOf', '0'), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "22cc1c0a050e356a6962f000d616d203b78cdf1a308d3f6ee01c6701cb90f440"
+      }
+    },
+    "synthetic/x_roundtrip_unions": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a039526fc74065d4221d5b56d5e8310437b92f023f43d74f9c568df9fe7303da"
+      }
+    },
+    "synthetic/x_unroll_depth": {
+      "raw": {
+        "status": "rejected",
+        "error": "Invalid schema for function 't': In context=(), 'additionalProperties' is required to be supplied and to be false."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d621375edf59d1e9b25cb6058aba9ccd7f265a3f52e975692d3962c80899a905"
+      }
+    }
+  }
+}

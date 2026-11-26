@@ -669,7 +669,12 @@ export const RULES_DATA = {
         "uuid"
       ]
     },
-    "pattern_forbidden_features": [],
+    "pattern_forbidden_features": [
+      "backreference",
+      "lookaround",
+      "word_boundary",
+      "unicode_property"
+    ],
     "limits": {
       "max_properties": 5000,
       "max_nesting_depth": 10,
@@ -692,9 +697,12 @@ export const RULES_DATA = {
       {
         "id": "unsupported-composition",
         "claim": "allOf, not, if/then/else, dependentRequired and dependentSchemas are not supported in strict mode.",
-        "evidence": "doc",
-        "source": "https://developers.openai.com/api/docs/guides/structured-outputs",
-        "verified_on": "2026-11-26"
+        "evidence": "recorded",
+        "source": "corpus/verdicts/openai-strict.json",
+        "verified_on": "2026-11-26",
+        "models": [
+          "gpt-4.1-mini"
+        ]
       },
       {
         "id": "root-object-no-anyof",
@@ -706,9 +714,12 @@ export const RULES_DATA = {
       {
         "id": "closed-and-required",
         "claim": "additionalProperties: false on every object; every property listed in required; optional emulated with a null union.",
-        "evidence": "doc",
-        "source": "https://developers.openai.com/api/docs/guides/structured-outputs",
-        "verified_on": "2026-11-26"
+        "evidence": "recorded",
+        "source": "corpus/verdicts/openai-strict.json",
+        "verified_on": "2026-11-26",
+        "models": [
+          "gpt-4.1-mini"
+        ]
       },
       {
         "id": "recursion",
@@ -758,6 +769,26 @@ export const RULES_DATA = {
         "evidence": "reported",
         "source": "https://community.openai.com/search?q=function%20name%20pattern%2064",
         "verified_on": "2026-11-26"
+      },
+      {
+        "id": "pattern-subset",
+        "claim": "pattern with lookaround, backreferences or \\b makes the request fail (server error); \\p{...} is rejected (400); large {n,m} quantifiers are accepted.",
+        "evidence": "probe",
+        "source": "evidence/probes/openai-strict/regex-gpt-4.1-mini.json",
+        "verified_on": "2026-11-26",
+        "models": [
+          "gpt-4.1-mini"
+        ]
+      },
+      {
+        "id": "raw-rejections-recorded",
+        "claim": "Raw MCP schemas are rejected in strict mode (157 of 164 corpus tools), chiefly for missing additionalProperties: false, incomplete required, allOf, and patternProperties; normalized output is accepted or rejected by design for every corpus tool.",
+        "evidence": "recorded",
+        "source": "corpus/verdicts/openai-strict.json",
+        "verified_on": "2026-11-26",
+        "models": [
+          "gpt-4.1-mini"
+        ]
       }
     ]
   },

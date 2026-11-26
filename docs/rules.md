@@ -86,6 +86,7 @@ rules in [`rules/`](../rules/). The `tid` field groups rules into transformation
 | `<target>/keyword-rejected` | T12 | lossy | The target rejects the keyword (400). It was removed and hinted. |
 | `<target>/keyword-unsupported` | T12 | lossy | The keyword is not in the target's supported set. It was removed and hinted. |
 | `<target>/integer-exclusive-bound` | T12 | info | For integers, `exclusiveMinimum: n` became the equivalent `minimum: n+1` (and similarly for maximum). |
+| `<target>/tuple-flattened` | T12 | lossy | `prefixItems` (a tuple) is not supported, so `items` became the union of the element schemas. Element positions are no longer enforced. |
 | `<target>/min-items-clamped` | T12 | lossy | `minItems` was clamped to a value the target supports; the original was hinted. |
 | `<target>/default-dropped` | T13 | info | `default` is not supported; it was restated as a hint. |
 | `<target>/format-unsupported` | T15 | lossy | The `format` is not enforced by the target; it was removed and hinted. |

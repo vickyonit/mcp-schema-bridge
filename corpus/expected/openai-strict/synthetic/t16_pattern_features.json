@@ -11,11 +11,11 @@
         "properties": {
           "pw": {
             "type": "string",
-            "pattern": "^(?=.*\\d).{8,}$"
+            "description": "[constraints: pattern=\"^(?=.*\\\\d).{8,}$\"]"
           },
           "rep": {
             "type": "string",
-            "pattern": "^(a)\\1$"
+            "description": "[constraints: pattern=\"^(a)\\\\1$\"]"
           },
           "plain": {
             "type": "string",
@@ -52,6 +52,34 @@
         "original": null,
         "hinted": false,
         "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/pattern-unsupported",
+        "tid": "T16",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/pw",
+        "target_path": "/properties/pw",
+        "instance_path": "/pw",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(?=.*\\d).{8,}$",
+        "hinted": true,
+        "message": "pattern uses features the target rejects: lookaround"
+      },
+      {
+        "rule": "openai-strict/pattern-unsupported",
+        "tid": "T16",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/rep",
+        "target_path": "/properties/rep",
+        "instance_path": "/rep",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(a)\\1$",
+        "hinted": true,
+        "message": "pattern uses features the target rejects: backreference"
       }
     ]
   }

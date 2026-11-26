@@ -134,3 +134,29 @@ def test_non_strict_targets_keep_everything() -> None:
     for target in ("openai", "anthropic"):
         _, p = prop(s, target)
         assert p == s
+
+
+def test_dropped_tuple_becomes_an_items_union_not_an_empty_array() -> None:
+    # Live verdict: OpenAI strict rejected the leftover `items: false`, which would also have
+    # forbidden every element once prefixItems was dropped.
+    _r, p = prop(
+        {"type": "array", "prefixItems": [{"type": "number"}, {"type": "string"}], "items": False},
+        "openai-strict",
+    )
+    assert p["items"] == {"anyOf": [{"type": "number"}, {"type": "string"}]}
+    assert "prefixItems" not in p
+    _, p = prop({"type": "array", "prefixItems": [{"type": "number"}]}, "openai-strict")
+    assert p["items"] == {"type": "number"}
+    _, p = prop(
+        {"type": "array", "prefixItems": [{"type": "number"}], "items": {"type": "string"}},
+        "anthropic-strict",
+    )
+    assert p["items"] == {"anyOf": [{"type": "number"}, {"type": "string"}]}
+
+
+def test_openai_strict_rejects_regex_features_found_live() -> None:
+    for pattern in ("^(?=.*\\d).+$", "^(a)\\1$", "\\bx\\b", "^\\p{L}+$"):
+        _r, p = prop({"type": "string", "pattern": pattern}, "openai-strict")
+        assert "pattern" not in p, pattern
+    _, p = prop({"type": "string", "pattern": "^a{1,500}$"}, "openai-strict")
+    assert p["pattern"] == "^a{1,500}$"

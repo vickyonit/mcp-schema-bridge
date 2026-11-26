@@ -1,0 +1,16 @@
+{
+  "target": "openai-strict",
+  "model": "gpt-4.1-mini",
+  "recorded_at": "2026-11-26",
+  "method": "one strict function tool whose only property has the pattern below (Responses API, tool_choice=required)",
+  "results": {
+    "lookahead ^(?=.*\\d).{8,}$": "error (server error, 'An error occurred while processing your request')",
+    "lookbehind (?<=a)b": "error (server error)",
+    "negative lookahead ^(?!x).*$": "error (server error)",
+    "backreference ^(a)\\1$": "error (server error)",
+    "word boundary \\bcat\\b": "error (server error)",
+    "unicode property ^\\p{L}+$": "rejected (400: is not a 'regex')",
+    "large quantifier ^a{1,500}$": "accepted",
+    "plain ^[a-z]+$": "accepted"
+  }
+}

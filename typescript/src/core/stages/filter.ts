@@ -71,6 +71,10 @@ function filterKeyword(node: SNode, kw: string, ctx: Ctx): void {
     }
     return;
   }
+  if (kw === "prefixItems") {
+    flattenTuple(node, ctx);
+    return;
+  }
   if (kw === "default") {
     drop(node, kw, ctx, {
       tid: "T13", rule: ctx.ruleId("default-dropped"), severity: "info", hint: true,
@@ -159,4 +163,29 @@ function integerExclusiveBounds(node: SNode, ctx: Ctx): void {
       });
     }
   }
+}
+
+/** Target lacks prefixItems: approximate the tuple with `items` = union of the element schemas. */
+function flattenTuple(node: SNode, ctx: Ctx): void {
+  const prefix = (node.get("prefixItems") as unknown[]).filter((x): x is SNode => x instanceof SNode);
+  const tail = node.get("items");
+  const members: unknown[] = [...prefix, ...(tail instanceof SNode ? [tail] : [])];
+  drop(node, "prefixItems", ctx, {
+    tid: "T12", rule: ctx.ruleId(slug(ctx, "prefixItems")), severity: "lossy", hint: true,
+    message: "prefixItems (tuple) is not supported by the target; elements are typed as a union",
+  });
+  if (!members.length) {
+    node.delete("items");
+    return;
+  }
+  const items = members.length === 1 ? members[0] : new SNode([["anyOf", members]], []);
+  if (node.has("items")) {
+    for (const origin of node.origins("items")) {
+      ctx.add(ctx.ruleId("tuple-flattened"), "T12", {
+        node, keyword: "items", action: "rewritten", severity: "lossy", sourcePath: origin, original: toOrdered(tail),
+        message: "items replaced by the union of the tuple element schemas",
+      });
+    }
+  }
+  node.set("items", items);
 }
