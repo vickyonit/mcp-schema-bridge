@@ -1,6 +1,6 @@
 {
   "name": "mcp-schema-bridge",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Normalize MCP tool schemas for Gemini, OpenAI and Anthropic, with a lossiness report and argument round-trip.",
   "license": "Apache-2.0",
   "author": "The mcp-schema-bridge Authors",
