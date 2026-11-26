@@ -15,6 +15,7 @@ from mcp_schema_bridge.core.report import Report
 from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.rules import RULES_VERSION, Target, load_rules
 from mcp_schema_bridge.core.stages.canonicalize import canonicalize_tree
+from mcp_schema_bridge.core.stages.inline import inline_stage
 from mcp_schema_bridge.core.stages.merge import merge_allof
 from mcp_schema_bridge.core.stages.resolve import resolve
 from mcp_schema_bridge.core.stages.root import apply_root
@@ -51,6 +52,7 @@ def normalize_schema(
     dialect = resolve(root, ctx)
     canonicalize_tree(root, ctx, dialect)
     merge_allof(root, ctx)
+    inline_stage(root, ctx)
     root = apply_root(root, ctx)
     out = emit(root, ctx)
     fp = fingerprint(fingerprint_of if fingerprint_of is not None else value, target)
