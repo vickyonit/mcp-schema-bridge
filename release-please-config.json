@@ -2,21 +2,24 @@
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "include-component-in-tag": false,
   "packages": {
-    "python": {
-      "release-type": "python",
+    ".": {
+      "release-type": "simple",
       "package-name": "mcp-schema-bridge",
-      "version-file": "src/mcp_schema_bridge/_version.py",
-      "changelog-path": "../CHANGELOG.md",
+      "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": true,
       "extra-files": [
         {
+          "type": "generic",
+          "path": "python/src/mcp_schema_bridge/_version.py"
+        },
+        {
           "type": "json",
-          "path": "../typescript/package.json",
+          "path": "typescript/package.json",
           "jsonpath": "$.version"
         },
         {
           "type": "generic",
-          "path": "../typescript/src/core/version.ts"
+          "path": "typescript/src/core/version.ts"
         }
       ]
     }

@@ -24,11 +24,11 @@ jobs:
       # workflows explicitly (workflow_dispatch is allowed). They run at the tag ref, so trusted
       # publishing sees release.yml / release-npm.yml as the top-level workflow.
       - name: Publish the release
-        if: steps.release.outputs['python--release_created'] == 'true'
+        if: steps.release.outputs.release_created == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          TAG: ${{ steps.release.outputs['python--tag_name'] }}
+          TAG: ${{ steps.release.outputs.tag_name }}
         run: |
           gh workflow run release.yml --ref "$TAG" -f repository=pypi
           gh workflow run release-npm.yml --ref "$TAG"
