@@ -27,28 +27,26 @@
 - [x] Nightly live-verdict workflow (protected environment, kill switch, one drift issue per target)
 - [x] Docs: README with generated compatibility matrix, rule catalog, framework-author guide, live-verification guide, ADRs
 
+- [x] Repository public, with topics and description; private vulnerability reporting on
+- [x] Environments `live-verification`, `pypi`, `testpypi`, `npm` (publishing ones need the maintainer's
+  approval and only deploy from `main` or `v*.*.*` tags); branch protection on `main` (required checks,
+  no force pushes)
+- [x] release-please opens the release PR and dispatches `release.yml` / `release-npm.yml` when it is merged
+
 ## Needs the maintainer (cannot be done from code)
 
-1. **Anthropic API key.** Run `scripts/probe.py` and `scripts/record_verdicts.py` for `anthropic-strict`,
-   then update `rules/anthropic*.json` evidence from `doc`/`reported` to `probe`/`recorded`. OpenAI
-   strict and Gemini are already done. Add `OPENAI_API_KEY` to the nightly job's environment as well.
-2. **Repository settings:**
-   - Branch protection on `main` (required reviews, required CI checks).
-   - Private vulnerability reporting.
-   - The `live-verification`, `pypi`, `testpypi` and `npm` environments, with a required reviewer on
-     the publishing ones.
-   - The `GEMINI_API_KEY` secret (a capped key) in `live-verification`.
-   - DCO app.
-3. **Registries:**
-   - Enable 2FA.
-   - Add this repository as a trusted publisher on PyPI, TestPyPI and npm.
-   - Run `release.yml` with `repository: testpypi` first, to rehearse the release.
+1. **Registries** (needs your logins):
+   - PyPI and TestPyPI → Account → Publishing → add a *pending* trusted publisher: owner `vickyonit`,
+     repository `mcp-schema-bridge`, workflow `release.yml`, environment `pypi` (TestPyPI: `testpypi`).
+   - npm: the package must exist before trusted publishing can be configured. Either publish 0.1.0 once
+     from your machine, or create it and add trusted publisher `vickyonit/mcp-schema-bridge`,
+     workflow `release-npm.yml`, environment `npm`. Enable 2FA on both registries.
+   - Rehearse: run `release.yml` manually with `repository: testpypi`.
+2. **First release.** Merge release PR #1 (`chore(main): release 0.1.0`) and approve the `pypi` and `npm`
+   deployments when GitHub asks.
+3. **Secrets.** `GEMINI_API_KEY` and `OPENAI_API_KEY` (spend-capped) in the `live-verification` environment
+   for the nightly verdicts. An Anthropic key to move `rules/anthropic*.json` evidence to `probe`/`recorded`.
 4. **Name check.** Review current MCP trademark and branding guidance for using "MCP" in a package name.
 5. **Outreach** (ADR-0001). Contact the maintainers of `@mastra/schema-compat`, Pydantic AI, `tool-schema`
-   and `mcpschema` before announcing. Re-check the "Related projects" wording against their current
-   versions.
-6. **Make the repository public.** Add topics (`mcp`, `json-schema`, `gemini`, `openai`, `anthropic`,
-   `function-calling`) and a social preview image. Add OpenSSF Scorecard once it is public, because
-   Scorecard needs a public repository.
-7. **First release.** Merge the release-please PR for `0.1.0`. That tags the release, and both
-   packages publish from the tag.
+   and `mcpschema` before announcing.
+6. **Polish.** Social preview image; OpenSSF Scorecard (now possible, the repository is public); DCO app.
