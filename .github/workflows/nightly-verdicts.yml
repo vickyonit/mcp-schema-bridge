@@ -30,6 +30,9 @@ jobs:
           - target: gemini-json
             model: gemini-3.5-flash-lite
             key: GEMINI_API_KEY
+          - target: openai-strict
+            model: gpt-4.1-mini
+            key: OPENAI_API_KEY
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -39,6 +42,7 @@ jobs:
         id: check
         env:
           GEMINI_API_KEY: ${{ matrix.key == 'GEMINI_API_KEY' && secrets.GEMINI_API_KEY || '' }}
+          OPENAI_API_KEY: ${{ matrix.key == 'OPENAI_API_KEY' && secrets.OPENAI_API_KEY || '' }}
           TARGET: ${{ matrix.target }}
           MODEL: ${{ matrix.model }}
         run: |
