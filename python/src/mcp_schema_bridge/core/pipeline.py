@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import hashlib
-from typing import Any
+from typing import Any, cast
 
 from mcp_schema_bridge._version import __version__
 from mcp_schema_bridge.core.context import Ctx
@@ -11,6 +11,7 @@ from mcp_schema_bridge.core.emit import build_entries, emit
 from mcp_schema_bridge.core.jcs import canonicalize
 from mcp_schema_bridge.core.options import NormalizeOptions
 from mcp_schema_bridge.core.parse import Limits, check_value
+from mcp_schema_bridge.core.pointer import split
 from mcp_schema_bridge.core.report import Report
 from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.rules import RULES_VERSION, Target, load_rules
@@ -38,6 +39,13 @@ def fingerprint(original: Any, target: str) -> str:
     return hashlib.sha256(canonicalize(payload).encode("utf-8")).hexdigest()
 
 
+def _value_at(doc: Any, pointer: str) -> Any:
+    node: Any = doc
+    for tok in split(pointer):
+        node = cast(Any, node[int(tok)] if isinstance(node, list) else node[tok])
+    return node
+
+
 def normalize_schema(
     schema: dict[str, Any],
     target: Target,
@@ -48,10 +56,22 @@ def normalize_schema(
 ) -> NormalizeResult:
     rules = load_rules(target)
     o = opts or NormalizeOptions()
-    value, _coerced = check_value(
+    value, coerced = check_value(
         schema, big_int=o.big_int, limits=Limits(max_nodes=o.max_nodes, max_depth=o.max_depth)
     )
     ctx = Ctx(rules=rules, opts=o, tool=tool)
+    for ptr in coerced:
+        ctx.add(
+            "core/big-int-rounded",
+            "T1",
+            node=None,
+            keyword=None,
+            action="coerced",
+            severity="lossy",
+            source_path=ptr,
+            original=str(_value_at(schema, ptr)),
+            message="integer outside the I-JSON safe range rounded to the nearest double",
+        )
     root = build(value)
     if not isinstance(root, SNode):
         root = SNode(src=("",))

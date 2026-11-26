@@ -64,3 +64,18 @@ def test_options_are_frozen_with_documented_defaults() -> None:
     assert o.max_depth == 64
     assert o.strict_fallback is False
     assert o.big_int == "reject"
+
+
+def test_big_int_round_is_reported_as_lossy_coercion() -> None:
+    s = {"type": "object", "properties": {"n": {"type": "integer", "maximum": 9223372036854775807}}}
+    r = normalize_schema(s, "openai", NormalizeOptions(big_int="round"))
+    assert r.schema is not None
+    assert r.schema["properties"]["n"]["maximum"] == 9.223372036854776e18
+    [e] = [e for e in r.report.entries if e.rule == "core/big-int-rounded"]
+    assert (e.source_path, e.keyword, e.action, e.severity, e.original) == (
+        "/properties/n/maximum",
+        None,
+        "coerced",
+        "lossy",
+        "9223372036854775807",
+    )
