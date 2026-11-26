@@ -1,0 +1,39 @@
+{
+  "id": "t9_anyof_siblings",
+  "description": "Object with anyOf of required-sets (at least one of)",
+  "tool": {
+    "name": "t9_anyof_siblings",
+    "description": "Object with anyOf of required-sets (at least one of)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "f": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            }
+          },
+          "anyOf": [
+            {
+              "required": [
+                "email"
+              ]
+            },
+            {
+              "required": [
+                "phone"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "f"
+      ]
+    }
+  }
+}

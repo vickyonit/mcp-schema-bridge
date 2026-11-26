@@ -29,11 +29,20 @@ def no_silent_loss(original: dict[str, Any], result: NormalizeResult) -> list[st
             by_src.setdefault(s, []).append(out_ptr)
     entries = result.report.entries
     covered = {(e.source_path, e.keyword) for e in entries}
-    subtree_covered = [e.source_path for e in entries if e.keyword is None] + [
-        join(e.source_path, e.keyword)
-        for e in entries
-        if e.keyword is not None and e.action in ("dropped", "rejected", "truncated")
-    ]
+    subtree_covered = (
+        [e.source_path for e in entries if e.keyword is None]
+        + [
+            # draft-07 tuple `items` were renamed to `prefixItems` (S2); dropping them covers both paths
+            join(e.source_path, "items")
+            for e in entries
+            if e.keyword == "prefixItems" and e.action == "dropped"
+        ]
+        + [
+            join(e.source_path, e.keyword)
+            for e in entries
+            if e.keyword is not None and e.action in ("dropped", "rejected", "truncated")
+        ]
+    )
     problems: list[str] = []
     for ptr, node in walk(build(original)):
         if any(ptr == c or ptr.startswith(c + "/") for c in subtree_covered):

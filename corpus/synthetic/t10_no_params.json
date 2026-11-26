@@ -1,0 +1,11 @@
+{
+  "id": "t10_no_params",
+  "description": "Tool without parameters",
+  "tool": {
+    "name": "t10_no_params",
+    "description": "Tool without parameters",
+    "inputSchema": {
+      "type": "object"
+    }
+  }
+}

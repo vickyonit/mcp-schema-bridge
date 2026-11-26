@@ -1,0 +1,44 @@
+{
+  "id": "t7_allof",
+  "description": "allOf merge (Pydantic/Zod intersection style)",
+  "tool": {
+    "name": "t7_allof",
+    "description": "allOf merge (Pydantic/Zod intersection style)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "allOf": [
+            {
+              "type": "object",
+              "properties": {
+                "a": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "a"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "a": {
+                  "type": "integer",
+                  "maximum": 9
+                },
+                "b": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "p"
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "t1_annotations",
+  "description": "Annotation-only keywords and extensions",
+  "tool": {
+    "name": "t1_annotations",
+    "description": "Annotation-only keywords and extensions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string",
+          "examples": [
+            "a"
+          ],
+          "deprecated": true,
+          "x-mcp-header": "X-Q",
+          "$comment": "c"
+        }
+      },
+      "required": [
+        "q"
+      ]
+    }
+  }
+}

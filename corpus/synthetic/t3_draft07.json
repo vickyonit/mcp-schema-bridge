@@ -1,0 +1,43 @@
+{
+  "id": "t3_draft07",
+  "description": "draft-07 definitions, tuple items, dependencies and $ref siblings",
+  "tool": {
+    "name": "t3_draft07",
+    "description": "draft-07 definitions, tuple items, dependencies and $ref siblings",
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "point": {
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "additionalItems": false
+        },
+        "a": {
+          "$ref": "#/definitions/A",
+          "description": "ignored in draft-07"
+        },
+        "b": {
+          "type": "string"
+        }
+      },
+      "dependencies": {
+        "a": [
+          "b"
+        ]
+      },
+      "definitions": {
+        "A": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

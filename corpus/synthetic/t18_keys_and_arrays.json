@@ -1,0 +1,22 @@
+{
+  "id": "t18_keys_and_arrays",
+  "description": "Unusual property keys and an array without items",
+  "tool": {
+    "name": "t18_keys_and_arrays",
+    "description": "Unusual property keys and an array without items",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "first name": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "tags"
+      ]
+    }
+  }
+}

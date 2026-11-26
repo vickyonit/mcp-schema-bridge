@@ -1,0 +1,22 @@
+{
+  "id": "t2a_recursion_required",
+  "description": "Unsatisfiable recursion through required fields",
+  "tool": {
+    "name": "t2a_recursion_required",
+    "description": "Unsatisfiable recursion through required fields",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "child": {
+          "$ref": "#"
+        },
+        "v": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "child"
+      ]
+    }
+  }
+}

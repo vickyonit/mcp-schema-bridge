@@ -1,0 +1,16 @@
+{
+  "id": "t2c_external_ref",
+  "description": "Remote $ref is never fetched",
+  "tool": {
+    "name": "t2c_external_ref",
+    "description": "Remote $ref is never fetched",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "$ref": "https://example.com/schemas/a.json"
+        }
+      }
+    }
+  }
+}

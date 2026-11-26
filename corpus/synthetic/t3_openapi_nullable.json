@@ -1,0 +1,20 @@
+{
+  "id": "t3_openapi_nullable",
+  "description": "OpenAPI-style nullable",
+  "tool": {
+    "name": "t3_openapi_nullable",
+    "description": "OpenAPI-style nullable",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "n": {
+          "type": "string",
+          "nullable": true
+        }
+      },
+      "required": [
+        "n"
+      ]
+    }
+  }
+}

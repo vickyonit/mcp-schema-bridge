@@ -1,0 +1,35 @@
+{
+  "id": "t15_format",
+  "description": "Formats",
+  "tool": {
+    "name": "t15_format",
+    "description": "Formats",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "d": {
+          "type": "string",
+          "format": "date"
+        },
+        "e": {
+          "type": "string",
+          "format": "email"
+        },
+        "u": {
+          "type": "string",
+          "format": "uri"
+        },
+        "c": {
+          "type": "string",
+          "format": "my-custom"
+        }
+      },
+      "required": [
+        "d",
+        "e",
+        "u",
+        "c"
+      ]
+    }
+  }
+}

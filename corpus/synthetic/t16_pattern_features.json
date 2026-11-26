@@ -1,0 +1,30 @@
+{
+  "id": "t16_pattern_features",
+  "description": "Patterns using lookaround and backreferences",
+  "tool": {
+    "name": "t16_pattern_features",
+    "description": "Patterns using lookaround and backreferences",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pw": {
+          "type": "string",
+          "pattern": "^(?=.*\\d).{8,}$"
+        },
+        "rep": {
+          "type": "string",
+          "pattern": "^(a)\\1$"
+        },
+        "plain": {
+          "type": "string",
+          "pattern": "^[a-z]+$"
+        }
+      },
+      "required": [
+        "pw",
+        "rep",
+        "plain"
+      ]
+    }
+  }
+}

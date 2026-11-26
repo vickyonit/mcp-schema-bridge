@@ -1,0 +1,26 @@
+{
+  "$comment": "Corpus manifest. 'coverage' lists, per transformation family (tid), the targets whose goldens must exercise it (checked by tests/test_corpus.py). 'pending' lists case ids not yet passing per implementation language (strict xfail); every list must be empty at release.",
+  "coverage": {
+    "T1": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"],
+    "T2a": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"],
+    "T2b": ["openai-strict"],
+    "T2c": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"],
+    "T3": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"],
+    "T4": ["openai-strict"],
+    "T5": ["gemini-json", "openai-strict", "anthropic-strict"],
+    "T7": ["gemini-json", "openai-strict", "anthropic-strict"],
+    "T8": ["gemini-json", "openai-strict", "anthropic-strict"],
+    "T9": ["openai-strict", "anthropic-strict"],
+    "T10": ["openai-strict", "anthropic-strict"],
+    "T11a": ["openai-strict"],
+    "T11b": ["openai-strict"],
+    "T12": ["gemini-json", "openai-strict", "anthropic-strict"],
+    "T13": ["openai-strict"],
+    "T14": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"],
+    "T15": ["gemini-json", "openai-strict", "anthropic-strict"],
+    "T16": ["anthropic-strict"],
+    "T17": ["anthropic-strict"],
+    "T18": ["openai", "openai-strict", "anthropic", "anthropic-strict"]
+  },
+  "pending": { "py": [], "ts": [] }
+}

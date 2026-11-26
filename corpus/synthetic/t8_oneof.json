@@ -1,0 +1,38 @@
+{
+  "id": "t8_oneof",
+  "description": "oneOf, disjoint and overlapping",
+  "tool": {
+    "name": "t8_oneof",
+    "description": "oneOf, disjoint and overlapping",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "d": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "o": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string",
+              "minLength": 3
+            }
+          ]
+        }
+      },
+      "required": [
+        "d",
+        "o"
+      ]
+    }
+  }
+}

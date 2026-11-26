@@ -1,0 +1,12 @@
+{
+  "id": "t14_root_non_object",
+  "description": "Non-object root",
+  "tool": {
+    "name": "t14_root_non_object",
+    "description": "Non-object root",
+    "inputSchema": {
+      "type": "string",
+      "description": "a query"
+    }
+  }
+}

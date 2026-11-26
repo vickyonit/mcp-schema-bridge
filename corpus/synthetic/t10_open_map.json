@@ -1,0 +1,22 @@
+{
+  "id": "t10_open_map",
+  "description": "Open map (record) property",
+  "tool": {
+    "name": "t10_open_map",
+    "description": "Open map (record) property",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "labels"
+      ]
+    }
+  }
+}

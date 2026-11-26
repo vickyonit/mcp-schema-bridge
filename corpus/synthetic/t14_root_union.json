@@ -1,0 +1,34 @@
+{
+  "id": "t14_root_union",
+  "description": "Root anyOf of objects",
+  "tool": {
+    "name": "t14_root_union",
+    "description": "Root anyOf of objects",
+    "inputSchema": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "t2a_recursion_optional",
+  "description": "Recursive definition reached through an optional property",
+  "tool": {
+    "name": "t2a_recursion_optional",
+    "description": "Recursive definition reached through an optional property",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "head": {
+          "$ref": "#/$defs/Node"
+        }
+      },
+      "required": [
+        "head"
+      ],
+      "$defs": {
+        "Node": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "next": {
+              "$ref": "#/$defs/Node"
+            }
+          },
+          "required": [
+            "value"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "t2b_ref_with_siblings",
+  "description": "$ref with annotation and validation siblings (2020-12)",
+  "tool": {
+    "name": "t2b_ref_with_siblings",
+    "description": "$ref with annotation and validation siblings (2020-12)",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "$ref": "#/$defs/Name",
+          "description": "the name",
+          "minLength": 2
+        }
+      },
+      "required": [
+        "a"
+      ],
+      "$defs": {
+        "Name": {
+          "type": "string",
+          "maxLength": 40
+        }
+      }
+    }
+  }
+}

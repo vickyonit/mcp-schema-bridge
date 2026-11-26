@@ -1,0 +1,20 @@
+{
+  "id": "t13_default",
+  "description": "Defaults",
+  "tool": {
+    "name": "t13_default",
+    "description": "Defaults",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "sort": {
+          "type": "string",
+          "default": "asc"
+        }
+      },
+      "required": [
+        "sort"
+      ]
+    }
+  }
+}

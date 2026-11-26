@@ -1,0 +1,51 @@
+{
+  "id": "t11_optionals",
+  "description": "Optional, optional-nullable, optional enum and optional $ref",
+  "tool": {
+    "name": "t11_optionals",
+    "description": "Optional, optional-nullable, optional enum and optional $ref",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "q": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "order": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "addr": {
+          "$ref": "#/$defs/Addr"
+        }
+      },
+      "required": [
+        "q"
+      ],
+      "$defs": {
+        "Addr": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "city"
+          ]
+        }
+      }
+    }
+  }
+}

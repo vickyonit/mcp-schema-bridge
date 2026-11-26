@@ -1,0 +1,26 @@
+{
+  "id": "t7_allof_unsatisfiable",
+  "description": "allOf with disjoint types",
+  "tool": {
+    "name": "t7_allof_unsatisfiable",
+    "description": "allOf with disjoint types",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "p": {
+          "allOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "p"
+      ]
+    }
+  }
+}
