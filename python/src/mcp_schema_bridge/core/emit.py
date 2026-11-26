@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, cast
+from urllib.parse import quote
 
 from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.pointer import join, split
@@ -38,7 +39,7 @@ def emit(root: SNode, ctx: Ctx) -> Emitted:
         p = def_pointer.get(id(target))
         if p is None:
             raise AssertionError("ref target is neither root nor a registered def")
-        return "#" + p
+        return "#" + quote(p, safe="/~!$&'()*+,;=:@")
 
     def conv(node: Any, pointer: str) -> Any:
         if not isinstance(node, SNode):

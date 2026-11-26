@@ -14,6 +14,7 @@ from mcp_schema_bridge.core.parse import Limits, check_value
 from mcp_schema_bridge.core.report import Report
 from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.rules import RULES_VERSION, Target, load_rules
+from mcp_schema_bridge.core.stages.resolve import resolve
 from mcp_schema_bridge.core.stages.root import apply_root
 from mcp_schema_bridge.core.tree import SNode, build
 
@@ -45,6 +46,7 @@ def normalize_schema(
     root = build(value)
     if not isinstance(root, SNode):
         root = SNode(src=("",))
+    resolve(root, ctx)
     root = apply_root(root, ctx)
     out = emit(root, ctx)
     fp = fingerprint(fingerprint_of if fingerprint_of is not None else value, target)
