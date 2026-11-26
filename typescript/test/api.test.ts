@@ -62,5 +62,7 @@ describe("ToolsetResult helpers", () => {
     expect(text.startsWith("openai-strict: 1 tool(s) ok, 1 rejected")).toBe(true);
     expect(text).toContain("meta  /properties/m");
     expect(text).toContain("fix: ");
+    const demoted = normalizeTools(TOOLS.slice(1), "openai-strict", { strictFallback: true }).summary();
+    expect(demoted.startsWith("openai-strict: 1 tool(s) ok (1 demoted to non-strict), 0 rejected")).toBe(true);
   });
 });
