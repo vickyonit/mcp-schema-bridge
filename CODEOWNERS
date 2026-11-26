@@ -1,0 +1,6 @@
+# Changes to provider rules, specs, live-verification scripts and workflows need maintainer review.
+*                 @vickyonit
+/rules/           @vickyonit
+/spec/            @vickyonit
+/scripts/         @vickyonit
+/.github/         @vickyonit

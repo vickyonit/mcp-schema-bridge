@@ -1,0 +1,17 @@
+name: Provider drift
+description: A provider now accepts/rejects/strips something differently than rules/*.json says
+labels: [provider-drift]
+body:
+  - type: input
+    id: target
+    attributes: { label: Target }
+    validations: { required: true }
+  - type: input
+    id: rule
+    attributes: { label: Rule id in rules/<target>.json (if known) }
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Request schema, model id, date, and the provider response (redact keys and request ids).
+    validations: { required: true }

@@ -1,0 +1,19 @@
+name: Bug report
+description: The library produced a wrong schema, report or argument mapping
+labels: [bug]
+body:
+  - type: textarea
+    id: input
+    attributes: { label: Input tool / schema (JSON), render: json }
+    validations: { required: true }
+  - type: input
+    id: target
+    attributes: { label: Target (e.g. openai-strict) }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected vs actual }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: "mcp-schema-bridge version and rules_version (from the report)" }

@@ -1,0 +1,16 @@
+name: New corpus case
+description: A real MCP server schema that breaks a provider
+labels: [corpus]
+body:
+  - type: input
+    id: source
+    attributes: { label: Server and version/commit }
+    validations: { required: true }
+  - type: input
+    id: license
+    attributes: { label: SPDX license of the server }
+    validations: { required: true }
+  - type: textarea
+    id: tool
+    attributes: { label: Tool definition (JSON), render: json }
+    validations: { required: true }
