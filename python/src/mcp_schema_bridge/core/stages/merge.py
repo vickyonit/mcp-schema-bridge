@@ -86,6 +86,7 @@ def _visit(node: SNode, ctx: Ctx, seen: set[int], stack: tuple[int, ...]) -> Non
 def _snapshot(n: SNode) -> SNode:
     """Shallow snapshot of a node's own keyword values (for change reporting)."""
     snap = SNode({k: _plain(v) for k, v in n.items()}, src=n.src)
+    snap.kw_src = dict(n.kw_src)
     return snap
 
 
@@ -153,10 +154,21 @@ def merge_into(dst: SNode, src: SNode, ctx: Ctx) -> None:
                     message="two different $ref in one allOf; second dropped",
                 )
             continue
+        if kw in ("enum", "const"):
+            continue
         if kw not in dst:
             dst[kw] = copy_tree(v) if isinstance(v, SNode) else _copy_value(v)
+            dst.kw_src[kw] = src.origin(kw)
             continue
         _merge_keyword(dst, src, kw, ctx)
+    if "enum" in src or "const" in src:
+        if "enum" in dst or "const" in dst:
+            _merge_enum_const(dst, src, ctx)
+        else:
+            for kw in ("enum", "const"):
+                if kw in src:
+                    dst[kw] = _copy_value(src[kw])
+                    dst.kw_src[kw] = src.origin(kw)
     _apply_additional_properties(dst, sides, ctx)
 
 
@@ -209,8 +221,6 @@ def _merge_keyword(dst: SNode, src: SNode, kw: str, ctx: Ctx) -> None:
             )
             return
         dst[kw] = out[0] if len(out) == 1 else out
-    elif kw in ("enum", "const"):
-        pass  # handled after the loop via _merge_enum_const
     elif kw in _LOWER:
         dst[kw] = max(a, b)
     elif kw in _UPPER:
@@ -312,39 +322,54 @@ def _merge_keyword(dst: SNode, src: SNode, kw: str, ctx: Ctx) -> None:
                 original=_plain(b),
                 message=f"{kw} differs between allOf branches; kept the first",
             )
-    if kw in ("enum", "const"):
-        _merge_enum_const(dst, src, ctx)
 
 
 def _merge_enum_const(dst: SNode, src: SNode, ctx: Ctx) -> None:
-    def values(n: SNode) -> list[Any] | None:
+    def side(n: SNode) -> tuple[str, list[Any], str] | None:
         if "const" in n:
-            return [n["const"]]
+            return "const", [n["const"]], n.origin("const")
         if "enum" in n:
-            return list(cast(list[Any], n["enum"]))
+            return "enum", list(cast(list[Any], n["enum"])), n.origin("enum")
         return None
 
-    va, vb = values(dst), values(src)
-    if va is None or vb is None:
+    sa, sb = side(dst), side(src)
+    if sa is None or sb is None:
         return
-    keys_b = {_c(x) for x in vb}
-    out = [x for x in va if _c(x) in keys_b]
+    keys_b = {_c(x) for x in sb[1]}
+    out = [x for x in sa[1] if _c(x) in keys_b]
     if not out:
         ctx.add(
             "core/allof-unsatisfiable",
             "T7",
             node=dst,
-            keyword="const" if "const" in src else "enum",
+            keyword=sb[0],
             action="rejected",
             severity="fatal",
             message="allOf enum/const values do not intersect",
         )
         return
-    if "const" in dst or "const" in src:
+    if sa[0] == "const" or sb[0] == "const":
         dst.pop("enum", None)
         dst["const"] = out[0]
+        final_kw, final_val = "const", [out[0]]
     else:
         dst["enum"] = out
+        final_kw, final_val = "enum", out
+    dst.kw_src.pop("enum", None)
+    dst.kw_src.pop("const", None)
+    for kw, vals, origin in (sa, sb):
+        if kw != final_kw or _c(vals) != _c(final_val):
+            ctx.add(
+                "core/allof-value-merged",
+                "T7",
+                node=dst,
+                keyword=kw,
+                action="merged",
+                severity="info",
+                source_path=origin,
+                original=vals[0] if kw == "const" else vals,
+                message=f"{kw} intersected with other allOf branches",
+            )
 
 
 def _merge_schemas(a: Any, b: Any, ctx: Ctx) -> Any:
@@ -435,7 +460,7 @@ def _report_changed(dst: SNode, src: SNode, ctx: Ctx) -> None:
                 keyword=kw,
                 action="merged",
                 severity="info",
-                source_path=src.src[0] if src.src else "",
+                source_path=src.origin(kw),
                 original=v,
                 message=f"{kw} combined with other allOf branches",
             )

@@ -37,7 +37,7 @@ Schema = Any  # SNode | bool
 
 
 class SNode(dict[str, Any]):
-    __slots__ = ("ops", "ref", "src")
+    __slots__ = ("kw_src", "ops", "ref", "src")
 
     def __init__(
         self, *args: Any, src: tuple[str, ...] = (), ref: SNode | None = None, **kw: Any
@@ -46,6 +46,11 @@ class SNode(dict[str, Any]):
         self.src: tuple[str, ...] = src
         self.ref: SNode | None = ref
         self.ops: list[dict[str, Any]] = []
+        self.kw_src: dict[str, str] = {}
+        """Per-keyword origin when a keyword came from a different source node (allOf merges)."""
+
+    def origin(self, keyword: str) -> str:
+        return self.kw_src.get(keyword, self.src[0] if self.src else "")
 
     def __repr__(self) -> str:  # pragma: no cover - debugging aid
         return f"SNode({super().__repr__()}, src={self.src})"
@@ -133,6 +138,7 @@ def copy_tree(node: Schema) -> Any:
         return node
     out = SNode(src=node.src, ref=node.ref)
     out.ops = [dict(op) for op in node.ops]
+    out.kw_src = dict(node.kw_src)
     for kw, v in node.items():
         if kw in SCHEMA_MAPS and isinstance(v, dict):
             out[kw] = {k: copy_tree(s) for k, s in cast(dict[str, Any], v).items()}
