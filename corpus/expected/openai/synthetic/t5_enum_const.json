@@ -1,0 +1,47 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t5_enum_const",
+      "description": "Untyped enum, mixed enum and const",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "enum": [
+              "fast",
+              "slow"
+            ]
+          },
+          "mixed": {
+            "enum": [
+              "a",
+              1,
+              true
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "const": "fixed"
+          }
+        },
+        "required": [
+          "mode",
+          "mixed",
+          "kind"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

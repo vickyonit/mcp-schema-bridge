@@ -1,0 +1,34 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t18_keys_and_arrays",
+      "description": "Unusual property keys and an array without items",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "first name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "tags"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  }
+}

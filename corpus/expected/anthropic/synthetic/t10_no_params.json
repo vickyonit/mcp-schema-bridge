@@ -1,0 +1,23 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t10_no_params",
+      "description": "Tool without parameters",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object"
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

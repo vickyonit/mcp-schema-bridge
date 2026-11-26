@@ -1,0 +1,45 @@
+{
+  "target": "gemini-json",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t2a_recursion_required",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/unsatisfiable-recursion",
+          "tid": "T2a",
+          "tool": "t2a_recursion_required",
+          "source_path": "/properties/child",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#",
+          "hinted": false,
+          "message": "recursion only through required, non-nullable positions; no finite value exists"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/unsatisfiable-recursion",
+        "tid": "T2a",
+        "tool": "t2a_recursion_required",
+        "source_path": "/properties/child",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#",
+        "hinted": false,
+        "message": "recursion only through required, non-nullable positions; no finite value exists"
+      }
+    ]
+  }
+}

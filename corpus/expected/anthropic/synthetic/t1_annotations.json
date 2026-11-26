@@ -1,0 +1,37 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t1_annotations",
+      "description": "Annotation-only keywords and extensions",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "examples": [
+              "a"
+            ],
+            "deprecated": true,
+            "x-mcp-header": "X-Q",
+            "$comment": "c"
+          }
+        },
+        "required": [
+          "q"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

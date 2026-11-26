@@ -1,0 +1,127 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t5_enum_const",
+      "description": "Untyped enum, mixed enum and const",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "enum": [
+              "fast",
+              "slow"
+            ],
+            "type": "string"
+          },
+          "mixed": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "a"
+                ]
+              },
+              {
+                "type": "integer",
+                "enum": [
+                  1
+                ]
+              },
+              {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "fixed"
+            ]
+          }
+        },
+        "required": [
+          "mode",
+          "mixed",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t5_enum_const",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "t5_enum_const",
+        "source_path": "/properties/kind",
+        "target_path": "/properties/kind",
+        "instance_path": "/kind",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "fixed",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/mixed-enum-split",
+        "tid": "T5",
+        "tool": "t5_enum_const",
+        "source_path": "/properties/mixed",
+        "target_path": "/properties/mixed",
+        "instance_path": "/mixed",
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "a",
+          1,
+          true
+        ],
+        "hinted": false,
+        "message": "enum with mixed value types split into one typed enum per type"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "t5_enum_const",
+        "source_path": "/properties/mode",
+        "target_path": "/properties/mode",
+        "instance_path": "/mode",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from enum values"
+      }
+    ]
+  }
+}

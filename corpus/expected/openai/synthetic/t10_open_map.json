@@ -1,0 +1,34 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t10_open_map",
+      "description": "Open map (record) property",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "labels"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

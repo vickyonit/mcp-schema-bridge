@@ -1,0 +1,50 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t18_keys_and_arrays",
+      "description": "Unusual property keys and an array without items",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "first name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        "required": [
+          "tags"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": [
+      {
+        "rule": "openai/array-items-added",
+        "tid": "T18",
+        "tool": "t18_keys_and_arrays",
+        "source_path": "/properties/tags",
+        "target_path": "/properties/tags",
+        "instance_path": "/tags",
+        "keyword": "items",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "array without items: added the equivalent items: {}"
+      }
+    ]
+  }
+}

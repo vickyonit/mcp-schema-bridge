@@ -1,0 +1,459 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "get_current_time",
+      "description": "Get current time in a specific timezone",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "timezone": {
+            "description": "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.\n\n[constraints: default=\"Asia/Kolkata\"]",
+            "title": "Timezone",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object",
+        "title": "get_current_timeArguments",
+        "additionalProperties": false,
+        "required": [
+          "timezone"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "timezone",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "convert_time",
+      "description": "Convert time between timezones",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "source_timezone": {
+            "description": "Source IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.\n\n[constraints: default=\"Asia/Kolkata\"]",
+            "title": "Source Timezone",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "time": {
+            "description": "Time to convert in 24-hour format (HH:MM)",
+            "title": "Time",
+            "type": "string"
+          },
+          "target_timezone": {
+            "description": "Target IANA timezone name (e.g., 'Asia/Tokyo', 'America/San_Francisco'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.\n\n[constraints: default=\"Asia/Kolkata\"]",
+            "title": "Target Timezone",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "time",
+          "source_timezone",
+          "target_timezone"
+        ],
+        "type": "object",
+        "title": "convert_timeArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "source_timezone",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "target_timezone",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_time_ago",
+      "description": "Get the time a given number of days, hours, minutes and seconds ago in a specific timezone",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "timezone": {
+            "description": "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.\n\n[constraints: default=\"Asia/Kolkata\"]",
+            "title": "Timezone",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "days_ago": {
+            "description": "Whole days before now\n\n[constraints: default=0]",
+            "minimum": 0,
+            "title": "Days Ago",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "hours_ago": {
+            "description": "Whole hours before now\n\n[constraints: default=0]",
+            "minimum": 0,
+            "title": "Hours Ago",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "minutes_ago": {
+            "description": "Whole minutes before now\n\n[constraints: default=0]",
+            "minimum": 0,
+            "title": "Minutes Ago",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "seconds_ago": {
+            "description": "Whole seconds before now\n\n[constraints: default=0]",
+            "minimum": 0,
+            "title": "Seconds Ago",
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "type": "object",
+        "title": "get_time_agoArguments",
+        "additionalProperties": false,
+        "required": [
+          "timezone",
+          "days_ago",
+          "hours_ago",
+          "minutes_ago",
+          "seconds_ago"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "timezone",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "days_ago",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "hours_ago",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "minutes_ago",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "seconds_ago",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "convert_time",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "convert_time",
+        "source_path": "/properties/source_timezone",
+        "target_path": "/properties/source_timezone",
+        "instance_path": "/source_timezone",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "Asia/Kolkata",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "convert_time",
+        "source_path": "/properties/source_timezone",
+        "target_path": "/properties/source_timezone",
+        "instance_path": "/source_timezone",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'source_timezone' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "convert_time",
+        "source_path": "/properties/target_timezone",
+        "target_path": "/properties/target_timezone",
+        "instance_path": "/target_timezone",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "Asia/Kolkata",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "convert_time",
+        "source_path": "/properties/target_timezone",
+        "target_path": "/properties/target_timezone",
+        "instance_path": "/target_timezone",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'target_timezone' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "get_current_time",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "get_current_time",
+        "source_path": "/properties/timezone",
+        "target_path": "/properties/timezone",
+        "instance_path": "/timezone",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "Asia/Kolkata",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "get_current_time",
+        "source_path": "/properties/timezone",
+        "target_path": "/properties/timezone",
+        "instance_path": "/timezone",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'timezone' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "get_time_ago",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "get_time_ago",
+        "source_path": "/properties/days_ago",
+        "target_path": "/properties/days_ago",
+        "instance_path": "/days_ago",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 0,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "get_time_ago",
+        "source_path": "/properties/days_ago",
+        "target_path": "/properties/days_ago",
+        "instance_path": "/days_ago",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'days_ago' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "get_time_ago",
+        "source_path": "/properties/hours_ago",
+        "target_path": "/properties/hours_ago",
+        "instance_path": "/hours_ago",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 0,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "get_time_ago",
+        "source_path": "/properties/hours_ago",
+        "target_path": "/properties/hours_ago",
+        "instance_path": "/hours_ago",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'hours_ago' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "get_time_ago",
+        "source_path": "/properties/minutes_ago",
+        "target_path": "/properties/minutes_ago",
+        "instance_path": "/minutes_ago",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 0,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "get_time_ago",
+        "source_path": "/properties/minutes_ago",
+        "target_path": "/properties/minutes_ago",
+        "instance_path": "/minutes_ago",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'minutes_ago' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "get_time_ago",
+        "source_path": "/properties/seconds_ago",
+        "target_path": "/properties/seconds_ago",
+        "instance_path": "/seconds_ago",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 0,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "get_time_ago",
+        "source_path": "/properties/seconds_ago",
+        "target_path": "/properties/seconds_ago",
+        "instance_path": "/seconds_ago",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'seconds_ago' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "get_time_ago",
+        "source_path": "/properties/timezone",
+        "target_path": "/properties/timezone",
+        "instance_path": "/timezone",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "Asia/Kolkata",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "get_time_ago",
+        "source_path": "/properties/timezone",
+        "target_path": "/properties/timezone",
+        "instance_path": "/timezone",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'timezone' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

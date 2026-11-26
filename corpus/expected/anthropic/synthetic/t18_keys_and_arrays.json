@@ -1,0 +1,45 @@
+{
+  "target": "anthropic",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t18_keys_and_arrays",
+      "target": "anthropic",
+      "reasons": [
+        {
+          "rule": "anthropic/property-key-invalid",
+          "tid": "T18",
+          "tool": "t18_keys_and_arrays",
+          "source_path": "/properties/first name",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "properties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "first name",
+          "hinted": false,
+          "message": "property name 'first name' does not match ^[a-zA-Z0-9_.-]{1,64}$ (renaming arrives in v0.2)"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic",
+    "entries": [
+      {
+        "rule": "anthropic/property-key-invalid",
+        "tid": "T18",
+        "tool": "t18_keys_and_arrays",
+        "source_path": "/properties/first name",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "properties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "first name",
+        "hinted": false,
+        "message": "property name 'first name' does not match ^[a-zA-Z0-9_.-]{1,64}$ (renaming arrives in v0.2)"
+      }
+    ]
+  }
+}

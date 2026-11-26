@@ -1,0 +1,86 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t16_pattern_features",
+      "description": "Patterns using lookaround and backreferences",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "pw": {
+            "type": "string",
+            "description": "[constraints: pattern=\"^(?=.*\\\\d).{8,}$\"]"
+          },
+          "rep": {
+            "type": "string",
+            "description": "[constraints: pattern=\"^(a)\\\\1$\"]"
+          },
+          "plain": {
+            "type": "string",
+            "pattern": "^[a-z]+$"
+          }
+        },
+        "required": [
+          "pw",
+          "rep",
+          "plain"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t16_pattern_features",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/pattern-unsupported",
+        "tid": "T16",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/pw",
+        "target_path": "/properties/pw",
+        "instance_path": "/pw",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(?=.*\\d).{8,}$",
+        "hinted": true,
+        "message": "pattern uses features the target rejects: lookaround"
+      },
+      {
+        "rule": "anthropic-strict/pattern-unsupported",
+        "tid": "T16",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/rep",
+        "target_path": "/properties/rep",
+        "instance_path": "/rep",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(a)\\1$",
+        "hinted": true,
+        "message": "pattern uses features the target rejects: backreference"
+      }
+    ]
+  }
+}

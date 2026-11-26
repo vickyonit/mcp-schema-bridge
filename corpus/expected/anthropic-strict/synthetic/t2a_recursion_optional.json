@@ -1,0 +1,164 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t2a_recursion_optional",
+      "description": "Recursive definition reached through an optional property",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "head": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "next": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  },
+                  "next": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "head"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_optional",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_optional",
+        "source_path": "/$defs/Node",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_optional",
+        "source_path": "/$defs/Node",
+        "target_path": "/properties/head",
+        "instance_path": "/head",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_optional",
+        "source_path": "/$defs/Node",
+        "target_path": "/properties/head/properties/next",
+        "instance_path": "/head/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_optional",
+        "source_path": "/$defs/Node",
+        "target_path": "/properties/head/properties/next/properties/next",
+        "instance_path": "/head/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "t2a_recursion_optional",
+        "source_path": "/$defs/Node",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'Node' removed"
+      },
+      {
+        "rule": "core/recursion-truncated",
+        "tid": "T2a",
+        "tool": "t2a_recursion_optional",
+        "source_path": "/$defs/Node/properties/next",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "truncated",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "recursion cut at depth 3: optional property removed"
+      }
+    ]
+  }
+}

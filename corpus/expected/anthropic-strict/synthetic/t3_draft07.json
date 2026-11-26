@@ -1,0 +1,153 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t3_draft07",
+      "description": "draft-07 definitions, tuple items, dependencies and $ref siblings",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "type": "array",
+            "items": false,
+            "description": "[constraints: prefixItems=[{\"type\":\"number\"},{\"type\":\"number\"}]]"
+          },
+          "a": {
+            "$ref": "#/$defs/A"
+          },
+          "b": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "[constraints: dependentRequired={\"a\":[\"b\"]}]",
+        "$defs": {
+          "A": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "anthropic-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "dependentRequired",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "a": [
+            "b"
+          ]
+        },
+        "hinted": true,
+        "message": "dependentRequired is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/dependencies-split",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "dependencies",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "draft-07 dependencies split into dependentRequired / dependentSchemas"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/draft07-ref-sibling-ignored",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "description",
+        "action": "dropped",
+        "severity": "info",
+        "original": "ignored in draft-07",
+        "hinted": false,
+        "message": "draft-07 ignores keywords next to $ref"
+      },
+      {
+        "rule": "anthropic-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "prefixItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "hinted": true,
+        "message": "prefixItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/tuple-items-to-prefix-items",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "items",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "array-form items rewritten to prefixItems (2020-12)"
+      }
+    ]
+  }
+}

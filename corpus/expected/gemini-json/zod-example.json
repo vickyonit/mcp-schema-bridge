@@ -1,0 +1,386 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "create_issue",
+      "description": "Create an issue.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "[constraints: maxLength=200; minLength=1]"
+          },
+          "body": {
+            "type": "string"
+          },
+          "labels": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority": {
+            "default": "medium",
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "assignee": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "[constraints: format=\"email\"; pattern=\"^(?:[A-Za-z0-9_'+\\\\-]+\\\\.)*[A-Za-z0-9_'+\\\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\\\-]*\\\\.)+[A-Za-z]{2,}$\"]"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "due": {
+            "type": "string",
+            "format": "date-time",
+            "description": "[constraints: pattern=\"^(?:(?:\\\\d\\\\d[2468][048]|\\\\d\\\\d[13579][26]|\\\\d\\\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\\\d|30)|(?:02)-(?:0[1-9]|…]"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "query",
+      "description": "Run a filtered query.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "text"
+                    ]
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "text"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "range"
+                    ]
+                  },
+                  "from": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "to": {
+                    "type": "integer",
+                    "maximum": 9007199254740991,
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "from",
+                  "to"
+                ]
+              }
+            ]
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "[constraints: propertyNames={\"type\":\"string\"}]"
+          }
+        },
+        "required": [
+          "filter"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "set_flags",
+      "description": "Set feature flags.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "[constraints: pattern=\"^[a-z_]+$\"]"
+                },
+                "value": {
+                  "type": [
+                    "boolean",
+                    "number",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "flags"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "create_issue",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "create_issue",
+        "source_path": "/properties/assignee/anyOf/0",
+        "target_path": "/properties/assignee/anyOf/0",
+        "instance_path": null,
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "email",
+        "hinted": true,
+        "message": "format 'email' is not enforced by the target"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/assignee/anyOf/0",
+        "target_path": "/properties/assignee/anyOf/0",
+        "instance_path": null,
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/due",
+        "target_path": "/properties/due",
+        "instance_path": "/due",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/title",
+        "target_path": "/properties/title",
+        "instance_path": "/title",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 200,
+        "hinted": true,
+        "message": "maxLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/title",
+        "target_path": "/properties/title",
+        "instance_path": "/title",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "query",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "query",
+        "source_path": "/properties/filter",
+        "target_path": "/properties/filter",
+        "instance_path": "/filter",
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; branches are disjoint so meaning is unchanged"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/0/properties/kind",
+        "target_path": "/properties/filter/anyOf/0/properties/kind",
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "text",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/kind",
+        "target_path": "/properties/filter/anyOf/1/properties/kind",
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "range",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "gemini-json/integer-exclusive-bound",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/to",
+        "target_path": "/properties/filter/anyOf/1/properties/to",
+        "instance_path": null,
+        "keyword": "exclusiveMinimum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": 0,
+        "hinted": false,
+        "message": "exclusiveMinimum 0 rewritten as the equivalent minimum 1 for integers"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/meta",
+        "target_path": "/properties/meta",
+        "instance_path": "/meta",
+        "keyword": "propertyNames",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "propertyNames is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "set_flags",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "set_flags",
+        "source_path": "/properties/flags/items/properties/name",
+        "target_path": "/properties/flags/items/properties/name",
+        "instance_path": null,
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^[a-z_]+$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

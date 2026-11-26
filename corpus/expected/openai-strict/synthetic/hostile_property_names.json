@@ -1,0 +1,59 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "hostile_property_names",
+      "description": "Property names that look like keywords",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "$ref": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title",
+          "$ref",
+          "type",
+          "properties"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "hostile_property_names",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  }
+}

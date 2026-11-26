@@ -1,0 +1,23 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t10_no_params",
+      "description": "Tool without parameters",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  }
+}

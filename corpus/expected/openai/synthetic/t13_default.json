@@ -1,0 +1,32 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t13_default",
+      "description": "Defaults",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "type": "string",
+            "default": "asc"
+          }
+        },
+        "required": [
+          "sort"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

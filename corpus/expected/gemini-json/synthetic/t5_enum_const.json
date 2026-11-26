@@ -1,0 +1,64 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t5_enum_const",
+      "description": "Untyped enum, mixed enum and const",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "enum": [
+              "fast",
+              "slow"
+            ]
+          },
+          "mixed": {
+            "enum": [
+              "a",
+              1,
+              true
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "fixed"
+            ]
+          }
+        },
+        "required": [
+          "mode",
+          "mixed",
+          "kind"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "t5_enum_const",
+        "source_path": "/properties/kind",
+        "target_path": "/properties/kind",
+        "instance_path": "/kind",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "fixed",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      }
+    ]
+  }
+}

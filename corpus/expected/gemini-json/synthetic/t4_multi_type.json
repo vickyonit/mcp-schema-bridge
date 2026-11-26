@@ -1,0 +1,51 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t4_multi_type",
+      "description": "Multi-type arrays with type-specific keywords",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "integer"
+            ],
+            "minimum": 0,
+            "description": "[constraints: minLength=1]"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t4_multi_type",
+        "source_path": "/properties/id",
+        "target_path": "/properties/id",
+        "instance_path": "/id",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

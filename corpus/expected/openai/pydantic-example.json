@@ -1,0 +1,288 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "create_contact",
+      "description": "Create a CRM contact.",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "contact": {
+            "$ref": "#/$defs/Contact"
+          },
+          "priority": {
+            "$ref": "#/$defs/Priority",
+            "default": "low"
+          },
+          "notify": {
+            "default": false,
+            "title": "Notify",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "contact"
+        ],
+        "type": "object",
+        "title": "create_contactArguments",
+        "$defs": {
+          "Address": {
+            "properties": {
+              "street": {
+                "title": "Street",
+                "type": "string"
+              },
+              "city": {
+                "title": "City",
+                "type": "string"
+              },
+              "postcode": {
+                "pattern": "^[0-9]{5}$",
+                "title": "Postcode",
+                "type": "string"
+              },
+              "country": {
+                "default": "US",
+                "title": "Country",
+                "type": "string"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "postcode"
+            ],
+            "title": "Address",
+            "type": "object"
+          },
+          "Contact": {
+            "properties": {
+              "name": {
+                "description": "Full name",
+                "maxLength": 80,
+                "minLength": 1,
+                "title": "Name",
+                "type": "string"
+              },
+              "email": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Email address",
+                "title": "Email"
+              },
+              "age": {
+                "anyOf": [
+                  {
+                    "exclusiveMaximum": 150,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Age"
+              },
+              "tags": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Tags",
+                "type": "array"
+              },
+              "address": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Address"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "title": "Contact",
+            "type": "object"
+          },
+          "Priority": {
+            "enum": [
+              "low",
+              "high"
+            ],
+            "title": "Priority",
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    },
+    {
+      "name": "search",
+      "description": "Search records.",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "query": {
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "limit": {
+            "default": 10,
+            "maximum": 100,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "sort": {
+            "default": "relevance",
+            "enum": [
+              "relevance",
+              "date"
+            ],
+            "title": "Sort",
+            "type": "string"
+          },
+          "filters": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Filters"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object",
+        "title": "searchArguments"
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    },
+    {
+      "name": "save_tree",
+      "description": "Store a recursive tree.",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "root": {
+            "$ref": "#/$defs/TreeNode"
+          },
+          "ratio": {
+            "default": 1.0,
+            "exclusiveMinimum": 0,
+            "multipleOf": 0.5,
+            "title": "Ratio",
+            "type": "number"
+          }
+        },
+        "required": [
+          "root"
+        ],
+        "type": "object",
+        "title": "save_treeArguments",
+        "$defs": {
+          "TreeNode": {
+            "properties": {
+              "label": {
+                "title": "Label",
+                "type": "string"
+              },
+              "children": {
+                "default": [],
+                "items": {
+                  "$ref": "#/$defs/TreeNode"
+                },
+                "title": "Children",
+                "type": "array"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "title": "TreeNode",
+            "type": "object"
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    },
+    {
+      "name": "schedule",
+      "description": "Schedule items at a time.",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "when": {
+            "format": "date-time",
+            "title": "When",
+            "type": "string"
+          },
+          "ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Ids"
+          }
+        },
+        "required": [
+          "when",
+          "ids"
+        ],
+        "type": "object",
+        "title": "scheduleArguments"
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

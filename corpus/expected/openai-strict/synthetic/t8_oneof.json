@@ -1,0 +1,108 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t8_oneof",
+      "description": "oneOf, disjoint and overlapping",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "d": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "o": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "description": "[constraints: minLength=3]"
+              }
+            ]
+          }
+        },
+        "required": [
+          "d",
+          "o"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t8_oneof",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "t8_oneof",
+        "source_path": "/properties/d",
+        "target_path": "/properties/d",
+        "instance_path": "/d",
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; branches are disjoint so meaning is unchanged"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "t8_oneof",
+        "source_path": "/properties/o",
+        "target_path": "/properties/o",
+        "instance_path": "/o",
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; exclusivity is no longer enforced"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t8_oneof",
+        "source_path": "/properties/o/oneOf/1",
+        "target_path": "/properties/o/anyOf/1",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 3,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

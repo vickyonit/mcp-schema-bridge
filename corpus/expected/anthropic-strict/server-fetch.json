@@ -1,0 +1,159 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "fetch",
+      "description": "Fetches a URL from the internet and optionally extracts its contents as markdown.\n\nAlthough originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "url": {
+            "description": "URL to fetch\n\n[constraints: minLength=1]",
+            "format": "uri",
+            "title": "Url",
+            "type": "string"
+          },
+          "max_length": {
+            "default": 5000,
+            "description": "Maximum number of characters to return.\n\n[constraints: maximum=999999; minimum=1]",
+            "title": "Max Length",
+            "type": "integer"
+          },
+          "start_index": {
+            "default": 0,
+            "description": "On return output starting at this character index, useful if a previous fetch was truncated and more context is required.\n\n[constraints: minimum=0]",
+            "title": "Start Index",
+            "type": "integer"
+          },
+          "raw": {
+            "default": false,
+            "description": "Get the actual HTML content of the requested page, without simplification.",
+            "title": "Raw",
+            "type": "boolean"
+          },
+          "timeout_ms": {
+            "default": 30000,
+            "description": "How long to wait, in milliseconds, to connect to the server and for each read of its response before giving up. Raise it for a slow server or a large download; lower it to fail fast.\n\n[constraints: maximum=600000; minimum=100]",
+            "title": "Timeout Ms",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "title": "fetchArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "fetch",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/max_length",
+        "target_path": "/properties/max_length",
+        "instance_path": "/max_length",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 999999,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/max_length",
+        "target_path": "/properties/max_length",
+        "instance_path": "/max_length",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/start_index",
+        "target_path": "/properties/start_index",
+        "instance_path": "/start_index",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/timeout_ms",
+        "target_path": "/properties/timeout_ms",
+        "instance_path": "/timeout_ms",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 600000,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/timeout_ms",
+        "target_path": "/properties/timeout_ms",
+        "instance_path": "/timeout_ms",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 100,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/url",
+        "target_path": "/properties/url",
+        "instance_path": "/url",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

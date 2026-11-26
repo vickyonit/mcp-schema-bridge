@@ -1,0 +1,120 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t9_anyof_siblings",
+      "description": "Object with anyOf of required-sets (at least one of)",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "f": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "f"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t9_anyof_siblings",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/anyof-siblings-distributed",
+        "tid": "T9",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f",
+        "instance_path": "/f",
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "keywords next to anyOf distributed into each branch"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  }
+}

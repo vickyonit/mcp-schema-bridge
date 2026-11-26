@@ -1,0 +1,45 @@
+{
+  "target": "anthropic",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "hostile_property_names",
+      "target": "anthropic",
+      "reasons": [
+        {
+          "rule": "anthropic/property-key-invalid",
+          "tid": "T18",
+          "tool": "hostile_property_names",
+          "source_path": "/properties/$ref",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "properties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "$ref",
+          "hinted": false,
+          "message": "property name '$ref' does not match ^[a-zA-Z0-9_.-]{1,64}$ (renaming arrives in v0.2)"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic",
+    "entries": [
+      {
+        "rule": "anthropic/property-key-invalid",
+        "tid": "T18",
+        "tool": "hostile_property_names",
+        "source_path": "/properties/$ref",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "properties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "$ref",
+        "hinted": false,
+        "message": "property name '$ref' does not match ^[a-zA-Z0-9_.-]{1,64}$ (renaming arrives in v0.2)"
+      }
+    ]
+  }
+}

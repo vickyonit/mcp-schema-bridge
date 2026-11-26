@@ -1,0 +1,165 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t12_validation",
+      "description": "Validation keywords per target",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "description": "[constraints: maxLength=2; minLength=2]"
+          },
+          "n": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "multipleOf": 0.5
+          },
+          "i": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 10
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 5,
+            "description": "[constraints: uniqueItems=true]"
+          },
+          "not_x": {
+            "type": "string",
+            "description": "[constraints: not={\"enum\":[\"x\"],\"type\":\"string\"}]"
+          }
+        },
+        "required": [
+          "code",
+          "n",
+          "i",
+          "tags",
+          "not_x"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t12_validation",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x",
+        "target_path": "/properties/not_x",
+        "instance_path": "/not_x",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "enum": [
+            "x"
+          ],
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "not is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x/not",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "x",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x/not",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from const values"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/tags",
+        "target_path": "/properties/tags",
+        "instance_path": "/tags",
+        "keyword": "uniqueItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": true,
+        "hinted": true,
+        "message": "uniqueItems is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

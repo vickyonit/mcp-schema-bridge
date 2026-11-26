@@ -1,0 +1,105 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t1_annotations",
+      "description": "Annotation-only keywords and extensions",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t1_annotations",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/annotation-dropped",
+        "tid": "T1",
+        "tool": "t1_annotations",
+        "source_path": "/properties/q",
+        "target_path": "/properties/q",
+        "instance_path": "/q",
+        "keyword": "$comment",
+        "action": "dropped",
+        "severity": "info",
+        "original": "c",
+        "hinted": false,
+        "message": "$comment is not supported by the target"
+      },
+      {
+        "rule": "core/annotation-dropped",
+        "tid": "T1",
+        "tool": "t1_annotations",
+        "source_path": "/properties/q",
+        "target_path": "/properties/q",
+        "instance_path": "/q",
+        "keyword": "deprecated",
+        "action": "dropped",
+        "severity": "info",
+        "original": true,
+        "hinted": false,
+        "message": "deprecated is not supported by the target"
+      },
+      {
+        "rule": "core/annotation-dropped",
+        "tid": "T1",
+        "tool": "t1_annotations",
+        "source_path": "/properties/q",
+        "target_path": "/properties/q",
+        "instance_path": "/q",
+        "keyword": "examples",
+        "action": "dropped",
+        "severity": "info",
+        "original": [
+          "a"
+        ],
+        "hinted": false,
+        "message": "examples is not supported by the target"
+      },
+      {
+        "rule": "core/annotation-dropped",
+        "tid": "T1",
+        "tool": "t1_annotations",
+        "source_path": "/properties/q",
+        "target_path": "/properties/q",
+        "instance_path": "/q",
+        "keyword": "x-mcp-header",
+        "action": "dropped",
+        "severity": "info",
+        "original": "X-Q",
+        "hinted": false,
+        "message": "x-mcp-header is not supported by the target"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t14_root_union",
+      "description": "Root anyOf of objects",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "slug": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "slug"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": [
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "t14_root_union",
+        "source_path": "",
+        "target_path": "/properties/value",
+        "instance_path": "/value",
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t7_allof",
+      "description": "allOf merge (Pydantic/Zod intersection style)",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "integer",
+                "description": "[constraints: maximum=9; minimum=1]"
+              },
+              "b": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "a"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "t7_allof",
+        "source_path": "",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t7_allof",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t7_allof",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t7_allof",
+        "source_path": "/properties/p/allOf/0/properties/a",
+        "target_path": "/properties/p/properties/a",
+        "instance_path": "/p/a",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t7_allof",
+        "source_path": "/properties/p/allOf/1/properties/a",
+        "target_path": "/properties/p/properties/a",
+        "instance_path": "/p/a",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

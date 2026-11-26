@@ -1,0 +1,47 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t5_enum_const",
+      "description": "Untyped enum, mixed enum and const",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "enum": [
+              "fast",
+              "slow"
+            ]
+          },
+          "mixed": {
+            "enum": [
+              "a",
+              1,
+              true
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "const": "fixed"
+          }
+        },
+        "required": [
+          "mode",
+          "mixed",
+          "kind"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

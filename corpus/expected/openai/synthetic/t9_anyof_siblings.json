@@ -1,0 +1,51 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t9_anyof_siblings",
+      "description": "Object with anyOf of required-sets (at least one of)",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "f": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "email"
+                ]
+              },
+              {
+                "required": [
+                  "phone"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "f"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

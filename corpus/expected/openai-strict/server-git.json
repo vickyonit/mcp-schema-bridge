@@ -1,0 +1,1012 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "git_status",
+      "description": "Shows the working tree status",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object",
+        "title": "statusArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_diff_unstaged",
+      "description": "Shows changes in the working directory that are not yet staged",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "context_lines": {
+            "title": "Context Lines",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "[constraints: default=3]"
+          }
+        },
+        "required": [
+          "repo_path",
+          "context_lines"
+        ],
+        "type": "object",
+        "title": "diff_unstagedArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "context_lines",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "git_diff_staged",
+      "description": "Shows changes that are staged for commit",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "context_lines": {
+            "title": "Context Lines",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "[constraints: default=3]"
+          }
+        },
+        "required": [
+          "repo_path",
+          "context_lines"
+        ],
+        "type": "object",
+        "title": "diff_stagedArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "context_lines",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "git_diff",
+      "description": "Shows differences between branches or commits, or across a revision range (main..feature, main...feature)",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "target": {
+            "title": "Target",
+            "type": "string"
+          },
+          "context_lines": {
+            "title": "Context Lines",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "[constraints: default=3]"
+          }
+        },
+        "required": [
+          "repo_path",
+          "target",
+          "context_lines"
+        ],
+        "type": "object",
+        "title": "diffArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "context_lines",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "git_commit",
+      "description": "Records changes to the repository",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "message"
+        ],
+        "type": "object",
+        "title": "commitArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_add",
+      "description": "Adds file contents to the staging area",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "files": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "title": "Files",
+            "type": "array"
+          }
+        },
+        "required": [
+          "repo_path",
+          "files"
+        ],
+        "type": "object",
+        "title": "addArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_reset",
+      "description": "Unstages all staged changes",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object",
+        "title": "resetArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_log",
+      "description": "Shows the commit logs",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "max_count": {
+            "description": "Maximum number of commits to show. Must be at least 1.\n\n[constraints: default=10]",
+            "minimum": 1,
+            "title": "Max Count",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "start_timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Start timestamp for filtering commits. Accepts: ISO 8601 format (e.g., '2024-01-15T14:30:25'), relative dates (e.g., '2 weeks ago', 'yesterday'), or absolute dates (e.g., '2024-01-15', 'Jan 15 2024')\n\n[constraints: default=null]",
+            "title": "Start Timestamp"
+          },
+          "end_timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "End timestamp for filtering commits. Accepts: ISO 8601 format (e.g., '2024-01-15T14:30:25'), relative dates (e.g., '2 weeks ago', 'yesterday'), or absolute dates (e.g., '2024-01-15', 'Jan 15 2024')\n\n[constraints: default=null]",
+            "title": "End Timestamp"
+          }
+        },
+        "required": [
+          "repo_path",
+          "max_count",
+          "start_timestamp",
+          "end_timestamp"
+        ],
+        "type": "object",
+        "title": "logArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "max_count",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "git_create_branch",
+      "description": "Creates a new branch from an optional base branch or commit",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "branch_name": {
+            "title": "Branch Name",
+            "type": "string"
+          },
+          "base_branch": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Branch, tag or commit SHA to create the branch from. Defaults to the current branch, or to the current commit when HEAD is detached\n\n[constraints: default=null]",
+            "title": "Base Branch"
+          }
+        },
+        "required": [
+          "repo_path",
+          "branch_name",
+          "base_branch"
+        ],
+        "type": "object",
+        "title": "create_branchArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_checkout",
+      "description": "Switches branches",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "branch_name": {
+            "title": "Branch Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "branch_name"
+        ],
+        "type": "object",
+        "title": "checkoutArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_merge",
+      "description": "Merges a branch into the current branch. Fast-forward only unless fast_forward_only is false; refuses a dirty working tree, and aborts a merge that conflicts, leaving the repository unchanged",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "source_branch": {
+            "description": "Branch, tag or commit to merge into the current branch",
+            "title": "Source Branch",
+            "type": "string"
+          },
+          "fast_forward_only": {
+            "description": "Only fast-forward, failing if the branches have diverged. False allows a merge commit\n\n[constraints: default=true]",
+            "title": "Fast Forward Only",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "repo_path",
+          "source_branch",
+          "fast_forward_only"
+        ],
+        "type": "object",
+        "title": "mergeArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "fast_forward_only",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "git_show",
+      "description": "Shows the contents of a commit, or of a file or directory given as <revision>:<path>",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path",
+          "revision"
+        ],
+        "type": "object",
+        "title": "showArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_branch",
+      "description": "List Git branches",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "description": "The path to the Git repository.",
+            "title": "Repo Path",
+            "type": "string"
+          },
+          "branch_type": {
+            "description": "Whether to list local branches ('local'), remote branches ('remote') or all branches('all').",
+            "title": "Branch Type",
+            "type": "string"
+          },
+          "contains": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The commit sha that branch should contain. Do not pass anything to this param if no commit sha is specified\n\n[constraints: default=null]",
+            "title": "Contains"
+          },
+          "not_contains": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The commit sha that branch should NOT contain. Do not pass anything to this param if no commit sha is specified\n\n[constraints: default=null]",
+            "title": "Not Contains"
+          }
+        },
+        "required": [
+          "repo_path",
+          "branch_type",
+          "contains",
+          "not_contains"
+        ],
+        "type": "object",
+        "title": "branchArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "git_remote",
+      "description": "Lists the repository's remotes with their fetch and push URLs, like `git remote -v`. Credentials embedded in a URL's userinfo, query values or fragment are shown as <redacted>; path segments are shown as configured",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "repo_path": {
+            "description": "The path to the Git repository.",
+            "title": "Repo Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo_path"
+        ],
+        "type": "object",
+        "title": "remoteArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_add",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_branch",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_branch",
+        "source_path": "/properties/contains",
+        "target_path": "/properties/contains",
+        "instance_path": "/contains",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "git_branch",
+        "source_path": "/properties/contains",
+        "target_path": "/properties/contains",
+        "instance_path": "/contains",
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'contains' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_branch",
+        "source_path": "/properties/not_contains",
+        "target_path": "/properties/not_contains",
+        "instance_path": "/not_contains",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "git_branch",
+        "source_path": "/properties/not_contains",
+        "target_path": "/properties/not_contains",
+        "instance_path": "/not_contains",
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'not_contains' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_checkout",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_commit",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_create_branch",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_create_branch",
+        "source_path": "/properties/base_branch",
+        "target_path": "/properties/base_branch",
+        "instance_path": "/base_branch",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "git_create_branch",
+        "source_path": "/properties/base_branch",
+        "target_path": "/properties/base_branch",
+        "instance_path": "/base_branch",
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'base_branch' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_diff",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_diff",
+        "source_path": "/properties/context_lines",
+        "target_path": "/properties/context_lines",
+        "instance_path": "/context_lines",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 3,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "git_diff",
+        "source_path": "/properties/context_lines",
+        "target_path": "/properties/context_lines",
+        "instance_path": "/context_lines",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'context_lines' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_diff_staged",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_diff_staged",
+        "source_path": "/properties/context_lines",
+        "target_path": "/properties/context_lines",
+        "instance_path": "/context_lines",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 3,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "git_diff_staged",
+        "source_path": "/properties/context_lines",
+        "target_path": "/properties/context_lines",
+        "instance_path": "/context_lines",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'context_lines' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_diff_unstaged",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_diff_unstaged",
+        "source_path": "/properties/context_lines",
+        "target_path": "/properties/context_lines",
+        "instance_path": "/context_lines",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 3,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "git_diff_unstaged",
+        "source_path": "/properties/context_lines",
+        "target_path": "/properties/context_lines",
+        "instance_path": "/context_lines",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'context_lines' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_log",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_log",
+        "source_path": "/properties/end_timestamp",
+        "target_path": "/properties/end_timestamp",
+        "instance_path": "/end_timestamp",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "git_log",
+        "source_path": "/properties/end_timestamp",
+        "target_path": "/properties/end_timestamp",
+        "instance_path": "/end_timestamp",
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'end_timestamp' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_log",
+        "source_path": "/properties/max_count",
+        "target_path": "/properties/max_count",
+        "instance_path": "/max_count",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 10,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "git_log",
+        "source_path": "/properties/max_count",
+        "target_path": "/properties/max_count",
+        "instance_path": "/max_count",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'max_count' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_log",
+        "source_path": "/properties/start_timestamp",
+        "target_path": "/properties/start_timestamp",
+        "instance_path": "/start_timestamp",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "git_log",
+        "source_path": "/properties/start_timestamp",
+        "target_path": "/properties/start_timestamp",
+        "instance_path": "/start_timestamp",
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'start_timestamp' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_merge",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "git_merge",
+        "source_path": "/properties/fast_forward_only",
+        "target_path": "/properties/fast_forward_only",
+        "instance_path": "/fast_forward_only",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": true,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "git_merge",
+        "source_path": "/properties/fast_forward_only",
+        "target_path": "/properties/fast_forward_only",
+        "instance_path": "/fast_forward_only",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "boolean",
+        "hinted": false,
+        "message": "optional property 'fast_forward_only' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_remote",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_reset",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_show",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "git_status",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  }
+}

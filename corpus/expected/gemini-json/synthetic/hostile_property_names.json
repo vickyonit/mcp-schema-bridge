@@ -1,0 +1,43 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "hostile_property_names",
+      "description": "Property names that look like keywords",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "$ref": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title",
+          "$ref",
+          "type",
+          "properties"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "target": "openai-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t10_open_map",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "t10_open_map",
+          "source_path": "/properties/labels",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "type": "string"
+          },
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t10_open_map",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "t10_open_map",
+        "source_path": "/properties/labels",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "type": "string"
+        },
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      }
+    ]
+  }
+}

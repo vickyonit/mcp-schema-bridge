@@ -1,0 +1,50 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t8_oneof",
+      "description": "oneOf, disjoint and overlapping",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "d": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "o": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "minLength": 3
+              }
+            ]
+          }
+        },
+        "required": [
+          "d",
+          "o"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

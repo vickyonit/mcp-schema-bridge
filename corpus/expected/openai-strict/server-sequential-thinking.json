@@ -1,0 +1,293 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "sequentialthinking",
+      "description": "A detailed tool for dynamic and reflective problem-solving through thoughts.\nEach thought can build on, question, or revise previous insights as understanding deepens.\n\nWhen to use this tool:\n- Breaking down complex problems into steps\n- Planning and design with room for revision\n- Analysis that might need course correction\n- Problems where the full scope might not be clear initially\n- Tasks that need to maintain context over multiple steps\n- Situations where irrelevant information needs to be filtered out\n\nYou should:\n1. Estimate totalThoughts up front and adjust it up or down as you go; thoughtNumber may exceed it\n2. Question or revise earlier thoughts (isRevision with revisesThought), or branch (branchFromThought with branchId)\n3. Express uncertainty, and ignore information irrelevant to the current step\n4. Generate a solution hypothesis, verify it against the earlier steps, and repeat until satisfied\n5. Set nextThoughtNeeded to false only when truly done and a satisfactory answer is reached",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "thought": {
+            "type": "string",
+            "description": "Your current thinking step"
+          },
+          "nextThoughtNeeded": {
+            "description": "Whether another thought step is needed",
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "thoughtNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "Current thought number (numeric value, e.g., 1, 2, 3)"
+          },
+          "totalThoughts": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "Estimated total thoughts needed (numeric value, e.g., 5, 10)"
+          },
+          "isRevision": {
+            "description": "Whether this revises previous thinking",
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revisesThought": {
+            "description": "Which thought is being reconsidered",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "branchFromThought": {
+            "description": "Branching point thought number",
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "branchId": {
+            "description": "Branch identifier",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "needsMoreThoughts": {
+            "description": "If more thoughts are needed",
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "thought",
+          "nextThoughtNeeded",
+          "thoughtNumber",
+          "totalThoughts",
+          "isRevision",
+          "revisesThought",
+          "branchFromThought",
+          "branchId",
+          "needsMoreThoughts"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "isRevision",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "revisesThought",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "branchFromThought",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "branchId",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "needsMoreThoughts",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "sequentialthinking",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "https://json-schema.org/draft/2020-12/schema",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "sequentialthinking",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/branchFromThought",
+        "target_path": "/properties/branchFromThought",
+        "instance_path": "/branchFromThought",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'branchFromThought' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/branchId",
+        "target_path": "/properties/branchId",
+        "instance_path": "/branchId",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'branchId' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/isRevision",
+        "target_path": "/properties/isRevision",
+        "instance_path": "/isRevision",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "boolean",
+          "string"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/isRevision",
+        "target_path": "/properties/isRevision",
+        "instance_path": "/isRevision",
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'isRevision' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/needsMoreThoughts",
+        "target_path": "/properties/needsMoreThoughts",
+        "instance_path": "/needsMoreThoughts",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "boolean",
+          "string"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/needsMoreThoughts",
+        "target_path": "/properties/needsMoreThoughts",
+        "instance_path": "/needsMoreThoughts",
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'needsMoreThoughts' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/nextThoughtNeeded",
+        "target_path": "/properties/nextThoughtNeeded",
+        "instance_path": "/nextThoughtNeeded",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "boolean",
+          "string"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/revisesThought",
+        "target_path": "/properties/revisesThought",
+        "instance_path": "/revisesThought",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'revisesThought' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

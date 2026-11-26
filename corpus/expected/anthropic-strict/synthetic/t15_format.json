@@ -1,0 +1,77 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t15_format",
+      "description": "Formats",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "d": {
+            "type": "string",
+            "format": "date"
+          },
+          "e": {
+            "type": "string",
+            "format": "email"
+          },
+          "u": {
+            "type": "string",
+            "format": "uri"
+          },
+          "c": {
+            "type": "string",
+            "description": "[constraints: format=\"my-custom\"]"
+          }
+        },
+        "required": [
+          "d",
+          "e",
+          "u",
+          "c"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t15_format",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/format-unsupported",
+        "tid": "T15",
+        "tool": "t15_format",
+        "source_path": "/properties/c",
+        "target_path": "/properties/c",
+        "instance_path": "/c",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "my-custom",
+        "hinted": true,
+        "message": "format 'my-custom' is not enforced by the target"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t2b_ref_with_siblings",
+      "description": "$ref with annotation and validation siblings (2020-12)",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/Name",
+            "description": "the name",
+            "minLength": 2
+          }
+        },
+        "required": [
+          "a"
+        ],
+        "$defs": {
+          "Name": {
+            "type": "string",
+            "maxLength": 40
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

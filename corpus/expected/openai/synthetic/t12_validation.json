@@ -1,0 +1,63 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t12_validation",
+      "description": "Validation keywords per target",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "n": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "multipleOf": 0.5
+          },
+          "i": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 10
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 5,
+            "uniqueItems": true
+          },
+          "not_x": {
+            "type": "string",
+            "not": {
+              "const": "x"
+            }
+          }
+        },
+        "required": [
+          "code",
+          "n",
+          "i",
+          "tags",
+          "not_x"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

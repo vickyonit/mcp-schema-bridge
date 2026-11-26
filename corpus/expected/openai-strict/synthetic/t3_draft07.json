@@ -1,0 +1,229 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t3_draft07",
+      "description": "draft-07 definitions, tuple items, dependencies and $ref siblings",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": false,
+            "description": "[constraints: prefixItems=[{\"type\":\"number\"},{\"type\":\"number\"}]]"
+          },
+          "a": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/A"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "b": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "point",
+          "a",
+          "b"
+        ],
+        "description": "[constraints: dependentRequired={\"a\":[\"b\"]}]",
+        "$defs": {
+          "A": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "point",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "a",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "b",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/dependencies-split",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "dependencies",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "draft-07 dependencies split into dependentRequired / dependentSchemas"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "dependentRequired",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "a": [
+            "b"
+          ]
+        },
+        "hinted": true,
+        "message": "dependentRequired is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/draft07-ref-sibling-ignored",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a/anyOf/0",
+        "instance_path": null,
+        "keyword": "description",
+        "action": "dropped",
+        "severity": "info",
+        "original": "ignored in draft-07",
+        "hinted": false,
+        "message": "draft-07 ignores keywords next to $ref"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3_draft07",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'a' made required and nullable (anyOf with null); null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3_draft07",
+        "source_path": "/properties/b",
+        "target_path": "/properties/b",
+        "instance_path": "/b",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'b' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/tuple-items-to-prefix-items",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "items",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "array-form items rewritten to prefixItems (2020-12)"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "prefixItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "hinted": true,
+        "message": "prefixItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "array",
+        "hinted": false,
+        "message": "optional property 'point' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

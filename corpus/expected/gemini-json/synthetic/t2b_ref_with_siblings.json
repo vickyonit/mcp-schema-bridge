@@ -1,0 +1,67 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t2b_ref_with_siblings",
+      "description": "$ref with annotation and validation siblings (2020-12)",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/Name",
+            "description": "the name\n\n[constraints: minLength=2]"
+          }
+        },
+        "required": [
+          "a"
+        ],
+        "$defs": {
+          "Name": {
+            "type": "string",
+            "description": "[constraints: maxLength=40]"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/$defs/Name",
+        "target_path": "/$defs/Name",
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 40,
+        "hinted": true,
+        "message": "maxLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

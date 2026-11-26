@@ -1,0 +1,124 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t3_draft07",
+      "description": "draft-07 definitions, tuple items, dependencies and $ref siblings",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false
+          },
+          "a": {
+            "$ref": "#/$defs/A"
+          },
+          "b": {
+            "type": "string"
+          }
+        },
+        "description": "[constraints: dependentRequired={\"a\":[\"b\"]}]",
+        "$defs": {
+          "A": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/dependencies-split",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "dependencies",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "draft-07 dependencies split into dependentRequired / dependentSchemas"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t3_draft07",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "dependentRequired",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "a": [
+            "b"
+          ]
+        },
+        "hinted": true,
+        "message": "dependentRequired is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/draft07-ref-sibling-ignored",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "description",
+        "action": "dropped",
+        "severity": "info",
+        "original": "ignored in draft-07",
+        "hinted": false,
+        "message": "draft-07 ignores keywords next to $ref"
+      },
+      {
+        "rule": "core/tuple-items-to-prefix-items",
+        "tid": "T3",
+        "tool": "t3_draft07",
+        "source_path": "/properties/point",
+        "target_path": "/properties/point",
+        "instance_path": "/point",
+        "keyword": "items",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "array-form items rewritten to prefixItems (2020-12)"
+      }
+    ]
+  }
+}

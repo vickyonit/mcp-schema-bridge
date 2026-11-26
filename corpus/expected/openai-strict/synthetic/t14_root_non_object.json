@@ -1,0 +1,67 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t14_root_non_object",
+      "description": "Non-object root",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "a query"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t14_root_non_object",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "t14_root_non_object",
+        "source_path": "",
+        "target_path": "/properties/value",
+        "instance_path": "/value",
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      }
+    ]
+  }
+}

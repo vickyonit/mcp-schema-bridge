@@ -1,0 +1,90 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t15_format",
+      "description": "Formats",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "d": {
+            "type": "string",
+            "format": "date"
+          },
+          "e": {
+            "type": "string",
+            "description": "[constraints: format=\"email\"]"
+          },
+          "u": {
+            "type": "string",
+            "description": "[constraints: format=\"uri\"]"
+          },
+          "c": {
+            "type": "string",
+            "description": "[constraints: format=\"my-custom\"]"
+          }
+        },
+        "required": [
+          "d",
+          "e",
+          "u",
+          "c"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "t15_format",
+        "source_path": "/properties/c",
+        "target_path": "/properties/c",
+        "instance_path": "/c",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "my-custom",
+        "hinted": true,
+        "message": "format 'my-custom' is not enforced by the target"
+      },
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "t15_format",
+        "source_path": "/properties/e",
+        "target_path": "/properties/e",
+        "instance_path": "/e",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "email",
+        "hinted": true,
+        "message": "format 'email' is not enforced by the target"
+      },
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "t15_format",
+        "source_path": "/properties/u",
+        "target_path": "/properties/u",
+        "instance_path": "/u",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "uri",
+        "hinted": true,
+        "message": "format 'uri' is not enforced by the target"
+      }
+    ]
+  }
+}

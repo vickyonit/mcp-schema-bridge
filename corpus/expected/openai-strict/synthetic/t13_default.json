@@ -1,0 +1,62 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t13_default",
+      "description": "Defaults",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "type": "string",
+            "description": "[constraints: default=\"asc\"]"
+          }
+        },
+        "required": [
+          "sort"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t13_default",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "t13_default",
+        "source_path": "/properties/sort",
+        "target_path": "/properties/sort",
+        "instance_path": "/sort",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "asc",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

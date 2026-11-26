@@ -1,0 +1,63 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t3_openapi_nullable",
+      "description": "OpenAPI-style nullable",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "n": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "n"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": [
+      {
+        "rule": "core/openapi-nullable",
+        "tid": "T3",
+        "tool": "t3_openapi_nullable",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "nullable",
+        "action": "rewritten",
+        "severity": "info",
+        "original": true,
+        "hinted": false,
+        "message": "OpenAPI nullable folded into the JSON Schema type array"
+      },
+      {
+        "rule": "core/openapi-nullable",
+        "tid": "T3",
+        "tool": "t3_openapi_nullable",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "string",
+        "hinted": false,
+        "message": "null added to the type array (OpenAPI nullable)"
+      }
+    ]
+  }
+}

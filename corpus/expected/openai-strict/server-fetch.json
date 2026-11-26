@@ -1,0 +1,252 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "fetch",
+      "description": "Fetches a URL from the internet and optionally extracts its contents as markdown.\n\nAlthough originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "url": {
+            "description": "URL to fetch\n\n[constraints: format=\"uri\"; minLength=1]",
+            "title": "Url",
+            "type": "string"
+          },
+          "max_length": {
+            "description": "Maximum number of characters to return.\n\n[constraints: default=5000]",
+            "maximum": 999999,
+            "minimum": 1,
+            "title": "Max Length",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "start_index": {
+            "description": "On return output starting at this character index, useful if a previous fetch was truncated and more context is required.\n\n[constraints: default=0]",
+            "minimum": 0,
+            "title": "Start Index",
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "raw": {
+            "description": "Get the actual HTML content of the requested page, without simplification.\n\n[constraints: default=false]",
+            "title": "Raw",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "timeout_ms": {
+            "description": "How long to wait, in milliseconds, to connect to the server and for each read of its response before giving up. Raise it for a slow server or a large download; lower it to fail fast.\n\n[constraints: default=30000]",
+            "maximum": 600000,
+            "minimum": 100,
+            "title": "Timeout Ms",
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "url",
+          "max_length",
+          "start_index",
+          "raw",
+          "timeout_ms"
+        ],
+        "type": "object",
+        "title": "fetchArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "max_length",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "start_index",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "raw",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "timeout_ms",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "fetch",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "fetch",
+        "source_path": "/properties/max_length",
+        "target_path": "/properties/max_length",
+        "instance_path": "/max_length",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 5000,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "fetch",
+        "source_path": "/properties/max_length",
+        "target_path": "/properties/max_length",
+        "instance_path": "/max_length",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'max_length' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "fetch",
+        "source_path": "/properties/raw",
+        "target_path": "/properties/raw",
+        "instance_path": "/raw",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": false,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "fetch",
+        "source_path": "/properties/raw",
+        "target_path": "/properties/raw",
+        "instance_path": "/raw",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "boolean",
+        "hinted": false,
+        "message": "optional property 'raw' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "fetch",
+        "source_path": "/properties/start_index",
+        "target_path": "/properties/start_index",
+        "instance_path": "/start_index",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 0,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "fetch",
+        "source_path": "/properties/start_index",
+        "target_path": "/properties/start_index",
+        "instance_path": "/start_index",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'start_index' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "fetch",
+        "source_path": "/properties/timeout_ms",
+        "target_path": "/properties/timeout_ms",
+        "instance_path": "/timeout_ms",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 30000,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "fetch",
+        "source_path": "/properties/timeout_ms",
+        "target_path": "/properties/timeout_ms",
+        "instance_path": "/timeout_ms",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'timeout_ms' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/format-unsupported",
+        "tid": "T15",
+        "tool": "fetch",
+        "source_path": "/properties/url",
+        "target_path": "/properties/url",
+        "instance_path": "/url",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "uri",
+        "hinted": true,
+        "message": "format 'uri' is not enforced by the target"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/url",
+        "target_path": "/properties/url",
+        "instance_path": "/url",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

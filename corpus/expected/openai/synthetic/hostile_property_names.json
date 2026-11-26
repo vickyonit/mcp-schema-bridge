@@ -1,0 +1,43 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "hostile_property_names",
+      "description": "Property names that look like keywords",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "$ref": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title",
+          "$ref",
+          "type",
+          "properties"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

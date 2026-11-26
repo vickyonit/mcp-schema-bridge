@@ -1,0 +1,85 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t16_pattern_features",
+      "description": "Patterns using lookaround and backreferences",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "pw": {
+            "type": "string",
+            "description": "[constraints: pattern=\"^(?=.*\\\\d).{8,}$\"]"
+          },
+          "rep": {
+            "type": "string",
+            "description": "[constraints: pattern=\"^(a)\\\\1$\"]"
+          },
+          "plain": {
+            "type": "string",
+            "description": "[constraints: pattern=\"^[a-z]+$\"]"
+          }
+        },
+        "required": [
+          "pw",
+          "rep",
+          "plain"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/plain",
+        "target_path": "/properties/plain",
+        "instance_path": "/plain",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^[a-z]+$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/pw",
+        "target_path": "/properties/pw",
+        "instance_path": "/pw",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(?=.*\\d).{8,}$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t16_pattern_features",
+        "source_path": "/properties/rep",
+        "target_path": "/properties/rep",
+        "instance_path": "/rep",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^(a)\\1$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

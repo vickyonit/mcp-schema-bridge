@@ -1,0 +1,78 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t3_openapi_nullable",
+      "description": "OpenAPI-style nullable",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "n": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "n"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t3_openapi_nullable",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/openapi-nullable",
+        "tid": "T3",
+        "tool": "t3_openapi_nullable",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "nullable",
+        "action": "rewritten",
+        "severity": "info",
+        "original": true,
+        "hinted": false,
+        "message": "OpenAPI nullable folded into the JSON Schema type array"
+      },
+      {
+        "rule": "core/openapi-nullable",
+        "tid": "T3",
+        "tool": "t3_openapi_nullable",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "string",
+        "hinted": false,
+        "message": "null added to the type array (OpenAPI nullable)"
+      }
+    ]
+  }
+}

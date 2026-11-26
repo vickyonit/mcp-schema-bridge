@@ -1,0 +1,580 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "create_issue",
+      "description": "Create an issue.",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "[constraints: maxLength=200; minLength=1]"
+          },
+          "body": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "labels": {
+            "maxItems": 10,
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              null
+            ],
+            "description": "[constraints: default=\"medium\"]"
+          },
+          "assignee": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email",
+                "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "due": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          }
+        },
+        "required": [
+          "title",
+          "body",
+          "labels",
+          "priority",
+          "assignee",
+          "due"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "body",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "labels",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "priority",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "due",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "set_flags",
+      "description": "Set feature flags.",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[a-z_]+$"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "flags",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "reason",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "query",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "query",
+          "source_path": "/properties/meta",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {},
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "create_issue",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_issue",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "create_issue",
+        "source_path": "/properties/assignee",
+        "target_path": "/properties/assignee",
+        "instance_path": "/assignee",
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'assignee' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_issue",
+        "source_path": "/properties/body",
+        "target_path": "/properties/body",
+        "instance_path": "/body",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'body' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_issue",
+        "source_path": "/properties/due",
+        "target_path": "/properties/due",
+        "instance_path": "/due",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'due' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_issue",
+        "source_path": "/properties/labels",
+        "target_path": "/properties/labels",
+        "instance_path": "/labels",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "array",
+        "hinted": false,
+        "message": "optional property 'labels' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_issue",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "medium",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_issue",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "hinted": false,
+        "message": "optional property 'priority' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_issue",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'priority' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/title",
+        "target_path": "/properties/title",
+        "instance_path": "/title",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 200,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/title",
+        "target_path": "/properties/title",
+        "instance_path": "/title",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "query",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "query",
+        "source_path": "/properties/filter",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; branches are disjoint so meaning is unchanged"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/0/properties/kind",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "text",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/kind",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "range",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "/properties/meta",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {},
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/meta",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "propertyNames",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "propertyNames is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "query",
+        "source_path": "/properties/meta",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "object",
+        "hinted": false,
+        "message": "optional property 'meta' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "query",
+        "source_path": "/properties/page",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'page' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "set_flags",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "set_flags",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "set_flags",
+        "source_path": "/properties/flags/items",
+        "target_path": "/properties/flags/items",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "set_flags",
+        "source_path": "/properties/flags/items/properties/value",
+        "target_path": "/properties/flags/items/properties/value",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "boolean",
+          "number",
+          "string"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "set_flags",
+        "source_path": "/properties/reason",
+        "target_path": "/properties/reason",
+        "instance_path": "/reason",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'reason' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

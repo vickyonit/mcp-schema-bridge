@@ -1,0 +1,59 @@
+{
+  "target": "anthropic-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t2c_external_ref",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/unresolvable-ref",
+          "tid": "T2c",
+          "tool": "t2c_external_ref",
+          "source_path": "/properties/a",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "https://example.com/schemas/a.json",
+          "hinted": false,
+          "message": "external or unresolvable $ref (remote references are never fetched)"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2c_external_ref",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unresolvable-ref",
+        "tid": "T2c",
+        "tool": "t2c_external_ref",
+        "source_path": "/properties/a",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "https://example.com/schemas/a.json",
+        "hinted": false,
+        "message": "external or unresolvable $ref (remote references are never fetched)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t2b_ref_with_siblings",
+      "description": "$ref with annotation and validation siblings (2020-12)",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "string",
+            "description": "the name\n\n[constraints: maxLength=40; minLength=2]"
+          }
+        },
+        "required": [
+          "a"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/$defs/Name",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'Name' removed"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/$defs/Name",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 40,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/ref-with-siblings-inlined",
+        "tid": "T2b",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/Name",
+        "hinted": false,
+        "message": "target forbids keywords next to $ref; reference inlined"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 40,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

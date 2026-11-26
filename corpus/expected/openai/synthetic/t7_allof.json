@@ -1,0 +1,56 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t7_allof",
+      "description": "allOf merge (Pydantic/Zod intersection style)",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "a"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer",
+                    "maximum": 9
+                  },
+                  "b": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

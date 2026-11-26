@@ -1,0 +1,203 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t12_validation",
+      "description": "Validation keywords per target",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "[constraints: maxLength=2; minLength=2; pattern=\"^[A-Z]{2}$\"]"
+          },
+          "n": {
+            "type": "number",
+            "description": "[constraints: exclusiveMinimum=0; multipleOf=0.5]"
+          },
+          "i": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 5,
+            "description": "[constraints: uniqueItems=true]"
+          },
+          "not_x": {
+            "type": "string",
+            "description": "[constraints: not={\"enum\":[\"x\"]}]"
+          }
+        },
+        "required": [
+          "code",
+          "n",
+          "i",
+          "tags",
+          "not_x"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "maxLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^[A-Z]{2}$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/integer-exclusive-bound",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/i",
+        "target_path": "/properties/i",
+        "instance_path": "/i",
+        "keyword": "exclusiveMaximum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": 10,
+        "hinted": false,
+        "message": "exclusiveMaximum 10 rewritten as the equivalent maximum 9 for integers"
+      },
+      {
+        "rule": "gemini-json/integer-exclusive-bound",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/i",
+        "target_path": "/properties/i",
+        "instance_path": "/i",
+        "keyword": "exclusiveMinimum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": 0,
+        "hinted": false,
+        "message": "exclusiveMinimum 0 rewritten as the equivalent minimum 1 for integers"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "exclusiveMinimum is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0.5,
+        "hinted": true,
+        "message": "multipleOf is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x",
+        "target_path": "/properties/not_x",
+        "instance_path": "/not_x",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "enum": [
+            "x"
+          ]
+        },
+        "hinted": true,
+        "message": "not is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x/not",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "x",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/tags",
+        "target_path": "/properties/tags",
+        "instance_path": "/tags",
+        "keyword": "uniqueItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": true,
+        "hinted": true,
+        "message": "uniqueItems is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

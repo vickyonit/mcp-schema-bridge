@@ -1,0 +1,32 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t13_default",
+      "description": "Defaults",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "type": "string",
+            "default": "asc"
+          }
+        },
+        "required": [
+          "sort"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  }
+}

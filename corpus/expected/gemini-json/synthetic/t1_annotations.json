@@ -1,0 +1,37 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "t1_annotations",
+      "description": "Annotation-only keywords and extensions",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "examples": [
+              "a"
+            ],
+            "deprecated": true,
+            "x-mcp-header": "X-Q",
+            "$comment": "c"
+          }
+        },
+        "required": [
+          "q"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  }
+}

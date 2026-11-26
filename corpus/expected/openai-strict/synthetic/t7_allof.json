@@ -1,0 +1,113 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t7_allof",
+      "description": "allOf merge (Pydantic/Zod intersection style)",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9
+              },
+              "b": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "b",
+            "at": "/properties/p"
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "t7_allof",
+        "source_path": "",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t7_allof",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t7_allof",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t7_allof",
+        "source_path": "/properties/p/allOf/1/properties/b",
+        "target_path": "/properties/p/properties/b",
+        "instance_path": "/p/b",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'b' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

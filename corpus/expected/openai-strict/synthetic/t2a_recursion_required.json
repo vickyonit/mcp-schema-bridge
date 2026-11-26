@@ -1,0 +1,73 @@
+{
+  "target": "openai-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t2a_recursion_required",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/unsatisfiable-recursion",
+          "tid": "T2a",
+          "tool": "t2a_recursion_required",
+          "source_path": "/properties/child",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#",
+          "hinted": false,
+          "message": "recursion only through required, non-nullable positions; no finite value exists"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unsatisfiable-recursion",
+        "tid": "T2a",
+        "tool": "t2a_recursion_required",
+        "source_path": "/properties/child",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#",
+        "hinted": false,
+        "message": "recursion only through required, non-nullable positions; no finite value exists"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2a_recursion_required",
+        "source_path": "/properties/v",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'v' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

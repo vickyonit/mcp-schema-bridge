@@ -1,0 +1,42 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t16_pattern_features",
+      "description": "Patterns using lookaround and backreferences",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "pw": {
+            "type": "string",
+            "pattern": "^(?=.*\\d).{8,}$"
+          },
+          "rep": {
+            "type": "string",
+            "pattern": "^(a)\\1$"
+          },
+          "plain": {
+            "type": "string",
+            "pattern": "^[a-z]+$"
+          }
+        },
+        "required": [
+          "pw",
+          "rep",
+          "plain"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

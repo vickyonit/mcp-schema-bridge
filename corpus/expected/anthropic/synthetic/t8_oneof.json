@@ -1,0 +1,50 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t8_oneof",
+      "description": "oneOf, disjoint and overlapping",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "d": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "o": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "minLength": 3
+              }
+            ]
+          }
+        },
+        "required": [
+          "d",
+          "o"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

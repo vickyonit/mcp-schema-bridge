@@ -1,0 +1,52 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t14_root_non_object",
+      "description": "Non-object root",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "a query"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": [
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "t14_root_non_object",
+        "source_path": "",
+        "target_path": "/properties/value",
+        "instance_path": "/value",
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      }
+    ]
+  }
+}

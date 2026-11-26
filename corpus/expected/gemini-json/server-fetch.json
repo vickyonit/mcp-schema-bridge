@@ -1,0 +1,92 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "fetch",
+      "description": "Fetches a URL from the internet and optionally extracts its contents as markdown.\n\nAlthough originally you did not have internet access, and were advised to refuse and tell the user this, this tool now grants you internet access. Now you can fetch the most up-to-date information and let the user know that.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "url": {
+            "description": "URL to fetch\n\n[constraints: format=\"uri\"; minLength=1]",
+            "title": "Url",
+            "type": "string"
+          },
+          "max_length": {
+            "default": 5000,
+            "description": "Maximum number of characters to return.",
+            "maximum": 999999,
+            "minimum": 1,
+            "title": "Max Length",
+            "type": "integer"
+          },
+          "start_index": {
+            "default": 0,
+            "description": "On return output starting at this character index, useful if a previous fetch was truncated and more context is required.",
+            "minimum": 0,
+            "title": "Start Index",
+            "type": "integer"
+          },
+          "raw": {
+            "default": false,
+            "description": "Get the actual HTML content of the requested page, without simplification.",
+            "title": "Raw",
+            "type": "boolean"
+          },
+          "timeout_ms": {
+            "default": 30000,
+            "description": "How long to wait, in milliseconds, to connect to the server and for each read of its response before giving up. Raise it for a slow server or a large download; lower it to fail fast.",
+            "maximum": 600000,
+            "minimum": 100,
+            "title": "Timeout Ms",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "title": "fetchArguments"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "fetch",
+        "source_path": "/properties/url",
+        "target_path": "/properties/url",
+        "instance_path": "/url",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "uri",
+        "hinted": true,
+        "message": "format 'uri' is not enforced by the target"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "fetch",
+        "source_path": "/properties/url",
+        "target_path": "/properties/url",
+        "instance_path": "/url",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t16_pattern_features",
+      "description": "Patterns using lookaround and backreferences",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "pw": {
+            "type": "string",
+            "pattern": "^(?=.*\\d).{8,}$"
+          },
+          "rep": {
+            "type": "string",
+            "pattern": "^(a)\\1$"
+          },
+          "plain": {
+            "type": "string",
+            "pattern": "^[a-z]+$"
+          }
+        },
+        "required": [
+          "pw",
+          "rep",
+          "plain"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

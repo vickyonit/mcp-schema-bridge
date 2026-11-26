@@ -1,0 +1,91 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t15_format",
+      "description": "Formats",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "d": {
+            "type": "string",
+            "format": "date"
+          },
+          "e": {
+            "type": "string",
+            "format": "email"
+          },
+          "u": {
+            "type": "string",
+            "description": "[constraints: format=\"uri\"]"
+          },
+          "c": {
+            "type": "string",
+            "description": "[constraints: format=\"my-custom\"]"
+          }
+        },
+        "required": [
+          "d",
+          "e",
+          "u",
+          "c"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t15_format",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/format-unsupported",
+        "tid": "T15",
+        "tool": "t15_format",
+        "source_path": "/properties/c",
+        "target_path": "/properties/c",
+        "instance_path": "/c",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "my-custom",
+        "hinted": true,
+        "message": "format 'my-custom' is not enforced by the target"
+      },
+      {
+        "rule": "openai-strict/format-unsupported",
+        "tid": "T15",
+        "tool": "t15_format",
+        "source_path": "/properties/u",
+        "target_path": "/properties/u",
+        "instance_path": "/u",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "uri",
+        "hinted": true,
+        "message": "format 'uri' is not enforced by the target"
+      }
+    ]
+  }
+}

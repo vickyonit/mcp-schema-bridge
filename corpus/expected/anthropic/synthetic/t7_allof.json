@@ -1,0 +1,56 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t7_allof",
+      "description": "allOf merge (Pydantic/Zod intersection style)",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "a"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer",
+                    "maximum": 9
+                  },
+                  "b": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

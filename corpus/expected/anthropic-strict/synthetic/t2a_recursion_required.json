@@ -1,0 +1,185 @@
+{
+  "target": "anthropic-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t2a_recursion_required",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/unsatisfiable-recursion",
+          "tid": "T2a",
+          "tool": "t2a_recursion_required",
+          "source_path": "/properties/child",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#",
+          "hinted": false,
+          "message": "recursion only through required, non-nullable positions; no finite value exists"
+        },
+        {
+          "rule": "core/recursion-truncated",
+          "tid": "T2a",
+          "tool": "t2a_recursion_required",
+          "source_path": "/properties/child",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "recursion cannot be cut safely for a target without recursion support"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2a_recursion_required",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/recursion-truncated",
+        "tid": "T2a",
+        "tool": "t2a_recursion_required",
+        "source_path": "/properties/child",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "recursion cannot be cut safely for a target without recursion support"
+      },
+      {
+        "rule": "core/unsatisfiable-recursion",
+        "tid": "T2a",
+        "tool": "t2a_recursion_required",
+        "source_path": "/properties/child",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#",
+        "hinted": false,
+        "message": "recursion only through required, non-nullable positions; no finite value exists"
+      }
+    ]
+  }
+}

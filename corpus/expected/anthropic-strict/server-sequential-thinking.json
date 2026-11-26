@@ -1,0 +1,218 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "sequentialthinking",
+      "description": "A detailed tool for dynamic and reflective problem-solving through thoughts.\nEach thought can build on, question, or revise previous insights as understanding deepens.\n\nWhen to use this tool:\n- Breaking down complex problems into steps\n- Planning and design with room for revision\n- Analysis that might need course correction\n- Problems where the full scope might not be clear initially\n- Tasks that need to maintain context over multiple steps\n- Situations where irrelevant information needs to be filtered out\n\nYou should:\n1. Estimate totalThoughts up front and adjust it up or down as you go; thoughtNumber may exceed it\n2. Question or revise earlier thoughts (isRevision with revisesThought), or branch (branchFromThought with branchId)\n3. Express uncertainty, and ignore information irrelevant to the current step\n4. Generate a solution hypothesis, verify it against the earlier steps, and repeat until satisfied\n5. Set nextThoughtNeeded to false only when truly done and a satisfactory answer is reached",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "thought": {
+            "type": "string",
+            "description": "Your current thinking step"
+          },
+          "nextThoughtNeeded": {
+            "description": "Whether another thought step is needed",
+            "type": [
+              "boolean",
+              "string"
+            ]
+          },
+          "thoughtNumber": {
+            "type": "integer",
+            "description": "Current thought number (numeric value, e.g., 1, 2, 3)\n\n[constraints: maximum=9007199254740991; minimum=1]"
+          },
+          "totalThoughts": {
+            "type": "integer",
+            "description": "Estimated total thoughts needed (numeric value, e.g., 5, 10)\n\n[constraints: maximum=9007199254740991; minimum=1]"
+          },
+          "isRevision": {
+            "description": "Whether this revises previous thinking",
+            "type": [
+              "boolean",
+              "string"
+            ]
+          },
+          "revisesThought": {
+            "description": "Which thought is being reconsidered\n\n[constraints: maximum=9007199254740991; minimum=1]",
+            "type": "integer"
+          },
+          "branchFromThought": {
+            "description": "Branching point thought number\n\n[constraints: maximum=9007199254740991; minimum=1]",
+            "type": "integer"
+          },
+          "branchId": {
+            "description": "Branch identifier",
+            "type": "string"
+          },
+          "needsMoreThoughts": {
+            "description": "If more thoughts are needed",
+            "type": [
+              "boolean",
+              "string"
+            ]
+          }
+        },
+        "required": [
+          "thought",
+          "nextThoughtNeeded",
+          "thoughtNumber",
+          "totalThoughts"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "sequentialthinking",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "https://json-schema.org/draft/2020-12/schema",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "sequentialthinking",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/branchFromThought",
+        "target_path": "/properties/branchFromThought",
+        "instance_path": "/branchFromThought",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/branchFromThought",
+        "target_path": "/properties/branchFromThought",
+        "instance_path": "/branchFromThought",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/revisesThought",
+        "target_path": "/properties/revisesThought",
+        "instance_path": "/revisesThought",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/revisesThought",
+        "target_path": "/properties/revisesThought",
+        "instance_path": "/revisesThought",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/thoughtNumber",
+        "target_path": "/properties/thoughtNumber",
+        "instance_path": "/thoughtNumber",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/thoughtNumber",
+        "target_path": "/properties/thoughtNumber",
+        "instance_path": "/thoughtNumber",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/totalThoughts",
+        "target_path": "/properties/totalThoughts",
+        "instance_path": "/totalThoughts",
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "sequentialthinking",
+        "source_path": "/properties/totalThoughts",
+        "target_path": "/properties/totalThoughts",
+        "instance_path": "/totalThoughts",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t11_optionals",
+      "description": "Optional, optional-nullable, optional enum and optional $ref",
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          },
+          "addr": {
+            "$ref": "#/$defs/Addr"
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "$defs": {
+          "Addr": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

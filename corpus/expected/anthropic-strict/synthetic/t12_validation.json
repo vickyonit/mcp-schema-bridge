@@ -1,0 +1,230 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t12_validation",
+      "description": "Validation keywords per target",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$",
+            "description": "[constraints: maxLength=2; minLength=2]"
+          },
+          "n": {
+            "type": "number",
+            "description": "[constraints: exclusiveMinimum=0; multipleOf=0.5]"
+          },
+          "i": {
+            "type": "integer",
+            "description": "[constraints: exclusiveMaximum=10; exclusiveMinimum=0]"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "description": "[constraints: maxItems=5; minItems=2; uniqueItems=true]"
+          },
+          "not_x": {
+            "type": "string",
+            "description": "[constraints: not={\"const\":\"x\",\"type\":\"string\"}]"
+          }
+        },
+        "required": [
+          "code",
+          "n",
+          "i",
+          "tags",
+          "not_x"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t12_validation",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/code",
+        "target_path": "/properties/code",
+        "instance_path": "/code",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/i",
+        "target_path": "/properties/i",
+        "instance_path": "/i",
+        "keyword": "exclusiveMaximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 10,
+        "hinted": true,
+        "message": "exclusiveMaximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/i",
+        "target_path": "/properties/i",
+        "instance_path": "/i",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "exclusiveMinimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "exclusiveMinimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0.5,
+        "hinted": true,
+        "message": "multipleOf is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x",
+        "target_path": "/properties/not_x",
+        "instance_path": "/not_x",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "const": "x",
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "not is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "t12_validation",
+        "source_path": "/properties/not_x/not",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from const values"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/tags",
+        "target_path": "/properties/tags",
+        "instance_path": "/tags",
+        "keyword": "maxItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 5,
+        "hinted": true,
+        "message": "maxItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/tags",
+        "target_path": "/properties/tags",
+        "instance_path": "/tags",
+        "keyword": "uniqueItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": true,
+        "hinted": true,
+        "message": "uniqueItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/min-items-clamped",
+        "tid": "T12",
+        "tool": "t12_validation",
+        "source_path": "/properties/tags",
+        "target_path": "/properties/tags",
+        "instance_path": "/tags",
+        "keyword": "minItems",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minItems 2 is not supported; clamped to 1"
+      }
+    ]
+  }
+}

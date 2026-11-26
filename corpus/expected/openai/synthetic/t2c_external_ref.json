@@ -1,0 +1,45 @@
+{
+  "target": "openai",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t2c_external_ref",
+      "target": "openai",
+      "reasons": [
+        {
+          "rule": "core/unresolvable-ref",
+          "tid": "T2c",
+          "tool": "t2c_external_ref",
+          "source_path": "/properties/a",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "https://example.com/schemas/a.json",
+          "hinted": false,
+          "message": "external or unresolvable $ref (remote references are never fetched)"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai",
+    "entries": [
+      {
+        "rule": "core/unresolvable-ref",
+        "tid": "T2c",
+        "tool": "t2c_external_ref",
+        "source_path": "/properties/a",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "https://example.com/schemas/a.json",
+        "hinted": false,
+        "message": "external or unresolvable $ref (remote references are never fetched)"
+      }
+    ]
+  }
+}

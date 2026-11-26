@@ -1,0 +1,167 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t9_anyof_siblings",
+      "description": "Object with anyOf of required-sets (at least one of)",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "f": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "email",
+                  "phone"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone",
+                  "email"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "f"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "phone",
+            "at": "/properties/f/anyOf/0"
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "email",
+            "at": "/properties/f/anyOf/1"
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t9_anyof_siblings",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/anyof-siblings-distributed",
+        "tid": "T9",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f",
+        "instance_path": "/f",
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "keywords next to anyOf distributed into each branch"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f/properties/email",
+        "target_path": "/properties/f/anyOf/1/properties/email",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'email' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t9_anyof_siblings",
+        "source_path": "/properties/f/properties/phone",
+        "target_path": "/properties/f/anyOf/0/properties/phone",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'phone' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

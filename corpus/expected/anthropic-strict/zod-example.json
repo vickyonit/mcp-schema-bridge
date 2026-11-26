@@ -1,0 +1,433 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "create_issue",
+      "description": "Create an issue.",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "[constraints: maxLength=200; minLength=1]"
+          },
+          "body": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "[constraints: maxItems=10]"
+          },
+          "priority": {
+            "default": "medium",
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "assignee": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email",
+                "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "due": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "set_flags",
+      "description": "Set feature flags.",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[a-z_]+$"
+                },
+                "value": {
+                  "type": [
+                    "boolean",
+                    "number",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "flags"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "query",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "query",
+          "source_path": "/properties/meta",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {},
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "create_issue",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_issue",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/labels",
+        "target_path": "/properties/labels",
+        "instance_path": "/labels",
+        "keyword": "maxItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 10,
+        "hinted": true,
+        "message": "maxItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/title",
+        "target_path": "/properties/title",
+        "instance_path": "/title",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 200,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_issue",
+        "source_path": "/properties/title",
+        "target_path": "/properties/title",
+        "instance_path": "/title",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "query",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "query",
+        "source_path": "/properties/filter",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; branches are disjoint so meaning is unchanged"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/from",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/from",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": -9007199254740991,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/to",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "exclusiveMinimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/filter/oneOf/1/properties/to",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/meta",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "propertyNames",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "propertyNames is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "query",
+        "source_path": "/properties/meta",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {},
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/page",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9007199254740991,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "query",
+        "source_path": "/properties/page",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "set_flags",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "set_flags",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "set_flags",
+        "source_path": "/properties/flags/items",
+        "target_path": "/properties/flags/items",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  }
+}

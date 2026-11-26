@@ -1,0 +1,73 @@
+{
+  "target": "openai-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t2c_external_ref",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/unresolvable-ref",
+          "tid": "T2c",
+          "tool": "t2c_external_ref",
+          "source_path": "/properties/a",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "https://example.com/schemas/a.json",
+          "hinted": false,
+          "message": "external or unresolvable $ref (remote references are never fetched)"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2c_external_ref",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unresolvable-ref",
+        "tid": "T2c",
+        "tool": "t2c_external_ref",
+        "source_path": "/properties/a",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "https://example.com/schemas/a.json",
+        "hinted": false,
+        "message": "external or unresolvable $ref (remote references are never fetched)"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "t2c_external_ref",
+        "source_path": "/properties/a",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'a' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      }
+    ]
+  }
+}

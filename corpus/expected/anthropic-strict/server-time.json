@@ -1,0 +1,216 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "get_current_time",
+      "description": "Get current time in a specific timezone",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "timezone": {
+            "default": "Asia/Kolkata",
+            "description": "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.",
+            "title": "Timezone",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "title": "get_current_timeArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "convert_time",
+      "description": "Convert time between timezones",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "source_timezone": {
+            "default": "Asia/Kolkata",
+            "description": "Source IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.",
+            "title": "Source Timezone",
+            "type": "string"
+          },
+          "time": {
+            "description": "Time to convert in 24-hour format (HH:MM)",
+            "title": "Time",
+            "type": "string"
+          },
+          "target_timezone": {
+            "default": "Asia/Kolkata",
+            "description": "Target IANA timezone name (e.g., 'Asia/Tokyo', 'America/San_Francisco'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.",
+            "title": "Target Timezone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "time"
+        ],
+        "type": "object",
+        "title": "convert_timeArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "get_time_ago",
+      "description": "Get the time a given number of days, hours, minutes and seconds ago in a specific timezone",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "timezone": {
+            "default": "Asia/Kolkata",
+            "description": "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Optional: defaults to the server's local timezone, 'Asia/Kolkata', when omitted.",
+            "title": "Timezone",
+            "type": "string"
+          },
+          "days_ago": {
+            "default": 0,
+            "description": "Whole days before now\n\n[constraints: minimum=0]",
+            "title": "Days Ago",
+            "type": "integer"
+          },
+          "hours_ago": {
+            "default": 0,
+            "description": "Whole hours before now\n\n[constraints: minimum=0]",
+            "title": "Hours Ago",
+            "type": "integer"
+          },
+          "minutes_ago": {
+            "default": 0,
+            "description": "Whole minutes before now\n\n[constraints: minimum=0]",
+            "title": "Minutes Ago",
+            "type": "integer"
+          },
+          "seconds_ago": {
+            "default": 0,
+            "description": "Whole seconds before now\n\n[constraints: minimum=0]",
+            "title": "Seconds Ago",
+            "type": "integer"
+          }
+        },
+        "type": "object",
+        "title": "get_time_agoArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "convert_time",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "get_current_time",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "get_time_ago",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "get_time_ago",
+        "source_path": "/properties/days_ago",
+        "target_path": "/properties/days_ago",
+        "instance_path": "/days_ago",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "get_time_ago",
+        "source_path": "/properties/hours_ago",
+        "target_path": "/properties/hours_ago",
+        "instance_path": "/hours_ago",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "get_time_ago",
+        "source_path": "/properties/minutes_ago",
+        "target_path": "/properties/minutes_ago",
+        "instance_path": "/minutes_ago",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "get_time_ago",
+        "source_path": "/properties/seconds_ago",
+        "target_path": "/properties/seconds_ago",
+        "instance_path": "/seconds_ago",
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

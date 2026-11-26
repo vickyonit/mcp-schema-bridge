@@ -1,0 +1,23 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "t10_no_params",
+      "description": "Tool without parameters",
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object"
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

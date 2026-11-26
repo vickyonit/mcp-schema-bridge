@@ -1,0 +1,82 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t2b_ref_with_siblings",
+      "description": "$ref with annotation and validation siblings (2020-12)",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/Name",
+            "description": "the name\n\n[constraints: minLength=2]"
+          }
+        },
+        "required": [
+          "a"
+        ],
+        "additionalProperties": false,
+        "$defs": {
+          "Name": {
+            "type": "string",
+            "description": "[constraints: maxLength=40]"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/$defs/Name",
+        "target_path": "/$defs/Name",
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 40,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "t2b_ref_with_siblings",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

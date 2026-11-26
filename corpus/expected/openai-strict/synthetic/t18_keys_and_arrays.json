@@ -1,0 +1,73 @@
+{
+  "target": "openai-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "t18_keys_and_arrays",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "openai-strict/array-items-missing",
+          "tid": "T18",
+          "tool": "t18_keys_and_arrays",
+          "source_path": "/properties/tags",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "items",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "array without items cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t18_keys_and_arrays",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t18_keys_and_arrays",
+        "source_path": "/properties/first name",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'first name' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/array-items-missing",
+        "tid": "T18",
+        "tool": "t18_keys_and_arrays",
+        "source_path": "/properties/tags",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "items",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "array without items cannot be expressed in strict mode"
+      }
+    ]
+  }
+}

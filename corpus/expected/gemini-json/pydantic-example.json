@@ -1,0 +1,384 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "create_contact",
+      "description": "Create a CRM contact.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "contact": {
+            "$ref": "#/$defs/Contact"
+          },
+          "priority": {
+            "$ref": "#/$defs/Priority",
+            "default": "low"
+          },
+          "notify": {
+            "default": false,
+            "title": "Notify",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "contact"
+        ],
+        "type": "object",
+        "title": "create_contactArguments",
+        "$defs": {
+          "Address": {
+            "properties": {
+              "street": {
+                "title": "Street",
+                "type": "string"
+              },
+              "city": {
+                "title": "City",
+                "type": "string"
+              },
+              "postcode": {
+                "title": "Postcode",
+                "type": "string",
+                "description": "[constraints: pattern=\"^[0-9]{5}$\"]"
+              },
+              "country": {
+                "default": "US",
+                "title": "Country",
+                "type": "string"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "postcode"
+            ],
+            "title": "Address",
+            "type": "object"
+          },
+          "Contact": {
+            "properties": {
+              "name": {
+                "description": "Full name\n\n[constraints: maxLength=80; minLength=1]",
+                "title": "Name",
+                "type": "string"
+              },
+              "email": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Email address",
+                "title": "Email"
+              },
+              "age": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "integer",
+                    "maximum": 149
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Age"
+              },
+              "tags": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Tags",
+                "type": "array"
+              },
+              "address": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Address"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "title": "Contact",
+            "type": "object"
+          },
+          "Priority": {
+            "enum": [
+              "low",
+              "high"
+            ],
+            "title": "Priority",
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "search",
+      "description": "Search records.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "query": {
+            "title": "Query",
+            "type": "string",
+            "description": "[constraints: minLength=1]"
+          },
+          "limit": {
+            "default": 10,
+            "maximum": 100,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "sort": {
+            "default": "relevance",
+            "enum": [
+              "relevance",
+              "date"
+            ],
+            "title": "Sort",
+            "type": "string"
+          },
+          "filters": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Filters"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object",
+        "title": "searchArguments"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "save_tree",
+      "description": "Store a recursive tree.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "root": {
+            "$ref": "#/$defs/TreeNode"
+          },
+          "ratio": {
+            "default": 1.0,
+            "title": "Ratio",
+            "type": "number",
+            "description": "[constraints: exclusiveMinimum=0; multipleOf=0.5]"
+          }
+        },
+        "required": [
+          "root"
+        ],
+        "type": "object",
+        "title": "save_treeArguments",
+        "$defs": {
+          "TreeNode": {
+            "properties": {
+              "label": {
+                "title": "Label",
+                "type": "string"
+              },
+              "children": {
+                "default": [],
+                "items": {
+                  "$ref": "#/$defs/TreeNode"
+                },
+                "title": "Children",
+                "type": "array"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "title": "TreeNode",
+            "type": "object"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "schedule",
+      "description": "Schedule items at a time.",
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "when": {
+            "format": "date-time",
+            "title": "When",
+            "type": "string"
+          },
+          "ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Ids"
+          }
+        },
+        "required": [
+          "when",
+          "ids"
+        ],
+        "type": "object",
+        "title": "scheduleArguments"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Address/properties/postcode",
+        "target_path": "/$defs/Address/properties/postcode",
+        "instance_path": null,
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^[0-9]{5}$",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/integer-exclusive-bound",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/age/anyOf/0",
+        "target_path": "/$defs/Contact/properties/age/anyOf/0",
+        "instance_path": null,
+        "keyword": "exclusiveMaximum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": 150,
+        "hinted": false,
+        "message": "exclusiveMaximum 150 rewritten as the equivalent maximum 149 for integers"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/name",
+        "target_path": "/$defs/Contact/properties/name",
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 80,
+        "hinted": true,
+        "message": "maxLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/name",
+        "target_path": "/$defs/Contact/properties/name",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "save_tree",
+        "source_path": "/properties/ratio",
+        "target_path": "/properties/ratio",
+        "instance_path": "/ratio",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "exclusiveMinimum is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "save_tree",
+        "source_path": "/properties/ratio",
+        "target_path": "/properties/ratio",
+        "instance_path": "/ratio",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0.5,
+        "hinted": true,
+        "message": "multipleOf is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "search",
+        "source_path": "/properties/query",
+        "target_path": "/properties/query",
+        "instance_path": "/query",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

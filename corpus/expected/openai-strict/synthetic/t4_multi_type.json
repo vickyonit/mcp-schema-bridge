@@ -1,0 +1,87 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t4_multi_type",
+      "description": "Multi-type arrays with type-specific keywords",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "[constraints: minLength=1]"
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              }
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t4_multi_type",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "t4_multi_type",
+        "source_path": "/properties/id",
+        "target_path": "/properties/id",
+        "instance_path": "/id",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "string",
+          "integer"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "t4_multi_type",
+        "source_path": "/properties/id",
+        "target_path": "/properties/id/anyOf/0",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

@@ -1,0 +1,594 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "create_contact",
+      "description": "Create a CRM contact.",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "contact": {
+            "$ref": "#/$defs/Contact"
+          },
+          "priority": {
+            "$ref": "#/$defs/Priority",
+            "default": "low"
+          },
+          "notify": {
+            "default": false,
+            "title": "Notify",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "contact"
+        ],
+        "type": "object",
+        "title": "create_contactArguments",
+        "additionalProperties": false,
+        "$defs": {
+          "Address": {
+            "properties": {
+              "street": {
+                "title": "Street",
+                "type": "string"
+              },
+              "city": {
+                "title": "City",
+                "type": "string"
+              },
+              "postcode": {
+                "pattern": "^[0-9]{5}$",
+                "title": "Postcode",
+                "type": "string"
+              },
+              "country": {
+                "default": "US",
+                "title": "Country",
+                "type": "string"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "postcode"
+            ],
+            "title": "Address",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "Contact": {
+            "properties": {
+              "name": {
+                "description": "Full name\n\n[constraints: maxLength=80; minLength=1]",
+                "title": "Name",
+                "type": "string"
+              },
+              "email": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Email address",
+                "title": "Email"
+              },
+              "age": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "description": "[constraints: exclusiveMaximum=150; minimum=0]"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Age"
+              },
+              "tags": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Tags",
+                "type": "array"
+              },
+              "address": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Address"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "title": "Contact",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "Priority": {
+            "enum": [
+              "low",
+              "high"
+            ],
+            "title": "Priority",
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "save_tree",
+      "description": "Store a recursive tree.",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "root": {
+            "properties": {
+              "label": {
+                "title": "Label",
+                "type": "string"
+              },
+              "children": {
+                "default": [],
+                "items": {
+                  "properties": {
+                    "label": {
+                      "title": "Label",
+                      "type": "string"
+                    },
+                    "children": {
+                      "default": [],
+                      "items": {
+                        "properties": {
+                          "label": {
+                            "title": "Label",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "label"
+                        ],
+                        "title": "TreeNode",
+                        "type": "object",
+                        "additionalProperties": false
+                      },
+                      "title": "Children",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "label"
+                  ],
+                  "title": "TreeNode",
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "title": "Children",
+                "type": "array"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "title": "TreeNode",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "ratio": {
+            "default": 1.0,
+            "title": "Ratio",
+            "type": "number",
+            "description": "[constraints: exclusiveMinimum=0; multipleOf=0.5]"
+          }
+        },
+        "required": [
+          "root"
+        ],
+        "type": "object",
+        "title": "save_treeArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "schedule",
+      "description": "Schedule items at a time.",
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "when": {
+            "format": "date-time",
+            "title": "When",
+            "type": "string"
+          },
+          "ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Ids"
+          }
+        },
+        "required": [
+          "when",
+          "ids"
+        ],
+        "type": "object",
+        "title": "scheduleArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "search",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "search",
+          "source_path": "/properties/filters/anyOf/0",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "type": "string"
+          },
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_contact",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_contact",
+        "source_path": "/$defs/Address",
+        "target_path": "/$defs/Address",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact",
+        "target_path": "/$defs/Contact",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/age/anyOf/0",
+        "target_path": "/$defs/Contact/properties/age/anyOf/0",
+        "instance_path": null,
+        "keyword": "exclusiveMaximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 150,
+        "hinted": true,
+        "message": "exclusiveMaximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/age/anyOf/0",
+        "target_path": "/$defs/Contact/properties/age/anyOf/0",
+        "instance_path": null,
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/name",
+        "target_path": "/$defs/Contact/properties/name",
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 80,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/name",
+        "target_path": "/$defs/Contact/properties/name",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode",
+        "target_path": "/properties/root",
+        "instance_path": "/root",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode",
+        "target_path": "/properties/root/properties/children/items",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode",
+        "target_path": "/properties/root/properties/children/items/properties/children/items",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'TreeNode' removed"
+      },
+      {
+        "rule": "core/recursion-truncated",
+        "tid": "T2a",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode/properties/children/items",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "truncated",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "recursion cut at depth 3: optional property removed"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "save_tree",
+        "source_path": "/properties/ratio",
+        "target_path": "/properties/ratio",
+        "instance_path": "/ratio",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "exclusiveMinimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "save_tree",
+        "source_path": "/properties/ratio",
+        "target_path": "/properties/ratio",
+        "instance_path": "/ratio",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0.5,
+        "hinted": true,
+        "message": "multipleOf is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "schedule",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "search",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "search",
+        "source_path": "/properties/filters/anyOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "type": "string"
+        },
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "search",
+        "source_path": "/properties/limit",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "maximum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 100,
+        "hinted": true,
+        "message": "maximum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "search",
+        "source_path": "/properties/limit",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "search",
+        "source_path": "/properties/query",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

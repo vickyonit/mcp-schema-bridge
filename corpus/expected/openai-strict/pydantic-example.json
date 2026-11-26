@@ -1,0 +1,871 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "create_contact",
+      "description": "Create a CRM contact.",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "contact": {
+            "$ref": "#/$defs/Contact"
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "high",
+              null
+            ],
+            "title": "Priority",
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "[constraints: default=\"low\"]"
+          },
+          "notify": {
+            "title": "Notify",
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "[constraints: default=false]"
+          }
+        },
+        "required": [
+          "contact",
+          "priority",
+          "notify"
+        ],
+        "type": "object",
+        "title": "create_contactArguments",
+        "additionalProperties": false,
+        "$defs": {
+          "Address": {
+            "properties": {
+              "street": {
+                "title": "Street",
+                "type": "string"
+              },
+              "city": {
+                "title": "City",
+                "type": "string"
+              },
+              "postcode": {
+                "pattern": "^[0-9]{5}$",
+                "title": "Postcode",
+                "type": "string"
+              },
+              "country": {
+                "title": "Country",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "[constraints: default=\"US\"]"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "postcode",
+              "country"
+            ],
+            "title": "Address",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "Contact": {
+            "properties": {
+              "name": {
+                "description": "Full name\n\n[constraints: maxLength=80; minLength=1]",
+                "title": "Name",
+                "type": "string"
+              },
+              "email": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Email address\n\n[constraints: default=null]",
+                "title": "Email"
+              },
+              "age": {
+                "anyOf": [
+                  {
+                    "exclusiveMaximum": 150,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Age",
+                "description": "[constraints: default=null]"
+              },
+              "tags": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Tags",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "description": "[constraints: default=[]]"
+              },
+              "address": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Address"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "[constraints: default=null]"
+              }
+            },
+            "required": [
+              "name",
+              "email",
+              "age",
+              "tags",
+              "address"
+            ],
+            "title": "Contact",
+            "type": "object",
+            "additionalProperties": false
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "priority",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "notify",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "country",
+            "at": "/$defs/Address"
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "tags",
+            "at": "/$defs/Contact"
+          }
+        ]
+      }
+    },
+    {
+      "name": "save_tree",
+      "description": "Store a recursive tree.",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "root": {
+            "$ref": "#/$defs/TreeNode"
+          },
+          "ratio": {
+            "exclusiveMinimum": 0,
+            "multipleOf": 0.5,
+            "title": "Ratio",
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "[constraints: default=1]"
+          }
+        },
+        "required": [
+          "root",
+          "ratio"
+        ],
+        "type": "object",
+        "title": "save_treeArguments",
+        "additionalProperties": false,
+        "$defs": {
+          "TreeNode": {
+            "properties": {
+              "label": {
+                "title": "Label",
+                "type": "string"
+              },
+              "children": {
+                "items": {
+                  "$ref": "#/$defs/TreeNode"
+                },
+                "title": "Children",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "description": "[constraints: default=[]]"
+              }
+            },
+            "required": [
+              "label",
+              "children"
+            ],
+            "title": "TreeNode",
+            "type": "object",
+            "additionalProperties": false
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "ratio",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "children",
+            "at": "/$defs/TreeNode"
+          }
+        ]
+      }
+    },
+    {
+      "name": "schedule",
+      "description": "Schedule items at a time.",
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "when": {
+            "format": "date-time",
+            "title": "When",
+            "type": "string"
+          },
+          "ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Ids"
+          }
+        },
+        "required": [
+          "when",
+          "ids"
+        ],
+        "type": "object",
+        "title": "scheduleArguments",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "search",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "search",
+          "source_path": "/properties/filters/anyOf/0",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "type": "string"
+          },
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_contact",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_contact",
+        "source_path": "/$defs/Address",
+        "target_path": "/$defs/Address",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/$defs/Address/properties/country",
+        "target_path": "/$defs/Address/properties/country",
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "US",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_contact",
+        "source_path": "/$defs/Address/properties/country",
+        "target_path": "/$defs/Address/properties/country",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'country' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact",
+        "target_path": "/$defs/Contact",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/address",
+        "target_path": "/$defs/Contact/properties/address",
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/address",
+        "target_path": "/$defs/Contact/properties/address",
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'address' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/age",
+        "target_path": "/$defs/Contact/properties/age",
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/age",
+        "target_path": "/$defs/Contact/properties/age",
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'age' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/email",
+        "target_path": "/$defs/Contact/properties/email",
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/email",
+        "target_path": "/$defs/Contact/properties/email",
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'email' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/name",
+        "target_path": "/$defs/Contact/properties/name",
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 80,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/name",
+        "target_path": "/$defs/Contact/properties/name",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/tags",
+        "target_path": "/$defs/Contact/properties/tags",
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": [],
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_contact",
+        "source_path": "/$defs/Contact/properties/tags",
+        "target_path": "/$defs/Contact/properties/tags",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "array",
+        "hinted": false,
+        "message": "optional property 'tags' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "create_contact",
+        "source_path": "/$defs/Priority",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'Priority' removed"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/properties/notify",
+        "target_path": "/properties/notify",
+        "instance_path": "/notify",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": false,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_contact",
+        "source_path": "/properties/notify",
+        "target_path": "/properties/notify",
+        "instance_path": "/notify",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "boolean",
+        "hinted": false,
+        "message": "optional property 'notify' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/ref-with-siblings-inlined",
+        "tid": "T2b",
+        "tool": "create_contact",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/Priority",
+        "hinted": false,
+        "message": "target forbids keywords next to $ref; reference inlined"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "create_contact",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "low",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_contact",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": [
+          "low",
+          "high"
+        ],
+        "hinted": false,
+        "message": "optional property 'priority' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "create_contact",
+        "source_path": "/properties/priority",
+        "target_path": "/properties/priority",
+        "instance_path": "/priority",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'priority' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode",
+        "target_path": "/$defs/TreeNode",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode/properties/children",
+        "target_path": "/$defs/TreeNode/properties/children",
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": [],
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "save_tree",
+        "source_path": "/$defs/TreeNode/properties/children",
+        "target_path": "/$defs/TreeNode/properties/children",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "array",
+        "hinted": false,
+        "message": "optional property 'children' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "save_tree",
+        "source_path": "/properties/ratio",
+        "target_path": "/properties/ratio",
+        "instance_path": "/ratio",
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 1.0,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "save_tree",
+        "source_path": "/properties/ratio",
+        "target_path": "/properties/ratio",
+        "instance_path": "/ratio",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "number",
+        "hinted": false,
+        "message": "optional property 'ratio' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "schedule",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "search",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "search",
+        "source_path": "/properties/filters",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "search",
+        "source_path": "/properties/filters",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'filters' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "search",
+        "source_path": "/properties/filters/anyOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "type": "string"
+        },
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "search",
+        "source_path": "/properties/limit",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": 10,
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "search",
+        "source_path": "/properties/limit",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'limit' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "search",
+        "source_path": "/properties/query",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/default-dropped",
+        "tid": "T13",
+        "tool": "search",
+        "source_path": "/properties/sort",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "default",
+        "action": "dropped",
+        "severity": "info",
+        "original": "relevance",
+        "hinted": true,
+        "message": "default is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "search",
+        "source_path": "/properties/sort",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": [
+          "relevance",
+          "date"
+        ],
+        "hinted": false,
+        "message": "optional property 'sort' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "search",
+        "source_path": "/properties/sort",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'sort' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}
