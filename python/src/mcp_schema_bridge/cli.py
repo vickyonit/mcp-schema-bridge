@@ -77,6 +77,19 @@ def _parser() -> argparse.ArgumentParser:
                 default="fatal",
                 help="exit 1 if any entry is at or above this severity",
             )
+    pp = sub.add_parser(
+        "proxy", help="serve another MCP server's tools with schemas normalized for one target"
+    )
+    pp.add_argument("--target", required=True, choices=TARGETS)
+    pp.add_argument("--no-hints", action="store_true")
+    pp.add_argument(
+        "--strict-fallback",
+        action="store_true",
+        help="serve unfixable tools in non-strict form instead of hiding them",
+    )
+    pp.add_argument(
+        "--report", metavar="FILE", help="write the normalization report (JSON) to FILE"
+    )
     return p
 
 
@@ -159,6 +172,18 @@ def main(argv: list[str] | None = None) -> int:
     args_list, server_argv = _split_argv(list(sys.argv[1:] if argv is None else argv))
     try:
         a = _parser().parse_args(args_list)
+        if a.command == "proxy":
+            if not server_argv:
+                raise _UsageError("proxy needs the upstream server command after --")
+            from mcp_schema_bridge.proxy import run_proxy
+
+            opts = NormalizeOptions(hints=not a.no_hints, strict_fallback=a.strict_fallback)
+            try:
+                asyncio.run(run_proxy(server_argv, a.target, opts, report_path=a.report))
+            except (OSError, SchemaBridgeError, ExceptionGroup) as e:
+                print(f"mcp-schema-bridge: proxy error: {e}", file=sys.stderr)
+                return 3
+            return 0
         if a.stdio and not server_argv:
             raise _UsageError("--stdio needs a server command after --")
         if not a.stdio and a.input is None:
