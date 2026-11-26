@@ -33,13 +33,15 @@ Every provider rule is backed by a recorded API response, a live probe, or a doc
 with the date it was verified. The [compatibility matrix](#compatibility-matrix) below is generated
 from those rules.
 
-> **Status:** pre-release (`0.x`). Python package first; a byte-identical TypeScript port is planned for
-> v0.2. See [docs/PLAN.md](docs/PLAN.md).
+> **Status:** pre-release (`0.x`). Python and TypeScript packages are available from this repository.
+> They produce byte-identical output: same schemas, reports, key order and fingerprints, checked on
+> the shared corpus and by differential fuzzing in CI.
 
 ## Install
 
 ```bash
-pip install mcp-schema-bridge            # zero runtime dependencies
+npm install mcp-schema-bridge            # TypeScript / JavaScript (Node >= 22), see typescript/README.md
+pip install mcp-schema-bridge            # Python, zero runtime dependencies
 pip install "mcp-schema-bridge[sdks]"    # + payload adapters for google-genai / openai / anthropic
 pip install "mcp-schema-bridge[cli]"     # + `--stdio` support for the CLI (official MCP SDK)
 ```

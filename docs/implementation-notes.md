@@ -13,3 +13,17 @@ Where the implementation differs from [PLAN.md](PLAN.md), or makes a choice the 
 | Hint coverage of `$ref` siblings | — | Not attached where the target forbids keywords next to `$ref` (`hinted: false`) | Attaching them would re-create the rejected shape. |
 | `max_nodes` | DoS guard | Counts every JSON value (input and output) | Simple and predictable. |
 | Legacy Gemini `parameters` target | Deferred to v0.2 (D3) | Deferred | — |
+
+## TypeScript port (v0.2 work, done ahead of schedule)
+
+- The internal tree uses `Map`s (`SNode extends Map`), so keyword and property order match Python
+  exactly. JavaScript objects would move integer-like keys first.
+- Python-specific formatting is reproduced for byte-identical report messages: `repr()` of strings,
+  `urllib.parse.quote` of `$ref` fragments, and `urljoin` for `$id` resolution (`src/core/pyfmt.ts`,
+  `src/core/url.ts`).
+- Parity is enforced three ways: all corpus goldens (including argument round-trips, options and
+  toolset budgets), 300 committed seeded fuzz cases, and fresh random cases from the Python generator
+  on every CI run.
+- The port found one bug in the Python reference: a report entry lost its `source_path` when an
+  `allOf` merge emptied a node, because a dict subclass is falsy when empty. It was fixed in Python
+  and the goldens were regenerated.
