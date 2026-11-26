@@ -196,3 +196,10 @@ def test_non_strict_targets_keep_allof(target: str) -> None:
     s = {"allOf": [{"type": "string"}, {"minLength": 1}]}
     _, p = prop(s, target)
     assert p == s
+
+
+def test_allof_merged_entry_points_at_its_node_even_when_node_had_only_allof() -> None:
+    # Regression: an SNode is a dict, so an emptied node was falsy and lost its source path.
+    r, _ = prop({"allOf": [{"type": "string"}, {"minLength": 1}]})
+    [e] = [e for e in r.report.entries if e.rule == "core/allof-merged"]
+    assert e.source_path == "/properties/p"

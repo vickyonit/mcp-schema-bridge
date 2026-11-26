@@ -52,7 +52,11 @@ class Ctx:
         message: str = "",
         hint: bool = False,
     ) -> PendingEntry:
-        src = source_path if source_path is not None else (node.src[0] if node and node.src else "")
+        src = (
+            source_path
+            if source_path is not None
+            else (node.src[0] if node is not None and node.src else "")
+        )
         e = PendingEntry(
             rule=rule,
             tid=tid,
