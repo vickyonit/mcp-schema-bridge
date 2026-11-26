@@ -71,6 +71,7 @@ markers = ["live: calls real provider APIs (needs keys)"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+extend-exclude = ["README.md"]  # synced copy of the repo README; never reformat
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "PT", "N"]

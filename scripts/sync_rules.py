@@ -3,7 +3,8 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Copy rules/*.json and spec/keyword-classes.json into each package (or --check they match)."""
+"""Copy rules/*.json and spec/keyword-classes.json into each package, and README/LICENSE/NOTICE into the
+Python project directory (or --check that every copy matches its source)."""
 
 from __future__ import annotations
 
@@ -39,6 +40,13 @@ def main(argv: list[str]) -> int:
                 problems.append(f"{(dest / stale).relative_to(ROOT)} has no source")
             else:
                 (dest / stale).unlink()
+    for name in ("README.md", "LICENSE", "NOTICE"):
+        src_file, dst_file = ROOT / name, ROOT / "python" / name
+        if check:
+            if not dst_file.exists() or dst_file.read_bytes() != src_file.read_bytes():
+                problems.append(f"python/{name} is out of sync")
+        else:
+            dst_file.write_bytes(src_file.read_bytes())
     for p in problems:
         print(p, file=sys.stderr)
     if problems:
