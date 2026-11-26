@@ -1,0 +1,1286 @@
+{
+  "target": "gemini-json",
+  "model": "gemini-3.5-flash-lite",
+  "recorded_at": "2026-11-26T05:31:16Z",
+  "verdicts": {
+    "playwright-mcp/browser_close": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "playwright-mcp/browser_resize": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "926a18e506841436d3f3467eb1bfc45cf8a99989c8b3c7bbbcdf3ef1e2910467"
+      }
+    },
+    "playwright-mcp/browser_console_messages": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2ba76a4a8c8eb3cbc0d6760bdffac095072fb73f998be20e7af2dbf39cbb808e"
+      }
+    },
+    "playwright-mcp/browser_handle_dialog": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "14666d75e2cf37bef70440c38a6278f631a098fcfeb3315b78f4831301d36b10"
+      }
+    },
+    "playwright-mcp/browser_emulate_media": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8c50f252b37c6e9fc11078c263689ca703cbd1ae49d9c5d14c445fd98b88ab10"
+      }
+    },
+    "playwright-mcp/browser_evaluate": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2a0c42ea164b4457b4d4f9d0514453da913e2061095a6b798056dcb25fcd65c7"
+      }
+    },
+    "playwright-mcp/browser_file_upload": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8006f2d2e362e590641408cfc46b1ca00060b072bf34c0af8620f7d7ce7c7ce6"
+      }
+    },
+    "playwright-mcp/browser_drop": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "28f0add2c99aeed4a44c6fa6d2c81432de1fa2842569a8c700d398bab5f3759d"
+      }
+    },
+    "playwright-mcp/browser_find": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f5188f7c48f0c624ef366f73c50fee0bd35171fbb315b53587786ddd76fbd7ac"
+      }
+    },
+    "playwright-mcp/browser_fill_form": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5f6a175f3bef941aab2f936b265b6f3d06539834e62b038cc5dd0202c1818425"
+      }
+    },
+    "playwright-mcp/browser_press_key": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d14dd62a69fb7f79b7c099bf136ec762daa966ee2754c2f571a7f40e77eccabd"
+      }
+    },
+    "playwright-mcp/browser_type": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b4fbc15770633eaf46ffc3df58f0359a58448d5b0aedee473ffa14e672450a54"
+      }
+    },
+    "playwright-mcp/browser_navigate": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "64b201822b7d8e8f5f5f28903d1d733e43b800099affcbe582290665b04d8492"
+      }
+    },
+    "playwright-mcp/browser_navigate_back": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
+    "playwright-mcp/browser_network_requests": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ad1462227717c53524d73e19fc9e4b5da0d49d942c22a113f3a10bedb1fd1774"
+      }
+    },
+    "playwright-mcp/browser_network_request": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "54d0a4657a9d143e5d410de816e9d0db0d53a2100e83c33f47d0a24b988ab0f0"
+      }
+    },
+    "playwright-mcp/browser_run_code_unsafe": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99cc50b1a8bb14a12c05e856c1a054b0e55c796c6c0aca75a01f832b7fd30d6f"
+      }
+    },
+    "playwright-mcp/browser_take_screenshot": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9536c45202a7df82636419f69f71a775a055fbf9853f0d8df81ce62e53f1e0dd"
+      }
+    },
+    "playwright-mcp/browser_snapshot": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b58330aac6772dcd845d8847227c02d3dd8c702a783814ea4f0b94d4f625ba36"
+      }
+    },
+    "playwright-mcp/browser_click": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f11f25e335f31ac8e2c6cd79437665e27be61975dcaf0ad0d515aad6d77d645a"
+      }
+    },
+    "playwright-mcp/browser_drag": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3b249691c04f32efde3845494c373e91ab06e50002a7e8c93d76aacda1cb523f"
+      }
+    },
+    "playwright-mcp/browser_hover": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2ca2fa637ed5d85c140e9469b604dbcfc4d73385645d79aab33dca47b91362c1"
+      }
+    },
+    "playwright-mcp/browser_select_option": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c94602164749eed8a63d9a5c6bae4d2343db2b18c0d81ed4731ac69d6bbe5f26"
+      }
+    },
+    "playwright-mcp/browser_tabs": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "26a3ced090ac6c461f09ae5a4dd1eedeccf6050fc725dbeb4b47f81ede30864c"
+      }
+    },
+    "playwright-mcp/browser_wait_for": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e1056ea239188541517d63fba6fb09ca1de3d3272e740cd2c980e2222958ffdf"
+      }
+    },
+    "pydantic-example/create_contact": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f5e214901ee6f829b11464c93a24cb5d539a98adefd34a8e1607496b70743925"
+      }
+    },
+    "pydantic-example/search": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3e86b9d2882d7a696788d7e288e72e0bfb201e0cc157e05752809cadb3f7971e"
+      }
+    },
+    "pydantic-example/save_tree": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "63cb7a8b62119ad0685419241bf24623dce650d80a86c4c0170f4fd4f9b98dec"
+      }
+    },
+    "pydantic-example/schedule": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6743edc28ad9658cd59f45efbc532901bea81ff88e6ec9a51cfec33d645c15f8"
+      }
+    },
+    "server-everything/echo": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4f14eaa302b4fa12dc231859df526dae09d437406f3d186f2a36d9312e5e4cf0"
+      }
+    },
+    "server-everything/get-annotated-message": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "22ea30f85425548e789ff1db19f18cbb6d249ad6c106d60b7f502ecba006b70b"
+      }
+    },
+    "server-everything/get-env": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49"
+      }
+    },
+    "server-everything/get-header-params": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c88be223c17f1a0eaada31e415fd3cc8c00e8dde06d97b8f6b46a9afa4d68c45"
+      }
+    },
+    "server-everything/get-resource-links": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "71151b197230e01f09557721927471c30a999d157ecac21cc07bd06e8f757ddd"
+      }
+    },
+    "server-everything/get-resource-reference": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d69e28e7b7d9b4b38f6a10fa5b508a16a1d91a607aeb1c63cd37cae92357f059"
+      }
+    },
+    "server-everything/get-structured-content": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2d18b6ddb44fa7a8bb51ccc8055e8d191ff747e72c1744acfea07f52bf356057"
+      }
+    },
+    "server-everything/get-sum": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "da5f1f0b8644e305e612b8a7d53e838cc94a54591fc1cc001b19f440feca165f"
+      }
+    },
+    "server-everything/get-tiny-image": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49"
+      }
+    },
+    "server-everything/gzip-file-as-resource": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4cefa541f1ceffb428c735ff1899068c242aeb9e56104d2593ae3aab787c1c23"
+      }
+    },
+    "server-everything/trigger-list-changed": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a5a99370bb9822aaf565eb8c075fc164844684e8970a5ba448d44e55a073c9d5"
+      }
+    },
+    "server-everything/trigger-log-messages": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49"
+      }
+    },
+    "server-everything/trigger-long-running-operation": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "69c7583d741e1ab9a7f95601304c950b2b179721f3db8862749627845d783c25"
+      }
+    },
+    "server-everything/trigger-resource-update": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "406cc338c6077a98f69015b2e58d99a25162f0a0d0ab43746195037bfe03bb0a"
+      }
+    },
+    "server-everything/toggle-simulated-logging": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49"
+      }
+    },
+    "server-everything/toggle-subscriber-updates": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49"
+      }
+    },
+    "server-fetch/fetch": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a9425b7e0ac285bd5ffc65c3b73eba439784d82e0e4034891eea494fe635cf33"
+      }
+    },
+    "server-filesystem/read_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ee1480bba4b4628628526ae017a9e6ee7cd31945064bb76af117879bf5c34516"
+      }
+    },
+    "server-filesystem/read_text_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ee1480bba4b4628628526ae017a9e6ee7cd31945064bb76af117879bf5c34516"
+      }
+    },
+    "server-filesystem/read_media_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e179c742ce6ec7c1222fa9098d82782fb2f4d79384a3dcc6104c8c3610f2ae32"
+      }
+    },
+    "server-filesystem/read_multiple_files": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "0e92b94a65b9c85057eec80df55b733f2a984de50820821c8e28967c91625804"
+      }
+    },
+    "server-filesystem/write_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7fd4ded8638711640034c4e35bcb2c3edd4918f2bc9f76dbe785da4e6a24f361"
+      }
+    },
+    "server-filesystem/append_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1988199d1fc752077d590c48dea698d9ebb1add2e1c40006aae7691a621158fa"
+      }
+    },
+    "server-filesystem/edit_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4e5b263ef6592344a5a0c6ba7f03a59ddf530f4e51c1b2645928acabb84833d0"
+      }
+    },
+    "server-filesystem/create_directory": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "22942778a3c3c5ecee14326aa23e207fbcabb79bdec0b49c5b9e81c137dfefc3"
+      }
+    },
+    "server-filesystem/list_directory": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "91e55677d7559e09f78abab482481c8e9b74dc1bf44b319e17b4b1db67e3be11"
+      }
+    },
+    "server-filesystem/list_directory_with_sizes": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "02cca8b7c52498b98137d17469bbfe3d4f5979036f135e098d70669afab67c50"
+      }
+    },
+    "server-filesystem/directory_tree": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "092ca2e595ca97e0c79c2e713986361aaaf47b49ca923cd0bff2d67d56c5af25"
+      }
+    },
+    "server-filesystem/move_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "613061d97bbd8af94a75c1815d842d14e3ada3a8700d35728e5937484d28a002"
+      }
+    },
+    "server-filesystem/copy_file": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b22ae55e730a5a9d325468e312bf5ff1ea8c479048eeee6b5bc8a175d8ca6533"
+      }
+    },
+    "server-filesystem/search_files": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6ee8bbc8d594a90d3298e632741cbce37f77cacfdd54e79cc66f766168cc29b8"
+      }
+    },
+    "server-filesystem/get_file_info": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f7b72ed0260f3882a4e6dd0f956d412762646b1bf583c2fea0dd5ce3be99c994"
+      }
+    },
+    "server-filesystem/list_allowed_directories": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49"
+      }
+    },
+    "server-git/git_status": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7bd4de8036937dec083fd66e127b8e7ba67ec8e38453a3d20872e5eefafd6a48"
+      }
+    },
+    "server-git/git_diff_unstaged": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b5f28e179d77d1f8132248f474d5d7e689ff385ac68eb29cacd14e0b3c93e593"
+      }
+    },
+    "server-git/git_diff_staged": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a34503e2686d88a396e63b81ab6bff39b2ab9dbdca5de355ceab4e6b4a74399e"
+      }
+    },
+    "server-git/git_diff": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "32ee0e282fb126d18d4a4c6615b17defcaab9535409999d8625718408f57a8c4"
+      }
+    },
+    "server-git/git_commit": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c5cd9087b800e226a17190a2b110c7d9fe5a1131288faeb0f21478403293b967"
+      }
+    },
+    "server-git/git_add": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "fe607783e69161974a5f7a4ccd35c37a74701420facc8f99a153e9e1bd268a00"
+      }
+    },
+    "server-git/git_reset": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "eea611c41ac2f0dac25fa3cc39a6b9692425bd6bc1de10c91e3ec81846c9707e"
+      }
+    },
+    "server-git/git_log": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c4e5907dca6fbbbb7ba130e7ab57445f91d7c1df0d67f01a610940176b3c708e"
+      }
+    },
+    "server-git/git_create_branch": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9118849f78270629cb79f009849443a991834e4e6a1a6767671d8efd5306d7b8"
+      }
+    },
+    "server-git/git_checkout": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b655a056a01c07675207106a974e3c18649ad97cfe5049bbc68b5f033a8ce4d6"
+      }
+    },
+    "server-git/git_merge": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c26790c6086e8573806324d6f22714afb77481979c1bda9bc9295148b4cd96b9"
+      }
+    },
+    "server-git/git_show": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "fa979031e75d98d89ad67bda75bdebe7069fbad3f5907c50cb0aafd8fc4c9ad1"
+      }
+    },
+    "server-git/git_branch": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "268f353022c7efb49a6e61f3bd3c81522910358facafa35c16fca0a5a305f693"
+      }
+    },
+    "server-git/git_remote": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "53800ff477e1de5e8a838b9eaa6b03f2d0b118320bdeae3d2d16e93b3ad20e79"
+      }
+    },
+    "server-memory/create_entities": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "adff280f03c89e65f86a51e04eecbe30ebe0e5855e42b48ebcfdc270b95eaeca"
+      }
+    },
+    "server-memory/create_relations": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "345ce8a5582ce3b68642a0e0b02dafa009c8d76128684fe591dc1178768b9785"
+      }
+    },
+    "server-memory/add_observations": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "28742bf0d19aa24a7bcb34c6c045e701f1f754552a137bd9c0a8542145c706a2"
+      }
+    },
+    "server-memory/delete_entities": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3d558255ca63af09381d238bde9f352ac4bc571eee405074680aed42c86b5461"
+      }
+    },
+    "server-memory/delete_observations": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b95bd65aa643846b4a8b7ffc14b3a60f14e938b274e47db0ecc8627eba4a395e"
+      }
+    },
+    "server-memory/delete_relations": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b000d5cf80fb297fe8c0d35011fad9962e889e0e83ae9947ba21db1be332118e"
+      }
+    },
+    "server-memory/read_graph": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "993982f0577d9ad321f4829436d0b21ce9e726f8b782b25bc9ad43f4945aa556"
+      }
+    },
+    "server-memory/search_nodes": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "27bd4f8d4873d3b944f7da1c8651ad68dd07bc8e07215b734bec00ae47157e94"
+      }
+    },
+    "server-memory/open_nodes": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "bc70169d10df57c9430a1bcbd4d1521f8b3856abd4cc2b6055f2ce3a37161324"
+      }
+    },
+    "server-sequential-thinking/sequentialthinking": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "890d5fd611bb0734de9018329046fe86146e05155cc655004ecca0edb8b26719"
+      }
+    },
+    "server-time/get_current_time": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "0e6b02031061466e4a47faafc2d617cc8e74b2274c5965059b7e9752464895fb"
+      }
+    },
+    "server-time/convert_time": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "eada44238c9494025827b4a0f8ec87f7672a095b8c1e871150a467d7d6631f6b"
+      }
+    },
+    "server-time/get_time_ago": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6126e10d61510a3dc1361c547fb23d1a99fcd17583bb01a8dae61687d80a6084"
+      }
+    },
+    "zod-example/create_issue": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f988e31d78d8b2f985a7b01d1f79e073b5f84748a697cee200ffbb041a5dbf66"
+      }
+    },
+    "zod-example/query": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5b91674e49677956adb0274d768b6045db457641a8d0b4debf143eb2c9a29aa5"
+      }
+    },
+    "zod-example/set_flags": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "14dd1f58207b174bc5d84684d439e3a9e5f127b8de8f11a66e71b786c676010f"
+      }
+    },
+    "synthetic/hostile_property_names": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3b8b187c6558d4e99f38a5ab1c3a11f08c91cebbfc406b7ac4fa07ebf23841f4"
+      }
+    },
+    "synthetic/t10_no_params": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a2c799262a3ce3c19ef5cdd983bf3d12b43ab3c426227091b909dcb7054738c0"
+      }
+    },
+    "synthetic/t10_open_map": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9ef4fcca2c56894abbae0dbc1c05b0172107f6f8a7a2f0274ff1b416b3c69ece"
+      }
+    },
+    "synthetic/t11_optionals": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2d1f54536c639b06ea8dcb36efaf4ca4b31fba960c0e0f332c0630292eea2f5b"
+      }
+    },
+    "synthetic/t12_validation": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "8b2d61d89c9e7b5ce196b0420ad60a274ddd6884d73f2007949b1102c338ffbe"
+      }
+    },
+    "synthetic/t13_default": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ee56451d4544a2cdbd475656c3989eaaf780a8b5528fe2ce0a7af14a5358eac1"
+      }
+    },
+    "synthetic/t14_root_non_object": {
+      "raw": {
+        "status": "rejected",
+        "error": "Request contains an invalid argument."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "391332c5d5ce12f1fe9d84e1903a40c7c575805a6e1820aaae0185e9e6f8de01"
+      }
+    },
+    "synthetic/t14_root_union": {
+      "raw": {
+        "status": "rejected",
+        "error": "Request contains an invalid argument."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6c13705331fa9af9f53a94475220782888bfeba33a5832e2f98335cb30bae6da"
+      }
+    },
+    "synthetic/t15_format": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1de197b92046ae57d673b5765794755dadcfa719c6c4d6b28adf024d82a86b6e"
+      }
+    },
+    "synthetic/t16_pattern_features": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4aacc7a283d708ddcbaf59b437e2df5af7ef891158a6645cff654fe9ca694404"
+      }
+    },
+    "synthetic/t18_keys_and_arrays": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "db69f44977f0251998b6b5c62036a384ab78e17a61f3f09f9b4b8e2d7d4e35f0"
+      }
+    },
+    "synthetic/t1_annotations": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a6869d999955ed75ae5cf2848b645ea75eb912383e2cb8843052598a0f50f830"
+      }
+    },
+    "synthetic/t2a_recursion_optional": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1eaa530849c7db3dc4b6bbc2abfcd304142d2f3303926ffd1cf5fc9f795617c4"
+      }
+    },
+    "synthetic/t2a_recursion_required": {
+      "raw": {
+        "status": "rejected",
+        "error": "ref loops are only supported if they include optional or nullable property values, or a potentially-zero-length array items, but a ref loop of required fields was found at properties.child"
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unsatisfiable-recursion"
+        ]
+      }
+    },
+    "synthetic/t2b_ref_with_siblings": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1be669600b3b05ec2b482e8a5f5c8c97fd63b8122a8891012c8c6fd82f9fb2ab"
+      }
+    },
+    "synthetic/t2c_external_ref": {
+      "raw": {
+        "status": "rejected",
+        "error": "reference to undefined schema at properties.a"
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unresolvable-ref"
+        ]
+      }
+    },
+    "synthetic/t3_draft07": {
+      "raw": {
+        "status": "rejected",
+        "error": "schema at properties.point.items must be a boolean or an object"
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "53798c379b3087966e304c9b431b7e31fbe3ba7c5c670a3fcca3c05e7b1b4274"
+      }
+    },
+    "synthetic/t3_openapi_nullable": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "44794b556c1698fb9cbdee2d2899eff6b4a1945203be916cc37e3e1e6e9fdac7"
+      }
+    },
+    "synthetic/t4_multi_type": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9ff9eb21ef800c2647af81ceaf5942ae24cd474d763f62ec4e785931e3f5de72"
+      }
+    },
+    "synthetic/t5_enum_const": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9181992c163ae171611d27436776d684800c0bb788fca857072c875d60a6161f"
+      }
+    },
+    "synthetic/t7_allof": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "b97e2f4c0996b9d979f779f7691b4a28bd8fdf193d1509c60ffc13455c0cf3d8"
+      }
+    },
+    "synthetic/t7_allof_unsatisfiable": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/t8_oneof": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f87e3ebfae70ec8137ba13814eef062619639c23e13c72399a1f90720b39ce5d"
+      }
+    },
+    "synthetic/t9_anyof_siblings": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "98d276e86e631295face45d8124f6b1736bfbf74022f2ee87b98e0fee4d2bc77"
+      }
+    }
+  }
+}
