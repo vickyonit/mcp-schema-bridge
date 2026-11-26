@@ -144,7 +144,7 @@ def test_anyof_inside_allof_is_distributed() -> None:
 
 def test_not_and_conditionals_in_multiple_branches_keep_first() -> None:
     r, p = prop({"allOf": [{"type": "string", "not": {"const": "x"}}, {"not": {"const": "y"}}]})
-    assert p["not"] == {"const": "x"}
+    assert p["not"] == {"enum": ["x"]}  # gemini-json: const is not enforced, enum is
     assert ("not", "dropped", "lossy") in entries(r)
 
 

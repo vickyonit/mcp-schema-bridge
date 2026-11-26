@@ -263,8 +263,7 @@ def _merge_keyword(dst: SNode, src: SNode, kw: str, ctx: Ctx) -> None:
         dst[kw] = merged
     elif kw in ("anyOf", "oneOf"):
         la, lb = cast(list[Any], a), cast(list[Any], b)
-        product = [_merge_schemas(copy_tree(x), y, ctx) for x in la for y in lb]
-        if len(product) > ctx.opts.max_nodes:
+        if len(la) * len(lb) > ctx.opts.max_nodes:
             ctx.add(
                 "core/allof-distribution-too-large",
                 "T7",
@@ -274,6 +273,9 @@ def _merge_keyword(dst: SNode, src: SNode, kw: str, ctx: Ctx) -> None:
                 severity="fatal",
                 message="allOf of unions is too large to distribute",
             )
+            return
+        product = union_product(la, lb, dst, ctx, "T7")
+        if not product:
             return
         dst["anyOf"] = product
         if kw == "oneOf":
@@ -355,8 +357,10 @@ def _merge_enum_const(dst: SNode, src: SNode, ctx: Ctx) -> None:
     else:
         dst["enum"] = out
         final_kw, final_val = "enum", out
+    provider = sb if sb[0] == final_kw else sa
     dst.kw_src.pop("enum", None)
     dst.kw_src.pop("const", None)
+    dst.kw_src[final_kw] = provider[2]
     for kw, vals, origin in (sa, sb):
         if kw != final_kw or _c(vals) != _c(final_val):
             ctx.add(
@@ -370,6 +374,59 @@ def _merge_enum_const(dst: SNode, src: SNode, ctx: Ctx) -> None:
                 original=vals[0] if kw == "const" else vals,
                 message=f"{kw} intersected with other allOf branches",
             )
+
+
+def union_product(left: list[Any], right: list[Any], node: SNode, ctx: Ctx, tid: str) -> list[Any]:
+    """Pairwise-merge union branches, dropping unsatisfiable combinations (reported)."""
+    out: list[Any] = []
+    used_left: set[int] = set()
+    used_right: set[int] = set()
+    for i, a in enumerate(left):
+        for j, b in enumerate(right):
+            m = try_merge(copy_tree(a), b, ctx)
+            if m is not None:
+                out.append(m)
+                used_left.add(i)
+                used_right.add(j)
+    for side, used in ((left, used_left), (right, used_right)):
+        for k, branch in enumerate(side):
+            if k not in used and isinstance(branch, SNode):
+                for src in branch.src or ("",):
+                    ctx.add(
+                        "core/unsatisfiable-branch-removed",
+                        tid,
+                        node=node,
+                        keyword=None,
+                        action="narrowed",
+                        severity="info",
+                        source_path=src,
+                        message="a union branch that can never match was removed",
+                    )
+    if not out:
+        ctx.add(
+            "core/unsatisfiable-union",
+            tid,
+            node=node,
+            keyword="anyOf",
+            action="rejected",
+            severity="fatal",
+            message="no union branch is satisfiable",
+        )
+    return out
+
+
+def try_merge(a: Any, b: Any, ctx: Ctx) -> Any | None:
+    """Merge two schemas; return None (and record nothing) if the result is unsatisfiable."""
+    import dataclasses
+
+    sub = dataclasses.replace(
+        ctx, entries=[], fatal=False, opts=dataclasses.replace(ctx.opts, on_unsupported="report")
+    )
+    out = _merge_schemas(a, b, sub)
+    if sub.fatal or out is False:
+        return None
+    ctx.entries.extend(sub.entries)
+    return out
 
 
 def _merge_schemas(a: Any, b: Any, ctx: Ctx) -> Any:

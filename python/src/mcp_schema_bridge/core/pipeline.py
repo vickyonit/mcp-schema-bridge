@@ -19,6 +19,7 @@ from mcp_schema_bridge.core.stages.inline import inline_stage
 from mcp_schema_bridge.core.stages.merge import merge_allof
 from mcp_schema_bridge.core.stages.resolve import resolve
 from mcp_schema_bridge.core.stages.root import apply_root
+from mcp_schema_bridge.core.stages.unions import unions_stage
 from mcp_schema_bridge.core.tree import SNode, build
 
 
@@ -54,6 +55,7 @@ def normalize_schema(
     merge_allof(root, ctx)
     inline_stage(root, ctx)
     root = apply_root(root, ctx)
+    unions_stage(root, ctx)
     out = emit(root, ctx)
     fp = fingerprint(fingerprint_of if fingerprint_of is not None else value, target)
     return NormalizeResult(
