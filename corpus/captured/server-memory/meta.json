@@ -1,0 +1,13 @@
+{
+  "id": "server-memory",
+  "source": "https://github.com/modelcontextprotocol/servers",
+  "version": "2.2.1",
+  "license": "Apache-2.0 AND MIT",
+  "command": [
+    "npx",
+    "-y",
+    "@modelcontextprotocol/server-memory@2.2.1"
+  ],
+  "captured_on": "2026-11-26",
+  "tool_count": 9
+}

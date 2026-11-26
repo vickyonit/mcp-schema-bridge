@@ -1,0 +1,14 @@
+{
+  "id": "server-filesystem",
+  "source": "https://github.com/modelcontextprotocol/servers",
+  "version": "2.4.0",
+  "license": "Apache-2.0 AND MIT",
+  "command": [
+    "npx",
+    "-y",
+    "@modelcontextprotocol/server-filesystem@2.4.0",
+    "<allowed-dir>"
+  ],
+  "captured_on": "2026-11-26",
+  "tool_count": 16
+}

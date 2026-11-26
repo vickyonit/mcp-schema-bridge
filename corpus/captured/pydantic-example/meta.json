@@ -1,0 +1,15 @@
+{
+  "id": "pydantic-example",
+  "source": "corpus/sources/pydantic_server.py",
+  "version": "mcp-2.3.0",
+  "license": "Apache-2.0",
+  "command": [
+    "uv",
+    "run",
+    "-q",
+    "--script",
+    "corpus/sources/pydantic_server.py"
+  ],
+  "captured_on": "2026-11-26",
+  "tool_count": 4
+}

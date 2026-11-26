@@ -1,0 +1,13 @@
+{
+  "id": "playwright-mcp",
+  "source": "https://github.com/microsoft/playwright-mcp",
+  "version": "0.0.86",
+  "license": "Apache-2.0",
+  "command": [
+    "npx",
+    "-y",
+    "@playwright/mcp@0.0.86"
+  ],
+  "captured_on": "2026-11-26",
+  "tool_count": 25
+}

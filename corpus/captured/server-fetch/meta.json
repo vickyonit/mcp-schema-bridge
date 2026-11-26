@@ -1,0 +1,12 @@
+{
+  "id": "server-fetch",
+  "source": "https://github.com/modelcontextprotocol/servers",
+  "version": "2026.11.18",
+  "license": "Apache-2.0 AND MIT",
+  "command": [
+    "uvx",
+    "mcp-server-fetch==2026.11.18"
+  ],
+  "captured_on": "2026-11-26",
+  "tool_count": 1
+}

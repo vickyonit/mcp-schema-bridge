@@ -1,0 +1,19 @@
+version = 1
+
+[[annotations]]
+path = ["corpus/captured/server-*/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Model Context Protocol a Series of LF Projects, LLC and contributors (https://github.com/modelcontextprotocol/servers)"
+SPDX-License-Identifier = "Apache-2.0 AND MIT"
+
+[[annotations]]
+path = ["corpus/captured/playwright-mcp/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Microsoft Corporation (https://github.com/microsoft/playwright-mcp)"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["**"]
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 The mcp-schema-bridge Authors"
+SPDX-License-Identifier = "Apache-2.0"
