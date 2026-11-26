@@ -146,3 +146,21 @@ def relax(original: dict[str, Any], result: NormalizeResult) -> dict[str, Any]:
         else:
             target.pop(e.keyword, None)
     return doc
+
+
+def hints_complete(result: NormalizeResult) -> list[str]:
+    """Property 7: every dropped validation keyword is restated in a description hint."""
+    if result.schema is None:
+        return []
+    kc = keyword_classes()
+    rules = load_rules(result.target)
+    return [
+        f"{e.source_path or '/'}: dropped {e.keyword} not hinted"
+        for e in result.report.entries
+        if e.action == "dropped"
+        and e.keyword is not None
+        and kc.kind(e.keyword) == "validation"
+        and not e.hinted
+        and rules.features.ref_siblings  # hints are not attached next to $ref where siblings are forbidden
+        and e.tid != "T3"  # draft-07 ignores $ref siblings: nothing is lost
+    ]
