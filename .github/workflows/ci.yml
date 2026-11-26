@@ -51,4 +51,4 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: uv sync --locked
-      - run: uv run pytest -q
+      - run: uv run pytest -q --cov=mcp_schema_bridge.core --cov-fail-under=95

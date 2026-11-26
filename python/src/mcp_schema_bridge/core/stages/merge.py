@@ -74,7 +74,7 @@ def _visit(node: SNode, ctx: Ctx, seen: Seen, stack: tuple[int, ...]) -> None:
                 message="allOf contains false; schema is unsatisfiable",
             )
             continue
-        branch = _resolved_copy(cast(SNode, b), ctx, stack)
+        branch = _resolved_copy(cast(SNode, b), ctx, (*stack, id(node)))
         if branch is None:
             continue
         _visit(branch, ctx, Seen(), stack)  # nested allOf inside the branch copy

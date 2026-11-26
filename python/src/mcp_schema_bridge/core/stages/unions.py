@@ -341,6 +341,19 @@ def _t4(node: SNode, ctx: Ctx) -> None:
             b["enum"] = vs
             b.kw_src["enum"] = node.origins(cast(str, values_kw))
         branches.append(b)
+    if values_kw is not None:
+        for origin in node.origins(values_kw):
+            ctx.add(
+                "core/multi-type-split",
+                "T4",
+                node=node,
+                keyword=values_kw,
+                action="rewritten",
+                severity="info",
+                source_path=origin,
+                original=values,
+                message=f"{values_kw} values partitioned into the typed anyOf branches",
+            )
     for k in [*specific, "type", *([values_kw] if values_kw else [])]:
         node.pop(k, None)
     if "anyOf" in node:
