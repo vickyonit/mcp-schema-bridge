@@ -120,6 +120,16 @@ def _nullable(node: SNode, ctx: Ctx) -> None:
         types = [t] if isinstance(t, str) else list(cast(list[Any], t))
         if "null" not in types:
             types.append("null")
+            ctx.add(
+                "core/openapi-nullable",
+                "T3",
+                node=node,
+                keyword="type",
+                action="rewritten",
+                severity="info",
+                original=t,
+                message="null added to the type array (OpenAPI nullable)",
+            )
         node["type"] = types
     ctx.add(
         "core/openapi-nullable",
