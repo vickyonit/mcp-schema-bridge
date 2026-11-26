@@ -120,3 +120,35 @@ rules in [`rules/`](../rules/). The `tid` field groups rules into transformation
 | `core/reverse-unrecognized-shape` | lossy | The arguments did not have the expected shape (e.g. a missing `value` wrapper). They were passed through unchanged, or an error is raised with `strict=True`. |
 | `core/repair-int-from-float` | info | Opt-in repair: an integral float was converted to an integer. |
 | `core/repair-enum-case` | info | Opt-in repair: a unique case-insensitive enum match was applied. |
+
+## How to fix it in your server
+
+The CLI and `ToolsetResult.summary()` print these as `fix:` lines (`python/src/mcp_schema_bridge/fixes.py`).
+
+| Rule (slug) | What to change in your MCP server |
+|---|---|
+| `open-object-unsupported` | Declare the keys as properties, or model a map as a list of {key, value} objects (Pydantic: list[KeyValue] instead of dict[str, str]); clients can use --strict-fallback. |
+| `any-value-unsupported` | Give the field a concrete type (a string, number, object with properties, ...) instead of Any / {}. |
+| `optional-nullable-ambiguous` | If null and 'not provided' mean the same in your server, declare default: null (Pydantic: `= None`) and the change becomes reversible. |
+| `keyword-not-enforced` | The model may not respect this constraint: validate it in your tool handler and return a helpful error. |
+| `keyword-rejected` | The model may not respect this constraint: validate it in your tool handler and return a helpful error. |
+| `keyword-unsupported` | The model may not respect this constraint: validate it in your tool handler and return a helpful error. |
+| `format-unsupported` | The model may not respect this constraint: validate it in your tool handler and return a helpful error. |
+| `min-items-clamped` | The model may not respect this constraint: validate it in your tool handler and return a helpful error. |
+| `pattern-unsupported` | Use a simpler regex (no lookaround, backreferences or \b) or validate in your tool handler. |
+| `tool-name-invalid` | Rename the tool using only letters, digits, '_' and '-' (64 characters or fewer works everywhere). |
+| `property-key-invalid` | Rename the property using only letters, digits, '_', '.' and '-' (64 characters or fewer). |
+| `unsatisfiable-recursion` | Make the recursive field optional or nullable, otherwise no finite value exists. |
+| `recursion-truncated` | Keep recursive structures shallow, or accept the depth limit (max_ref_depth). |
+| `unresolvable-ref` | Inline the referenced schema; remote $refs are never fetched. |
+| `dynamic-ref-unsupported` | Replace $dynamicRef/$recursiveRef with a plain $ref to a $defs entry. |
+| `oneof-to-anyof` | Make the branches distinguishable with a required const discriminator (e.g. kind: 'a' | 'b'). |
+| `array-items-missing` | Declare the item type (Pydantic: list[str] instead of list). |
+| `request-budget-exceeded` | Use fewer optional/union parameters per tool or fewer strict tools; clients can use --strict-fallback. |
+| `allof-unsatisfiable` | The allOf branches contradict each other; fix the model so one value can satisfy all of them. |
+| `unsatisfiable-union` | Every union branch contradicts its siblings; fix the model. |
+| `limit-max-properties` | Split the tool into smaller tools. |
+| `limit-max-nesting-depth` | Flatten deeply nested objects. |
+| `limit-max-total-string-chars` | Shorten property names and enum values, or split the tool. |
+| `limit-max-enum-values` | Replace very large enums with a free-text field validated by the server. |
+| `limit-max-large-enum-chars` | Replace very large enums with a free-text field validated by the server. |

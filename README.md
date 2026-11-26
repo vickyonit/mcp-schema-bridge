@@ -37,6 +37,14 @@ from those rules.
 > They produce byte-identical output: same schemas, reports, key order and fingerprints, checked on
 > the shared corpus and by differential fuzzing in CI.
 
+## Who is this for?
+
+| You are… | Start here |
+|---|---|
+| An MCP **server** builder: "will my tools work in Gemini, OpenAI and Claude?" | [`mcp-schema-bridge check` in CI](docs/how-to.md#1-mcp-server-builders-check-your-tools-before-you-ship) |
+| An MCP **client** / agent builder: "some servers' tools get 400s or are silently ignored" | [`normalize_tools` + `denormalize_args`](docs/how-to.md#2-mcp-client-and-agent-builders-normalize-in-your-tool-loop) |
+| An MCP **user**: "a server breaks my app and I can't change either" | [`mcp-schema-bridge proxy`](docs/how-to.md#3-mcp-users-fix-a-server-that-breaks-your-app-without-changing-anything) |
+
 ## Install
 
 ```bash
@@ -105,6 +113,9 @@ mcp-schema-bridge check --target gemini-json --target openai-strict \
 
 # Print normalized tools + reports as JSON
 mcp-schema-bridge normalize tools.json --target anthropic-strict > normalized.json
+
+# Put a proxy in front of any MCP server: its tools are served fixed for your model's API
+mcp-schema-bridge proxy --target gemini-json -- npx -y some-mcp-server
 ```
 
 Input can be a single schema, an array of tools, or a `tools/list` result (from a file or `-` for

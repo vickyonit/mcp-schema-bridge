@@ -8,7 +8,12 @@
   - 10 captured sources (8 public MCP servers, plus Pydantic and Zod generator output)
   - 45+ synthetic cases
   - argument round-trip goldens
-- [x] Live Gemini evidence: acceptance and enforcement probes on two models; verdicts for every corpus tool
+- [x] Live evidence:
+  - Gemini: acceptance and enforcement probes on two models; verdicts for every corpus tool
+  - OpenAI strict: verdicts for every corpus tool (`gpt-4.1-mini`) and regex probes
+- [x] Persona walkthroughs (server builder, client builder in Python and TS, end user with gemini-cli),
+  run for real, with fixes recorded in `docs/personas/friction-log.md`
+- [x] `mcp-schema-bridge proxy` for end users; how-to guide (`docs/how-to.md`)
 - [x] CI:
   - Python 3.11–3.14 on Linux, macOS and Windows; Node 22/24/26
   - lint, strict type checks, coverage at least 95%
@@ -24,9 +29,9 @@
 
 ## Needs the maintainer (cannot be done from code)
 
-1. **API keys for OpenAI and Anthropic.** Run `scripts/probe.py` and `scripts/record_verdicts.py` for
-   `openai-strict` and `anthropic-strict`, then update `rules/*.json` evidence from `doc`/`reported` to
-   `probe`/`recorded`.
+1. **Anthropic API key.** Run `scripts/probe.py` and `scripts/record_verdicts.py` for `anthropic-strict`,
+   then update `rules/anthropic*.json` evidence from `doc`/`reported` to `probe`/`recorded`. OpenAI
+   strict and Gemini are already done. Add `OPENAI_API_KEY` to the nightly job's environment as well.
 2. **Repository settings:**
    - Branch protection on `main` (required reviews, required CI checks).
    - Private vulnerability reporting.
