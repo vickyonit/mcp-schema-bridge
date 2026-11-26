@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 import hashlib
 from typing import Any, cast
 
@@ -12,7 +13,7 @@ from mcp_schema_bridge.core.jcs import canonicalize
 from mcp_schema_bridge.core.options import NormalizeOptions
 from mcp_schema_bridge.core.parse import Limits, check_value
 from mcp_schema_bridge.core.pointer import split
-from mcp_schema_bridge.core.report import Report
+from mcp_schema_bridge.core.report import Report, ReportEntry
 from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.rules import RULES_VERSION, Target, load_rules
 from mcp_schema_bridge.core.stages.canonicalize import canonicalize_tree
@@ -92,6 +93,25 @@ def normalize_schema(
         if ctx.fatal:
             out.schema = None
             out.entries = build_entries(ctx, out.pointers)
+    if out.schema is None and o.strict_fallback and rules.fallback_target is not None:
+        fb = normalize_schema(
+            schema, rules.fallback_target, o, tool=tool, fingerprint_of=fingerprint_of
+        )
+        demoted = ReportEntry(
+            rule=f"{target}/strict-fallback",
+            tid="T17",
+            tool=tool,
+            source_path="",
+            keyword=None,
+            action="fallback",
+            severity="lossy",
+            message=f"schema could not be made strict; demoted to {rules.fallback_target} "
+            "(not grammar-constrained)",
+        )
+        return dataclasses.replace(
+            fb,
+            report=Report(target=fb.target, entries=[*out.entries, demoted, *fb.report.entries]),
+        )
     fp = fingerprint(fingerprint_of if fingerprint_of is not None else value, target)
     return NormalizeResult(
         target=target,

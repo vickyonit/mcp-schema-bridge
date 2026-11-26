@@ -156,19 +156,6 @@ def normalize_tools(
             entries.append(reason)
             continue
         result = normalize_schema(schema, target, o, tool=name, fingerprint_of=raw)
-        if result.schema is None and o.strict_fallback and rules.fallback_target:
-            entries.extend(result.report.entries)
-            fb = normalize_schema(schema, rules.fallback_target, o, tool=name, fingerprint_of=raw)
-            entries.append(
-                _entry(
-                    f"{target}/strict-fallback",
-                    name,
-                    f"tool demoted to {rules.fallback_target} (not grammar-constrained)",
-                    action="fallback",
-                    severity="lossy",
-                )
-            )
-            result = fb
         entries.extend(result.report.entries)
         if result.schema is None:
             rejected.append(

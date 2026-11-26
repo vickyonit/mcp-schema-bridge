@@ -79,3 +79,24 @@ def test_big_int_round_is_reported_as_lossy_coercion() -> None:
         "lossy",
         "9223372036854775807",
     )
+
+
+def test_normalize_schema_strict_fallback_demotes_to_sibling() -> None:
+    s = {"type": "object", "properties": {"m": {"type": "object"}}, "required": ["m"]}
+    plain = normalize_schema(s, "anthropic-strict")
+    assert plain.schema is None
+    r = normalize_schema(s, "anthropic-strict", NormalizeOptions(strict_fallback=True))
+    assert (r.target, r.strict) == ("anthropic", False)
+    assert r.schema is not None
+    assert any(e.action == "fallback" and e.severity == "lossy" for e in r.report.entries)
+    assert any(e.severity == "fatal" for e in r.report.entries)  # why it fell back
+    assert r.reverse.target == "anthropic"
+
+
+def test_strict_fallback_has_no_effect_on_non_strict_targets() -> None:
+    r = normalize_schema(
+        {"type": "object", "properties": {"a": {"$ref": "https://x"}}},
+        "openai",
+        NormalizeOptions(strict_fallback=True),
+    )
+    assert r.schema is None
