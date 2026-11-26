@@ -115,11 +115,13 @@ def test_const_kept_where_enforced() -> None:
     assert p == {"type": "string", "const": "fixed"}
 
 
-def test_object_enum_values_dropped_with_hint_for_primitive_only_targets() -> None:
+def test_object_enum_values_are_dropped_for_primitive_only_targets() -> None:
+    # Without the enum the property would accept any value, which strict mode cannot express.
     r, p = prop({"enum": [{"k": 1}, {"k": 2}]}, "anthropic-strict")
-    assert "enum" not in p
+    assert p is None
     [e] = [e for e in r.report.entries if e.keyword == "enum" and e.tid == "T5"]
     assert (e.action, e.severity) == ("dropped", "lossy")
+    assert any(e.rule == "core/any-value-unsupported" for e in r.report.entries)
 
 
 # T4 ---------------------------------------------------------------------------------------------

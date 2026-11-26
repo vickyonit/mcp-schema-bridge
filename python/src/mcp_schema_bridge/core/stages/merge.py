@@ -158,9 +158,10 @@ def merge_into(dst: SNode, src: SNode, ctx: Ctx) -> None:
             continue
         if kw not in dst:
             dst[kw] = copy_tree(v) if isinstance(v, SNode) else _copy_value(v)
-            dst.kw_src[kw] = src.origin(kw)
+            dst.kw_src[kw] = src.origins(kw)
             continue
         _merge_keyword(dst, src, kw, ctx)
+        dst.kw_src[kw] = tuple(dict.fromkeys((*dst.origins(kw), *src.origins(kw))))
     if "enum" in src or "const" in src:
         if "enum" in dst or "const" in dst:
             _merge_enum_const(dst, src, ctx)
@@ -168,7 +169,7 @@ def merge_into(dst: SNode, src: SNode, ctx: Ctx) -> None:
             for kw in ("enum", "const"):
                 if kw in src:
                     dst[kw] = _copy_value(src[kw])
-                    dst.kw_src[kw] = src.origin(kw)
+                    dst.kw_src[kw] = src.origins(kw)
     _apply_additional_properties(dst, sides, ctx)
 
 
@@ -277,18 +278,9 @@ def _merge_keyword(dst: SNode, src: SNode, kw: str, ctx: Ctx) -> None:
         product = union_product(la, lb, dst, ctx, "T7")
         if not product:
             return
-        dst["anyOf"] = product
-        if kw == "oneOf":
-            del dst["oneOf"]
-            ctx.add(
-                "core/oneof-to-anyof",
-                "T8",
-                node=dst,
-                keyword="oneOf",
-                action="rewritten",
-                severity="lossy",
-                message="oneOf branches distributed as anyOf; exclusivity lost",
-            )
+        # The product of two oneOf lists is again an exact oneOf (exactly one pair matches iff
+        # exactly one branch of each side matches); anyOf x anyOf is an exact anyOf.
+        dst[kw] = product
     elif kw == "additionalProperties":
         if a is False or b is False:
             dst[kw] = False
@@ -327,11 +319,11 @@ def _merge_keyword(dst: SNode, src: SNode, kw: str, ctx: Ctx) -> None:
 
 
 def _merge_enum_const(dst: SNode, src: SNode, ctx: Ctx) -> None:
-    def side(n: SNode) -> tuple[str, list[Any], str] | None:
+    def side(n: SNode) -> tuple[str, list[Any], tuple[str, ...]] | None:
         if "const" in n:
-            return "const", [n["const"]], n.origin("const")
+            return "const", [n["const"]], n.origins("const")
         if "enum" in n:
-            return "enum", list(cast(list[Any], n["enum"])), n.origin("enum")
+            return "enum", list(cast(list[Any], n["enum"])), n.origins("enum")
         return None
 
     sa, sb = side(dst), side(src)
@@ -357,23 +349,23 @@ def _merge_enum_const(dst: SNode, src: SNode, ctx: Ctx) -> None:
     else:
         dst["enum"] = out
         final_kw, final_val = "enum", out
-    provider = sb if sb[0] == final_kw else sa
     dst.kw_src.pop("enum", None)
     dst.kw_src.pop("const", None)
-    dst.kw_src[final_kw] = provider[2]
-    for kw, vals, origin in (sa, sb):
+    dst.kw_src[final_kw] = tuple(dict.fromkeys((*sa[2], *sb[2])))
+    for kw, vals, origins in (sa, sb):
         if kw != final_kw or _c(vals) != _c(final_val):
-            ctx.add(
-                "core/allof-value-merged",
-                "T7",
-                node=dst,
-                keyword=kw,
-                action="merged",
-                severity="info",
-                source_path=origin,
-                original=vals[0] if kw == "const" else vals,
-                message=f"{kw} intersected with other allOf branches",
-            )
+            for origin in origins:
+                ctx.add(
+                    "core/allof-value-merged",
+                    "T7",
+                    node=dst,
+                    keyword=kw,
+                    action="merged",
+                    severity="info",
+                    source_path=origin,
+                    original=vals[0] if kw == "const" else vals,
+                    message=f"{kw} intersected with other allOf branches",
+                )
 
 
 def union_product(left: list[Any], right: list[Any], node: SNode, ctx: Ctx, tid: str) -> list[Any]:
@@ -510,14 +502,15 @@ def _report_changed(dst: SNode, src: SNode, ctx: Ctx) -> None:
         if kw == "required":
             continue
         if _c(dst[kw]) != _c(v):
-            ctx.add(
-                "core/allof-value-merged",
-                "T7",
-                node=dst,
-                keyword=kw,
-                action="merged",
-                severity="info",
-                source_path=src.origin(kw),
-                original=v,
-                message=f"{kw} combined with other allOf branches",
-            )
+            for origin in src.origins(kw):
+                ctx.add(
+                    "core/allof-value-merged",
+                    "T7",
+                    node=dst,
+                    keyword=kw,
+                    action="merged",
+                    severity="info",
+                    source_path=origin,
+                    original=v,
+                    message=f"{kw} combined with other allOf branches",
+                )

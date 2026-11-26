@@ -92,6 +92,10 @@ def _visit(node: SNode, ctx: Ctx, seen: set[int]) -> None:
         _t4(node, ctx)
     if not f.anyof_validation_siblings and "anyOf" in node:
         _t9(node, ctx)
+    # Branches created by the rewrites above have not been shaped yet.
+    for b in cast(list[Any], node.get("anyOf") or []):
+        if isinstance(b, SNode) and id(b) not in seen:
+            _visit(b, ctx, seen)
 
 
 # --- T8 -----------------------------------------------------------------------------------------
@@ -239,7 +243,7 @@ def _t5_type(node: SNode, ctx: Ctx) -> None:
         for t, vs in by_type.items()
     ]
     for b in node["anyOf"]:
-        b.kw_src["enum"] = node.origin(kw)
+        b.kw_src["enum"] = node.origins(kw)
     ctx.add(
         "core/mixed-enum-split",
         "T5",
@@ -265,21 +269,22 @@ def _const_to_enum(node: SNode, ctx: Ctx) -> None:
     rebuilt = {
         ("enum" if k == "const" else k): ([v] if k == "const" else v) for k, v in node.items()
     }
-    origin = node.origin("const")
+    origins = node.origins("const")
     node.clear()
     node.update(rebuilt)
-    node.kw_src["enum"] = origin
-    ctx.add(
-        "core/const-to-enum",
-        "T5",
-        node=node,
-        keyword="const",
-        action="rewritten",
-        severity="info",
-        source_path=origin,
-        original=node["enum"][0],
-        message="const rewritten to an equivalent single-value enum (const is not enforced by the target)",
-    )
+    node.kw_src["enum"] = origins
+    for origin in origins:
+        ctx.add(
+            "core/const-to-enum",
+            "T5",
+            node=node,
+            keyword="const",
+            action="rewritten",
+            severity="info",
+            source_path=origin,
+            original=node["enum"][0],
+            message="const rewritten to an equivalent single-value enum (const is not enforced by the target)",
+        )
 
 
 # --- T4 -----------------------------------------------------------------------------------------
@@ -320,7 +325,7 @@ def _t4(node: SNode, ctx: Ctx) -> None:
         for k in TYPE_KEYWORDS.get(ty, ()):
             if k in node:
                 b[k] = node[k] if not isinstance(node[k], SNode) else copy_tree(node[k])
-                b.kw_src[k] = node.origin(k)
+                b.kw_src[k] = node.origins(k)
         if values is not None:
             vs = [
                 v
@@ -330,7 +335,7 @@ def _t4(node: SNode, ctx: Ctx) -> None:
             if not vs:
                 continue
             b["enum"] = vs
-            b.kw_src["enum"] = node.origin(cast(str, values_kw))
+            b.kw_src["enum"] = node.origins(cast(str, values_kw))
         branches.append(b)
     for k in [*specific, "type", *([values_kw] if values_kw else [])]:
         node.pop(k, None)
@@ -366,7 +371,7 @@ def _t9(node: SNode, ctx: Ctx) -> None:
     if not moving:
         return
     base = SNode({k: node[k] for k in moving}, src=node.src)
-    base.kw_src = {k: node.origin(k) for k in moving}
+    base.kw_src = {k: node.origins(k) for k in moving}
     branches = cast(list[Any], node["anyOf"])
     new = _product([base], branches, node, ctx)
     for k in moving:

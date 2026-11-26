@@ -46,11 +46,12 @@ class SNode(dict[str, Any]):
         self.src: tuple[str, ...] = src
         self.ref: SNode | None = ref
         self.ops: list[dict[str, Any]] = []
-        self.kw_src: dict[str, str] = {}
+        self.kw_src: dict[str, tuple[str, ...]] = {}
         """Per-keyword origin when a keyword came from a different source node (allOf merges)."""
 
-    def origin(self, keyword: str) -> str:
-        return self.kw_src.get(keyword, self.src[0] if self.src else "")
+    def origins(self, keyword: str) -> tuple[str, ...]:
+        """Source pointer(s) that contributed ``keyword``'s current value."""
+        return self.kw_src.get(keyword, (self.src[0],) if self.src else ("",))
 
     def __repr__(self) -> str:  # pragma: no cover - debugging aid
         return f"SNode({super().__repr__()}, src={self.src})"
