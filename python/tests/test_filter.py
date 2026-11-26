@@ -26,7 +26,10 @@ def test_gemini_drops_stripped_validation_keywords_as_lossy() -> None:
     r, p = prop(
         {"type": "string", "pattern": "^Z", "minLength": 2, "description": "code"}, "gemini-json"
     )
-    assert p == {"type": "string", "description": "code"}
+    assert p == {
+        "type": "string",
+        "description": 'code\n\n[constraints: minLength=2; pattern="^Z"]',
+    }
     assert kinds(r) == [
         ("T12", "minLength", "dropped", "lossy"),
         ("T12", "pattern", "dropped", "lossy"),
@@ -48,13 +51,13 @@ def test_integer_exclusive_bounds_become_inclusive_where_only_inclusive_is_enfor
 
 def test_number_exclusive_bounds_are_dropped_with_hint() -> None:
     r, p = prop({"type": "number", "exclusiveMinimum": 0}, "gemini-json")
-    assert p == {"type": "number"}
+    assert p == {"type": "number", "description": "[constraints: exclusiveMinimum=0]"}
     assert kinds(r) == [("T12", "exclusiveMinimum", "dropped", "lossy")]
 
 
 def test_gemini_formats_outside_enforced_set_are_dropped() -> None:
     r, p = prop({"type": "string", "format": "email"}, "gemini-json")
-    assert p == {"type": "string"}
+    assert p == {"type": "string", "description": '[constraints: format="email"]'}
     assert kinds(r) == [("T15", "format", "dropped", "lossy")]
     _, p = prop({"type": "string", "format": "date"}, "gemini-json")
     assert p == {"type": "string", "format": "date"}
@@ -65,7 +68,10 @@ def test_openai_strict_drops_unlisted_keywords() -> None:
         {"type": "string", "minLength": 1, "format": "uri", "default": "x", "examples": ["a"]},
         "openai-strict",
     )
-    assert p == {"type": "string"}
+    assert p == {
+        "type": "string",
+        "description": '[constraints: default="x"; format="uri"; minLength=1]',
+    }
     assert kinds(r) == [
         ("T1", "examples", "dropped", "info"),
         ("T12", "minLength", "dropped", "lossy"),
@@ -87,7 +93,12 @@ def test_anthropic_strict_min_items_is_clamped_to_one() -> None:
         {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 5},
         "anthropic-strict",
     )
-    assert p == {"type": "array", "items": {"type": "string"}, "minItems": 1}
+    assert p == {
+        "type": "array",
+        "items": {"type": "string"},
+        "minItems": 1,
+        "description": "[constraints: maxItems=5; minItems=3]",
+    }
     assert kinds(r) == [
         ("T12", "maxItems", "dropped", "lossy"),
         ("T12", "minItems", "rewritten", "lossy"),
@@ -96,7 +107,11 @@ def test_anthropic_strict_min_items_is_clamped_to_one() -> None:
 
 def test_applicators_are_dropped_with_subtree_coverage() -> None:
     r, p = prop({"type": "string", "not": {"enum": ["x"]}}, "openai-strict")
-    assert p == {"type": "string"}
+    # T5 typed the enum inside `not` first (equivalent: the type is inferred from the values).
+    assert p == {
+        "type": "string",
+        "description": '[constraints: not={"enum":["x"],"type":"string"}]',
+    }
     assert kinds(r) == [("T12", "not", "dropped", "lossy")]
 
 

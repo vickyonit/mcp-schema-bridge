@@ -26,7 +26,7 @@ class PendingEntry:
     original: Any = None
     hinted: bool = False
     message: str = ""
-    hint_value: Any = None  # value for the description hint; set when hint=True
+    want_hint: bool = False  # restate `original` in the node's description (S10)
 
 
 @dataclass
@@ -63,7 +63,7 @@ class Ctx:
             node=node,
             original=original,
             message=message,
-            hint_value=original if hint else None,
+            want_hint=hint,
             hinted=False,
         )
         self.entries.append(e)

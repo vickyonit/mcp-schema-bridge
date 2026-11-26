@@ -16,6 +16,7 @@ from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.rules import RULES_VERSION, Target, load_rules
 from mcp_schema_bridge.core.stages.canonicalize import canonicalize_tree
 from mcp_schema_bridge.core.stages.filter import filter_stage
+from mcp_schema_bridge.core.stages.hints import hints_stage
 from mcp_schema_bridge.core.stages.inline import inline_stage
 from mcp_schema_bridge.core.stages.merge import merge_allof
 from mcp_schema_bridge.core.stages.objects import close_objects
@@ -62,6 +63,7 @@ def normalize_schema(
     close_objects(root, ctx)
     optional_stage(root, ctx)
     filter_stage(root, ctx)
+    hints_stage(root, ctx)
     out = emit(root, ctx)
     fp = fingerprint(fingerprint_of if fingerprint_of is not None else value, target)
     return NormalizeResult(
