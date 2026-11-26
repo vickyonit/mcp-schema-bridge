@@ -1,0 +1,111 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "m_required_forbidden_0",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "b": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "b"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_required_forbidden_1",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "enum": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "const": "b"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_required_forbidden_2",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "const": "a"
+              },
+              {
+                "const": "b"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

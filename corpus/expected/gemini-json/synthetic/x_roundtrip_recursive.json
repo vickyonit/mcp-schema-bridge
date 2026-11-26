@@ -1,0 +1,85 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "x_roundtrip_recursive",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "head": {
+            "$ref": "#/$defs/Node"
+          }
+        },
+        "required": [
+          "head"
+        ],
+        "$defs": {
+          "Node": {
+            "type": "object",
+            "properties": {
+              "v": {
+                "type": "string"
+              },
+              "next": {
+                "$ref": "#/$defs/Node"
+              }
+            },
+            "required": [
+              "v"
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_recursive",
+      "input": {
+        "head": {
+          "v": "1",
+          "next": {
+            "v": "2",
+            "next": null
+          }
+        }
+      },
+      "output": {
+        "head": {
+          "v": "1",
+          "next": {
+            "v": "2",
+            "next": null
+          }
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_recursive",
+      "input": {
+        "head": {
+          "v": "1"
+        }
+      },
+      "output": {
+        "head": {
+          "v": "1"
+        }
+      },
+      "warnings": []
+    }
+  ]
+}

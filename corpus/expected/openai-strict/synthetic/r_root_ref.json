@@ -1,0 +1,144 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "r_root_ref",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "o": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "q",
+          "o"
+        ],
+        "description": "args",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "o",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_ref",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-ref-inlined",
+        "tid": "T2b",
+        "tool": "r_root_ref",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/Args",
+        "hinted": false,
+        "message": "root $ref replaced by its target"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_ref",
+        "source_path": "/$defs/Args",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_root_ref",
+        "source_path": "/$defs/Args",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'Args' removed"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "r_root_ref",
+        "source_path": "/$defs/Args/properties/o",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'o' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "r_root_ref",
+        "source_path": "/$defs/Args/properties/o",
+        "target_path": "/properties/o",
+        "instance_path": "/o",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'o' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "r_root_ref",
+      "input": {
+        "q": "x",
+        "o": null
+      },
+      "output": {
+        "q": "x"
+      },
+      "warnings": []
+    }
+  ]
+}

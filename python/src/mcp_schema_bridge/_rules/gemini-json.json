@@ -11,6 +11,7 @@
     "ref_siblings": true,
     "type_arrays": true,
     "multi_type_arrays": true,
+    "multi_type_enum": false,
     "root_union": false,
     "root_anyof_with_object": true,
     "anyof_validation_siblings": true,
@@ -189,6 +190,36 @@
       "evidence": "doc",
       "source": "https://ai.google.dev/api/caching#FunctionDeclaration",
       "verified_on": "2026-11-26"
+    },
+    {
+      "id": "rejects-multi-type-enum",
+      "claim": "enum next to a type array with two or more non-null types is rejected (400 'Request contains an invalid argument'); the same enum on typed anyOf branches, or a nullable type array with enum, is accepted.",
+      "evidence": "recorded",
+      "source": "corpus/verdicts/gemini-json.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite"
+      ]
+    },
+    {
+      "id": "no-percent-decoding",
+      "claim": "$ref fragments are not percent-decoded ('reference to undefined schema'); emitted $defs names are therefore restricted to [A-Za-z0-9_.-].",
+      "evidence": "recorded",
+      "source": "corpus/verdicts/gemini-json.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite"
+      ]
+    },
+    {
+      "id": "complexity-limit",
+      "claim": "Schemas whose grammar has too many states are rejected (400 'too many states for serving'), e.g. large unions or long enums; this limit is not predictable from the schema and is not checked locally.",
+      "evidence": "recorded",
+      "source": "corpus/verdicts/gemini-json.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite"
+      ]
     }
   ]
 }

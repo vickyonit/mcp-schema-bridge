@@ -1,0 +1,259 @@
+{
+  "target": "openai-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "o_optional_shapes_0",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/any-value-unsupported",
+          "tid": "T10",
+          "tool": "o_optional_shapes_0",
+          "source_path": "/properties/any",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "a schema that accepts any value cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/$defs/A",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/$defs/A",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'A' removed"
+      },
+      {
+        "rule": "core/any-value-unsupported",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/any",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "a schema that accepts any value cannot be expressed in strict mode"
+      },
+      {
+        "rule": "core/boolean-subschema",
+        "tid": "T3",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/any",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rewritten",
+        "severity": "info",
+        "original": true,
+        "hinted": false,
+        "message": "boolean subschema rewritten as an equivalent object schema"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/any",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'any' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/c",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "x",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/c",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": [
+          "x"
+        ],
+        "hinted": false,
+        "message": "optional property 'c' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/c",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'c' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/e",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'e' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/n",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "not is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/optional-nullable-ambiguous",
+        "tid": "T11b",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/n",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rewritten",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'n' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/r",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/ref-with-siblings-inlined",
+        "tid": "T2b",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/r",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/A",
+        "hinted": false,
+        "message": "target forbids keywords next to $ref; reference inlined"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/r",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "object",
+        "hinted": false,
+        "message": "optional property 'r' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/u",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'u' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

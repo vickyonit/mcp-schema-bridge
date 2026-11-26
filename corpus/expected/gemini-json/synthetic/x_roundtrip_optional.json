@@ -1,0 +1,118 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "x_roundtrip_optional",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "filter": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string"
+              },
+              "max": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "tag"
+            ]
+          },
+          "addr": {
+            "$ref": "#/$defs/A"
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "$defs": {
+          "A": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_optional",
+      "input": {
+        "q": "a",
+        "limit": null,
+        "cursor": null,
+        "filter": {
+          "tag": "t",
+          "max": null
+        },
+        "addr": null
+      },
+      "output": {
+        "q": "a",
+        "limit": null,
+        "cursor": null,
+        "filter": {
+          "tag": "t",
+          "max": null
+        },
+        "addr": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_optional",
+      "input": {
+        "q": "b",
+        "limit": 5,
+        "cursor": "c",
+        "filter": null,
+        "addr": {
+          "city": "x"
+        }
+      },
+      "output": {
+        "q": "b",
+        "limit": 5,
+        "cursor": "c",
+        "filter": null,
+        "addr": {
+          "city": "x"
+        }
+      },
+      "warnings": []
+    }
+  ]
+}

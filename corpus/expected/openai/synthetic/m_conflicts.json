@@ -1,0 +1,93 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "m_conflicts_0",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "string",
+                "pattern": "^a",
+                "format": "email",
+                "description": "A",
+                "default": "x",
+                "not": {
+                  "const": "q"
+                },
+                "examples": [
+                  "e"
+                ],
+                "x-custom": 1
+              },
+              {
+                "pattern": "b$",
+                "format": "uri",
+                "description": "B",
+                "default": "y",
+                "not": {
+                  "const": "r"
+                },
+                "examples": [
+                  "f"
+                ],
+                "x-custom": 2,
+                "unknownKw": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_conflicts_1",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "number",
+                "multipleOf": 2
+              },
+              {
+                "multipleOf": 3,
+                "exclusiveMinimum": 0
+              },
+              {
+                "exclusiveMinimum": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "x_hint_options",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string",
+            "pattern": "^a",
+            "description": "a long de…"
+          },
+          "h": {
+            "type": "integer",
+            "multipleOf": 2,
+            "description": "x\n\n[constraints: minimum=1]"
+          }
+        },
+        "required": [
+          "p",
+          "h"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": [
+      {
+        "rule": "core/description-truncated",
+        "tid": "T1",
+        "tool": "x_hint_options",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "description",
+        "action": "truncated",
+        "severity": "info",
+        "original": "a long description text",
+        "hinted": false,
+        "message": "description truncated to 10 characters"
+      }
+    ]
+  }
+}

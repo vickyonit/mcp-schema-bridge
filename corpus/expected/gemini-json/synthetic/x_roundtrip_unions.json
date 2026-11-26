@@ -1,0 +1,207 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "x_roundtrip_unions",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "z": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "a"
+                    ]
+                  },
+                  "o": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "b"
+                    ]
+                  },
+                  "p": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "v"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5/properties/kind",
+        "target_path": "/properties/v/anyOf/5/properties/kind",
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "a",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": null
+      },
+      "output": {
+        "v": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 3
+      },
+      "output": {
+        "v": 3
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 2.5
+      },
+      "output": {
+        "v": 2.5
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": true
+      },
+      "output": {
+        "v": true
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "output": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": "s"
+      },
+      "output": {
+        "v": "s"
+      },
+      "warnings": []
+    }
+  ]
+}

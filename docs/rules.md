@@ -14,6 +14,7 @@ rules in [`rules/`](../rules/). The `tid` field groups rules into transformation
 | `core/unresolvable-ref` | T2c | fatal | A `$ref` is remote or does not resolve. Remote schemas are never fetched. |
 | `core/dynamic-ref-unsupported` | T2c | fatal | `$dynamicRef` / `$recursiveRef` are not supported by any target. |
 | `core/unused-def-pruned` | T1 | info | A definition no longer referenced from the output was removed. |
+| `core/def-renamed` | T1 | info | A definition name was changed to use only `[A-Za-z0-9_.-]`, so `$ref`s need no percent-encoding. (Gemini does not percent-decode `$ref` fragments.) |
 | `core/draft07-ref-sibling-ignored` | T3 | info | In draft-07, keywords next to `$ref` are ignored by definition, so they were removed. |
 | `core/tuple-items-to-prefix-items` | T3 | info | Array-form `items` (draft-07) was rewritten as `prefixItems`/`items`. |
 | `core/dependencies-split` | T3 | info | `dependencies` was split into `dependentRequired` / `dependentSchemas`. |

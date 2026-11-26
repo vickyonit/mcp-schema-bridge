@@ -1,0 +1,103 @@
+{
+  "target": "anthropic-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "o_optional_shapes_0",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/any-value-unsupported",
+          "tid": "T10",
+          "tool": "o_optional_shapes_0",
+          "source_path": "/properties/any",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "a schema that accepts any value cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/$defs/A",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/any-value-unsupported",
+        "tid": "T10",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/any",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "a schema that accepts any value cannot be expressed in strict mode"
+      },
+      {
+        "rule": "core/boolean-subschema",
+        "tid": "T3",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/any",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rewritten",
+        "severity": "info",
+        "original": true,
+        "hinted": false,
+        "message": "boolean subschema rewritten as an equivalent object schema"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/n",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "not is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

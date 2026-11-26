@@ -1,0 +1,105 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "x_ids",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/N"
+          },
+          "b": {
+            "$ref": "#/$defs/I"
+          },
+          "c": {
+            "$ref": "#/$defs/N"
+          }
+        },
+        "required": [
+          "a",
+          "b",
+          "c"
+        ],
+        "additionalProperties": false,
+        "$defs": {
+          "N": {
+            "type": "string"
+          },
+          "I": {
+            "type": "integer"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "x_ids",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$id",
+        "action": "dropped",
+        "severity": "info",
+        "original": "https://example.com/root.json",
+        "hinted": false,
+        "message": "$id is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_ids",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "x_ids",
+        "source_path": "/$defs/I",
+        "target_path": "/$defs/I",
+        "instance_path": null,
+        "keyword": "$id",
+        "action": "dropped",
+        "severity": "info",
+        "original": "item.json",
+        "hinted": false,
+        "message": "$id is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "x_ids",
+        "source_path": "/$defs/N",
+        "target_path": "/$defs/N",
+        "instance_path": null,
+        "keyword": "$anchor",
+        "action": "dropped",
+        "severity": "info",
+        "original": "name",
+        "hinted": false,
+        "message": "$anchor is resolved and removed; output always uses 2020-12 semantics"
+      }
+    ]
+  }
+}

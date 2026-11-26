@@ -1,0 +1,72 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "x_repairs",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "Fast",
+              "Slow",
+              "slow"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B"
+            ]
+          }
+        },
+        "required": [
+          "mode",
+          "kind"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": []
+  },
+  "args": [
+    {
+      "tool": "x_repairs",
+      "input": {
+        "mode": "SLOW",
+        "kind": "a"
+      },
+      "output": {
+        "mode": "SLOW",
+        "kind": "A"
+      },
+      "warnings": [
+        "core/repair-enum-case"
+      ]
+    },
+    {
+      "tool": "x_repairs",
+      "input": {
+        "mode": "slow",
+        "kind": "B"
+      },
+      "output": {
+        "mode": "slow",
+        "kind": "B"
+      },
+      "warnings": []
+    }
+  ]
+}

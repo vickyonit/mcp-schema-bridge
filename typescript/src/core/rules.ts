@@ -14,6 +14,7 @@ export interface Features {
   ref_siblings: boolean;
   type_arrays: boolean;
   multi_type_arrays: boolean;
+  multi_type_enum: boolean;
   root_union: boolean;
   root_anyof_with_object: boolean;
   anyof_validation_siblings: boolean;

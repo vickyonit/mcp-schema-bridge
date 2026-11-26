@@ -1,0 +1,80 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "x_hint_options",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string",
+            "description": "a long de…"
+          },
+          "h": {
+            "type": "integer",
+            "description": "x\n\n[constraints: minimum=1]"
+          }
+        },
+        "required": [
+          "p",
+          "h"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "x_hint_options",
+        "source_path": "/properties/h",
+        "target_path": "/properties/h",
+        "instance_path": "/h",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": false,
+        "message": "multipleOf is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/description-truncated",
+        "tid": "T1",
+        "tool": "x_hint_options",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "description",
+        "action": "truncated",
+        "severity": "info",
+        "original": "a long description text",
+        "hinted": false,
+        "message": "description truncated to 10 characters"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "x_hint_options",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^a",
+        "hinted": false,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

@@ -38,7 +38,7 @@ function visit(node: SNode, ctx: Ctx, seen: Seen): void {
   if (node.has("oneOf") && !f.oneof) t8(node, ctx);
   if (ctx.rules.strict || f.enum_values === "primitive") t5Type(node, ctx);
   constToEnum(node, ctx);
-  if (!f.multi_type_arrays) t4(node, ctx);
+  if (!f.multi_type_arrays || (!f.multi_type_enum && (node.has("enum") || node.has("const")))) t4(node, ctx);
   if (!f.anyof_validation_siblings && node.has("anyOf")) t9(node, ctx);
   for (const b of (node.get("anyOf") as unknown[] | undefined) ?? []) if (b instanceof SNode && !seen.has(b)) visit(b, ctx, seen);
 }

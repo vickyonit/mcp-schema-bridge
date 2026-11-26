@@ -1,0 +1,109 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "ok",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "files.read",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "anthropic-strict/tool-name-invalid",
+          "tid": "T18",
+          "tool": "files.read",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "files.read",
+          "hinted": false,
+          "message": "tool name 'files.read' does not match ^[a-zA-Z0-9_-]{1,128}$ (renaming arrives in v0.2)"
+        }
+      ]
+    },
+    {
+      "name": "ok",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/duplicate-tool-name",
+          "tid": "T18",
+          "tool": "ok",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "ok",
+          "hinted": false,
+          "message": "duplicate tool name 'ok'"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "anthropic-strict/tool-name-invalid",
+        "tid": "T18",
+        "tool": "files.read",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "files.read",
+        "hinted": false,
+        "message": "tool name 'files.read' does not match ^[a-zA-Z0-9_-]{1,128}$ (renaming arrives in v0.2)"
+      },
+      {
+        "rule": "core/duplicate-tool-name",
+        "tid": "T18",
+        "tool": "ok",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "ok",
+        "hinted": false,
+        "message": "duplicate tool name 'ok'"
+      },
+      {
+        "rule": "core/parameterless-tool-closed",
+        "tid": "T10",
+        "tool": "ok",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "tool declares no parameters; closed as {type: object, properties: {}, additionalProperties: false}"
+      }
+    ]
+  }
+}

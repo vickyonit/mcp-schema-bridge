@@ -1,0 +1,106 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "i_ref_siblings_recursive_0",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "type": "string"
+          },
+          "next": {
+            "anyOf": [
+              {
+                "$ref": "#"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "v",
+          "next"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "next",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/ref-sibling-dropped",
+        "tid": "T2b",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/anyOf/0",
+        "instance_path": null,
+        "keyword": "description",
+        "action": "dropped",
+        "severity": "info",
+        "original": "next node",
+        "hinted": false,
+        "message": "target forbids keywords next to $ref and the reference is recursive"
+      },
+      {
+        "rule": "core/ref-sibling-dropped",
+        "tid": "T2b",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/anyOf/0",
+        "instance_path": null,
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": false,
+        "message": "target forbids keywords next to $ref and the reference is recursive"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next",
+        "instance_path": "/next",
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'next' made required and nullable (anyOf with null); null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

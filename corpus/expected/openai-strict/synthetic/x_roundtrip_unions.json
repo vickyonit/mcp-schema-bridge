@@ -1,0 +1,365 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "x_roundtrip_unions",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "z": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "z"
+                  ]
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "a"
+                    ],
+                    "type": "string"
+                  },
+                  "o": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "o"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "b"
+                    ],
+                    "type": "string"
+                  },
+                  "p": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "p"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "v"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "z",
+            "at": "/properties/v/anyOf/4/items"
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o",
+            "at": "/properties/v/anyOf/5"
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "p",
+            "at": "/properties/v/anyOf/6"
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/4/items",
+        "target_path": "/properties/v/anyOf/4/items",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/4/items/properties/z",
+        "target_path": "/properties/v/anyOf/4/items/properties/z",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "integer",
+        "hinted": false,
+        "message": "optional property 'z' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5",
+        "target_path": "/properties/v/anyOf/5",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5/properties/kind",
+        "target_path": "/properties/v/anyOf/5/properties/kind",
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "a",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5/properties/kind",
+        "target_path": "/properties/v/anyOf/5/properties/kind",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from const values"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5/properties/o",
+        "target_path": "/properties/v/anyOf/5/properties/o",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/6",
+        "target_path": "/properties/v/anyOf/6",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/6/properties/kind",
+        "target_path": "/properties/v/anyOf/6/properties/kind",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from enum values"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/6/properties/p",
+        "target_path": "/properties/v/anyOf/6/properties/p",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'p' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": null
+      },
+      "output": {
+        "v": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 3
+      },
+      "output": {
+        "v": 3
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 2.5
+      },
+      "output": {
+        "v": 2.5
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": true
+      },
+      "output": {
+        "v": true
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "output": {
+        "v": [
+          {}
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "a"
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "b"
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": "s"
+      },
+      "output": {
+        "v": "s"
+      },
+      "warnings": []
+    }
+  ]
+}

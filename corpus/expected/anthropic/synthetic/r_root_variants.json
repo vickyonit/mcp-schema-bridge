@@ -1,0 +1,212 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "r_root_variants_0",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_root_variants_1",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "properties": {
+          "a": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_root_variants_2",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/$defs/__root_1"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "$defs": {
+          "__root_1": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "child": {
+                    "$ref": "#/$defs/__root_1"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "leaf": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "leaf"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "r_root_variants_3",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "patternProperties": {
+          "^x": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_root_variants_4",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_root_variants_5",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": [
+      {
+        "rule": "core/root-type-narrowed",
+        "tid": "T14",
+        "tool": "r_root_variants_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "type",
+        "action": "narrowed",
+        "severity": "info",
+        "original": [
+          "null",
+          "object"
+        ],
+        "hinted": false,
+        "message": "MCP tool arguments are always objects; non-object root types removed"
+      },
+      {
+        "rule": "core/root-type-object-added",
+        "tid": "T14",
+        "tool": "r_root_variants_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "type",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "root declared no type; added type: object (MCP tool arguments are objects)"
+      },
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "r_root_variants_2",
+        "source_path": "",
+        "target_path": "/$defs/__root_1",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_root_variants_2",
+        "source_path": "/$defs/__root",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition '__root' removed"
+      }
+    ]
+  }
+}

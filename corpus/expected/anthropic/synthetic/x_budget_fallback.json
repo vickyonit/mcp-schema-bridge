@@ -1,0 +1,121 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "t0",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": "string"
+          },
+          "o1": {
+            "type": "string"
+          },
+          "o2": {
+            "type": "string"
+          },
+          "o3": {
+            "type": "string"
+          },
+          "o4": {
+            "type": "string"
+          },
+          "o5": {
+            "type": "string"
+          },
+          "o6": {
+            "type": "string"
+          },
+          "o7": {
+            "type": "string"
+          },
+          "o8": {
+            "type": "string"
+          },
+          "o9": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "t1",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": "string"
+          },
+          "o1": {
+            "type": "string"
+          },
+          "o2": {
+            "type": "string"
+          },
+          "o3": {
+            "type": "string"
+          },
+          "o4": {
+            "type": "string"
+          },
+          "o5": {
+            "type": "string"
+          },
+          "o6": {
+            "type": "string"
+          },
+          "o7": {
+            "type": "string"
+          },
+          "o8": {
+            "type": "string"
+          },
+          "o9": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    },
+    {
+      "name": "meta",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "m": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "m"
+        ]
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

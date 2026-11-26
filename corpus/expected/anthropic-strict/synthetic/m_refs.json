@@ -1,0 +1,202 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "m_refs_0",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string",
+            "description": "first\n\n[constraints: maxLength=9; minLength=1]"
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_refs_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/A",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/A",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/A",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'A' removed"
+      },
+      {
+        "rule": "core/allof-ref-inlined",
+        "tid": "T7",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/B",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/C",
+        "hinted": false,
+        "message": "$ref inside allOf resolved before merging"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/B",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'B' removed"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/C",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/C",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "maxLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 9,
+        "hinted": true,
+        "message": "maxLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "m_refs_0",
+        "source_path": "/$defs/C",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'C' removed"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_refs_0",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-ref-inlined",
+        "tid": "T7",
+        "tool": "m_refs_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/A",
+        "hinted": false,
+        "message": "$ref inside allOf resolved before merging"
+      },
+      {
+        "rule": "core/allof-ref-inlined",
+        "tid": "T7",
+        "tool": "m_refs_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/B",
+        "hinted": false,
+        "message": "$ref inside allOf resolved before merging"
+      }
+    ]
+  }
+}

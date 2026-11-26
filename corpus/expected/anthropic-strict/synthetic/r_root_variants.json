@@ -1,0 +1,742 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "r_root_variants_0",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_root_variants_1",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "a": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_root_variants_2",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "child": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "child": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "child": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "child": {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "child": {
+                                                    "anyOf": [
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "child": {
+                                                            "anyOf": [
+                                                              {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "child": {
+                                                                    "anyOf": [
+                                                                      {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                          "name": {
+                                                                            "type": "string"
+                                                                          }
+                                                                        },
+                                                                        "required": [
+                                                                          "name"
+                                                                        ],
+                                                                        "additionalProperties": false
+                                                                      },
+                                                                      {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                          "leaf": {
+                                                                            "type": "boolean"
+                                                                          }
+                                                                        },
+                                                                        "required": [
+                                                                          "leaf"
+                                                                        ],
+                                                                        "additionalProperties": false
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  "name": {
+                                                                    "type": "string"
+                                                                  }
+                                                                },
+                                                                "required": [
+                                                                  "name"
+                                                                ],
+                                                                "additionalProperties": false
+                                                              },
+                                                              {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "leaf": {
+                                                                    "type": "boolean"
+                                                                  }
+                                                                },
+                                                                "required": [
+                                                                  "leaf"
+                                                                ],
+                                                                "additionalProperties": false
+                                                              }
+                                                            ]
+                                                          },
+                                                          "name": {
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "name"
+                                                        ],
+                                                        "additionalProperties": false
+                                                      },
+                                                      {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "leaf": {
+                                                            "type": "boolean"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "leaf"
+                                                        ],
+                                                        "additionalProperties": false
+                                                      }
+                                                    ]
+                                                  },
+                                                  "name": {
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "name"
+                                                ],
+                                                "additionalProperties": false
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "leaf": {
+                                                    "type": "boolean"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "leaf"
+                                                ],
+                                                "additionalProperties": false
+                                              }
+                                            ]
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "name"
+                                        ],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "leaf": {
+                                            "type": "boolean"
+                                          }
+                                        },
+                                        "required": [
+                                          "leaf"
+                                        ],
+                                        "additionalProperties": false
+                                      }
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "name"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "leaf": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "leaf"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "leaf": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "leaf"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "leaf": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "leaf"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "r_root_variants_5",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "r_root_variants_3",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "r_root_variants_3",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    },
+    {
+      "name": "r_root_variants_4",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "r_root_variants_4",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "type": "string"
+          },
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-type-narrowed",
+        "tid": "T14",
+        "tool": "r_root_variants_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "type",
+        "action": "narrowed",
+        "severity": "info",
+        "original": [
+          "null",
+          "object"
+        ],
+        "hinted": false,
+        "message": "MCP tool arguments are always objects; non-object root types removed"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-type-object-added",
+        "tid": "T14",
+        "tool": "r_root_variants_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "type",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "root declared no type; added type: object (MCP tool arguments are objects)"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "r_root_variants_2",
+        "source_path": "",
+        "target_path": "/properties/value",
+        "instance_path": "/value",
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_root_variants_2",
+        "source_path": "/$defs/__root",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition '__root' removed"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/recursion-truncated",
+        "tid": "T2a",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0/properties/child",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "truncated",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "recursion cut at depth 3: optional property removed"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/0/properties/child/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "r_root_variants_3",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "patternProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "^x": {
+            "type": "string"
+          }
+        },
+        "hinted": true,
+        "message": "patternProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "r_root_variants_3",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "r_root_variants_4",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "type": "string"
+        },
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      }
+    ]
+  }
+}

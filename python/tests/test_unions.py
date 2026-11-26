@@ -161,3 +161,13 @@ def test_multi_type_with_null_splits_into_branches_plus_null() -> None:
 def test_multi_type_kept_for_gemini() -> None:
     _, p = prop({"type": ["string", "integer"]}, "gemini-json")
     assert p == {"type": ["string", "integer"]}
+
+
+def test_gemini_splits_multi_type_arrays_that_carry_enum() -> None:
+    # Live verdict: Gemini rejects enum next to a type array with 2+ non-null types (400).
+    _r, p = prop({"type": ["string", "integer"], "enum": ["a", 1]}, "gemini-json")
+    assert p == {"anyOf": [{"type": "string", "enum": ["a"]}, {"type": "integer", "enum": [1]}]}
+    _, p = prop({"type": ["string", "integer"]}, "gemini-json")
+    assert p == {"type": ["string", "integer"]}  # without enum the type array is accepted
+    _, p = prop({"type": ["string", "null"], "enum": ["a", None]}, "gemini-json")
+    assert p == {"type": ["string", "null"], "enum": ["a", None]}  # nullable is fine

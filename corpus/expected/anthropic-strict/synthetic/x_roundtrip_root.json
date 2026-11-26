@@ -1,0 +1,162 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "x_roundtrip_root",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "opt": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "slug": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "slug"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_root",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "x_roundtrip_root",
+        "source_path": "",
+        "target_path": "/properties/value",
+        "instance_path": "/value",
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_root",
+        "source_path": "/anyOf/0",
+        "target_path": "/properties/value/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_root",
+        "source_path": "/anyOf/1",
+        "target_path": "/properties/value/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_root",
+      "input": {
+        "value": {
+          "id": "1",
+          "opt": null
+        }
+      },
+      "output": {
+        "id": "1",
+        "opt": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_root",
+      "input": {
+        "value": {
+          "slug": "s"
+        }
+      },
+      "output": {
+        "slug": "s"
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_root",
+      "input": {
+        "not_value": 1
+      },
+      "output": {
+        "not_value": 1
+      },
+      "warnings": [
+        "core/reverse-unrecognized-shape"
+      ]
+    }
+  ]
+}

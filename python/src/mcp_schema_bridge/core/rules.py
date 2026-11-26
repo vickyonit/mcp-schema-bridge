@@ -34,6 +34,7 @@ class Features:
     ref_siblings: bool
     type_arrays: bool
     multi_type_arrays: bool
+    multi_type_enum: bool
     root_union: bool
     root_anyof_with_object: bool
     anyof_validation_siblings: bool

@@ -1,0 +1,101 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "o_optional_shapes_0",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "c": {
+            "type": "string",
+            "enum": [
+              "x"
+            ]
+          },
+          "e": {
+            "type": "string",
+            "enum": [
+              "a",
+              null
+            ]
+          },
+          "r": {
+            "$ref": "#/$defs/A",
+            "description": "addr",
+            "title": "Addr"
+          },
+          "u": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "n": {
+            "description": "[constraints: not={\"type\":\"string\"}]"
+          },
+          "any": true
+        },
+        "$defs": {
+          "A": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/c",
+        "target_path": "/properties/c",
+        "instance_path": "/c",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "x",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "o_optional_shapes_0",
+        "source_path": "/properties/n",
+        "target_path": "/properties/n",
+        "instance_path": "/n",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "string"
+        },
+        "hinted": true,
+        "message": "not is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

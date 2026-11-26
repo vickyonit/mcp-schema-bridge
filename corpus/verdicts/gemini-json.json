@@ -1,7 +1,7 @@
 {
   "target": "gemini-json",
   "model": "gemini-3.5-flash-lite",
-  "recorded_at": "2026-11-26T05:31:16Z",
+  "recorded_at": "2026-11-26T07:48:09Z",
   "verdicts": {
     "playwright-mcp/browser_close": {
       "raw": {
@@ -1026,6 +1026,324 @@
         "sha256": "3b8b187c6558d4e99f38a5ab1c3a11f08c91cebbfc406b7ac4fa07ebf23841f4"
       }
     },
+    "synthetic/i_ref_siblings_recursive": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "6ec46745f88fe7a00a418d3d825d800656caf8c5d5a179691656531b4aeeb2f9"
+      }
+    },
+    "synthetic/m_arrays": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d6c723787cad1e0f56ec86e9360f1fff44a91dce426a10292512438153e8a374"
+      }
+    },
+    "synthetic/m_bool_branches/m_bool_branches_0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "48e4192eb13affd967e444961ee484fe37ca01ac3936e2c004a75db1329e7abe"
+      }
+    },
+    "synthetic/m_bool_branches/m_bool_branches_1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/m_conflicts/m_conflicts_0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "51c936bcc0396c63aa5e00fe42de68e777b54a1f5ae914a0c210c254f66ee8ad"
+      }
+    },
+    "synthetic/m_conflicts/m_conflicts_1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a27ad3d32522428f325c06047b71c1b5cff98ee1ff3102c8edd23236c4324947"
+      }
+    },
+    "synthetic/m_distribution_limit": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-distribution-too-large"
+        ]
+      }
+    },
+    "synthetic/m_objects/m_objects_0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5b2e24f54ddf135b25745ef97454e94cbec38995b5f2877b0f70448f7f3305b2"
+      }
+    },
+    "synthetic/m_objects/m_objects_1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "e726958d3bf9620d59ab8c81854019051281203c7be34fd1ed1c7e0ea9cbc2fa"
+      }
+    },
+    "synthetic/m_ref_cycle": {
+      "raw": {
+        "status": "rejected",
+        "error": "ref loops are only supported if they include optional or nullable property values, or a potentially-zero-length array items, but a ref loop of required fields was found at $defs.A.allOf.0"
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-ref-cycle"
+        ]
+      }
+    },
+    "synthetic/m_refs": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "7cc1677451c4230206320480101d47e81d8d9cca55acb0d0666c455410b91a56"
+      }
+    },
+    "synthetic/m_required_forbidden/m_required_forbidden_0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/m_required_forbidden/m_required_forbidden_1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "69d653eae5ce6784e94e78a859ccea17b829f848979a0da84bddd2b118339b25"
+      }
+    },
+    "synthetic/m_required_forbidden/m_required_forbidden_2": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/allof-unsatisfiable"
+        ]
+      }
+    },
+    "synthetic/m_unions/m_unions_0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "c8926972cfdddcbf911795d39e8b26f32c8f1f1b9cf4c25e259e4e8fdf0510a1"
+      }
+    },
+    "synthetic/m_unions/m_unions_1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unsatisfiable-union"
+        ]
+      }
+    },
+    "synthetic/o_optional_shapes": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "9e95b649b3c311b8bb793c75bd49fc3b275be50609f53eeafa07abd43bc30362"
+      }
+    },
+    "synthetic/r_refs/r_refs_0": {
+      "raw": {
+        "status": "rejected",
+        "error": "reference to undefined schema at properties.c"
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/unresolvable-ref",
+          "core/unresolvable-ref"
+        ]
+      }
+    },
+    "synthetic/r_refs/r_refs_1": {
+      "raw": {
+        "status": "rejected",
+        "error": "reference to undefined schema at properties.a"
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "1abaae96bb3e885a9e259de6601f495bb470e42c78cc6d44f1d857fb92f88d7e"
+      }
+    },
+    "synthetic/r_refs/r_refs_2": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "rejected-by-design",
+        "reasons": [
+          "core/dynamic-ref-unsupported",
+          "core/dynamic-ref-unsupported"
+        ]
+      }
+    },
+    "synthetic/r_refs/r_refs_3": {
+      "raw": {
+        "status": "rejected",
+        "error": "reference to undefined schema at properties.x"
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "642e6a45f15fbde010b5224e74ae4159ddc60db8726d80b00baccfdad97d7743"
+      }
+    },
+    "synthetic/r_root_ref": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "ecd6fe5419cbaa84a5ce5e63416e504893bc717092267b1c8d159dd457ef991b"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "08c8cc0e5745b1461ff0e3254761829dcd326eb328e9f4375a1ad67be880e009"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a98837377f556ee276af1e7729363a9b5ac5571a0358818da4acb8575c319ff4"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_2": {
+      "raw": {
+        "status": "rejected",
+        "error": "Request contains an invalid argument."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "127cc9c572cd36f808a5bb8824ca31e24046a332b484e4b206c7af747debcaa3"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_3": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "01492fb749cc4157ce81c9a114e25175f8647295c10fe7bf355bfe87d3ed145c"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_4": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "3f161562db4a7237942681ccf41abd9a699b0260591ddd0d154bfca063f449bf"
+      }
+    },
+    "synthetic/r_root_variants/r_root_variants_5": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "99334726611ccf58a148b0814696bfa6fe08c1b2d027e946beccf5a74331c9aa"
+      }
+    },
     "synthetic/t10_no_params": {
       "raw": {
         "status": "accepted",
@@ -1280,6 +1598,226 @@
         "status": "accepted",
         "error": null,
         "sha256": "98d276e86e631295face45d8124f6b1736bfbf74022f2ee87b98e0fee4d2bc77"
+      }
+    },
+    "synthetic/u_enums_types": {
+      "raw": {
+        "status": "rejected",
+        "error": "Request contains an invalid argument."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2d8dad0da74e840c9aae88887643c08f13d607d9b832ef88e5fc666b798fcd44"
+      }
+    },
+    "synthetic/v_limits": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "539fa4b1e32c1a318b2b336bfa65cc6c9c66c04f2109fbd0e801e1a89c496304"
+      }
+    },
+    "synthetic/x_budget/t0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12b93c15fc08c262cbf99d285cbef4e3075017dcb9e682531ba0828cf1f717e2"
+      }
+    },
+    "synthetic/x_budget/t1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12b93c15fc08c262cbf99d285cbef4e3075017dcb9e682531ba0828cf1f717e2"
+      }
+    },
+    "synthetic/x_budget/t2": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12b93c15fc08c262cbf99d285cbef4e3075017dcb9e682531ba0828cf1f717e2"
+      }
+    },
+    "synthetic/x_budget/t3": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12b93c15fc08c262cbf99d285cbef4e3075017dcb9e682531ba0828cf1f717e2"
+      }
+    },
+    "synthetic/x_budget_fallback/t0": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12b93c15fc08c262cbf99d285cbef4e3075017dcb9e682531ba0828cf1f717e2"
+      }
+    },
+    "synthetic/x_budget_fallback/t1": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "12b93c15fc08c262cbf99d285cbef4e3075017dcb9e682531ba0828cf1f717e2"
+      }
+    },
+    "synthetic/x_budget_fallback/meta": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "4d8b10ec2e8416802d178ec078ca189fd77390a61130bcb19e156bfdec456f97"
+      }
+    },
+    "synthetic/x_hint_merge": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a90444980219670ff5e4a46b649b291163e7c5136cde1e32a1ef2af68167f4d7"
+      }
+    },
+    "synthetic/x_hint_options": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "f844f936801da28a6b0392eceaa5d4c2fe8b8e493f72b614a05d7523dcaf4c46"
+      }
+    },
+    "synthetic/x_ids": {
+      "raw": {
+        "status": "rejected",
+        "error": "reference to undefined schema at properties.b"
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "93adf606988a3151690545b1afc2f41bd2f0cdd43398e56b6bf501a38ea90fcc"
+      }
+    },
+    "synthetic/x_names/files.read": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a2c799262a3ce3c19ef5cdd983bf3d12b43ab3c426227091b909dcb7054738c0"
+      }
+    },
+    "synthetic/x_names/ok": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "a2c799262a3ce3c19ef5cdd983bf3d12b43ab3c426227091b909dcb7054738c0"
+      }
+    },
+    "synthetic/x_repairs": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "83a604b40afcbcfba479e74d65ba6ec7acbeb4100c2edebcd39c3a47207a5025"
+      }
+    },
+    "synthetic/x_roundtrip_optional": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "5f38fb6caf3ab9e417a08773a3eaa185c111fc3c04b4c41ec88b7dfbde6379f9"
+      }
+    },
+    "synthetic/x_roundtrip_recursive": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "18d22478968ade2f62564a757d22a7c57267bddf61ebe5214ff2644533e44ee3"
+      }
+    },
+    "synthetic/x_roundtrip_root": {
+      "raw": {
+        "status": "rejected",
+        "error": "Request contains an invalid argument."
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "d4313d51cb2b00478ffff85c9fc20759ff386871b9ea64ee274e20687ae139ae"
+      }
+    },
+    "synthetic/x_roundtrip_unions": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "2ef09ec89b24d8f6ba82598f161129bf9fd1de9ef78a73a9b40d49667f1cbe73"
+      }
+    },
+    "synthetic/x_unroll_depth": {
+      "raw": {
+        "status": "accepted",
+        "error": null
+      },
+      "normalized": {
+        "status": "accepted",
+        "error": null,
+        "sha256": "bb0ed9cd102fc72da0b3d70e0a6809eb42e9c5ff7c6963f273b62a2363b30816"
       }
     }
   }

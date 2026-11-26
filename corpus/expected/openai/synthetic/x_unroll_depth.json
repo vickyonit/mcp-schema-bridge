@@ -1,0 +1,46 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "x_unroll_depth",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "expr": {
+            "$ref": "#/$defs/E"
+          }
+        },
+        "required": [
+          "expr"
+        ],
+        "$defs": {
+          "E": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/E"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

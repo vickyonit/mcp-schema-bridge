@@ -1,0 +1,240 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "m_unions_0",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "anyOf": [
+              {
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "m_unions_1",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/unsatisfiable-union",
+          "tid": "T7",
+          "tool": "m_unions_1",
+          "source_path": "/properties/p",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "anyOf",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "no union branch is satisfiable"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_unions_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_unions_0",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "m_unions_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; branches are disjoint so meaning is unchanged"
+      },
+      {
+        "rule": "core/unsatisfiable-branch-removed",
+        "tid": "T7",
+        "tool": "m_unions_0",
+        "source_path": "/properties/p/allOf/0/oneOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": null,
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "a union branch that can never match was removed"
+      },
+      {
+        "rule": "core/oneof-to-anyof",
+        "tid": "T8",
+        "tool": "m_unions_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "oneOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "oneOf rewritten to anyOf; branches are disjoint so meaning is unchanged"
+      },
+      {
+        "rule": "core/unsatisfiable-branch-removed",
+        "tid": "T7",
+        "tool": "m_unions_0",
+        "source_path": "/properties/p/allOf/1/oneOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": null,
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "a union branch that can never match was removed"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_unions_1",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_unions_1",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/unsatisfiable-union",
+        "tid": "T7",
+        "tool": "m_unions_1",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "anyOf",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "no union branch is satisfiable"
+      },
+      {
+        "rule": "core/unsatisfiable-branch-removed",
+        "tid": "T7",
+        "tool": "m_unions_1",
+        "source_path": "/properties/p/allOf/0/anyOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "a union branch that can never match was removed"
+      },
+      {
+        "rule": "core/unsatisfiable-branch-removed",
+        "tid": "T7",
+        "tool": "m_unions_1",
+        "source_path": "/properties/p/allOf/0/anyOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "a union branch that can never match was removed"
+      },
+      {
+        "rule": "core/unsatisfiable-branch-removed",
+        "tid": "T7",
+        "tool": "m_unions_1",
+        "source_path": "/properties/p/allOf/1/anyOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "a union branch that can never match was removed"
+      },
+      {
+        "rule": "core/unsatisfiable-branch-removed",
+        "tid": "T7",
+        "tool": "m_unions_1",
+        "source_path": "/properties/p/allOf/1/anyOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "a union branch that can never match was removed"
+      }
+    ]
+  }
+}

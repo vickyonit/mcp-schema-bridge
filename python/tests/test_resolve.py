@@ -44,8 +44,10 @@ def test_pointer_escapes_and_percent_encoding_in_refs() -> None:
     s = obj({"x": {"$ref": "#/$defs/a~1b%25c"}}, **{"$defs": {"a/b%c": {"type": "integer"}}})
     r = normalize_schema(s, "openai")
     assert r.schema is not None
-    assert r.schema["$defs"] == {"a/b%c": {"type": "integer"}}
-    assert r.schema["properties"]["x"] == {"$ref": "#/$defs/a~1b%25c"}
+    assert r.schema["$defs"] == {
+        "a_b_c": {"type": "integer"}
+    }  # renamed: no percent-encoding needed
+    assert r.schema["properties"]["x"] == {"$ref": "#/$defs/a_b_c"}
 
 
 def test_anchor_and_embedded_id_resolution() -> None:
@@ -144,3 +146,18 @@ def test_unused_defs_are_pruned_with_info_entry() -> None:
         None,
         "info",
     )
+
+
+def test_def_names_that_would_need_percent_encoding_are_renamed() -> None:
+    # Live verdict: Gemini does not percent-decode $ref fragments ("reference to undefined schema").
+    s = obj(
+        {"x": {"$ref": "#/$defs/a~1b%25c"}, "y": {"$ref": "#/$defs/a_b_c"}},
+        **{"$defs": {"a/b%c": {"type": "integer"}, "a_b_c": {"type": "string"}}},
+    )
+    r = normalize_schema(s, "gemini-json")
+    assert r.schema is not None
+    assert set(r.schema["$defs"]) == {"a_b_c", "a_b_c_1"}
+    assert r.schema["properties"]["x"] == {"$ref": "#/$defs/a_b_c_1"}
+    assert r.schema["properties"]["y"] == {"$ref": "#/$defs/a_b_c"}
+    [e] = [e for e in r.report.entries if e.rule == "core/def-renamed"]
+    assert (e.source_path, e.severity, e.original) == ("/$defs/a~1b%c", "info", "a/b%c")

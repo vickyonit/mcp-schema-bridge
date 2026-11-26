@@ -1,0 +1,281 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "x_roundtrip_unions",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "z": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "a",
+                    "type": "string"
+                  },
+                  "o": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "b"
+                    ],
+                    "type": "string"
+                  },
+                  "p": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "v"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/4/items",
+        "target_path": "/properties/v/anyOf/4/items",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5",
+        "target_path": "/properties/v/anyOf/5",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/5/properties/kind",
+        "target_path": "/properties/v/anyOf/5/properties/kind",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from const values"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/6",
+        "target_path": "/properties/v/anyOf/6",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "x_roundtrip_unions",
+        "source_path": "/properties/v/anyOf/6/properties/kind",
+        "target_path": "/properties/v/anyOf/6/properties/kind",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from enum values"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": null
+      },
+      "output": {
+        "v": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 3
+      },
+      "output": {
+        "v": 3
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 2.5
+      },
+      "output": {
+        "v": 2.5
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": true
+      },
+      "output": {
+        "v": true
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "output": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": "s"
+      },
+      "output": {
+        "v": "s"
+      },
+      "warnings": []
+    }
+  ]
+}

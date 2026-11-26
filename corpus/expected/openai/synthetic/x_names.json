@@ -1,0 +1,93 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "ok",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object"
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "files.read",
+      "target": "openai",
+      "reasons": [
+        {
+          "rule": "openai/tool-name-invalid",
+          "tid": "T18",
+          "tool": "files.read",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "files.read",
+          "hinted": false,
+          "message": "tool name 'files.read' does not match ^[a-zA-Z0-9_-]{1,64}$ (renaming arrives in v0.2)"
+        }
+      ]
+    },
+    {
+      "name": "ok",
+      "target": "openai",
+      "reasons": [
+        {
+          "rule": "core/duplicate-tool-name",
+          "tid": "T18",
+          "tool": "ok",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "ok",
+          "hinted": false,
+          "message": "duplicate tool name 'ok'"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai",
+    "entries": [
+      {
+        "rule": "openai/tool-name-invalid",
+        "tid": "T18",
+        "tool": "files.read",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "files.read",
+        "hinted": false,
+        "message": "tool name 'files.read' does not match ^[a-zA-Z0-9_-]{1,64}$ (renaming arrives in v0.2)"
+      },
+      {
+        "rule": "core/duplicate-tool-name",
+        "tid": "T18",
+        "tool": "ok",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "ok",
+        "hinted": false,
+        "message": "duplicate tool name 'ok'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "target": "anthropic",
+  "tools": [
+    {
+      "name": "x_unroll_depth",
+      "description": null,
+      "target": "anthropic",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "expr": {
+            "$ref": "#/$defs/E"
+          }
+        },
+        "required": [
+          "expr"
+        ],
+        "$defs": {
+          "E": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/E"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic",
+    "entries": []
+  }
+}

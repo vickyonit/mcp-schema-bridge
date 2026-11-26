@@ -1,0 +1,50 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "i_ref_siblings_recursive_0",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#",
+            "description": "next node\n\n[constraints: minProperties=1]"
+          }
+        },
+        "required": [
+          "v"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next",
+        "instance_path": "/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

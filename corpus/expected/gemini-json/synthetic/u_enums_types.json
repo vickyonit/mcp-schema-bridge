@@ -1,0 +1,247 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "u_enums_types_0",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "enum": [
+              "x",
+              1,
+              null
+            ]
+          },
+          "b": {
+            "enum": [
+              1,
+              2.5
+            ]
+          },
+          "c": {
+            "enum": [
+              null
+            ]
+          },
+          "d": {
+            "type": [
+              "integer",
+              "number",
+              "null"
+            ]
+          },
+          "e": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "k"
+                ]
+              }
+            ]
+          },
+          "f": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "a"
+                ],
+                "description": "[constraints: minLength=1]"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "a"
+                ],
+                "minimum": 0
+              },
+              {
+                "type": "integer",
+                "enum": [
+                  1
+                ],
+                "description": "[constraints: minLength=1]"
+              },
+              {
+                "type": "integer",
+                "enum": [
+                  1
+                ],
+                "minimum": 0
+              }
+            ]
+          },
+          "g": {
+            "enum": [
+              {
+                "k": 1
+              },
+              2
+            ]
+          },
+          "h": {
+            "enum": [
+              "a",
+              {
+                "k": 1
+              }
+            ],
+            "anyOf": [
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/c",
+        "target_path": "/properties/c",
+        "instance_path": "/c",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/e",
+        "target_path": "/properties/e",
+        "instance_path": "/e",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "k",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/e",
+        "target_path": "/properties/e",
+        "instance_path": "/e",
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "k"
+        ],
+        "hinted": false,
+        "message": "enum values partitioned into the typed anyOf branches"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/e",
+        "target_path": "/properties/e",
+        "instance_path": "/e",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "string",
+          "integer"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f",
+        "instance_path": "/f",
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "a",
+          1
+        ],
+        "hinted": false,
+        "message": "enum values partitioned into the typed anyOf branches"
+      },
+      {
+        "rule": "core/multi-type-split",
+        "tid": "T4",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f",
+        "target_path": "/properties/f",
+        "instance_path": "/f",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "string",
+          "integer"
+        ],
+        "hinted": false,
+        "message": "multi-type array rewritten as anyOf with type-specific keywords per branch"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f/anyOf/0",
+        "target_path": "/properties/f/anyOf/0",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f/anyOf/0",
+        "target_path": "/properties/f/anyOf/2",
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

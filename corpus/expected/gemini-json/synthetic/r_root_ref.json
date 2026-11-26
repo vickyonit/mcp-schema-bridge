@@ -1,0 +1,78 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "r_root_ref",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "o": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "description": "args"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/root-ref-inlined",
+        "tid": "T2b",
+        "tool": "r_root_ref",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$ref",
+        "action": "inlined",
+        "severity": "info",
+        "original": "#/$defs/Args",
+        "hinted": false,
+        "message": "root $ref replaced by its target"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_root_ref",
+        "source_path": "/$defs/Args",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'Args' removed"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "r_root_ref",
+      "input": {
+        "q": "x",
+        "o": null
+      },
+      "output": {
+        "q": "x",
+        "o": null
+      },
+      "warnings": []
+    }
+  ]
+}

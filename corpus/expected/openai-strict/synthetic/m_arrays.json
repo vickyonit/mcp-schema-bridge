@@ -1,0 +1,156 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "m_arrays_0",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9
+            },
+            "title": "A",
+            "description": "[constraints: contains={\"type\":\"integer\"}; prefixItems=[{\"minimum\":1,\"type\":\"integer\"},{\"type\":\"integer\"}]; uniqueItems=true]"
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_arrays_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_arrays_0",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "m_arrays_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "prefixItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "hinted": true,
+        "message": "prefixItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/allof-first-wins",
+        "tid": "T7",
+        "tool": "m_arrays_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "title",
+        "action": "merged",
+        "severity": "info",
+        "original": "B",
+        "hinted": false,
+        "message": "title differs between allOf branches; kept the first"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "m_arrays_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "contains",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "type": "integer"
+        },
+        "hinted": true,
+        "message": "contains is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "m_arrays_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "prefixItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "hinted": true,
+        "message": "prefixItems is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "openai-strict/keyword-unsupported",
+        "tid": "T12",
+        "tool": "m_arrays_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "uniqueItems",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": true,
+        "hinted": true,
+        "message": "uniqueItems is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

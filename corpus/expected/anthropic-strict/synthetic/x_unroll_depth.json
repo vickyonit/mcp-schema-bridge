@@ -1,0 +1,79 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "x_unroll_depth",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "expr": {
+            "anyOf": [
+              {
+                "type": "number"
+              }
+            ]
+          }
+        },
+        "required": [
+          "expr"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_unroll_depth",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "x_unroll_depth",
+        "source_path": "/$defs/E",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'E' removed"
+      },
+      {
+        "rule": "core/recursion-truncated",
+        "tid": "T2a",
+        "tool": "x_unroll_depth",
+        "source_path": "/$defs/E/anyOf/1/items",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "truncated",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "recursion cut at depth 1: union branch removed"
+      }
+    ]
+  }
+}

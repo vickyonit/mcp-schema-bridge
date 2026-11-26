@@ -1,0 +1,95 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "m_bool_branches_0",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "m_bool_branches_1",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/allof-unsatisfiable",
+          "tid": "T7",
+          "tool": "m_bool_branches_1",
+          "source_path": "/properties/p",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "allOf",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "allOf contains false; schema is unsatisfiable"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_bool_branches_0",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_bool_branches_1",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-unsatisfiable",
+        "tid": "T7",
+        "tool": "m_bool_branches_1",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "allOf contains false; schema is unsatisfiable"
+      }
+    ]
+  }
+}

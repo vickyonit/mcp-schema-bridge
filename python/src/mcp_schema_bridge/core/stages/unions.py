@@ -88,7 +88,7 @@ def _visit(node: SNode, ctx: Ctx, seen: Seen) -> None:
     if ctx.rules.strict or f.enum_values == "primitive":
         _t5_type(node, ctx)
     _const_to_enum(node, ctx)
-    if not f.multi_type_arrays:
+    if not f.multi_type_arrays or (not f.multi_type_enum and ("enum" in node or "const" in node)):
         _t4(node, ctx)
     if not f.anyof_validation_siblings and "anyOf" in node:
         _t9(node, ctx)

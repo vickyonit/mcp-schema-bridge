@@ -132,6 +132,7 @@ export function resolve(root: SNode, ctx: Ctx): string {
     registered.add(t);
     if (loc) setChild(loc.parent, loc.key, new SNode([["$ref", "#"]], [], t));
   }
+  sanitizeDefNames(ctx);
   stripCore(root, ctx);
   for (const d of ctx.defs.values()) stripCore(d, ctx);
   return dialect;
@@ -195,4 +196,30 @@ function stripCore(node: SNode, ctx: Ctx): void {
     for (const [, , child] of iterSubschemas(n)) if (child instanceof SNode) visit(child);
   };
   visit(node);
+}
+
+const SAFE_NAME = /^[A-Za-z0-9_.-]+$/;
+
+/** Emitted $defs names never need percent-encoding (Gemini does not decode $ref fragments). */
+function sanitizeDefNames(ctx: Ctx): void {
+  const taken = new Set([...ctx.defs.keys()].filter((n) => SAFE_NAME.test(n)));
+  const renamed = new Map<string, SNode>();
+  for (const [name, node] of ctx.defs) {
+    if (SAFE_NAME.test(name)) {
+      renamed.set(name, node);
+      continue;
+    }
+    const base = name.replace(/[^A-Za-z0-9_.-]/gu, "_") || "def";
+    let fresh = base;
+    let i = 1;
+    while (taken.has(fresh)) fresh = `${base}_${i++}`;
+    taken.add(fresh);
+    renamed.set(fresh, node);
+    ctx.add("core/def-renamed", "T1", {
+      node: null, keyword: null, action: "rewritten", severity: "info", sourcePath: node.src[0] ?? "", original: name,
+      message: `definition ${pyRepr(name)} renamed to ${pyRepr(fresh)} so references need no percent-encoding`,
+    });
+  }
+  ctx.defs.clear();
+  for (const [k, v] of renamed) ctx.defs.set(k, v);
 }

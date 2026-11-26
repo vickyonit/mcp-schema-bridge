@@ -1,0 +1,72 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "files.read",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "ok",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object"
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "ok",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/duplicate-tool-name",
+          "tid": "T18",
+          "tool": "ok",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "ok",
+          "hinted": false,
+          "message": "duplicate tool name 'ok'"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/duplicate-tool-name",
+        "tid": "T18",
+        "tool": "ok",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "ok",
+        "hinted": false,
+        "message": "duplicate tool name 'ok'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "m_bool_branches_0",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              true,
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_bool_branches_1",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              false,
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

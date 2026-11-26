@@ -1,0 +1,218 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "m_required_forbidden_1",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "enum": [
+              "b"
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "m_required_forbidden_0",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/allof-unsatisfiable",
+          "tid": "T7",
+          "tool": "m_required_forbidden_0",
+          "source_path": "/properties/p",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "required",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "b",
+          "hinted": false,
+          "message": "property 'b' is required but forbidden by additionalProperties: false"
+        }
+      ]
+    },
+    {
+      "name": "m_required_forbidden_2",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/allof-unsatisfiable",
+          "tid": "T7",
+          "tool": "m_required_forbidden_2",
+          "source_path": "/properties/p",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "const",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "allOf enum/const values do not intersect"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_required_forbidden_0",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-unsatisfiable",
+        "tid": "T7",
+        "tool": "m_required_forbidden_0",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "required",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "b",
+        "hinted": false,
+        "message": "property 'b' is required but forbidden by additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_required_forbidden_1",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-value-merged",
+        "tid": "T7",
+        "tool": "m_required_forbidden_1",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "enum",
+        "action": "merged",
+        "severity": "info",
+        "original": [
+          "a",
+          "b"
+        ],
+        "hinted": false,
+        "message": "enum intersected with other allOf branches"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "m_required_forbidden_1",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "b",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "m_required_forbidden_1",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "b",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_required_forbidden_2",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-unsatisfiable",
+        "tid": "T7",
+        "tool": "m_required_forbidden_2",
+        "source_path": "/properties/p",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "allOf enum/const values do not intersect"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "m_required_forbidden_2",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "a",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/allof-value-merged",
+        "tid": "T7",
+        "tool": "m_required_forbidden_2",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "merged",
+        "severity": "info",
+        "original": "b",
+        "hinted": false,
+        "message": "const combined with other allOf branches"
+      }
+    ]
+  }
+}

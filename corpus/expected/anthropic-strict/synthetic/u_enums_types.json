@@ -1,0 +1,185 @@
+{
+  "target": "anthropic-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "u_enums_types_0",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/any-value-unsupported",
+          "tid": "T10",
+          "tool": "u_enums_types_0",
+          "source_path": "/properties/g",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "a schema that accepts any value cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "u_enums_types_0",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/mixed-enum-split",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/a",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "enum",
+        "action": "rewritten",
+        "severity": "info",
+        "original": [
+          "x",
+          1,
+          null
+        ],
+        "hinted": false,
+        "message": "enum with mixed value types split into one typed enum per type"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/b",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from enum values"
+      },
+      {
+        "rule": "core/enum-type-inferred",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/c",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "type inferred from const values"
+      },
+      {
+        "rule": "core/anyof-siblings-distributed",
+        "tid": "T9",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "keywords next to anyOf distributed into each branch"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f/anyOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minLength",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minLength is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/f/anyOf/1",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "minimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 0,
+        "hinted": true,
+        "message": "minimum is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/any-value-unsupported",
+        "tid": "T10",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/g",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "a schema that accepts any value cannot be expressed in strict mode"
+      },
+      {
+        "rule": "core/non-primitive-enum",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/g",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "enum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": [
+          {
+            "k": 1
+          },
+          2
+        ],
+        "hinted": true,
+        "message": "target only allows primitive enum/const values"
+      },
+      {
+        "rule": "core/non-primitive-enum",
+        "tid": "T5",
+        "tool": "u_enums_types_0",
+        "source_path": "/properties/h",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "enum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": [
+          "a",
+          {
+            "k": 1
+          }
+        ],
+        "hinted": true,
+        "message": "target only allows primitive enum/const values"
+      }
+    ]
+  }
+}

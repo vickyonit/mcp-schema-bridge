@@ -1,0 +1,154 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "m_bool_branches_0",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_bool_branches_1",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string",
+            "description": "[constraints: not={}]"
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_bool_branches_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_bool_branches_0",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/boolean-subschema",
+        "tid": "T3",
+        "tool": "m_bool_branches_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rewritten",
+        "severity": "info",
+        "original": true,
+        "hinted": false,
+        "message": "boolean subschema rewritten as an equivalent object schema"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_bool_branches_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_bool_branches_1",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/boolean-subschema",
+        "tid": "T3",
+        "tool": "m_bool_branches_1",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "not",
+        "action": "rewritten",
+        "severity": "info",
+        "original": false,
+        "hinted": false,
+        "message": "boolean subschema rewritten as an equivalent object schema"
+      },
+      {
+        "rule": "openai-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "m_bool_branches_1",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {},
+        "hinted": true,
+        "message": "not is not supported by the target; kept as a description hint"
+      }
+    ]
+  }
+}

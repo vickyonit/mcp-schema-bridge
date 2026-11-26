@@ -1,0 +1,348 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "i_ref_siblings_recursive_0",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "type": "string"
+          },
+          "next": {
+            "type": "object",
+            "properties": {
+              "v": {
+                "type": "string"
+              },
+              "next": {
+                "type": "object",
+                "properties": {
+                  "v": {
+                    "type": "string"
+                  },
+                  "next": {
+                    "type": "object",
+                    "properties": {
+                      "v": {
+                        "type": "string"
+                      },
+                      "next": {
+                        "type": "object",
+                        "properties": {
+                          "v": {
+                            "type": "string"
+                          },
+                          "next": {
+                            "type": "object",
+                            "properties": {
+                              "v": {
+                                "type": "string"
+                              },
+                              "next": {
+                                "type": "object",
+                                "properties": {
+                                  "v": {
+                                    "type": "string"
+                                  },
+                                  "next": {
+                                    "type": "object",
+                                    "properties": {
+                                      "v": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "v"
+                                    ],
+                                    "description": "next node\n\n[constraints: minProperties=1]",
+                                    "additionalProperties": false
+                                  }
+                                },
+                                "required": [
+                                  "v"
+                                ],
+                                "description": "next node\n\n[constraints: minProperties=1]",
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "v"
+                            ],
+                            "description": "next node\n\n[constraints: minProperties=1]",
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "v"
+                        ],
+                        "description": "next node\n\n[constraints: minProperties=1]",
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "v"
+                    ],
+                    "description": "next node\n\n[constraints: minProperties=1]",
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "v"
+                ],
+                "description": "next node\n\n[constraints: minProperties=1]",
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "v"
+            ],
+            "description": "next node\n\n[constraints: minProperties=1]",
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "v"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next",
+        "instance_path": "/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next/properties/next",
+        "instance_path": "/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next/next/next/next",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next",
+        "instance_path": "/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/properties/next",
+        "instance_path": "/next/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next/next/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "anthropic-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": "/properties/next/properties/next/properties/next/properties/next/properties/next/properties/next/properties/next",
+        "instance_path": "/next/next/next/next/next/next/next",
+        "keyword": "minProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "minProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/recursion-truncated",
+        "tid": "T2a",
+        "tool": "i_ref_siblings_recursive_0",
+        "source_path": "/properties/next",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "truncated",
+        "severity": "lossy",
+        "original": null,
+        "hinted": false,
+        "message": "recursion cut at depth 3: optional property removed"
+      }
+    ]
+  }
+}

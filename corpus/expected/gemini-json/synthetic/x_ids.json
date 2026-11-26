@@ -1,0 +1,90 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "x_ids",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/N"
+          },
+          "b": {
+            "$ref": "#/$defs/I"
+          },
+          "c": {
+            "$ref": "#/$defs/N"
+          }
+        },
+        "required": [
+          "a",
+          "b",
+          "c"
+        ],
+        "$defs": {
+          "N": {
+            "type": "string"
+          },
+          "I": {
+            "type": "integer"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "x_ids",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$id",
+        "action": "dropped",
+        "severity": "info",
+        "original": "https://example.com/root.json",
+        "hinted": false,
+        "message": "$id is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "x_ids",
+        "source_path": "/$defs/I",
+        "target_path": "/$defs/I",
+        "instance_path": null,
+        "keyword": "$id",
+        "action": "dropped",
+        "severity": "info",
+        "original": "item.json",
+        "hinted": false,
+        "message": "$id is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "x_ids",
+        "source_path": "/$defs/N",
+        "target_path": "/$defs/N",
+        "instance_path": null,
+        "keyword": "$anchor",
+        "action": "dropped",
+        "severity": "info",
+        "original": "name",
+        "hinted": false,
+        "message": "$anchor is resolved and removed; output always uses 2020-12 semantics"
+      }
+    ]
+  }
+}

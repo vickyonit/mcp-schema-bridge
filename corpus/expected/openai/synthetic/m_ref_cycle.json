@@ -1,0 +1,45 @@
+{
+  "target": "openai",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "m_ref_cycle_0",
+      "target": "openai",
+      "reasons": [
+        {
+          "rule": "core/unsatisfiable-recursion",
+          "tid": "T2a",
+          "tool": "m_ref_cycle_0",
+          "source_path": "/$defs/A/allOf/0",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#/$defs/A",
+          "hinted": false,
+          "message": "recursion only through required, non-nullable positions; no finite value exists"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai",
+    "entries": [
+      {
+        "rule": "core/unsatisfiable-recursion",
+        "tid": "T2a",
+        "tool": "m_ref_cycle_0",
+        "source_path": "/$defs/A/allOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#/$defs/A",
+        "hinted": false,
+        "message": "recursion only through required, non-nullable positions; no finite value exists"
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "x_roundtrip_unions",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "z": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "a"
+                  },
+                  "o": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "b"
+                    ]
+                  },
+                  "p": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "v"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": null
+      },
+      "output": {
+        "v": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 3
+      },
+      "output": {
+        "v": 3
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": 2.5
+      },
+      "output": {
+        "v": 2.5
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": true
+      },
+      "output": {
+        "v": true
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "output": {
+        "v": [
+          {
+            "z": null
+          }
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "a",
+          "o": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "output": {
+        "v": {
+          "kind": "b",
+          "p": null
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_unions",
+      "input": {
+        "v": "s"
+      },
+      "output": {
+        "v": "s"
+      },
+      "warnings": []
+    }
+  ]
+}

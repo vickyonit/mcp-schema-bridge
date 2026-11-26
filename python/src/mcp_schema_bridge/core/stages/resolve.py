@@ -9,6 +9,7 @@ After this stage:
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Any, cast
 from urllib.parse import urldefrag, urljoin
@@ -169,6 +170,8 @@ def resolve(root: SNode, ctx: Ctx) -> str:
             stub = SNode({"$ref": "#"}, src=(), ref=t)
             loc.parent[loc.key] = stub
 
+    _sanitize_def_names(ctx)
+
     # --- strip identity keywords -----------------------------------------------------------------
     _strip_core(root, ctx)
     for d in ctx.defs.values():
@@ -256,3 +259,36 @@ def _strip_core(node: SNode, ctx: Ctx) -> None:
                 visit(child)
 
     visit(node)
+
+
+_SAFE_NAME = re.compile(r"[A-Za-z0-9_.-]+")
+
+
+def _sanitize_def_names(ctx: Ctx) -> None:
+    """Emitted $defs names never need percent-encoding (Gemini does not decode $ref fragments)."""
+    taken = {n for n in ctx.defs if _SAFE_NAME.fullmatch(n)}
+    renamed: dict[str, SNode] = {}
+    for name, node in ctx.defs.items():
+        if _SAFE_NAME.fullmatch(name):
+            renamed[name] = node
+            continue
+        base = re.sub(r"[^A-Za-z0-9_.-]", "_", name) or "def"
+        new, i = base, 1
+        while new in taken:
+            new = f"{base}_{i}"
+            i += 1
+        taken.add(new)
+        renamed[new] = node
+        ctx.add(
+            "core/def-renamed",
+            "T1",
+            node=None,
+            keyword=None,
+            action="rewritten",
+            severity="info",
+            source_path=node.src[0] if node.src else "",
+            original=name,
+            message=f"definition {name!r} renamed to {new!r} so references need no percent-encoding",
+        )
+    ctx.defs.clear()
+    ctx.defs.update(renamed)

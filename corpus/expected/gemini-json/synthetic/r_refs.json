@@ -1,0 +1,261 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "r_refs_1",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/Item"
+          },
+          "b": {
+            "$ref": "#/$defs/Item"
+          }
+        },
+        "$defs": {
+          "Item": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "r_refs_3",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "$ref": "#/$defs/a_b_c"
+          },
+          "y": {
+            "$ref": "#/$defs/q"
+          }
+        },
+        "$defs": {
+          "a_b_c": {
+            "type": "integer"
+          },
+          "q": {
+            "type": "string"
+          }
+        }
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "r_refs_0",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/unresolvable-ref",
+          "tid": "T2c",
+          "tool": "r_refs_0",
+          "source_path": "/properties/c",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#/properties/a/anyOf/x",
+          "hinted": false,
+          "message": "external or unresolvable $ref (remote references are never fetched)"
+        },
+        {
+          "rule": "core/unresolvable-ref",
+          "tid": "T2c",
+          "tool": "r_refs_0",
+          "source_path": "/properties/d",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#/properties/a/type",
+          "hinted": false,
+          "message": "external or unresolvable $ref (remote references are never fetched)"
+        }
+      ]
+    },
+    {
+      "name": "r_refs_2",
+      "target": "gemini-json",
+      "reasons": [
+        {
+          "rule": "core/dynamic-ref-unsupported",
+          "tid": "T2c",
+          "tool": "r_refs_2",
+          "source_path": "/properties/a",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$dynamicRef",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#node",
+          "hinted": false,
+          "message": "$dynamicRef is not supported by any target"
+        },
+        {
+          "rule": "core/dynamic-ref-unsupported",
+          "tid": "T2c",
+          "tool": "r_refs_2",
+          "source_path": "/properties/b",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$recursiveRef",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": "#",
+          "hinted": false,
+          "message": "$recursiveRef is not supported by any target"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/unresolvable-ref",
+        "tid": "T2c",
+        "tool": "r_refs_0",
+        "source_path": "/properties/c",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#/properties/a/anyOf/x",
+        "hinted": false,
+        "message": "external or unresolvable $ref (remote references are never fetched)"
+      },
+      {
+        "rule": "core/unresolvable-ref",
+        "tid": "T2c",
+        "tool": "r_refs_0",
+        "source_path": "/properties/d",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#/properties/a/type",
+        "hinted": false,
+        "message": "external or unresolvable $ref (remote references are never fetched)"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "r_refs_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "$schema",
+        "action": "dropped",
+        "severity": "info",
+        "original": "http://json-schema.org/draft-07/schema#",
+        "hinted": false,
+        "message": "$schema is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/identity-keyword-removed",
+        "tid": "T1",
+        "tool": "r_refs_1",
+        "source_path": "/definitions/Item",
+        "target_path": "/$defs/Item",
+        "instance_path": null,
+        "keyword": "$id",
+        "action": "dropped",
+        "severity": "info",
+        "original": "#item",
+        "hinted": false,
+        "message": "$id is resolved and removed; output always uses 2020-12 semantics"
+      },
+      {
+        "rule": "core/dynamic-ref-unsupported",
+        "tid": "T2c",
+        "tool": "r_refs_2",
+        "source_path": "/properties/a",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$dynamicRef",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#node",
+        "hinted": false,
+        "message": "$dynamicRef is not supported by any target"
+      },
+      {
+        "rule": "core/dynamic-ref-unsupported",
+        "tid": "T2c",
+        "tool": "r_refs_2",
+        "source_path": "/properties/b",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$recursiveRef",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": "#",
+        "hinted": false,
+        "message": "$recursiveRef is not supported by any target"
+      },
+      {
+        "rule": "core/def-renamed",
+        "tid": "T1",
+        "tool": "r_refs_3",
+        "source_path": "/$defs/a~1b%c",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rewritten",
+        "severity": "info",
+        "original": "a/b%c",
+        "hinted": false,
+        "message": "definition 'a/b%c' renamed to 'a_b_c' so references need no percent-encoding"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_refs_3",
+        "source_path": "/$defs/n",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'n' removed"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_refs_3",
+        "source_path": "/$defs/n/$defs/nested",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition 'nested' removed"
+      }
+    ]
+  }
+}

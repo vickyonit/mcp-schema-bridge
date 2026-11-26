@@ -1,0 +1,244 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "t0",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": "string"
+          },
+          "o1": {
+            "type": "string"
+          },
+          "o2": {
+            "type": "string"
+          },
+          "o3": {
+            "type": "string"
+          },
+          "o4": {
+            "type": "string"
+          },
+          "o5": {
+            "type": "string"
+          },
+          "o6": {
+            "type": "string"
+          },
+          "o7": {
+            "type": "string"
+          },
+          "o8": {
+            "type": "string"
+          },
+          "o9": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    },
+    {
+      "name": "t1",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": "string"
+          },
+          "o1": {
+            "type": "string"
+          },
+          "o2": {
+            "type": "string"
+          },
+          "o3": {
+            "type": "string"
+          },
+          "o4": {
+            "type": "string"
+          },
+          "o5": {
+            "type": "string"
+          },
+          "o6": {
+            "type": "string"
+          },
+          "o7": {
+            "type": "string"
+          },
+          "o8": {
+            "type": "string"
+          },
+          "o9": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "t2",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "anthropic-strict/request-budget-exceeded",
+          "tid": "T17",
+          "tool": "t2",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "tools": 3,
+            "optional": 30,
+            "union": 0
+          },
+          "hinted": false,
+          "message": "per-request strict budget exceeded (optional); this tool and all later strict tools are affected"
+        }
+      ]
+    },
+    {
+      "name": "t3",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "anthropic-strict/request-budget-exceeded",
+          "tid": "T17",
+          "tool": "t3",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "tools": 3,
+            "optional": 30,
+            "union": 0
+          },
+          "hinted": false,
+          "message": "per-request strict budget exceeded (optional); this tool and all later strict tools are affected"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/request-budget-exceeded",
+        "tid": "T17",
+        "tool": "t2",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "tools": 3,
+          "optional": 30,
+          "union": 0
+        },
+        "hinted": false,
+        "message": "per-request strict budget exceeded (optional); this tool and all later strict tools are affected"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "anthropic-strict/request-budget-exceeded",
+        "tid": "T17",
+        "tool": "t3",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "tools": 3,
+          "optional": 30,
+          "union": 0
+        },
+        "hinted": false,
+        "message": "per-request strict budget exceeded (optional); this tool and all later strict tools are affected"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t3",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  }
+}

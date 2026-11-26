@@ -1,0 +1,1183 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "t0",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o1": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o2": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o3": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o4": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o5": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o6": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o7": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o8": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o9": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "o0",
+          "o1",
+          "o2",
+          "o3",
+          "o4",
+          "o5",
+          "o6",
+          "o7",
+          "o8",
+          "o9"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "o0",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o1",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o2",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o3",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o4",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o5",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o6",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o7",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o8",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o9",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "t1",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o1": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o2": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o3": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o4": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o5": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o6": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o7": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o8": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o9": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "o0",
+          "o1",
+          "o2",
+          "o3",
+          "o4",
+          "o5",
+          "o6",
+          "o7",
+          "o8",
+          "o9"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "o0",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o1",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o2",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o3",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o4",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o5",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o6",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o7",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o8",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o9",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "t2",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o1": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o2": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o3": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o4": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o5": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o6": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o7": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o8": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o9": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "o0",
+          "o1",
+          "o2",
+          "o3",
+          "o4",
+          "o5",
+          "o6",
+          "o7",
+          "o8",
+          "o9"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "o0",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o1",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o2",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o3",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o4",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o5",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o6",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o7",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o8",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o9",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "t3",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "o0": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o1": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o2": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o3": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o4": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o5": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o6": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o7": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o8": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "o9": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "o0",
+          "o1",
+          "o2",
+          "o3",
+          "o4",
+          "o5",
+          "o6",
+          "o7",
+          "o8",
+          "o9"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "o0",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o1",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o2",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o3",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o4",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o5",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o6",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o7",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o8",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "o9",
+            "at": ""
+          }
+        ]
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o0",
+        "target_path": "/properties/o0",
+        "instance_path": "/o0",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o0' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o1",
+        "target_path": "/properties/o1",
+        "instance_path": "/o1",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o1' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o2",
+        "target_path": "/properties/o2",
+        "instance_path": "/o2",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o2' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o3",
+        "target_path": "/properties/o3",
+        "instance_path": "/o3",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o3' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o4",
+        "target_path": "/properties/o4",
+        "instance_path": "/o4",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o4' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o5",
+        "target_path": "/properties/o5",
+        "instance_path": "/o5",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o5' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o6",
+        "target_path": "/properties/o6",
+        "instance_path": "/o6",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o6' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o7",
+        "target_path": "/properties/o7",
+        "instance_path": "/o7",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o7' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o8",
+        "target_path": "/properties/o8",
+        "instance_path": "/o8",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o8' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t0",
+        "source_path": "/properties/o9",
+        "target_path": "/properties/o9",
+        "instance_path": "/o9",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o9' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o0",
+        "target_path": "/properties/o0",
+        "instance_path": "/o0",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o0' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o1",
+        "target_path": "/properties/o1",
+        "instance_path": "/o1",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o1' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o2",
+        "target_path": "/properties/o2",
+        "instance_path": "/o2",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o2' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o3",
+        "target_path": "/properties/o3",
+        "instance_path": "/o3",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o3' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o4",
+        "target_path": "/properties/o4",
+        "instance_path": "/o4",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o4' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o5",
+        "target_path": "/properties/o5",
+        "instance_path": "/o5",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o5' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o6",
+        "target_path": "/properties/o6",
+        "instance_path": "/o6",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o6' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o7",
+        "target_path": "/properties/o7",
+        "instance_path": "/o7",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o7' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o8",
+        "target_path": "/properties/o8",
+        "instance_path": "/o8",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o8' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t1",
+        "source_path": "/properties/o9",
+        "target_path": "/properties/o9",
+        "instance_path": "/o9",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o9' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t2",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o0",
+        "target_path": "/properties/o0",
+        "instance_path": "/o0",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o0' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o1",
+        "target_path": "/properties/o1",
+        "instance_path": "/o1",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o1' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o2",
+        "target_path": "/properties/o2",
+        "instance_path": "/o2",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o2' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o3",
+        "target_path": "/properties/o3",
+        "instance_path": "/o3",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o3' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o4",
+        "target_path": "/properties/o4",
+        "instance_path": "/o4",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o4' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o5",
+        "target_path": "/properties/o5",
+        "instance_path": "/o5",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o5' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o6",
+        "target_path": "/properties/o6",
+        "instance_path": "/o6",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o6' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o7",
+        "target_path": "/properties/o7",
+        "instance_path": "/o7",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o7' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o8",
+        "target_path": "/properties/o8",
+        "instance_path": "/o8",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o8' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t2",
+        "source_path": "/properties/o9",
+        "target_path": "/properties/o9",
+        "instance_path": "/o9",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o9' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "t3",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o0",
+        "target_path": "/properties/o0",
+        "instance_path": "/o0",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o0' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o1",
+        "target_path": "/properties/o1",
+        "instance_path": "/o1",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o1' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o2",
+        "target_path": "/properties/o2",
+        "instance_path": "/o2",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o2' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o3",
+        "target_path": "/properties/o3",
+        "instance_path": "/o3",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o3' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o4",
+        "target_path": "/properties/o4",
+        "instance_path": "/o4",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o4' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o5",
+        "target_path": "/properties/o5",
+        "instance_path": "/o5",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o5' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o6",
+        "target_path": "/properties/o6",
+        "instance_path": "/o6",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o6' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o7",
+        "target_path": "/properties/o7",
+        "instance_path": "/o7",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o7' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o8",
+        "target_path": "/properties/o8",
+        "instance_path": "/o8",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o8' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "t3",
+        "source_path": "/properties/o9",
+        "target_path": "/properties/o9",
+        "instance_path": "/o9",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'o9' made required and nullable; null is removed again by denormalize_args"
+      }
+    ]
+  }
+}

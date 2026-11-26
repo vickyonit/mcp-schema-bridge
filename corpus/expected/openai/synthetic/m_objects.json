@@ -1,0 +1,122 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "m_objects_0",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "k": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "dependentRequired": {
+                  "k": [
+                    "k"
+                  ]
+                },
+                "patternProperties": {
+                  "^x": {
+                    "type": "string"
+                  }
+                },
+                "dependentSchemas": {
+                  "k": {
+                    "required": [
+                      "k"
+                    ]
+                  }
+                }
+              },
+              {
+                "additionalProperties": {
+                  "maxLength": 5
+                },
+                "dependentRequired": {
+                  "k": [
+                    "j"
+                  ],
+                  "z": [
+                    "k"
+                  ]
+                },
+                "patternProperties": {
+                  "^x": {
+                    "maxLength": 3
+                  },
+                  "^y": {
+                    "type": "integer"
+                  }
+                },
+                "dependentSchemas": {
+                  "k": {
+                    "minProperties": 1
+                  },
+                  "j": {
+                    "required": [
+                      "k"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_objects_1",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "object",
+                "additionalProperties": true
+              },
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "target": "gemini-json",
+  "tools": [
+    {
+      "name": "m_conflicts_0",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "string",
+            "description": "A\n\nB\n\n[constraints: format=\"email\"; format=\"uri\"; not={\"enum\":[\"q\"]}; pattern=\"^a\"; pattern=\"b$\"]",
+            "default": "x",
+            "examples": [
+              "e"
+            ],
+            "x-custom": 1,
+            "unknownKw": 1
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    },
+    {
+      "name": "m_conflicts_1",
+      "description": null,
+      "target": "gemini-json",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "type": "number",
+            "description": "[constraints: exclusiveMinimum=1; multipleOf=2; multipleOf=3]"
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "gemini-json",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "gemini-json",
+    "entries": [
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "email",
+        "hinted": true,
+        "message": "format 'email' is not enforced by the target"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "enum": [
+            "q"
+          ]
+        },
+        "hinted": true,
+        "message": "not is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^a",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/const-to-enum",
+        "tid": "T5",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/0/not",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "const",
+        "action": "rewritten",
+        "severity": "info",
+        "original": "q",
+        "hinted": false,
+        "message": "const rewritten to an equivalent single-value enum (const is not enforced by the target)"
+      },
+      {
+        "rule": "core/allof-conflicting-format",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "uri",
+        "hinted": true,
+        "message": "two different format values; kept the first"
+      },
+      {
+        "rule": "core/allof-conflicting-pattern",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "b$",
+        "hinted": true,
+        "message": "two different pattern values; kept the first"
+      },
+      {
+        "rule": "core/allof-conflicting-subschema",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "const": "r"
+        },
+        "hinted": false,
+        "message": "not in several allOf branches; kept the first"
+      },
+      {
+        "rule": "core/allof-first-wins",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "default",
+        "action": "merged",
+        "severity": "info",
+        "original": "y",
+        "hinted": false,
+        "message": "default differs between allOf branches; kept the first"
+      },
+      {
+        "rule": "core/allof-first-wins",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "examples",
+        "action": "merged",
+        "severity": "info",
+        "original": [
+          "f"
+        ],
+        "hinted": false,
+        "message": "examples differs between allOf branches; kept the first"
+      },
+      {
+        "rule": "core/allof-first-wins",
+        "tid": "T7",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "x-custom",
+        "action": "merged",
+        "severity": "info",
+        "original": 2,
+        "hinted": false,
+        "message": "x-custom differs between allOf branches; kept the first"
+      },
+      {
+        "rule": "gemini-json/format-unsupported",
+        "tid": "T15",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "format",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "email",
+        "hinted": true,
+        "message": "format 'email' is not enforced by the target"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "not",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "enum": [
+            "q"
+          ]
+        },
+        "hinted": true,
+        "message": "not is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_0",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "pattern",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": "^a",
+        "hinted": true,
+        "message": "pattern is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p/allOf/0",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "multipleOf is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/allof-conflicting-multipleof",
+        "tid": "T7",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 3,
+        "hinted": true,
+        "message": "two different multipleOf values; kept the first"
+      },
+      {
+        "rule": "core/allof-value-merged",
+        "tid": "T7",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "exclusiveMinimum",
+        "action": "merged",
+        "severity": "info",
+        "original": 0,
+        "hinted": false,
+        "message": "exclusiveMinimum combined with other allOf branches"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "exclusiveMinimum is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p/allOf/1",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "multipleOf",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 2,
+        "hinted": true,
+        "message": "multipleOf is not enforced by the target; kept as a description hint"
+      },
+      {
+        "rule": "gemini-json/keyword-not-enforced",
+        "tid": "T12",
+        "tool": "m_conflicts_1",
+        "source_path": "/properties/p/allOf/2",
+        "target_path": "/properties/p",
+        "instance_path": "/p",
+        "keyword": "exclusiveMinimum",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": 1,
+        "hinted": true,
+        "message": "exclusiveMinimum is not enforced by the target; kept as a description hint"
+      }
+    ]
+  }
+}

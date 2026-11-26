@@ -1,0 +1,423 @@
+{
+  "target": "openai-strict",
+  "tools": [
+    {
+      "name": "r_root_variants_0",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "a"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "a",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "r_root_variants_1",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "properties": {
+          "a": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "a"
+        ]
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "a",
+            "at": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "r_root_variants_2",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/$defs/__root_1"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false,
+        "$defs": {
+          "__root_1": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "child": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__root_1"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "child"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "leaf": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "leaf"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": [
+          {
+            "op": "unwrap_root",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "child",
+            "at": "/$defs/__root_1/anyOf/0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "r_root_variants_5",
+      "description": null,
+      "target": "openai-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "openai-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "name": "r_root_variants_3",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "r_root_variants_3",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    },
+    {
+      "name": "r_root_variants_4",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "core/open-object-unsupported",
+          "tid": "T10",
+          "tool": "r_root_variants_4",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "additionalProperties",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": {
+            "type": "string"
+          },
+          "hinted": false,
+          "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-type-narrowed",
+        "tid": "T14",
+        "tool": "r_root_variants_0",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "type",
+        "action": "narrowed",
+        "severity": "info",
+        "original": [
+          "null",
+          "object"
+        ],
+        "hinted": false,
+        "message": "MCP tool arguments are always objects; non-object root types removed"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "r_root_variants_0",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'a' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-type-object-added",
+        "tid": "T14",
+        "tool": "r_root_variants_1",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "type",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "root declared no type; added type: object (MCP tool arguments are objects)"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "r_root_variants_1",
+        "source_path": "/properties/a",
+        "target_path": "/properties/a",
+        "instance_path": "/a",
+        "keyword": "type",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": "string",
+        "hinted": false,
+        "message": "optional property 'a' made required and nullable; null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/root-wrapped",
+        "tid": "T14",
+        "tool": "r_root_variants_2",
+        "source_path": "",
+        "target_path": "/$defs/__root_1",
+        "instance_path": null,
+        "keyword": "type",
+        "action": "wrapped",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "root is not a plain object for this target; wrapped as {value: ...}"
+      },
+      {
+        "rule": "core/unused-def-pruned",
+        "tid": "T1",
+        "tool": "r_root_variants_2",
+        "source_path": "/$defs/__root",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "dropped",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "unused definition '__root' removed"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0",
+        "target_path": "/$defs/__root_1/anyOf/0",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/optional-to-nullable",
+        "tid": "T11a",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/0/properties/child",
+        "target_path": "/$defs/__root_1/anyOf/0/properties/child",
+        "instance_path": null,
+        "keyword": "anyOf",
+        "action": "rewritten",
+        "severity": "reversible",
+        "original": null,
+        "hinted": false,
+        "message": "optional property 'child' made required and nullable (anyOf with null); null is removed again by denormalize_args"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "r_root_variants_2",
+        "source_path": "/anyOf/1",
+        "target_path": "/$defs/__root_1/anyOf/1",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "r_root_variants_3",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      },
+      {
+        "rule": "openai-strict/keyword-rejected",
+        "tid": "T12",
+        "tool": "r_root_variants_3",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "patternProperties",
+        "action": "dropped",
+        "severity": "lossy",
+        "original": {
+          "^x": {
+            "type": "string"
+          }
+        },
+        "hinted": true,
+        "message": "patternProperties is not supported by the target; kept as a description hint"
+      },
+      {
+        "rule": "core/open-object-unsupported",
+        "tid": "T10",
+        "tool": "r_root_variants_4",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": {
+          "type": "string"
+        },
+        "hinted": false,
+        "message": "an object without declared properties (a map) cannot be expressed in strict mode"
+      }
+    ]
+  }
+}

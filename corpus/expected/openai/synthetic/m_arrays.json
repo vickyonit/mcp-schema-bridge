@@ -1,0 +1,63 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "m_arrays_0",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "prefixItems": [
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "title": "A"
+              },
+              {
+                "items": {
+                  "maximum": 9
+                },
+                "prefixItems": [
+                  {
+                    "minimum": 1
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "uniqueItems": true,
+                "title": "B",
+                "contains": {
+                  "type": "integer"
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ]
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

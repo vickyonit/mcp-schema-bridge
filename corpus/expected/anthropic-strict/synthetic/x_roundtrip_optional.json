@@ -1,0 +1,164 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "x_roundtrip_optional",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "filter": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string"
+              },
+              "max": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "tag"
+            ],
+            "additionalProperties": false
+          },
+          "addr": {
+            "$ref": "#/$defs/A"
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "additionalProperties": false,
+        "$defs": {
+          "A": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_optional",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_optional",
+        "source_path": "/$defs/A",
+        "target_path": "/$defs/A",
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_roundtrip_optional",
+        "source_path": "/properties/filter",
+        "target_path": "/properties/filter",
+        "instance_path": "/filter",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_optional",
+      "input": {
+        "q": "a",
+        "limit": null,
+        "cursor": null,
+        "filter": {
+          "tag": "t",
+          "max": null
+        },
+        "addr": null
+      },
+      "output": {
+        "q": "a",
+        "limit": null,
+        "cursor": null,
+        "filter": {
+          "tag": "t",
+          "max": null
+        },
+        "addr": null
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_optional",
+      "input": {
+        "q": "b",
+        "limit": 5,
+        "cursor": "c",
+        "filter": null,
+        "addr": {
+          "city": "x"
+        }
+      },
+      "output": {
+        "q": "b",
+        "limit": 5,
+        "cursor": "c",
+        "filter": null,
+        "addr": {
+          "city": "x"
+        }
+      },
+      "warnings": []
+    }
+  ]
+}

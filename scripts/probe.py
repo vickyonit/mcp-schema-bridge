@@ -64,6 +64,8 @@ ACCEPTANCE: dict[str, dict[str, Any]] = {
     "plain": _S({"a": {"type": "string"}}, ["a"]),
     "type_null_array": _S({"a": {"type": ["string", "null"]}}, ["a"]),
     "multi_type_array": _S({"a": {"type": ["string", "integer"]}}, ["a"]),
+    "multi_type_with_enum": _S({"a": {"type": ["string", "integer"], "enum": ["k", 1]}}, ["a"]),
+    "def_name_percent_encoded": {"type": "object", "$defs": {"a/b%c": {"type": "string"}}, "properties": {"a": {"$ref": "#/$defs/a~1b%25c"}}, "required": ["a"]},
     "anyOf_with_annotations": _S({"a": {"anyOf": [{"type": "string"}, {"type": "integer"}], "description": "x", "title": "A"}}, ["a"]),
     "oneOf": _S({"a": {"oneOf": [{"type": "string"}, {"type": "integer"}]}}, ["a"]),
     "allOf": _S({"a": {"allOf": [{"type": "string"}, {"minLength": 1}]}}, ["a"]),

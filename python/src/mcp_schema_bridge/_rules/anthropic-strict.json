@@ -11,6 +11,7 @@
     "ref_siblings": true,
     "type_arrays": true,
     "multi_type_arrays": true,
+    "multi_type_enum": true,
     "root_union": false,
     "root_anyof_with_object": false,
     "anyof_validation_siblings": false,

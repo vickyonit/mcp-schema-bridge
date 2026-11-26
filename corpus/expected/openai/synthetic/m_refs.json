@@ -1,0 +1,52 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "m_refs_0",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "p": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/A",
+                "description": "first"
+              },
+              {
+                "$ref": "#/$defs/B"
+              }
+            ]
+          }
+        },
+        "required": [
+          "p"
+        ],
+        "$defs": {
+          "A": {
+            "type": "string",
+            "minLength": 1
+          },
+          "B": {
+            "$ref": "#/$defs/C"
+          },
+          "C": {
+            "type": "string",
+            "maxLength": 9
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  }
+}

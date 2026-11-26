@@ -1,0 +1,59 @@
+{
+  "target": "openai-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "v_limits",
+      "target": "openai-strict",
+      "reasons": [
+        {
+          "rule": "openai-strict/limit-max-enum-values",
+          "tid": "T18",
+          "tool": "v_limits",
+          "source_path": "",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": null,
+          "action": "rejected",
+          "severity": "fatal",
+          "original": 1001,
+          "hinted": false,
+          "message": "total number of enum values is 1001; the target allows at most 1000"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "openai-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "v_limits",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "openai-strict/limit-max-enum-values",
+        "tid": "T18",
+        "tool": "v_limits",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": null,
+        "action": "rejected",
+        "severity": "fatal",
+        "original": 1001,
+        "hinted": false,
+        "message": "total number of enum values is 1001; the target allows at most 1000"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "target": "anthropic-strict",
+  "tools": [
+    {
+      "name": "x_repairs",
+      "description": null,
+      "target": "anthropic-strict",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "Fast",
+              "Slow",
+              "slow"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B"
+            ]
+          }
+        },
+        "required": [
+          "mode",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "reverse": {
+        "target": "anthropic-strict",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "x_repairs",
+        "source_path": "",
+        "target_path": "",
+        "instance_path": "",
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      }
+    ]
+  },
+  "args": [
+    {
+      "tool": "x_repairs",
+      "input": {
+        "mode": "SLOW",
+        "kind": "a"
+      },
+      "output": {
+        "mode": "SLOW",
+        "kind": "A"
+      },
+      "warnings": [
+        "core/repair-enum-case"
+      ]
+    },
+    {
+      "tool": "x_repairs",
+      "input": {
+        "mode": "slow",
+        "kind": "B"
+      },
+      "output": {
+        "mode": "slow",
+        "kind": "B"
+      },
+      "warnings": []
+    }
+  ]
+}

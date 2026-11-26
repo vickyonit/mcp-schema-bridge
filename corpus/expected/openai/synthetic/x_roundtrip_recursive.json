@@ -1,0 +1,85 @@
+{
+  "target": "openai",
+  "tools": [
+    {
+      "name": "x_roundtrip_recursive",
+      "description": null,
+      "target": "openai",
+      "strict": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "head": {
+            "$ref": "#/$defs/Node"
+          }
+        },
+        "required": [
+          "head"
+        ],
+        "$defs": {
+          "Node": {
+            "type": "object",
+            "properties": {
+              "v": {
+                "type": "string"
+              },
+              "next": {
+                "$ref": "#/$defs/Node"
+              }
+            },
+            "required": [
+              "v"
+            ]
+          }
+        }
+      },
+      "reverse": {
+        "target": "openai",
+        "ops": []
+      }
+    }
+  ],
+  "rejected": [],
+  "report": {
+    "target": "openai",
+    "entries": []
+  },
+  "args": [
+    {
+      "tool": "x_roundtrip_recursive",
+      "input": {
+        "head": {
+          "v": "1",
+          "next": {
+            "v": "2",
+            "next": null
+          }
+        }
+      },
+      "output": {
+        "head": {
+          "v": "1",
+          "next": {
+            "v": "2",
+            "next": null
+          }
+        }
+      },
+      "warnings": []
+    },
+    {
+      "tool": "x_roundtrip_recursive",
+      "input": {
+        "head": {
+          "v": "1"
+        }
+      },
+      "output": {
+        "head": {
+          "v": "1"
+        }
+      },
+      "warnings": []
+    }
+  ]
+}

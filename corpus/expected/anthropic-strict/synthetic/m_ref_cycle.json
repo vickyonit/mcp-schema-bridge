@@ -1,0 +1,73 @@
+{
+  "target": "anthropic-strict",
+  "tools": [],
+  "rejected": [
+    {
+      "name": "m_ref_cycle_0",
+      "target": "anthropic-strict",
+      "reasons": [
+        {
+          "rule": "core/allof-ref-cycle",
+          "tid": "T7",
+          "tool": "m_ref_cycle_0",
+          "source_path": "/$defs/A/allOf/0",
+          "target_path": null,
+          "instance_path": null,
+          "keyword": "$ref",
+          "action": "rejected",
+          "severity": "fatal",
+          "original": null,
+          "hinted": false,
+          "message": "allOf references itself; cannot be merged"
+        }
+      ]
+    }
+  ],
+  "report": {
+    "target": "anthropic-strict",
+    "entries": [
+      {
+        "rule": "core/object-closed",
+        "tid": "T10",
+        "tool": "m_ref_cycle_0",
+        "source_path": "",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "additionalProperties",
+        "action": "narrowed",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "strict mode requires additionalProperties: false"
+      },
+      {
+        "rule": "core/allof-merged",
+        "tid": "T7",
+        "tool": "m_ref_cycle_0",
+        "source_path": "/$defs/A",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "allOf",
+        "action": "merged",
+        "severity": "info",
+        "original": null,
+        "hinted": false,
+        "message": "allOf merged into a single schema"
+      },
+      {
+        "rule": "core/allof-ref-cycle",
+        "tid": "T7",
+        "tool": "m_ref_cycle_0",
+        "source_path": "/$defs/A/allOf/0",
+        "target_path": null,
+        "instance_path": null,
+        "keyword": "$ref",
+        "action": "rejected",
+        "severity": "fatal",
+        "original": null,
+        "hinted": false,
+        "message": "allOf references itself; cannot be merged"
+      }
+    ]
+  }
+}
