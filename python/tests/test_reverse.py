@@ -53,3 +53,49 @@ def test_no_ops_returns_args_unchanged_and_copied() -> None:
     assert res.args == args
     assert res.args is not args
     assert res.warnings == []
+
+
+def _repair_tool():
+    s = {
+        "type": "object",
+        "properties": {
+            "n": {"type": "integer"},
+            "mode": {"type": "string", "enum": ["Fast", "Slow", "slow"]},
+            "kind": {"type": "string", "enum": ["A", "B"]},
+        },
+        "required": ["n"],
+    }
+    return normalize_schema(s, "gemini-json")
+
+
+def test_repairs_are_opt_in() -> None:
+    res = denormalize_args(_repair_tool(), {"n": 5.0, "kind": "a"})
+    assert res.args == {"n": 5.0, "kind": "a"}
+    assert res.warnings == []
+
+
+def test_int_from_integral_float_repair() -> None:
+    res = denormalize_args(
+        _repair_tool(), {"n": 5.0}, repairs=frozenset({"int_from_integral_float"})
+    )
+    assert res.args == {"n": 5}
+    assert type(res.args["n"]) is int
+    assert [w.rule for w in res.warnings] == ["core/repair-int-from-float"]
+    res = denormalize_args(
+        _repair_tool(), {"n": 5.5}, repairs=frozenset({"int_from_integral_float"})
+    )
+    assert res.args == {"n": 5.5}
+
+
+def test_enum_case_repair_only_when_unambiguous() -> None:
+    repairs = frozenset({"enum_case_insensitive"})
+    res = denormalize_args(_repair_tool(), {"n": 1, "kind": "a"}, repairs=repairs)
+    assert res.args == {"n": 1, "kind": "A"}
+    assert [w.rule for w in res.warnings] == ["core/repair-enum-case"]
+    # "SLOW" matches both "Slow" and "slow": ambiguous, left alone
+    res = denormalize_args(_repair_tool(), {"n": 1, "mode": "SLOW"}, repairs=repairs)
+    assert res.args == {"n": 1, "mode": "SLOW"}
+    # exact match is never touched
+    res = denormalize_args(_repair_tool(), {"n": 1, "mode": "slow"}, repairs=repairs)
+    assert res.args["mode"] == "slow"
+    assert res.warnings == []

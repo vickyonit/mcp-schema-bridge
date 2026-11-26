@@ -160,27 +160,31 @@ def disjoint(branches: list[Any]) -> bool:
 
 
 def _t8(node: SNode, ctx: Ctx) -> None:
+    origins = node.origins("oneOf")
     branches = cast(list[Any], node.pop("oneOf"))
+    node.kw_src.pop("oneOf", None)
     exclusive = disjoint(branches)
     if "anyOf" in node:
         existing = cast(list[Any], node.pop("anyOf"))
         node["anyOf"] = _product(existing, branches, node, ctx)
     else:
         node["anyOf"] = branches
-    ctx.add(
-        "core/oneof-to-anyof",
-        "T8",
-        node=node,
-        keyword="oneOf",
-        action="rewritten",
-        severity="info" if exclusive else "lossy",
-        message="oneOf rewritten to anyOf"
-        + (
-            "; branches are disjoint so meaning is unchanged"
-            if exclusive
-            else "; exclusivity is no longer enforced"
-        ),
-    )
+    for origin in origins:
+        ctx.add(
+            "core/oneof-to-anyof",
+            "T8",
+            node=node,
+            keyword="oneOf",
+            action="rewritten",
+            severity="info" if exclusive else "lossy",
+            source_path=origin,
+            message="oneOf rewritten to anyOf"
+            + (
+                "; branches are disjoint so meaning is unchanged"
+                if exclusive
+                else "; exclusivity is no longer enforced"
+            ),
+        )
 
 
 def _product(left: list[Any], right: list[Any], node: SNode, ctx: Ctx) -> list[Any]:

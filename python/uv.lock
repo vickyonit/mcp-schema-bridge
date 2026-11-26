@@ -723,6 +723,19 @@ wheels = [
 ]
 
 [[package]]
+name = "hypothesis-jsonschema"
+version = "0.23.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "hypothesis" },
+    { name = "jsonschema" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b9/26/9b380c6b31e2d493c7148668bde3cdbbcaaf2b6cdd0bd2ca09405bed8e63/hypothesis_jsonschema-0.23.2.tar.gz", hash = "sha256:43a5f21c67f7cdccd6e3e0d1300cb5261bede6c046e3eff8a73c094b4afdf761", size = 43983, upload-time = "2026-10-27T20:08:58.707Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d8/8f/5e7d1a9d99eccebcb67a6e1f83faaf921f23bc1c474af7e0ac33f2f47739/hypothesis_jsonschema-0.23.2-py3-none-any.whl", hash = "sha256:7f591c2534830919342474c4adebb03c19879cdad9a7cb44d4c9d9da45dcdae3", size = 29558, upload-time = "2026-10-27T20:08:57.504Z" },
+]
+
+[[package]]
 name = "idna"
 version = "3.20"
 source = { registry = "https://pypi.org/simple" }
@@ -921,6 +934,7 @@ sdks = [
 [package.dev-dependencies]
 dev = [
     { name = "hypothesis" },
+    { name = "hypothesis-jsonschema" },
     { name = "jsonschema" },
     { name = "pyright" },
     { name = "pytest" },
@@ -940,6 +954,7 @@ provides-extras = ["cli", "sdks"]
 [package.metadata.requires-dev]
 dev = [
     { name = "hypothesis", specifier = ">=6.120" },
+    { name = "hypothesis-jsonschema", specifier = ">=0.23" },
     { name = "jsonschema", specifier = ">=4.23" },
     { name = "pyright", specifier = ">=1.1.390" },
     { name = "pytest", specifier = ">=8.3" },
@@ -1580,8 +1595,8 @@ name = "uvicorn"
 version = "0.54.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "click" },
-    { name = "h11" },
+    { name = "click", marker = "python_full_version < '3.12' or python_full_version >= '3.14' or sys_platform != 'emscripten'" },
+    { name = "h11", marker = "python_full_version < '3.12' or python_full_version >= '3.14' or sys_platform != 'emscripten'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/da/34/30e9280707135d2cfc589dfff3cb796bd07a3aeb1a3e415ba09dd89d7bb4/uvicorn-0.54.0.tar.gz", hash = "sha256:a2e33cbfaa0306f8e6b0c13e0cb89d7d7a2da3e62b90c66e18c33d9807b28620", size = 112283, upload-time = "2026-09-25T06:52:37.601Z" }
 wheels = [

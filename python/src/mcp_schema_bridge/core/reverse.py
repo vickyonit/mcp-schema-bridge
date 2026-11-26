@@ -31,11 +31,63 @@ class DenormalizeResult:
 
 
 class _Walker:
-    def __init__(self, schema: dict[str, Any], ops: dict[str, list[dict[str, Any]]], strict: bool):
+    def __init__(
+        self,
+        schema: dict[str, Any],
+        ops: dict[str, list[dict[str, Any]]],
+        strict: bool,
+        repairs: frozenset[str] = frozenset(),
+    ):
         self.root = schema
         self.ops = ops
         self.strict = strict
+        self.repairs = repairs
         self.warnings: list[ReportEntry] = []
+
+    def note(self, rule: str, pointer: str, message: str, original: Any) -> None:
+        self.warnings.append(
+            ReportEntry(
+                rule=rule,
+                tid="reverse",
+                source_path=pointer,
+                keyword=None,
+                action="coerced",
+                severity="info",
+                original=original,
+                message=message,
+            )
+        )
+
+    def repair(self, ptr: str, s: dict[str, Any], value: Any) -> Any:
+        if (
+            "int_from_integral_float" in self.repairs
+            and isinstance(value, float)
+            and value.is_integer()
+        ):
+            t = s.get("type")
+            types = [t] if isinstance(t, str) else cast(list[str], t or [])
+            if "integer" in types and "number" not in types:
+                self.note(
+                    "core/repair-int-from-float", ptr, "integral float converted to integer", value
+                )
+                return int(value)
+        if "enum_case_insensitive" in self.repairs and isinstance(value, str):
+            enum = s.get("enum")
+            if isinstance(enum, list) and value not in cast(list[Any], enum):
+                matches = [
+                    v
+                    for v in cast(list[Any], enum)
+                    if isinstance(v, str) and v.casefold() == value.casefold()
+                ]
+                if len(matches) == 1:
+                    self.note(
+                        "core/repair-enum-case",
+                        ptr,
+                        f"enum value matched case-insensitively to {matches[0]!r}",
+                        value,
+                    )
+                    return matches[0]
+        return value
 
     def warn(self, rule: str, pointer: str, message: str) -> None:
         if self.strict:
@@ -96,6 +148,8 @@ class _Walker:
                         break
         for i, b in enumerate(cast(list[Any], s.get("allOf") or [])):
             value = self.walk(join(ptr, "allOf", i), b, value, depth + 1)
+        if self.repairs:
+            value = self.repair(ptr, s, value)
         for op in self.ops.get(ptr, []):
             value = self.apply(op, ptr, value)
         return cast(Any, value)
@@ -154,6 +208,15 @@ def _structurally_matches(branch: Any, value: Any, w: _Walker) -> bool:
         _, target = w.resolve(b["$ref"])
         if not _structurally_matches(target, value, w):
             return False
+    for kw in ("anyOf", "oneOf"):
+        subs = b.get(kw)
+        if isinstance(subs, list) and not any(
+            _structurally_matches(x, value, w) for x in cast(list[Any], subs)
+        ):
+            return False
+    for x in cast(list[Any], b.get("allOf") or []):
+        if not _structurally_matches(x, value, w):
+            return False
     t = b.get("type")
     if t is not None:
         types = [t] if isinstance(t, str) else cast(list[str], t)
@@ -197,7 +260,6 @@ def denormalize_args(
     ops: dict[str, list[dict[str, Any]]] = {}
     for op in rev.ops:
         ops.setdefault(op["at"], []).append(op)
-    w = _Walker(tool.schema, ops, strict)
-    del repairs  # repairs are applied in a later slice
+    w = _Walker(tool.schema, ops, strict, frozenset(repairs))
     value = w.walk("", tool.schema, value)
     return DenormalizeResult(value, w.warnings)

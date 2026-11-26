@@ -122,10 +122,18 @@ def mcp_schemas(draw: st.DrawFn) -> dict[str, Any]:
     schema: dict[str, Any] = {"type": "object", "properties": props}
     if required:
         schema["required"] = required
+    if draw(st.integers(0, 4)) == 0:
+        # a recursive definition reached through an optional property
+        schema.setdefault("$defs", {})["Node"] = {
+            "type": "object",
+            "properties": {"value": draw(leaf), "next": {"$ref": "#/$defs/Node"}},
+            "required": ["value"],
+        }
+        props["tree"] = {"$ref": "#/$defs/Node"}
     if draw(st.booleans()) and names:
         # move one property into $defs and reference it (sometimes from two places)
         n = names[0]
-        schema["$defs"] = {"Shared": props[n]}
+        schema.setdefault("$defs", {})["Shared"] = props[n]
         props[n] = {"$ref": "#/$defs/Shared"}
         if len(names) > 1 and draw(st.booleans()):
             props[names[1]] = {"$ref": "#/$defs/Shared"}

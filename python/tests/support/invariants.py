@@ -100,3 +100,49 @@ def idempotent(result: NormalizeResult) -> list[str]:
 
 def check_all(original: dict[str, Any], result: NormalizeResult) -> list[str]:
     return no_silent_loss(original, result) + allow_list(result) + idempotent(result)
+
+
+def relax(original: dict[str, Any], result: NormalizeResult) -> dict[str, Any]:
+    """The original schema loosened exactly where the report says meaning was lost (plan §8.3 #5)."""
+    import copy
+
+    doc = copy.deepcopy(original)
+    lossy = [e for e in result.report.entries if e.severity == "lossy"]
+    # Renames (oneOf -> anyOf) last and deepest-first, so other pointers still resolve.
+    lossy.sort(key=lambda e: (e.keyword == "oneOf", -len(split(e.source_path))))
+
+    def parent_and_key(pointer: str) -> tuple[Any, str] | None:
+        toks = split(pointer)
+        if not toks:
+            return None
+        node: Any = doc
+        for t in toks[:-1]:
+            try:
+                node = node[int(t)] if isinstance(node, list) else node[t]
+            except (KeyError, IndexError, ValueError):
+                return None
+        return node, toks[-1]
+
+    for e in lossy:
+        try:
+            target = _node_at(doc, e.source_path)
+        except (KeyError, IndexError, ValueError, TypeError):
+            continue
+        if e.keyword is None:
+            pk = parent_and_key(e.source_path)
+            if pk is not None:
+                parent, key = pk
+                if isinstance(parent, list):
+                    parent[int(key)] = {}
+                else:
+                    parent[key] = {}
+            continue
+        if not isinstance(target, dict):
+            continue
+        if e.keyword == "oneOf" and "oneOf" in target:
+            target["anyOf"] = target.pop("oneOf")
+        elif e.keyword in ("additionalProperties", "required") and e.tid in ("T10", "T11b"):
+            continue  # narrowing / ambiguity: no relaxation needed for validity
+        else:
+            target.pop(e.keyword, None)
+    return doc
