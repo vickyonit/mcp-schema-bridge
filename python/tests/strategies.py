@@ -107,6 +107,7 @@ def _extend(children: st.SearchStrategy[Any]) -> st.SearchStrategy[Any]:
         ),
         st.builds(lambda bs: {"anyOf": bs}, st.lists(children, min_size=2, max_size=3)),
         st.builds(lambda bs: {"oneOf": bs}, st.lists(children, min_size=2, max_size=3)),
+        st.builds(lambda bs: {"allOf": bs}, st.lists(children, min_size=2, max_size=3)),
     )
 
 
