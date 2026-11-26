@@ -1,0 +1,45 @@
+{
+  "name": "mcp-schema-bridge",
+  "version": "0.0.1",
+  "description": "Normalize MCP tool schemas for Gemini, OpenAI and Anthropic, with a lossiness report and argument round-trip.",
+  "license": "Apache-2.0",
+  "author": "The mcp-schema-bridge Authors",
+  "repository": { "type": "git", "url": "git+https://github.com/vickyonit/mcp-schema-bridge.git", "directory": "typescript" },
+  "homepage": "https://github.com/vickyonit/mcp-schema-bridge#readme",
+  "bugs": "https://github.com/vickyonit/mcp-schema-bridge/issues",
+  "keywords": ["mcp", "model-context-protocol", "json-schema", "gemini", "openai", "anthropic", "function-calling", "tools"],
+  "type": "module",
+  "sideEffects": false,
+  "engines": { "node": ">=22" },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+      "require": { "types": "./dist/index.d.cts", "default": "./dist/index.cjs" }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "check:package": "publint && attw --pack . --profile node16"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@types/node": "22.20.7",
+    "@vitest/coverage-v8": "5.1.2",
+    "eslint": "10.15.0",
+    "fast-check": "4.11.0",
+    "publint": "0.3.25",
+    "tsup": "9.0.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.74.0",
+    "vitest": "5.1.2"
+  },
+  "packageManager": "pnpm@10.33.1"
+}
