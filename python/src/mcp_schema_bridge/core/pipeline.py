@@ -7,7 +7,7 @@ from typing import Any
 
 from mcp_schema_bridge._version import __version__
 from mcp_schema_bridge.core.context import Ctx
-from mcp_schema_bridge.core.emit import emit
+from mcp_schema_bridge.core.emit import build_entries, emit
 from mcp_schema_bridge.core.jcs import canonicalize
 from mcp_schema_bridge.core.options import NormalizeOptions
 from mcp_schema_bridge.core.parse import Limits, check_value
@@ -24,6 +24,7 @@ from mcp_schema_bridge.core.stages.optional import optional_stage
 from mcp_schema_bridge.core.stages.resolve import resolve
 from mcp_schema_bridge.core.stages.root import apply_root
 from mcp_schema_bridge.core.stages.unions import unions_stage
+from mcp_schema_bridge.core.stages.validate import check_output, validate_tree
 from mcp_schema_bridge.core.tree import SNode, build
 
 
@@ -64,7 +65,13 @@ def normalize_schema(
     optional_stage(root, ctx)
     filter_stage(root, ctx)
     hints_stage(root, ctx)
+    validate_tree(root, ctx)
     out = emit(root, ctx)
+    if out.schema is not None:
+        check_output(out.schema, ctx)
+        if ctx.fatal:
+            out.schema = None
+            out.entries = build_entries(ctx, out.pointers)
     fp = fingerprint(fingerprint_of if fingerprint_of is not None else value, target)
     return NormalizeResult(
         target=target,

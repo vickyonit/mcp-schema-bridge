@@ -86,9 +86,15 @@ def emit(root: SNode, ctx: Ctx) -> Emitted:
                 message=f"unused definition {name!r} removed",
             )
 
+    out.entries = build_entries(ctx, out.pointers)
+    return out
+
+
+def build_entries(ctx: Ctx, pointers: dict[int, str]) -> list[ReportEntry]:
+    entries: list[ReportEntry] = []
     for e in ctx.entries:
-        target_path = out.pointers.get(id(e.node)) if e.node is not None else None
-        out.entries.append(
+        target_path = pointers.get(id(e.node)) if e.node is not None else None
+        entries.append(
             ReportEntry(
                 rule=e.rule,
                 tid=e.tid,
@@ -104,7 +110,7 @@ def emit(root: SNode, ctx: Ctx) -> Emitted:
                 message=e.message,
             )
         )
-    return out
+    return entries
 
 
 def _reachable_defs(root: SNode, ctx: Ctx) -> dict[str, SNode]:
