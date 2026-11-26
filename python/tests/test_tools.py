@@ -169,3 +169,13 @@ def test_get_and_summary_helpers() -> None:
     assert text.startswith("openai-strict: 1 tool(s) ok, 1 rejected")
     assert "meta  /properties/m" in text
     assert "fix: " in text
+
+
+def test_summary_mentions_demoted_tools() -> None:
+    meta = tool(
+        "meta", {"type": "object", "properties": {"m": {"type": "object"}}, "required": ["m"]}
+    )
+    res = normalize_tools([meta], "openai-strict", NormalizeOptions(strict_fallback=True))
+    assert res.summary().startswith(
+        "openai-strict: 1 tool(s) ok (1 demoted to non-strict), 0 rejected"
+    )

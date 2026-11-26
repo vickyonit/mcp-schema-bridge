@@ -84,9 +84,11 @@ class ToolsetResult:
         for e in self.report.entries:
             counts[e.severity] += 1
         changes = ", ".join(f"{n} {s}" for s, n in counts.items() if n) or "no changes"
-        lines = [
-            f"{self.target}: {len(self.tools)} tool(s) ok, {len(self.rejected)} rejected; {changes}"
-        ]
+        demoted = sum(1 for t in self.tools if t.target != self.target)
+        ok = f"{len(self.tools)} tool(s) ok" + (
+            f" ({demoted} demoted to non-strict)" if demoted else ""
+        )
+        lines = [f"{self.target}: {ok}, {len(self.rejected)} rejected; {changes}"]
         for e in self.report.sorted():
             if e.severity == "info":
                 continue
