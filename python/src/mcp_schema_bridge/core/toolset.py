@@ -87,8 +87,10 @@ class ToolsetResult:
 
 def as_tool_dict(t: Any) -> Any:
     """Accept MCP SDK Tool objects (pydantic models) as well as plain dicts."""
+    if isinstance(t, dict):
+        return cast(Any, t)
     dump = getattr(t, "model_dump", None)
-    if callable(dump) and not isinstance(t, dict):
+    if callable(dump):
         return dump(mode="json", by_alias=True, exclude_none=True)
     return t
 
