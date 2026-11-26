@@ -145,3 +145,25 @@ def test_stdio_server_failure_exits_3(capfd: pytest.CaptureFixture[str]) -> None
     )
     assert rc == 3
     capfd.readouterr()
+
+
+def test_text_output_separates_tool_from_path_and_suggests_server_fixes(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    tools = [
+        {
+            "name": "tag",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "labels": {"type": "object", "additionalProperties": {"type": "string"}}
+                },
+                "required": ["labels"],
+            },
+        }
+    ]
+    main(["check", write(tmp_path, tools), "--target", "openai-strict"])
+    out = capsys.readouterr().out
+    assert "tag  /properties/labels" in out
+    assert "fix: " in out
+    assert "list of {key, value} objects" in out

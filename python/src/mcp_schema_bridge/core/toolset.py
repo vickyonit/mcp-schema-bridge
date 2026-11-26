@@ -85,6 +85,14 @@ class ToolsetResult:
         }
 
 
+def as_tool_dict(t: Any) -> Any:
+    """Accept MCP SDK Tool objects (pydantic models) as well as plain dicts."""
+    dump = getattr(t, "model_dump", None)
+    if callable(dump) and not isinstance(t, dict):
+        return dump(mode="json", by_alias=True, exclude_none=True)
+    return t
+
+
 def _check_tool(t: Any, i: int) -> tuple[str, str | None, dict[str, Any]]:
     if not isinstance(t, dict):
         raise InvalidInputError("tool must be an object", f"/{i}")
@@ -125,10 +133,11 @@ def _entry(
 
 
 def normalize_tools(
-    tools: list[dict[str, Any]], target: Target, opts: NormalizeOptions | None = None
+    tools: list[Any], target: Target, opts: NormalizeOptions | None = None
 ) -> ToolsetResult:
     o = opts or NormalizeOptions()
     rules = load_rules(target)
+    tools = [as_tool_dict(t) for t in tools]
     parsed = [_check_tool(t, i) for i, t in enumerate(tools)]
     name_re = re.compile(rules.tool_name_pattern)
     accepted: list[tuple[NormalizedTool, dict[str, Any]]] = []

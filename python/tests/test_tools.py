@@ -138,3 +138,15 @@ def test_fingerprint_covers_whole_tool() -> None:
     a = normalize_tools([tool("search", description="one")], "openai").tools[0].fingerprint
     b = normalize_tools([tool("search", description="two")], "openai").tools[0].fingerprint
     assert a != b
+
+
+def test_accepts_mcp_sdk_tool_objects_directly() -> None:
+    from mcp import types
+
+    t = types.Tool(
+        name="search",
+        description="d",
+        input_schema={"type": "object", "properties": {"q": {"type": "string"}}},
+    )
+    res = normalize_tools([t], "openai-strict")  # type: ignore[list-item]
+    assert res.tools[0].schema["required"] == ["q"]
