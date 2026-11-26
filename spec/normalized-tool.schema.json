@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vickyonit/mcp-schema-bridge/spec/normalized-tool.schema.json",
+  "title": "mcp-schema-bridge normalized tool",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "description", "target", "strict", "schema", "reverse", "fingerprint"],
+  "properties": {
+    "name": { "type": "string" },
+    "description": { "type": ["string", "null"] },
+    "target": { "enum": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"] },
+    "strict": { "type": "boolean" },
+    "schema": { "type": "object", "description": "The normalized JSON Schema to send to the provider." },
+    "reverse": { "$ref": "reverse-map.schema.json" },
+    "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "sha256(JCS({original, library_version, rules_version, target}))" }
+  }
+}

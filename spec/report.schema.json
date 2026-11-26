@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vickyonit/mcp-schema-bridge/spec/report.schema.json",
+  "title": "mcp-schema-bridge lossiness report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["library_version", "rules_version", "target", "entries"],
+  "properties": {
+    "library_version": { "type": "string" },
+    "rules_version": { "type": "string", "pattern": "^\\d{4}\\.\\d{2}\\.\\d{2}$" },
+    "target": { "enum": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"] },
+    "entries": { "type": "array", "items": { "$ref": "#/$defs/entry" } }
+  },
+  "$defs": {
+    "pointer": { "type": "string", "pattern": "^(/([^~/]|~[01])*)*$" },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule", "tid", "tool", "source_path", "target_path", "instance_path", "keyword", "action", "severity", "original", "hinted", "message"],
+      "properties": {
+        "rule": { "type": "string", "pattern": "^[a-z0-9-]+/[a-z0-9-]+$", "description": "Stable id: <target or core>/<slug>. Documented at docs/rules/." },
+        "tid": { "type": "string", "description": "Transformation family (T1..T18, or 'reverse')." },
+        "tool": { "type": ["string", "null"] },
+        "source_path": { "$ref": "#/$defs/pointer", "description": "RFC 6901 pointer into the input schema." },
+        "target_path": { "anyOf": [{ "$ref": "#/$defs/pointer" }, { "type": "null" }], "description": "Pointer into the output schema, null if the node is not emitted." },
+        "instance_path": { "anyOf": [{ "$ref": "#/$defs/pointer" }, { "type": "null" }], "description": "Pointer into tool arguments; null when not unique (e.g. inside $defs or arrays)." },
+        "keyword": { "type": ["string", "null"], "description": "Affected keyword; null means the whole subtree at source_path." },
+        "action": { "enum": ["dropped", "rewritten", "inlined", "merged", "coerced", "wrapped", "narrowed", "truncated", "fallback", "rejected"] },
+        "severity": { "enum": ["info", "reversible", "lossy", "fatal"] },
+        "original": { "description": "The original value (if any)." },
+        "hinted": { "type": "boolean", "description": "The original value was restated in a description hint." },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

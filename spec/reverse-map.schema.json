@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vickyonit/mcp-schema-bridge/spec/reverse-map.schema.json",
+  "title": "mcp-schema-bridge reverse map",
+  "description": "Operations that denormalize_args applies to model arguments. Each op is anchored at a pointer into the NORMALIZED schema; the reverse walk follows $ref, so one anchor applies wherever it is reached.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fingerprint", "rules_version", "target", "ops"],
+  "properties": {
+    "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "rules_version": { "type": "string" },
+    "target": { "type": "string" },
+    "ops": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object", "additionalProperties": false, "required": ["op", "at"],
+            "properties": { "op": { "const": "unwrap_root" }, "at": { "type": "string" } }
+          },
+          {
+            "type": "object", "additionalProperties": false, "required": ["op", "at", "property"],
+            "properties": { "op": { "const": "drop_injected_null" }, "at": { "type": "string" }, "property": { "type": "string" } }
+          }
+        ]
+      }
+    }
+  }
+}
