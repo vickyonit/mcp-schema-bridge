@@ -100,3 +100,21 @@ def test_strict_fallback_has_no_effect_on_non_strict_targets() -> None:
         NormalizeOptions(strict_fallback=True),
     )
     assert r.schema is None
+
+
+def test_fingerprint_hashes_the_documented_canonical_payload() -> None:
+    # Same literal as typescript/test/api.test.ts: both languages hash identical bytes for any version.
+    import hashlib
+
+    from mcp_schema_bridge._version import __version__
+    from mcp_schema_bridge.core.rules import RULES_VERSION
+
+    jcs = (
+        f'{{"library_version":"{__version__}","original":{{"properties":{{"a":{{"type":"string"}}}},'
+        f'"type":"object"}},"rules_version":"{RULES_VERSION}","target":"openai-strict"}}'
+    )
+    schema = {"type": "object", "properties": {"a": {"type": "string"}}}
+    assert (
+        normalize_schema(schema, "openai-strict").fingerprint
+        == hashlib.sha256(jcs.encode()).hexdigest()
+    )

@@ -1,4 +1,7 @@
+import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
+import { RULES_VERSION } from "../src/core/rules.js";
+import { VERSION } from "../src/core/version.js";
 import {
   denormalizeArgs, normalizeSchema, normalizeTools, ReverseMismatchError, toSdkPayload, TARGETS,
 } from "../src/index.js";
@@ -48,8 +51,11 @@ describe("public API", () => {
 
   it("fingerprints match the Python implementation (same version, rules, input)", () => {
     for (const t of TARGETS) expect(normalizeSchema({ type: "object" }, t).fingerprint).toMatch(/^[0-9a-f]{64}$/);
-    // computed by the Python package for the same input/target/version/rules
-    expect(normalizeSchema({ type: "object", properties: { a: { type: "string" } } }, "openai-strict").fingerprint).toBe("895482e7d51895eaee9769f7c217cdb58cf0c732e5f648404e395f3dbe601676");
+    // The fingerprint is sha256 over the RFC 8785 form of {original, library_version, rules_version, target}.
+    // The same literal is asserted in python/tests/test_normalize_basic.py, so both languages hash the same bytes
+    // for every release (the expected value must not be pinned to one library version).
+    const jcs = `{"library_version":"${VERSION}","original":{"properties":{"a":{"type":"string"}},"type":"object"},"rules_version":"${RULES_VERSION}","target":"openai-strict"}`;
+    expect(normalizeSchema({ type: "object", properties: { a: { type: "string" } } }, "openai-strict").fingerprint).toBe(createHash("sha256").update(jcs, "utf8").digest("hex"));
   });
 });
 
