@@ -1,0 +1,33 @@
+{
+  "$comment": "Shared test vectors for the syntactic ECMA-262 pattern feature scanner. large_quantifier threshold: any {n} / {n,} / {n,m} bound greater than 100.",
+  "large_quantifier_threshold": 100,
+  "vectors": [
+    { "pattern": "^[a-z]+$", "features": [] },
+    { "pattern": "^\\d{3}-\\d{4}$", "features": [] },
+    { "pattern": "(a)\\1", "features": ["backreference"] },
+    { "pattern": "(?<y>\\d)\\k<y>", "features": ["backreference"] },
+    { "pattern": "^(?=.*\\d).+$", "features": ["lookaround"] },
+    { "pattern": "foo(?!bar)", "features": ["lookaround"] },
+    { "pattern": "(?<=\\$)\\d+", "features": ["lookaround"] },
+    { "pattern": "(?<!x)y", "features": ["lookaround"] },
+    { "pattern": "\\bword\\b", "features": ["word_boundary"] },
+    { "pattern": "\\Bx", "features": ["word_boundary"] },
+    { "pattern": "[\\b]", "features": [] },
+    { "pattern": "a{1,200}", "features": ["large_quantifier"] },
+    { "pattern": "a{101}", "features": ["large_quantifier"] },
+    { "pattern": "a{2,100}", "features": [] },
+    { "pattern": "a{500,}", "features": ["large_quantifier"] },
+    { "pattern": "\\p{L}+", "features": ["unicode_property"] },
+    { "pattern": "\\P{Lu}", "features": ["unicode_property"] },
+    { "pattern": "(?i)abc", "features": ["inline_flags"] },
+    { "pattern": "(?i:abc)", "features": ["inline_flags"] },
+    { "pattern": "(?:abc)", "features": [] },
+    { "pattern": "(?<name>abc)", "features": [] },
+    { "pattern": "\\(?=", "features": [] },
+    { "pattern": "[(?=]", "features": [] },
+    { "pattern": "\\\\1", "features": [] },
+    { "pattern": "[\\]\\\\]\\1", "features": ["backreference"] },
+    { "pattern": "x{", "features": [] },
+    { "pattern": "\\d{1,3}(?:\\.\\d{1,3}){3}", "features": [] }
+  ]
+}
