@@ -159,6 +159,13 @@ and 24 per-transformation cases:
   always gives byte-identical output.
 - **Allow-list.** The output only uses keywords and formats the target's rules allow.
 
+## Performance
+
+Normalizing a 100-tool toolset (built from the captured corpus) takes about **20–25 ms per target** on an
+Apple Silicon laptop (`scripts/benchmark.py`, p50; p99 within 2 ms). Output is deterministic, so cache
+`NormalizedTool`s (they serialize with `to_dict()`/`from_dict()`) and re-normalize only when a server's
+`tools/list` changes. See [docs/framework-authors.md](docs/framework-authors.md).
+
 ## What we can't fix
 
 - `oneOf` exclusivity, on targets that only support `anyOf` (reported `lossy` unless the branches are provably disjoint).
