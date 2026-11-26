@@ -10,7 +10,7 @@ from mcp_schema_bridge._version import __version__
 from mcp_schema_bridge.core.errors import InvalidInputError
 from mcp_schema_bridge.core.options import Budget, NormalizeOptions
 from mcp_schema_bridge.core.pipeline import normalize_schema
-from mcp_schema_bridge.core.report import Action, Report, ReportEntry, Severity
+from mcp_schema_bridge.core.report import SEVERITIES, Action, Report, ReportEntry, Severity
 from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.rules import RULES_VERSION, Target, load_rules
 
@@ -71,6 +71,32 @@ class ToolsetResult:
     report: Report
     library_version: str = __version__
     rules_version: str = RULES_VERSION
+
+    def get(self, name: str) -> NormalizedTool | None:
+        """The normalized tool with this name, or None if it was rejected or never existed."""
+        return next((t for t in self.tools if t.name == name), None)
+
+    def summary(self) -> str:
+        """Human-readable summary (the same text as `mcp-schema-bridge check`), with server-side fixes."""
+        from mcp_schema_bridge.fixes import fix_for
+
+        counts = {s: 0 for s in SEVERITIES}
+        for e in self.report.entries:
+            counts[e.severity] += 1
+        changes = ", ".join(f"{n} {s}" for s, n in counts.items() if n) or "no changes"
+        lines = [
+            f"{self.target}: {len(self.tools)} tool(s) ok, {len(self.rejected)} rejected; {changes}"
+        ]
+        for e in self.report.sorted():
+            if e.severity == "info":
+                continue
+            where = f"{e.tool}  {e.source_path or '/'}" if e.tool else (e.source_path or "/")
+            keyword = f" {e.keyword}" if e.keyword else ""
+            lines.append(f"  [{e.severity}] {where}{keyword}: {e.message} ({e.rule})")
+            fix = fix_for(e.rule)
+            if fix and e.severity in ("lossy", "fatal"):
+                lines.append(f"      fix: {fix}")
+        return "\n".join(lines) + "\n"
 
     def to_dict(self) -> dict[str, Any]:
         return {

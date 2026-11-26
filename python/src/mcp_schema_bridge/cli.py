@@ -19,7 +19,6 @@ from mcp_schema_bridge.core.parse import loads
 from mcp_schema_bridge.core.report import SEVERITIES, Severity, severity_at_least
 from mcp_schema_bridge.core.rules import TARGETS, Target
 from mcp_schema_bridge.core.toolset import ToolsetResult, normalize_tools
-from mcp_schema_bridge.fixes import fix_for
 
 
 class _UsageError(Exception):
@@ -154,23 +153,7 @@ def _payload(results: dict[str, ToolsetResult]) -> dict[str, Any]:
 
 
 def _text(results: dict[str, ToolsetResult]) -> str:
-    lines: list[str] = []
-    for target, r in results.items():
-        counts = {s: 0 for s in SEVERITIES}
-        for e in r.report.entries:
-            counts[e.severity] += 1
-        summary = ", ".join(f"{n} {s}" for s, n in counts.items() if n) or "no changes"
-        lines.append(f"{target}: {len(r.tools)} tool(s) ok, {len(r.rejected)} rejected; {summary}")
-        for e in r.report.sorted():
-            if e.severity == "info":
-                continue
-            where = f"{e.tool}  {e.source_path or '/'}" if e.tool else (e.source_path or "/")
-            keyword = f" {e.keyword}" if e.keyword else ""
-            lines.append(f"  [{e.severity}] {where}{keyword}: {e.message} ({e.rule})")
-            fix = fix_for(e.rule)
-            if fix and e.severity in ("lossy", "fatal"):
-                lines.append(f"      fix: {fix}")
-    return "\n".join(lines) + "\n"
+    return "".join(r.summary() for r in results.values())
 
 
 def main(argv: list[str] | None = None) -> int:

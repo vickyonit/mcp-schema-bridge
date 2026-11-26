@@ -4,7 +4,8 @@ import { fromPlain, type OMap, toPlain } from "./ojson.js";
 import { type NormalizeOptions, resolveOptions } from "./options.js";
 import { normalizeSchemaOrdered } from "./pipeline.js";
 import { pyRepr } from "./pyfmt.js";
-import { type Action, entryToOrdered, Report, type ReportEntry, type Severity } from "./report.js";
+import { fixFor } from "./fixes.js";
+import { type Action, entryToOrdered, Report, type ReportEntry, SEVERITIES, type Severity } from "./report.js";
 import { type NormalizeResult, type ReverseMap, reverseToOrdered } from "./result.js";
 import { loadRules, RULES_VERSION, type Target } from "./rules.js";
 import { VERSION } from "./version.js";
@@ -49,6 +50,27 @@ export class ToolsetResult {
     readonly rejected: Rejection[],
     readonly report: Report,
   ) {}
+
+  /** The normalized tool with this name, or undefined if it was rejected or never existed. */
+  get(name: string): NormalizedTool | undefined {
+    return this.tools.find((t) => t.name === name);
+  }
+
+  /** Human-readable summary (same text as the Python CLI), with server-side fixes. */
+  summary(): string {
+    const counts = new Map<string, number>(SEVERITIES.map((s) => [s, 0]));
+    for (const e of this.report.entries) counts.set(e.severity, counts.get(e.severity)! + 1);
+    const changes = [...counts].filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(", ") || "no changes";
+    const lines = [`${this.target}: ${this.tools.length} tool(s) ok, ${this.rejected.length} rejected; ${changes}`];
+    for (const e of this.report.sorted()) {
+      if (e.severity === "info") continue;
+      const where = e.tool ? `${e.tool}  ${e.sourcePath || "/"}` : e.sourcePath || "/";
+      lines.push(`  [${e.severity}] ${where}${e.keyword ? ` ${e.keyword}` : ""}: ${e.message} (${e.rule})`);
+      const fix = fixFor(e.rule);
+      if (fix && (e.severity === "lossy" || e.severity === "fatal")) lines.push(`      fix: ${fix}`);
+    }
+    return lines.join("\n") + "\n";
+  }
 
   /** Insertion-ordered representation (identical to the Python `to_dict()`). */
   toOrdered(): OMap {

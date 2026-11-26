@@ -150,3 +150,22 @@ def test_accepts_mcp_sdk_tool_objects_directly() -> None:
     )
     res = normalize_tools([t], "openai-strict")  # type: ignore[list-item]
     assert res.tools[0].schema["required"] == ["q"]
+
+
+def test_get_and_summary_helpers() -> None:
+    res = normalize_tools(
+        [
+            tool("search"),
+            tool(
+                "meta",
+                {"type": "object", "properties": {"m": {"type": "object"}}, "required": ["m"]},
+            ),
+        ],
+        "openai-strict",
+    )
+    assert res.get("search") is res.tools[0]
+    assert res.get("meta") is None  # rejected
+    text = res.summary()
+    assert text.startswith("openai-strict: 1 tool(s) ok, 1 rejected")
+    assert "meta  /properties/m" in text
+    assert "fix: " in text

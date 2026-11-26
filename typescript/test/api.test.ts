@@ -52,3 +52,15 @@ describe("public API", () => {
     expect(normalizeSchema({ type: "object", properties: { a: { type: "string" } } }, "openai-strict").fingerprint).toBe("895482e7d51895eaee9769f7c217cdb58cf0c732e5f648404e395f3dbe601676");
   });
 });
+
+describe("ToolsetResult helpers", () => {
+  it("get() and summary() match the Python output", () => {
+    const res = normalizeTools(TOOLS, "openai-strict");
+    expect(res.get("search")?.name).toBe("search");
+    expect(res.get("meta")).toBeUndefined();
+    const text = res.summary();
+    expect(text.startsWith("openai-strict: 1 tool(s) ok, 1 rejected")).toBe(true);
+    expect(text).toContain("meta  /properties/m");
+    expect(text).toContain("fix: ");
+  });
+});

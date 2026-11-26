@@ -63,3 +63,11 @@ def test_every_emitted_rule_id_is_documented() -> None:
 @pytest.mark.parametrize("path", sorted((REPO / "examples").glob("*.py")), ids=lambda p: p.name)
 def test_examples_compile(path: Path) -> None:
     compile(path.read_text(encoding="utf-8"), str(path), "exec")
+
+
+def test_typescript_fix_catalog_matches_python() -> None:
+    from mcp_schema_bridge.fixes import FIXES
+
+    ts = (REPO / "typescript" / "src" / "core" / "fixes.ts").read_text(encoding="utf-8")
+    body = ts[ts.index("= {") + 2 : ts.index("};") + 1]
+    assert json.loads(body) == FIXES
