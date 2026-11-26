@@ -7,19 +7,65 @@
       "package-name": "mcp-schema-bridge",
       "version-file": "src/mcp_schema_bridge/_version.py",
       "changelog-path": "../CHANGELOG.md",
-      "bump-minor-pre-major": true
+      "bump-minor-pre-major": true,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "../typescript/package.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "generic",
+          "path": "../typescript/src/core/version.ts"
+        }
+      ]
     }
   },
   "changelog-sections": [
-    { "type": "feat", "section": "Features" },
-    { "type": "fix", "section": "Bug fixes" },
-    { "type": "rules", "section": "Provider rule updates" },
-    { "type": "corpus", "section": "Corpus", "hidden": true },
-    { "type": "docs", "section": "Documentation" },
-    { "type": "perf", "section": "Performance" },
-    { "type": "test", "section": "Tests", "hidden": true },
-    { "type": "chore", "section": "Miscellaneous", "hidden": true },
-    { "type": "build", "section": "Build", "hidden": true },
-    { "type": "ci", "section": "CI", "hidden": true }
+    {
+      "type": "feat",
+      "section": "Features"
+    },
+    {
+      "type": "fix",
+      "section": "Bug fixes"
+    },
+    {
+      "type": "rules",
+      "section": "Provider rule updates"
+    },
+    {
+      "type": "corpus",
+      "section": "Corpus",
+      "hidden": true
+    },
+    {
+      "type": "docs",
+      "section": "Documentation"
+    },
+    {
+      "type": "perf",
+      "section": "Performance"
+    },
+    {
+      "type": "test",
+      "section": "Tests",
+      "hidden": true
+    },
+    {
+      "type": "chore",
+      "section": "Miscellaneous",
+      "hidden": true
+    },
+    {
+      "type": "build",
+      "section": "Build",
+      "hidden": true
+    },
+    {
+      "type": "ci",
+      "section": "CI",
+      "hidden": true
+    }
   ]
 }

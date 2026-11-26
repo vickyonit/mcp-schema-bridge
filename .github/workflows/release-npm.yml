@@ -1,0 +1,44 @@
+name: Release (npm)
+
+# npm trusted publishing (OIDC) with provenance; no long-lived tokens.
+# One-time setup (maintainer): configure this repository/workflow as a trusted publisher for the
+# `mcp-schema-bridge` package on npmjs.com and create the protected `npm` environment.
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write   # trusted publishing + provenance
+    defaults:
+      run:
+        working-directory: typescript
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false   # never restore caches in a publishing job
+      - name: Verify tag matches package version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck && pnpm lint && pnpm vitest run --coverage
+      - run: pnpm build && pnpm check:package && pnpm check:size
+      - name: Publish (skips if this version already exists)
+        run: |
+          v=$(node -p "require('./package.json').version")
+          if npm view "mcp-schema-bridge@$v" version >/dev/null 2>&1; then echo "already published"; exit 0; fi
+          npm publish --provenance --access public
