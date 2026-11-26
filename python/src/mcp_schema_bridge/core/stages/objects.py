@@ -6,7 +6,7 @@ from typing import Any, cast
 
 from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.rules import keyword_classes
-from mcp_schema_bridge.core.tree import SNode, iter_subschemas, to_plain
+from mcp_schema_bridge.core.tree import Seen, SNode, iter_subschemas, to_plain
 
 _OBJECT_HINTS = (
     "properties",
@@ -35,9 +35,9 @@ def is_any(node: SNode) -> bool:
 def close_objects(root: SNode, ctx: Ctx) -> None:
     if not ctx.rules.features.close_objects:
         return
-    seen: set[int] = set()
+    seen = Seen()
     _close_root(root, ctx)
-    seen.add(id(root))
+    seen.add(root)
     for tree in [root, *ctx.defs.values()]:
         _visit(tree, ctx, seen)
 
@@ -71,9 +71,9 @@ def _close_root(root: SNode, ctx: Ctx) -> None:
 _VALUE_POSITIONS = {"properties", "items", "prefixItems", "anyOf", "oneOf"}
 
 
-def _visit(node: SNode, ctx: Ctx, seen: set[int], position: str | None = None) -> None:
-    first = id(node) not in seen
-    seen.add(id(node))
+def _visit(node: SNode, ctx: Ctx, seen: Seen, position: str | None = None) -> None:
+    first = node not in seen
+    seen.add(node)
     if first:
         if position in _VALUE_POSITIONS and is_any(node):
             ctx.add(
@@ -93,7 +93,7 @@ def _visit(node: SNode, ctx: Ctx, seen: set[int], position: str | None = None) -
             else:
                 _reject_open(node, ctx)
     for kw, _, child in list(iter_subschemas(node)):
-        if isinstance(child, SNode) and id(child) not in seen:
+        if isinstance(child, SNode) and child not in seen:
             _visit(child, ctx, seen, kw)
 
 

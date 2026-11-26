@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any, cast
 
 from mcp_schema_bridge.core.context import Ctx
-from mcp_schema_bridge.core.tree import SNode, iter_subschemas
+from mcp_schema_bridge.core.tree import Seen, SNode, iter_subschemas
 
 
 def accepts_null(s: Any, seen: frozenset[int] = frozenset()) -> bool:
@@ -35,15 +35,15 @@ def accepts_null(s: Any, seen: frozenset[int] = frozenset()) -> bool:
 def optional_stage(root: SNode, ctx: Ctx) -> None:
     if not ctx.rules.features.all_required:
         return
-    seen: set[int] = set()
+    seen = Seen()
     for tree in [root, *ctx.defs.values()]:
         _visit(tree, ctx, seen)
 
 
-def _visit(node: SNode, ctx: Ctx, seen: set[int]) -> None:
-    if id(node) in seen:
+def _visit(node: SNode, ctx: Ctx, seen: Seen) -> None:
+    if node in seen:
         return
-    seen.add(id(node))
+    seen.add(node)
     for _, _, child in list(iter_subschemas(node)):
         if isinstance(child, SNode):
             _visit(child, ctx, seen)

@@ -12,7 +12,7 @@ from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.jcs import canonicalize
 from mcp_schema_bridge.core.rules import keyword_classes
 from mcp_schema_bridge.core.stages.merge import union_product
-from mcp_schema_bridge.core.tree import SNode, copy_tree, iter_subschemas, to_plain
+from mcp_schema_bridge.core.tree import Seen, SNode, copy_tree, iter_subschemas, to_plain
 
 TYPE_KEYWORDS: dict[str, tuple[str, ...]] = {
     "string": (
@@ -70,15 +70,15 @@ def json_type(v: Any) -> str:
 
 
 def unions_stage(root: SNode, ctx: Ctx) -> None:
-    seen: set[int] = set()
+    seen = Seen()
     for tree in [root, *ctx.defs.values()]:
         _visit(tree, ctx, seen)
 
 
-def _visit(node: SNode, ctx: Ctx, seen: set[int]) -> None:
-    if id(node) in seen:
+def _visit(node: SNode, ctx: Ctx, seen: Seen) -> None:
+    if node in seen:
         return
-    seen.add(id(node))
+    seen.add(node)
     for _, _, child in list(iter_subschemas(node)):
         if isinstance(child, SNode):
             _visit(child, ctx, seen)
@@ -94,7 +94,7 @@ def _visit(node: SNode, ctx: Ctx, seen: set[int]) -> None:
         _t9(node, ctx)
     # Branches created by the rewrites above have not been shaped yet.
     for b in cast(list[Any], node.get("anyOf") or []):
-        if isinstance(b, SNode) and id(b) not in seen:
+        if isinstance(b, SNode) and b not in seen:
             _visit(b, ctx, seen)
 
 
@@ -379,7 +379,7 @@ def _t9(node: SNode, ctx: Ctx) -> None:
     node["anyOf"] = new
     for b in new:
         if isinstance(b, SNode):
-            _visit(b, ctx, set())
+            _visit(b, ctx, Seen())
     ctx.add(
         "core/anyof-siblings-distributed",
         "T9",

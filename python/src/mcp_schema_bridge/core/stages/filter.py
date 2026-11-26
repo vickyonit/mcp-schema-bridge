@@ -8,21 +8,21 @@ from typing import Any, cast
 from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.regex_scan import scan
 from mcp_schema_bridge.core.rules import keyword_classes
-from mcp_schema_bridge.core.tree import SNode, iter_subschemas, to_plain
+from mcp_schema_bridge.core.tree import Seen, SNode, iter_subschemas, to_plain
 
 ALWAYS_KEEP = {"$ref", "type", "properties", "required", "items", "anyOf", "description", "title"}
 
 
 def filter_stage(root: SNode, ctx: Ctx) -> None:
-    seen: set[int] = set()
+    seen = Seen()
     for tree in [root, *ctx.defs.values()]:
         _visit(tree, ctx, seen)
 
 
-def _visit(node: SNode, ctx: Ctx, seen: set[int]) -> None:
-    if id(node) in seen:
+def _visit(node: SNode, ctx: Ctx, seen: Seen) -> None:
+    if node in seen:
         return
-    seen.add(id(node))
+    seen.add(node)
     _integer_exclusive_bounds(node, ctx)
     for kw in list(node):
         if kw in node:

@@ -10,7 +10,7 @@ from typing import Any, cast
 from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.jcs import canonicalize
 from mcp_schema_bridge.core.rules import keyword_classes
-from mcp_schema_bridge.core.tree import SNode, copy_tree, iter_subschemas, to_plain
+from mcp_schema_bridge.core.tree import Seen, SNode, copy_tree, iter_subschemas, to_plain
 
 _LOWER = {"minimum", "exclusiveMinimum", "minLength", "minItems", "minProperties", "minContains"}
 _UPPER = {"maximum", "exclusiveMaximum", "maxLength", "maxItems", "maxProperties", "maxContains"}
@@ -34,15 +34,15 @@ def _c(v: Any) -> str:
 def merge_allof(root: SNode, ctx: Ctx) -> None:
     if not ctx.rules.features.merge_allof:
         return
-    seen: set[int] = set()
+    seen = Seen()
     for tree in [root, *ctx.defs.values()]:
         _visit(tree, ctx, seen, ())
 
 
-def _visit(node: SNode, ctx: Ctx, seen: set[int], stack: tuple[int, ...]) -> None:
-    if id(node) in seen:
+def _visit(node: SNode, ctx: Ctx, seen: Seen, stack: tuple[int, ...]) -> None:
+    if node in seen:
         return
-    seen.add(id(node))
+    seen.add(node)
     for _, _, child in list(iter_subschemas(node)):
         if isinstance(child, SNode):
             _visit(child, ctx, seen, stack)
@@ -77,7 +77,7 @@ def _visit(node: SNode, ctx: Ctx, seen: set[int], stack: tuple[int, ...]) -> Non
         branch = _resolved_copy(cast(SNode, b), ctx, stack)
         if branch is None:
             continue
-        _visit(branch, ctx, set(), stack)  # nested allOf inside the branch copy
+        _visit(branch, ctx, Seen(), stack)  # nested allOf inside the branch copy
         contributors.append(_snapshot(branch))
         merge_into(node, branch, ctx)
     report_changed(node, contributors, ctx)
@@ -116,7 +116,7 @@ def _resolved_copy(b: SNode, ctx: Ctx, stack: tuple[int, ...]) -> SNode | None:
     if siblings:
         merge_into(inlined, siblings, ctx)
     if isinstance(inlined, SNode) and "allOf" in inlined:
-        _visit(inlined, ctx, set(), (*stack, id(target)))
+        _visit(inlined, ctx, Seen(), (*stack, id(target)))
     ctx.add(
         "core/allof-ref-inlined",
         "T7",

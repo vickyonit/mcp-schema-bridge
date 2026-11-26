@@ -6,7 +6,7 @@ from typing import Any, cast
 
 from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.pointer import join
-from mcp_schema_bridge.core.tree import SNode, iter_subschemas
+from mcp_schema_bridge.core.tree import Seen, SNode, iter_subschemas
 
 _BOOL_KEEP = {
     "additionalProperties",
@@ -19,15 +19,15 @@ _D7_KEEP_WITH_REF = {"$ref", "$comment"}
 
 
 def canonicalize_tree(root: SNode, ctx: Ctx, dialect: str) -> None:
-    seen: set[int] = set()
+    seen = Seen()
     for tree in [root, *ctx.defs.values()]:
         _visit(tree, ctx, dialect, seen)
 
 
-def _visit(node: SNode, ctx: Ctx, dialect: str, seen: set[int]) -> None:
-    if id(node) in seen:
+def _visit(node: SNode, ctx: Ctx, dialect: str, seen: Seen) -> None:
+    if node in seen:
         return
-    seen.add(id(node))
+    seen.add(node)
     if dialect == "draft-07" and "$ref" in node:
         _drop_draft07_ref_siblings(node, ctx)
     _tuple_items(node, ctx)

@@ -16,7 +16,7 @@ from urllib.parse import urldefrag, urljoin
 from mcp_schema_bridge.core.context import Ctx
 from mcp_schema_bridge.core.errors import InvalidInputError
 from mcp_schema_bridge.core.pointer import decode_fragment
-from mcp_schema_bridge.core.tree import SCHEMA_VALUES, SNode, iter_subschemas
+from mcp_schema_bridge.core.tree import SCHEMA_VALUES, Seen, SNode, iter_subschemas
 
 DIALECTS: dict[str, str] = {
     "https://json-schema.org/draft/2020-12/schema": "2020-12",
@@ -232,12 +232,12 @@ _STRIP: tuple[str, ...] = (
 
 
 def _strip_core(node: SNode, ctx: Ctx) -> None:
-    seen: set[int] = set()
+    seen = Seen()
 
     def visit(n: SNode) -> None:
-        if id(n) in seen:
+        if n in seen:
             return
-        seen.add(id(n))
+        seen.add(n)
         for kw in _STRIP:
             if kw in n:
                 ctx.add(

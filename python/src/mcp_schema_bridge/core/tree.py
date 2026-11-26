@@ -57,6 +57,21 @@ class SNode(dict[str, Any]):
         return f"SNode({super().__repr__()}, src={self.src})"
 
 
+class Seen:
+    """Identity set of nodes that keeps them alive (``id()`` values are reused after GC)."""
+
+    __slots__ = ("_nodes",)
+
+    def __init__(self) -> None:
+        self._nodes: dict[int, Any] = {}
+
+    def __contains__(self, node: object) -> bool:
+        return self._nodes.get(id(node)) is node
+
+    def add(self, node: object) -> None:
+        self._nodes[id(node)] = node
+
+
 def is_schema(value: Any) -> bool:
     return isinstance(value, SNode | bool)
 

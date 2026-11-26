@@ -55,3 +55,31 @@ def test_deterministic_and_pure(target: str, schema: dict[str, Any]) -> None:
 def test_allow_list(target: str, schema: dict[str, Any]) -> None:
     r = normalize_schema(schema, target)  # type: ignore[arg-type]
     assert allow_list(r) == []
+
+
+def test_regression_identity_reuse_does_not_change_results() -> None:
+    """Visited-node tracking once used raw id()s, which are reused after GC (non-determinism)."""
+    schema = {
+        "type": "object",
+        "properties": {
+            "id": {"$ref": "#/$defs/Shared"},
+            "name": {
+                "allOf": [{"type": "string"}, {"oneOf": [{"type": "boolean"}, {"type": "string"}]}]
+            },
+        },
+        "$defs": {
+            "Shared": {
+                "allOf": [
+                    {"anyOf": [{"type": "boolean"}, {"type": ["string", "null"]}]},
+                    {
+                        "oneOf": [
+                            {"type": "object", "properties": {"name": {"type": "string"}}},
+                            {"oneOf": [{"type": "string"}, {"type": "string"}]},
+                        ]
+                    },
+                ]
+            }
+        },
+    }
+    results = {canonicalize(normalize_schema(schema, "anthropic-strict").schema) for _ in range(50)}
+    assert len(results) == 1

@@ -12,6 +12,7 @@ from mcp_schema_bridge.core.tree import (
     SCHEMA_ARRAYS,
     SCHEMA_MAPS,
     SCHEMA_VALUES,
+    Seen,
     SNode,
     is_schema,
     iter_subschemas,
@@ -110,12 +111,12 @@ def _reachable_defs(root: SNode, ctx: Ctx) -> dict[str, SNode]:
     by_id = {id(n): name for name, n in ctx.defs.items()}
     found: dict[str, SNode] = {}
     stack: list[Any] = [root]
-    seen: set[int] = set()
+    seen = Seen()
     while stack:
         n = stack.pop()
-        if not isinstance(n, SNode) or id(n) in seen:
+        if not isinstance(n, SNode) or n in seen:
             continue
-        seen.add(id(n))
+        seen.add(n)
         if n.ref is not None:
             name = by_id.get(id(n.ref))
             if name is not None and name not in found:
