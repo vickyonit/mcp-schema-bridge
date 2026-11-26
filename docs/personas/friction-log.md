@@ -23,3 +23,22 @@ Steps: wrote `examples/server-builder/crm_server.py` the usual way (Pydantic mod
 Outcome: the open map was the only blocker. I changed `metadata: dict[str, str]` to `list[KeyValue]` and every
 target passed. The remaining `lossy` entries are length and range constraints the model may ignore; my
 handler already validates them. See `examples/server-builder/`.
+
+## Persona 2: MCP client / agent builder (Python, OpenAI Responses API)
+
+Goal: "My agent connects to arbitrary MCP servers. OpenAI strict mode rejects some of their tools."
+
+Steps: wrote `examples/client-builder/agent.py` (official `mcp` + `openai` SDKs, a `--raw` switch to
+reproduce the problem) against a third-party Pydantic server. Run live with `gpt-4.1-mini`.
+
+- `--raw`: `400 Invalid schema for function 'create_contact': 'additionalProperties' is required to be supplied and to be false`.
+  Live verdicts show this for 157 of 164 corpus tools.
+- With the bridge: the model calls `search({"query": "lamps", "limit": 5, "sort": "date"})`, the server
+  receives valid arguments, and the tool with an open map is served non-strict through `strict_fallback`.
+
+| # | What I felt | Change |
+|---|---|---|
+| 2.1 | I wrote my own loop to print the report and kept a `by_name` dict for `denormalize_args`. That's boilerplate in every client. | `ToolsetResult.get(name)` and `ToolsetResult.summary()` (the same text as the CLI) in both languages. |
+| 2.2 | The summary said `4 tool(s) ok, 0 rejected … 1 fatal`, which looks contradictory. | The summary now says `(1 demoted to non-strict)`. The fatal entry explains why. |
+| 2.3 | Recording live verdicts for OpenAI found two real bugs. A dropped tuple left `items: false`, meaning "no elements". Regex lookaround and backreferences make OpenAI strict fail with a 500. | Tuples are flattened to an items union. The OpenAI regex subset is now part of the rules, with evidence in `evidence/probes/openai-strict/`. |
+| 2.4 | In TypeScript, `toSdkPayload` returned `Record<string, unknown>[]`, so passing it to `openai.responses.create` needed `as unknown as …`. | `toSdkPayload` has per-API overloads returning types structurally compatible with the official SDKs (`OpenAIResponsesTool`, `OpenAIChatTool`, `AnthropicTool`, `GenaiTool`). `examples/client-builder-ts/agent.ts` type-checks against the real `openai` types with no cast, and was run live. |

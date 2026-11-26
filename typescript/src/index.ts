@@ -6,7 +6,7 @@ import { type NormalizeResult as InternalResult } from "./core/result.js";
 import { type Target } from "./core/rules.js";
 import { normalizeToolsOrdered, type ToolsetResult } from "./core/toolset.js";
 
-export { type Api, toSdkPayload } from "./adapters.js";
+export { type AnthropicTool, type Api, type GenaiTool, type OpenAIChatTool, type OpenAIResponsesTool, toSdkPayload } from "./adapters.js";
 export { InvalidInputError, LimitExceededError, ReverseMismatchError, SchemaBridgeError, UnsupportedSchemaError } from "./core/errors.js";
 export { parseOrdered, stringifyOrdered } from "./core/ojson.js";
 export type { Budget, NormalizeOptions } from "./core/options.js";

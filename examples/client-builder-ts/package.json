@@ -1,0 +1,13 @@
+{
+  "name": "client-builder-ts-example",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": { "start": "tsx agent.ts" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "mcp-schema-bridge": "file:../../typescript",
+    "openai": "7.65.0"
+  },
+  "devDependencies": { "tsx": "4.23.15" }
+}
