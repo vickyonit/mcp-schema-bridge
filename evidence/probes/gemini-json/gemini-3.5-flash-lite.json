@@ -1,0 +1,514 @@
+{
+  "target": "gemini-json",
+  "model": "gemini-3.5-flash-lite",
+  "samples": 5,
+  "recorded_at": "2026-11-26T04:08:53Z",
+  "acceptance": {
+    "plain": {
+      "status": "accepted",
+      "error": null
+    },
+    "type_null_array": {
+      "status": "accepted",
+      "error": null
+    },
+    "multi_type_array": {
+      "status": "accepted",
+      "error": null
+    },
+    "anyOf_with_annotations": {
+      "status": "accepted",
+      "error": null
+    },
+    "oneOf": {
+      "status": "accepted",
+      "error": null
+    },
+    "allOf": {
+      "status": "accepted",
+      "error": null
+    },
+    "not": {
+      "status": "accepted",
+      "error": null
+    },
+    "if_then": {
+      "status": "accepted",
+      "error": null
+    },
+    "const_untyped": {
+      "status": "accepted",
+      "error": null
+    },
+    "const_typed": {
+      "status": "accepted",
+      "error": null
+    },
+    "enum_integer": {
+      "status": "accepted",
+      "error": null
+    },
+    "enum_untyped": {
+      "status": "accepted",
+      "error": null
+    },
+    "enum_object_values": {
+      "status": "accepted",
+      "error": null
+    },
+    "pattern": {
+      "status": "accepted",
+      "error": null
+    },
+    "pattern_lookahead": {
+      "status": "accepted",
+      "error": null
+    },
+    "format_email": {
+      "status": "accepted",
+      "error": null
+    },
+    "format_uri": {
+      "status": "accepted",
+      "error": null
+    },
+    "format_custom": {
+      "status": "accepted",
+      "error": null
+    },
+    "exclusiveMinimum": {
+      "status": "accepted",
+      "error": null
+    },
+    "multipleOf": {
+      "status": "accepted",
+      "error": null
+    },
+    "minimum_maximum": {
+      "status": "accepted",
+      "error": null
+    },
+    "minLength": {
+      "status": "accepted",
+      "error": null
+    },
+    "maxItems": {
+      "status": "accepted",
+      "error": null
+    },
+    "minItems_2": {
+      "status": "accepted",
+      "error": null
+    },
+    "uniqueItems": {
+      "status": "accepted",
+      "error": null
+    },
+    "array_without_items": {
+      "status": "accepted",
+      "error": null
+    },
+    "prefixItems": {
+      "status": "accepted",
+      "error": null
+    },
+    "tuple_items_draft7": {
+      "status": "rejected",
+      "error": "schema at properties.a.items must be a boolean or an object"
+    },
+    "additionalProperties_false": {
+      "status": "accepted",
+      "error": null
+    },
+    "additionalProperties_schema": {
+      "status": "accepted",
+      "error": null
+    },
+    "patternProperties": {
+      "status": "accepted",
+      "error": null
+    },
+    "open_object": {
+      "status": "accepted",
+      "error": null
+    },
+    "empty_property_schema": {
+      "status": "accepted",
+      "error": null
+    },
+    "boolean_property_schema": {
+      "status": "accepted",
+      "error": null
+    },
+    "defs_ref": {
+      "status": "accepted",
+      "error": null
+    },
+    "definitions_ref": {
+      "status": "accepted",
+      "error": null
+    },
+    "ref_with_description": {
+      "status": "accepted",
+      "error": null
+    },
+    "recursion_optional": {
+      "status": "accepted",
+      "error": null
+    },
+    "recursion_required": {
+      "status": "rejected",
+      "error": "ref loops are only supported if they include optional or nullable property values, or a potentially-zero-length array items, but a ref loop of required fields was found at $defs.Node.properties.next"
+    },
+    "root_self_ref": {
+      "status": "accepted",
+      "error": null
+    },
+    "dollar_schema": {
+      "status": "accepted",
+      "error": null
+    },
+    "x_extension": {
+      "status": "accepted",
+      "error": null
+    },
+    "dollar_id": {
+      "status": "accepted",
+      "error": null
+    },
+    "comment_examples": {
+      "status": "accepted",
+      "error": null
+    },
+    "readOnly_deprecated": {
+      "status": "accepted",
+      "error": null
+    },
+    "default": {
+      "status": "accepted",
+      "error": null
+    },
+    "root_anyOf": {
+      "status": "rejected",
+      "error": "Request contains an invalid argument."
+    },
+    "root_object_with_anyOf": {
+      "status": "accepted",
+      "error": null
+    },
+    "root_not_object": {
+      "status": "rejected",
+      "error": "Request contains an invalid argument."
+    },
+    "root_empty": {
+      "status": "accepted",
+      "error": null
+    },
+    "dependentRequired": {
+      "status": "accepted",
+      "error": null
+    },
+    "propertyNames": {
+      "status": "accepted",
+      "error": null
+    },
+    "contentEncoding": {
+      "status": "accepted",
+      "error": null
+    },
+    "openapi_nullable": {
+      "status": "accepted",
+      "error": null
+    },
+    "key_with_space": {
+      "status": "accepted",
+      "error": null
+    },
+    "key_with_dollar": {
+      "status": "accepted",
+      "error": null
+    },
+    "key_non_ascii": {
+      "status": "accepted",
+      "error": null
+    },
+    "key_with_dot": {
+      "status": "accepted",
+      "error": null
+    }
+  },
+  "enforcement": {
+    "const": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "enum": {
+      "verdict": "enforced",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "pattern": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "minLength": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "maxLength": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ]
+    },
+    "minimum": {
+      "verdict": "enforced",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "maximum": {
+      "verdict": "enforced",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "exclusiveMinimum": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "exclusiveMaximum": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "multipleOf": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "format_date": {
+      "verdict": "enforced",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "format_email": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "minItems": {
+      "verdict": "enforced",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "maxItems": {
+      "verdict": "enforced",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "uniqueItems": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "not": {
+      "verdict": "stripped",
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "constrained": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}

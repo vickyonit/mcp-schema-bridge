@@ -1,0 +1,70 @@
+{
+  "$schema": "../spec/rules.schema.json",
+  "target": "anthropic",
+  "provider": "anthropic",
+  "strict": false,
+  "fallback_target": null,
+  "api_field": "input_schema",
+  "features": {
+    "ref": true,
+    "recursion": "any",
+    "ref_siblings": true,
+    "type_arrays": true,
+    "multi_type_arrays": true,
+    "root_union": false,
+    "root_anyof_with_object": true,
+    "anyof_validation_siblings": true,
+    "merge_allof": false,
+    "oneof": true,
+    "close_objects": false,
+    "all_required": false,
+    "open_objects": true,
+    "tuple_items": true,
+    "boolean_subschemas": true,
+    "enum_values": "any",
+    "min_items_values": null,
+    "array_items_required": false,
+    "root_type_object_required": true
+  },
+  "keywords": {},
+  "unknown_keywords": "keep",
+  "formats": {
+    "allowed": null,
+    "enforced": []
+  },
+  "pattern_forbidden_features": [],
+  "limits": {},
+  "request_limits": {},
+  "tool_name_pattern": "^[a-zA-Z0-9_-]{1,128}$",
+  "property_key_pattern": "^[a-zA-Z0-9_.-]{1,64}$",
+  "evidence": [
+    {
+      "id": "non-strict-passthrough",
+      "claim": "input_schema is a JSON Schema object; non-strict tools are not grammar-constrained, so keywords are kept.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "tool-name-pattern",
+      "claim": "Tool names must match ^[a-zA-Z0-9_-]{1,128}$.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "root-type-object",
+      "claim": "input_schema must declare type: object at the root.",
+      "evidence": "reported",
+      "source": "https://github.com/search?q=%22input_schema.type%3A+Field+required%22&type=issues",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "property-key-pattern",
+      "claim": "Property keys must match ^[a-zA-Z0-9_.-]{1,64}$.",
+      "evidence": "reported",
+      "source": "https://github.com/search?q=%22Property+keys+should+match+pattern%22&type=issues",
+      "verified_on": "2026-11-26"
+    }
+  ]
+}

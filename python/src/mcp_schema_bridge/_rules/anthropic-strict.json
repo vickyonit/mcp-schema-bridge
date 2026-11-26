@@ -1,0 +1,179 @@
+{
+  "$schema": "../spec/rules.schema.json",
+  "target": "anthropic-strict",
+  "provider": "anthropic",
+  "strict": true,
+  "fallback_target": "anthropic",
+  "api_field": "input_schema",
+  "features": {
+    "ref": true,
+    "recursion": "none",
+    "ref_siblings": true,
+    "type_arrays": true,
+    "multi_type_arrays": true,
+    "root_union": false,
+    "root_anyof_with_object": false,
+    "anyof_validation_siblings": false,
+    "merge_allof": true,
+    "oneof": false,
+    "close_objects": true,
+    "all_required": false,
+    "open_objects": false,
+    "tuple_items": false,
+    "boolean_subschemas": false,
+    "enum_values": "primitive",
+    "min_items_values": [
+      0,
+      1
+    ],
+    "array_items_required": false,
+    "root_type_object_required": true
+  },
+  "keywords": {
+    "type": "enforced",
+    "enum": "enforced",
+    "const": "enforced",
+    "anyOf": "enforced",
+    "allOf": "accepted",
+    "properties": "enforced",
+    "required": "enforced",
+    "additionalProperties": "enforced",
+    "items": "enforced",
+    "$ref": "enforced",
+    "$defs": "enforced",
+    "definitions": "enforced",
+    "default": "accepted",
+    "pattern": "enforced",
+    "format": "enforced",
+    "minItems": "enforced",
+    "description": "accepted",
+    "title": "accepted",
+    "oneOf": "rejected",
+    "not": "rejected",
+    "minimum": "rejected",
+    "maximum": "rejected",
+    "exclusiveMinimum": "rejected",
+    "exclusiveMaximum": "rejected",
+    "multipleOf": "rejected",
+    "minLength": "rejected",
+    "maxLength": "rejected",
+    "maxItems": "rejected",
+    "uniqueItems": "rejected",
+    "minProperties": "rejected",
+    "maxProperties": "rejected",
+    "contains": "rejected"
+  },
+  "unknown_keywords": "drop",
+  "formats": {
+    "allowed": [
+      "date-time",
+      "time",
+      "date",
+      "duration",
+      "email",
+      "hostname",
+      "uri",
+      "ipv4",
+      "ipv6",
+      "uuid"
+    ],
+    "enforced": [
+      "date-time",
+      "time",
+      "date",
+      "duration",
+      "email",
+      "hostname",
+      "uri",
+      "ipv4",
+      "ipv6",
+      "uuid"
+    ]
+  },
+  "pattern_forbidden_features": [
+    "backreference",
+    "lookaround",
+    "word_boundary",
+    "large_quantifier"
+  ],
+  "limits": {},
+  "request_limits": {
+    "max_strict_tools": 20,
+    "max_optional_params": 24,
+    "max_union_params": 16
+  },
+  "tool_name_pattern": "^[a-zA-Z0-9_-]{1,128}$",
+  "property_key_pattern": "^[a-zA-Z0-9_.-]{1,64}$",
+  "evidence": [
+    {
+      "id": "supported-subset",
+      "claim": "Strict supports basic types, primitive enum/const, anyOf, allOf (restricted), internal $ref/$defs/definitions, default, required, pattern (simple), allow-listed formats, minItems 0 or 1.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "unsupported",
+      "claim": "Recursion, oneOf, not, external $ref, numeric constraints, string length constraints and array constraints beyond minItems 0/1 are unsupported (400).",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "anyof-siblings",
+      "claim": "anyOf in the same object as type/properties is unsupported.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "additional-properties-false",
+      "claim": "additionalProperties must be false on every object.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "pattern-subset",
+      "claim": "pattern must not use backreferences, lookaround, \\b/\\B or large {n,m} quantifiers.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "formats",
+      "claim": "Supported formats: date-time, time, date, duration, email, hostname, uri, ipv4, ipv6, uuid.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "request-limits",
+      "claim": "Per request: 20 strict tools, 24 optional parameters, 16 union-typed parameters (across strict tools and output_config.format).",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "enum-case",
+      "claim": "Strict mode does not guarantee capitalization of enum/const values.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "tool-name-pattern",
+      "claim": "Tool names must match ^[a-zA-Z0-9_-]{1,128}$.",
+      "evidence": "doc",
+      "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "property-key-pattern",
+      "claim": "Property keys must match ^[a-zA-Z0-9_.-]{1,64}$.",
+      "evidence": "reported",
+      "source": "https://github.com/search?q=%22Property+keys+should+match+pattern%22&type=issues",
+      "verified_on": "2026-11-26"
+    }
+  ]
+}

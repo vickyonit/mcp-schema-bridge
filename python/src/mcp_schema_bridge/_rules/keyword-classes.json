@@ -1,0 +1,30 @@
+{
+  "$comment": "Classification of JSON Schema keywords (2020-12, 2019-09, draft-07 and common extensions). 'validation' keywords constrain instances; dropping one is lossy. 'annotation' keywords only describe; dropping one is info. 'applicator' keywords hold subschemas. 'core' keywords structure references and identity. Keywords starting with 'x-' are extensions (annotation).",
+  "applicator": [
+    "properties", "patternProperties", "additionalProperties", "propertyNames",
+    "items", "prefixItems", "additionalItems", "contains",
+    "allOf", "anyOf", "oneOf", "not", "if", "then", "else",
+    "dependentSchemas", "dependencies", "unevaluatedProperties", "unevaluatedItems",
+    "contentSchema"
+  ],
+  "validation": [
+    "type", "enum", "const", "multipleOf", "maximum", "exclusiveMaximum", "minimum", "exclusiveMinimum",
+    "maxLength", "minLength", "pattern", "format",
+    "maxItems", "minItems", "uniqueItems", "maxContains", "minContains",
+    "maxProperties", "minProperties", "required", "dependentRequired", "nullable"
+  ],
+  "annotation": [
+    "title", "description", "default", "examples", "deprecated", "readOnly", "writeOnly",
+    "$comment", "contentEncoding", "contentMediaType", "discriminator", "example", "propertyOrdering"
+  ],
+  "core": [
+    "$schema", "$id", "id", "$anchor", "$ref", "$defs", "definitions",
+    "$dynamicRef", "$dynamicAnchor", "$recursiveRef", "$recursiveAnchor", "$vocabulary"
+  ],
+  "schema_maps": ["properties", "patternProperties", "$defs", "definitions", "dependentSchemas"],
+  "schema_arrays": ["allOf", "anyOf", "oneOf", "prefixItems"],
+  "schema_values": [
+    "additionalProperties", "propertyNames", "contains", "not", "if", "then", "else",
+    "unevaluatedProperties", "unevaluatedItems", "additionalItems", "contentSchema"
+  ]
+}

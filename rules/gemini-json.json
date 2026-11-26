@@ -1,0 +1,194 @@
+{
+  "$schema": "../spec/rules.schema.json",
+  "target": "gemini-json",
+  "provider": "gemini",
+  "strict": false,
+  "fallback_target": null,
+  "api_field": "parametersJsonSchema",
+  "features": {
+    "ref": true,
+    "recursion": "optional_only",
+    "ref_siblings": true,
+    "type_arrays": true,
+    "multi_type_arrays": true,
+    "root_union": false,
+    "root_anyof_with_object": true,
+    "anyof_validation_siblings": true,
+    "merge_allof": true,
+    "oneof": false,
+    "close_objects": false,
+    "all_required": false,
+    "open_objects": true,
+    "tuple_items": false,
+    "boolean_subschemas": true,
+    "enum_values": "any",
+    "min_items_values": null,
+    "array_items_required": false,
+    "root_type_object_required": false
+  },
+  "keywords": {
+    "type": "enforced",
+    "enum": "enforced",
+    "anyOf": "enforced",
+    "properties": "enforced",
+    "required": "enforced",
+    "items": "enforced",
+    "prefixItems": "accepted",
+    "additionalProperties": "accepted",
+    "$ref": "enforced",
+    "$defs": "enforced",
+    "definitions": "accepted",
+    "minimum": "enforced",
+    "maximum": "enforced",
+    "minItems": "enforced",
+    "maxItems": "enforced",
+    "format": "accepted",
+    "description": "accepted",
+    "title": "accepted",
+    "default": "accepted",
+    "const": "stripped",
+    "pattern": "stripped",
+    "minLength": "stripped",
+    "maxLength": "stripped",
+    "exclusiveMinimum": "stripped",
+    "exclusiveMaximum": "stripped",
+    "multipleOf": "stripped",
+    "uniqueItems": "stripped",
+    "not": "stripped",
+    "minProperties": "stripped",
+    "maxProperties": "stripped",
+    "contains": "stripped",
+    "minContains": "stripped",
+    "maxContains": "stripped",
+    "if": "stripped",
+    "then": "stripped",
+    "else": "stripped",
+    "dependentRequired": "stripped",
+    "dependentSchemas": "stripped",
+    "propertyNames": "stripped",
+    "patternProperties": "stripped",
+    "unevaluatedProperties": "stripped",
+    "unevaluatedItems": "stripped"
+  },
+  "unknown_keywords": "keep",
+  "formats": {
+    "allowed": null,
+    "enforced": [
+      "date",
+      "date-time",
+      "time"
+    ]
+  },
+  "pattern_forbidden_features": [],
+  "limits": {},
+  "request_limits": {},
+  "tool_name_pattern": "^[a-zA-Z0-9_.:-]{1,128}$",
+  "property_key_pattern": null,
+  "evidence": [
+    {
+      "id": "mutually-exclusive",
+      "claim": "parametersJsonSchema is mutually exclusive with parameters and must describe an object.",
+      "evidence": "doc",
+      "source": "https://ai.google.dev/api/caching#FunctionDeclaration",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "accepts-json-schema",
+      "claim": "Accepts type arrays (incl. null and multi-type), anyOf/oneOf/allOf/not/if-then-else (request level), $defs/definitions/$ref incl. siblings, '#' self-reference, prefixItems, additionalProperties (bool or schema), patternProperties, open objects, {} and true property schemas, $schema/$id/x-* annotations, and property keys with spaces/$/non-ASCII.",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "rejects-tuple-items",
+      "claim": "draft-07 array-form items is rejected (400: 'schema at ... items must be a boolean or an object').",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "rejects-required-recursion",
+      "claim": "A $ref loop through required fields is rejected (400); loops through optional/nullable properties or zero-length-able arrays are accepted.",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "rejects-root-union",
+      "claim": "A root anyOf is rejected (400 on gemini-3.5-flash-lite, 500 on gemini-2.5-flash); a root object carrying anyOf is accepted.",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "rejects-non-object-root",
+      "claim": "A non-object root (e.g. type: string) is rejected.",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "enforced",
+      "claim": "enum, minimum, maximum, minItems, maxItems and format: date are enforced on generated arguments.",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "stripped",
+      "claim": "const, pattern, minLength, maxLength, exclusiveMinimum, exclusiveMaximum, multipleOf, uniqueItems and not are accepted but NOT enforced (silently ignored).",
+      "evidence": "probe",
+      "source": "evidence/probes/gemini-json/gemini-3.5-flash-lite.json",
+      "verified_on": "2026-11-26",
+      "models": [
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "id": "stripped-doc",
+      "claim": "minProperties/maxProperties, contains/minContains/maxContains are documented as ignored; if/then/else, dependent*, propertyNames, patternProperties and unevaluated* are not in the documented supported set and are treated as not enforced.",
+      "evidence": "doc",
+      "source": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "oneof-allof",
+      "claim": "oneOf and allOf are not in the documented supported set; allOf is merged and oneOf rewritten to anyOf so enforcement does not depend on undocumented behaviour.",
+      "evidence": "assumed",
+      "source": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "tool-name-pattern",
+      "claim": "Function declaration names may use a-z, A-Z, 0-9, underscores, colons, dots and dashes, max 128 characters.",
+      "evidence": "doc",
+      "source": "https://ai.google.dev/api/caching#FunctionDeclaration",
+      "verified_on": "2026-11-26"
+    }
+  ]
+}

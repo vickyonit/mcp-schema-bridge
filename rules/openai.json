@@ -1,0 +1,79 @@
+{
+  "$schema": "../spec/rules.schema.json",
+  "target": "openai",
+  "provider": "openai",
+  "strict": false,
+  "fallback_target": null,
+  "api_field": "parameters",
+  "features": {
+    "ref": true,
+    "recursion": "any",
+    "ref_siblings": true,
+    "type_arrays": true,
+    "multi_type_arrays": true,
+    "root_union": false,
+    "root_anyof_with_object": true,
+    "anyof_validation_siblings": true,
+    "merge_allof": false,
+    "oneof": true,
+    "close_objects": false,
+    "all_required": false,
+    "open_objects": true,
+    "tuple_items": true,
+    "boolean_subschemas": true,
+    "enum_values": "any",
+    "min_items_values": null,
+    "array_items_required": true,
+    "root_type_object_required": true
+  },
+  "keywords": {
+    "$schema": "accepted"
+  },
+  "unknown_keywords": "keep",
+  "formats": {
+    "allowed": null,
+    "enforced": []
+  },
+  "pattern_forbidden_features": [],
+  "limits": {},
+  "request_limits": {},
+  "tool_name_pattern": "^[a-zA-Z0-9_-]{1,64}$",
+  "property_key_pattern": null,
+  "evidence": [
+    {
+      "id": "non-strict-passthrough",
+      "claim": "Non-strict function parameters accept general JSON Schema; the model is not grammar-constrained, so keywords are kept as-is.",
+      "evidence": "doc",
+      "source": "https://developers.openai.com/api/docs/guides/function-calling",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "root-type-object",
+      "claim": "Function parameters must be a JSON Schema with type: object at the root.",
+      "evidence": "reported",
+      "source": "https://community.openai.com/search?q=schema%20must%20be%20a%20JSON%20Schema%20of%20type%20object",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "array-items-required",
+      "claim": "Array schemas without items are rejected ('array schema missing items').",
+      "evidence": "reported",
+      "source": "https://community.openai.com/search?q=array%20schema%20missing%20items",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "tool-name-pattern",
+      "claim": "Function names must match ^[a-zA-Z0-9_-]+$ with at most 64 characters.",
+      "evidence": "reported",
+      "source": "https://community.openai.com/search?q=function%20name%20pattern%2064",
+      "verified_on": "2026-11-26"
+    },
+    {
+      "id": "responses-auto-strict",
+      "claim": "The Responses API attempts to make schemas strict unless strict is set explicitly; adapters therefore always set strict.",
+      "evidence": "doc",
+      "source": "https://developers.openai.com/api/docs/guides/function-calling",
+      "verified_on": "2026-11-26"
+    }
+  ]
+}

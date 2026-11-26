@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vickyonit/mcp-schema-bridge/spec/rules.schema.json",
+  "title": "mcp-schema-bridge provider rules",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["target", "provider", "strict", "fallback_target", "api_field", "features", "keywords", "unknown_keywords", "formats", "pattern_forbidden_features", "limits", "request_limits", "tool_name_pattern", "property_key_pattern", "evidence"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "target": { "enum": ["gemini-json", "openai", "openai-strict", "anthropic", "anthropic-strict"] },
+    "provider": { "enum": ["gemini", "openai", "anthropic"] },
+    "strict": { "type": "boolean" },
+    "fallback_target": { "type": ["string", "null"], "description": "Non-strict sibling used by strict_fallback." },
+    "api_field": { "type": "string" },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "recursion", "ref_siblings", "type_arrays", "multi_type_arrays", "root_union", "root_anyof_with_object", "anyof_validation_siblings", "merge_allof", "oneof", "close_objects", "all_required", "open_objects", "tuple_items", "boolean_subschemas", "enum_values", "min_items_values", "array_items_required", "root_type_object_required"],
+      "properties": {
+        "ref": { "type": "boolean", "description": "$ref/$defs may be emitted." },
+        "recursion": { "enum": ["any", "optional_only", "none"] },
+        "ref_siblings": { "type": "boolean", "description": "A $ref may have sibling keywords." },
+        "type_arrays": { "type": "boolean", "description": "type: [T, \"null\"] is accepted." },
+        "multi_type_arrays": { "type": "boolean", "description": "type arrays with two or more non-null types are accepted." },
+        "root_union": { "type": "boolean", "description": "Root may be anyOf/oneOf." },
+        "root_anyof_with_object": { "type": "boolean", "description": "Root object may also carry anyOf/oneOf." },
+        "anyof_validation_siblings": { "type": "boolean", "description": "anyOf may sit next to type/properties/other validation keywords." },
+        "merge_allof": { "type": "boolean", "description": "allOf must be merged away." },
+        "oneof": { "type": "boolean", "description": "oneOf may be emitted (else rewritten to anyOf, lossy)." },
+        "close_objects": { "type": "boolean", "description": "Every object needs additionalProperties: false." },
+        "all_required": { "type": "boolean", "description": "Every property must be required (optional via null union)." },
+        "open_objects": { "type": "boolean", "description": "Objects without declared properties / with open additionalProperties are usable." },
+        "tuple_items": { "type": "boolean", "description": "draft-07 array-form items is accepted." },
+        "boolean_subschemas": { "type": "boolean" },
+        "enum_values": { "enum": ["any", "primitive"] },
+        "min_items_values": { "type": ["array", "null"], "items": { "type": "integer" } },
+        "array_items_required": { "type": "boolean" },
+        "root_type_object_required": { "type": "boolean", "description": "Root must literally declare type: object." }
+      }
+    },
+    "keywords": {
+      "type": "object",
+      "description": "Status of individual keywords. enforced: accepted and constrains output; accepted: accepted, enforcement unknown or not applicable; stripped: accepted but silently ignored; rejected: causes a 400.",
+      "additionalProperties": { "enum": ["enforced", "accepted", "stripped", "rejected"] }
+    },
+    "unknown_keywords": { "enum": ["keep", "drop"], "description": "Policy for keywords not listed in 'keywords'." },
+    "formats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed", "enforced"],
+      "properties": {
+        "allowed": { "type": ["array", "null"], "items": { "type": "string" }, "description": "null = any format value is accepted." },
+        "enforced": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "pattern_forbidden_features": {
+      "type": "array",
+      "items": { "enum": ["backreference", "lookaround", "word_boundary", "large_quantifier", "unicode_property", "inline_flags"] }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_properties": { "type": "integer" },
+        "max_nesting_depth": { "type": "integer" },
+        "max_total_string_chars": { "type": "integer" },
+        "max_enum_values": { "type": "integer" },
+        "large_enum_threshold": { "type": "integer" },
+        "max_large_enum_chars": { "type": "integer" }
+      }
+    },
+    "request_limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_strict_tools": { "type": "integer" },
+        "max_optional_params": { "type": "integer" },
+        "max_union_params": { "type": "integer" }
+      }
+    },
+    "tool_name_pattern": { "type": "string" },
+    "property_key_pattern": { "type": ["string", "null"] },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "claim", "evidence", "source", "verified_on"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "claim": { "type": "string" },
+          "evidence": { "enum": ["recorded", "probe", "doc", "reported", "assumed"] },
+          "source": { "type": "string", "description": "URL, or repo-relative path to an evidence file." },
+          "verified_on": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "models": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
