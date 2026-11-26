@@ -938,6 +938,7 @@ dev = [
     { name = "hypothesis" },
     { name = "hypothesis-jsonschema" },
     { name = "jsonschema" },
+    { name = "mcp" },
     { name = "openai" },
     { name = "pyright" },
     { name = "pytest" },
@@ -949,7 +950,7 @@ dev = [
 requires-dist = [
     { name = "anthropic", marker = "extra == 'sdks'", specifier = ">=2.14" },
     { name = "google-genai", marker = "extra == 'sdks'", specifier = ">=3.6" },
-    { name = "mcp", marker = "extra == 'cli'", specifier = ">=1.12" },
+    { name = "mcp", marker = "extra == 'cli'", specifier = ">=2.3" },
     { name = "openai", marker = "extra == 'sdks'", specifier = ">=3.59" },
 ]
 provides-extras = ["cli", "sdks"]
@@ -961,6 +962,7 @@ dev = [
     { name = "hypothesis", specifier = ">=6.120" },
     { name = "hypothesis-jsonschema", specifier = ">=0.23" },
     { name = "jsonschema", specifier = ">=4.23" },
+    { name = "mcp", specifier = ">=2.3" },
     { name = "openai", specifier = ">=3.59" },
     { name = "pyright", specifier = ">=1.1.390" },
     { name = "pytest", specifier = ">=8.3" },

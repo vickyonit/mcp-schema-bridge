@@ -33,7 +33,7 @@ Issues = "https://github.com/vickyonit/mcp-schema-bridge/issues"
 
 [project.optional-dependencies]
 sdks = ["google-genai>=3.6", "openai>=3.59", "anthropic>=2.14"]
-cli = ["mcp>=1.12"]
+cli = ["mcp>=2.3"]
 
 [project.scripts]
 mcp-schema-bridge = "mcp_schema_bridge.cli:main"
@@ -50,6 +50,7 @@ dev = [
   "google-genai>=3.6",
   "openai>=3.59",
   "anthropic>=2.14",
+  "mcp>=2.3",
 ]
 
 [tool.hatch.version]

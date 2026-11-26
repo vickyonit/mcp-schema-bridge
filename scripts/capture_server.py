@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["mcp>=1.12"]
+# dependencies = ["mcp>=2.3"]
 # ///
 """Capture `tools/list` from an MCP server over stdio and store it under corpus/captured/<id>/.
 
@@ -26,6 +26,7 @@ from typing import Any
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+from mcp.types import PaginatedRequestParams
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -37,11 +38,11 @@ async def capture(argv: list[str]) -> list[dict[str, Any]]:
         tools: list[dict[str, Any]] = []
         cursor: str | None = None
         while True:
-            res = await session.list_tools(cursor=cursor) if cursor else await session.list_tools()
+            res = await session.list_tools(params=PaginatedRequestParams(cursor=cursor) if cursor else None)
             for t in res.tools:
                 d = t.model_dump(mode="json", by_alias=True, exclude_none=True)
                 tools.append({k: d[k] for k in ("name", "description", "inputSchema") if k in d})
-            cursor = getattr(res, "next_cursor", None) or getattr(res, "nextCursor", None)
+            cursor = res.next_cursor
             if not cursor:
                 return tools
 
