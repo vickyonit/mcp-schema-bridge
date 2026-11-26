@@ -49,18 +49,7 @@ def test_deterministic_and_pure(target: str, schema: dict[str, Any]) -> None:
     assert [e.to_dict() for e in a.report.sorted()] == [e.to_dict() for e in b.report.sorted()]
 
 
-PENDING_ALLOW_LIST = {"gemini-json", "openai-strict", "anthropic-strict"}  # until stage S9 lands
-
-
-@pytest.mark.parametrize(
-    "target",
-    [
-        pytest.param(t, marks=pytest.mark.xfail(strict=True, reason="pending S9 filter"))
-        if t in PENDING_ALLOW_LIST
-        else t
-        for t in TARGETS
-    ],
-)
+@pytest.mark.parametrize("target", TARGETS)
 @COMMON
 @given(schema=mcp_schemas())
 def test_allow_list(target: str, schema: dict[str, Any]) -> None:

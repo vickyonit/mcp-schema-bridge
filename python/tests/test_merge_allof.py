@@ -143,9 +143,14 @@ def test_anyof_inside_allof_is_distributed() -> None:
 
 
 def test_not_and_conditionals_in_multiple_branches_keep_first() -> None:
+    r, p = prop(
+        {"allOf": [{"type": "string", "not": {"const": "x"}}, {"not": {"const": "y"}}]}, "openai"
+    )
+    # non-strict openai keeps allOf; check the merge itself on a target that merges:
     r, p = prop({"allOf": [{"type": "string", "not": {"const": "x"}}, {"not": {"const": "y"}}]})
-    assert p["not"] == {"enum": ["x"]}  # gemini-json: const is not enforced, enum is
+    assert "not" not in p  # gemini-json does not enforce `not`; dropped by the filter (T12)
     assert ("not", "dropped", "lossy") in entries(r)
+    assert any(e.tid == "T12" and e.keyword == "not" for e in r.report.entries)
 
 
 def test_ref_branches_are_resolved_before_merging() -> None:

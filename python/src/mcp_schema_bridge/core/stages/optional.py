@@ -126,9 +126,10 @@ def _inject_null(sub: Any, name: str, parent: SNode, ctx: Ctx) -> Any:
         return sub
     t = sub["type"]
     types = [t] if isinstance(t, str) else list(cast(list[str], t))
-    sub["type"] = [*types, "null"]
-    _entry(ctx, sub, "type", name, original=t)
-    if "enum" in sub:
+    if "null" not in types:
+        sub["type"] = [*types, "null"]
+        _entry(ctx, sub, "type", name, original=t)
+    if "enum" in sub and None not in cast(list[Any], sub["enum"]):
         original = list(cast(list[Any], sub["enum"]))
         sub["enum"] = [*original, None]
         _entry(ctx, sub, "enum", name, original=original)
