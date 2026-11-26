@@ -57,6 +57,20 @@ def _visit(node: SNode, ctx: Ctx, seen: Seen) -> None:
         return
     for name in missing:
         sub = p[name]
+        if accepts_null(sub) and _default_is_null(sub):
+            ctx.add(
+                ctx.rule_id("optional-nullable-default-null"),
+                "T11a",
+                node=sub if isinstance(sub, SNode) else node,
+                keyword="required",
+                action="rewritten",
+                severity="reversible",
+                source_path=_src(sub, node),
+                message=f"optional property {name!r} defaults to null, so omitting it and sending null "
+                "are equivalent; null is removed again by denormalize_args",
+            )
+            node.ops.append({"op": "drop_injected_null", "property": name})
+            continue
         if accepts_null(sub):
             ctx.add(
                 ctx.rule_id("optional-nullable-ambiguous"),
@@ -73,6 +87,10 @@ def _visit(node: SNode, ctx: Ctx, seen: Seen) -> None:
         p[name] = _inject_null(sub, name, node, ctx)
         node.ops.append({"op": "drop_injected_null", "property": name})
     node["required"] = required + missing
+
+
+def _default_is_null(sub: Any) -> bool:
+    return isinstance(sub, SNode) and "default" in sub and sub["default"] is None
 
 
 def _src(sub: Any, parent: SNode) -> str:

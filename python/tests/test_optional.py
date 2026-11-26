@@ -136,3 +136,22 @@ def test_other_targets_keep_optionals(target: str) -> None:
     s = {"type": "object", "properties": {"q": {"type": "string"}}}
     r = normalize_schema(s, target)  # type: ignore[arg-type]
     assert "required" not in r.schema
+
+
+def test_optional_nullable_with_default_null_is_reversible_not_lossy() -> None:
+    # Pydantic `x: str | None = None` emits default null: omitted and null mean the same thing.
+    s = {
+        "type": "object",
+        "properties": {"email": {"anyOf": [{"type": "string"}, {"type": "null"}], "default": None}},
+    }
+    r = run(s)
+    [e] = [e for e in r.report.entries if e.keyword == "required"]
+    assert (e.rule, e.severity) == ("openai-strict/optional-nullable-default-null", "reversible")
+    assert denormalize_args(r, {"email": None}).args == {}
+    assert denormalize_args(r, {"email": "a@b.c"}).args == {"email": "a@b.c"}
+
+
+def test_optional_nullable_with_non_null_default_stays_lossy() -> None:
+    s = {"type": "object", "properties": {"n": {"type": ["string", "null"], "default": "x"}}}
+    r = run(s)
+    assert any(e.rule == "openai-strict/optional-nullable-ambiguous" for e in r.report.entries)

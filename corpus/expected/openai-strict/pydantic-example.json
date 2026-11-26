@@ -165,7 +165,22 @@
           },
           {
             "op": "drop_injected_null",
+            "property": "email",
+            "at": "/$defs/Contact"
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "age",
+            "at": "/$defs/Contact"
+          },
+          {
+            "op": "drop_injected_null",
             "property": "tags",
+            "at": "/$defs/Contact"
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "address",
             "at": "/$defs/Contact"
           }
         ]
@@ -397,18 +412,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "create_contact",
         "source_path": "/$defs/Contact/properties/address",
         "target_path": "/$defs/Contact/properties/address",
         "instance_path": null,
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'address' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'address' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "openai-strict/default-dropped",
@@ -425,18 +440,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "create_contact",
         "source_path": "/$defs/Contact/properties/age",
         "target_path": "/$defs/Contact/properties/age",
         "instance_path": null,
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'age' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'age' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "openai-strict/default-dropped",
@@ -453,18 +468,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "create_contact",
         "source_path": "/$defs/Contact/properties/email",
         "target_path": "/$defs/Contact/properties/email",
         "instance_path": null,
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'email' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'email' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "openai-strict/keyword-unsupported",
@@ -750,18 +765,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "search",
         "source_path": "/properties/filters",
         "target_path": null,
         "instance_path": null,
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'filters' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'filters' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "core/open-object-unsupported",

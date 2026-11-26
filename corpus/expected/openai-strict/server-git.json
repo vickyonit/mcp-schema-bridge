@@ -295,6 +295,16 @@
             "op": "drop_injected_null",
             "property": "max_count",
             "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "start_timestamp",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "end_timestamp",
+            "at": ""
           }
         ]
       }
@@ -338,7 +348,13 @@
       },
       "reverse": {
         "target": "openai-strict",
-        "ops": []
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "base_branch",
+            "at": ""
+          }
+        ]
       }
     },
     {
@@ -498,7 +514,18 @@
       },
       "reverse": {
         "target": "openai-strict",
-        "ops": []
+        "ops": [
+          {
+            "op": "drop_injected_null",
+            "property": "contains",
+            "at": ""
+          },
+          {
+            "op": "drop_injected_null",
+            "property": "not_contains",
+            "at": ""
+          }
+        ]
       }
     },
     {
@@ -574,18 +601,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "git_branch",
         "source_path": "/properties/contains",
         "target_path": "/properties/contains",
         "instance_path": "/contains",
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'contains' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'contains' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "openai-strict/default-dropped",
@@ -602,18 +629,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "git_branch",
         "source_path": "/properties/not_contains",
         "target_path": "/properties/not_contains",
         "instance_path": "/not_contains",
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'not_contains' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'not_contains' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "core/object-closed",
@@ -672,18 +699,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "git_create_branch",
         "source_path": "/properties/base_branch",
         "target_path": "/properties/base_branch",
         "instance_path": "/base_branch",
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'base_branch' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'base_branch' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "core/object-closed",
@@ -840,18 +867,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "git_log",
         "source_path": "/properties/end_timestamp",
         "target_path": "/properties/end_timestamp",
         "instance_path": "/end_timestamp",
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'end_timestamp' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'end_timestamp' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "openai-strict/default-dropped",
@@ -896,18 +923,18 @@
         "message": "default is not supported by the target; kept as a description hint"
       },
       {
-        "rule": "openai-strict/optional-nullable-ambiguous",
-        "tid": "T11b",
+        "rule": "openai-strict/optional-nullable-default-null",
+        "tid": "T11a",
         "tool": "git_log",
         "source_path": "/properties/start_timestamp",
         "target_path": "/properties/start_timestamp",
         "instance_path": "/start_timestamp",
         "keyword": "required",
         "action": "rewritten",
-        "severity": "lossy",
+        "severity": "reversible",
         "original": null,
         "hinted": false,
-        "message": "optional property 'start_timestamp' already accepts null; once required, 'omitted' and 'null' can no longer be distinguished"
+        "message": "optional property 'start_timestamp' defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args"
       },
       {
         "rule": "core/object-closed",

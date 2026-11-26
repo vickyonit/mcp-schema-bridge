@@ -39,6 +39,14 @@ function visit(node: SNode, ctx: Ctx, seen: Seen): void {
   if (!missing.length) return;
   for (const name of missing) {
     const sub = p.get(name);
+    if (acceptsNull(sub) && sub instanceof SNode && sub.has("default") && sub.get("default") === null) {
+      ctx.add(ctx.ruleId("optional-nullable-default-null"), "T11a", {
+        node: sub, keyword: "required", action: "rewritten", severity: "reversible", sourcePath: srcOf(sub, node),
+        message: `optional property ${pyRepr(name)} defaults to null, so omitting it and sending null are equivalent; null is removed again by denormalize_args`,
+      });
+      node.ops.push(new Map<string, unknown>([["op", "drop_injected_null"], ["property", name]]));
+      continue;
+    }
     if (acceptsNull(sub)) {
       ctx.add(ctx.ruleId("optional-nullable-ambiguous"), "T11b", {
         node: sub instanceof SNode ? sub : node, keyword: "required", action: "rewritten", severity: "lossy",

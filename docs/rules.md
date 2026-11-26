@@ -74,6 +74,7 @@ rules in [`rules/`](../rules/). The `tid` field groups rules into transformation
 | `core/open-object-unsupported` | T10 | fatal | A map or open object cannot be expressed in strict mode. |
 | `core/any-value-unsupported` | T10 | fatal | A schema that accepts any value cannot be expressed in strict mode. |
 | `<target>/optional-to-nullable` | T11a | reversible | An optional property was made required and nullable. `denormalize_args` removes the `null` again. |
+| `<target>/optional-nullable-default-null` | T11a | reversible | An optional property already accepted null and defaults to null (Pydantic `x: T \| None = None`), so omitting it and sending null are equivalent. `denormalize_args` removes the null. |
 | `<target>/optional-nullable-ambiguous` | T11b | lossy | The property was already nullable, so "omitted" and "null" can no longer be told apart. |
 
 ## Keyword filter and hints (T1, T12, T13, T15, T16)
