@@ -14,6 +14,7 @@ from mcp_schema_bridge.core.report import Report, ReportEntry
 from mcp_schema_bridge.core.result import NormalizeResult, ReverseMap
 from mcp_schema_bridge.core.reverse import DenormalizeResult, Repair, denormalize_args
 from mcp_schema_bridge.core.rules import RULES_VERSION, TARGETS, Target
+from mcp_schema_bridge.core.toolset import NormalizedTool, Rejection, ToolsetResult, normalize_tools
 
 __all__ = [
     "RULES_VERSION",
@@ -24,6 +25,8 @@ __all__ = [
     "LimitExceededError",
     "NormalizeOptions",
     "NormalizeResult",
+    "NormalizedTool",
+    "Rejection",
     "Repair",
     "Report",
     "ReportEntry",
@@ -31,8 +34,10 @@ __all__ = [
     "ReverseMismatchError",
     "SchemaBridgeError",
     "Target",
+    "ToolsetResult",
     "UnsupportedSchemaError",
     "__version__",
     "denormalize_args",
     "normalize_schema",
+    "normalize_tools",
 ]
